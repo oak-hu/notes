@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metric Spaces — Revision Overview</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','svg'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root{
+    --def:#2563eb; --thm:#b91c1c; --lem:#047857; --ex:#b45309; --rem:#6b7280; --warn:#d97706;
+    --defbg:#eff6ff; --thmbg:#fef2f2; --lembg:#ecfdf5; --exbg:#fffbeb; --rembg:#f9fafb;
+    --ink:#1f2430; --accent:#0e7490;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#fcfcfa; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 120px;}
+  header.site{background:#083344; color:#e0f2fe; padding:38px 22px 30px; margin-bottom:26px;}
+  header.site h1{margin:0 0 6px; font-size:1.9rem; font-weight:normal; letter-spacing:.5px;}
+  header.site p{margin:4px 0; color:#a5d8e6; max-width:920px;}
+  header.site .inner{max-width:920px;margin:0 auto;}
+  header.site a{color:#7dd3fc;}
+  nav.toc{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:14px 20px; margin-bottom:30px; font-size:.95rem;}
+  nav.toc b{color:var(--accent)}
+  nav.toc a{color:#333; text-decoration:none; border-bottom:1px dotted #bbb;}
+  nav.toc a:hover{color:var(--accent)}
+  nav.toc ul{margin:4px 0 10px; padding-left:22px; columns:2; column-gap:36px;}
+  nav.toc li{margin:2px 0; break-inside:avoid;}
+  h2{font-size:1.5rem; border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:56px; color:#0c3b4a;}
+  h3{font-size:1.18rem; margin-top:38px; color:#155e75;}
+  h4{margin-top:28px;}
+  .card{border-left:5px solid var(--rem); background:var(--rembg); border-radius:0 8px 8px 0; padding:12px 18px 10px; margin:18px 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:99px; color:#fff; margin-right:8px; vertical-align:2px;}
+  .card .name{font-weight:bold;}
+  .def{border-color:var(--def); background:var(--defbg);} .def .tag{background:var(--def);}
+  .thm{border-color:var(--thm); background:var(--thmbg);} .thm .tag{background:var(--thm);}
+  .lem{border-color:var(--lem); background:var(--lembg);} .lem .tag{background:var(--lem);}
+  .ex{border-color:var(--ex); background:var(--exbg);} .ex .tag{background:var(--ex);}
+  .rem{border-color:var(--rem); background:var(--rembg);} .rem .tag{background:var(--rem);}
+  .warn{border-color:var(--warn); background:#fff7ed;} .warn .tag{background:var(--warn);}
+  .hyp{margin:8px 0 4px;}
+  .hyp ul, .stmt ul, .card ul{margin:4px 0 8px; padding-left:24px;}
+  .card li{margin:3px 0;}
+  details.sk{margin:10px 0 6px; border-top:1px dashed #c9c9bf; padding-top:6px;}
+  details.sk summary{cursor:pointer; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#155e75;}
+  details.sk[open] summary{margin-bottom:4px;}
+  .nonex{font-family:Arial,sans-serif; font-size:.7rem; background:#cffafe; color:#155e75; border-radius:4px; padding:1px 6px; vertical-align:2px;}
+  .num{color:#777; font-weight:normal;}
+  figure{margin:22px auto; text-align:center;}
+  figcaption{font-size:.88rem; color:#666; max-width:640px; margin:8px auto 0;}
+  table{border-collapse:collapse; width:100%; font-size:.93rem; margin:16px 0;}
+  th,td{border:1px solid #ddd; padding:7px 10px; text-align:left; vertical-align:top;}
+  th{background:#e0f2fe;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.85rem; margin:12px 0;}
+  .legend span{padding:2px 10px; border-radius:99px; border:1px solid #ccc; background:#fff;}
+  .graphbox{background:#fff; border:1px solid #e3e3dd; border-radius:12px; padding:10px; overflow-x:auto;}
+  svg text{font-family:'Helvetica Neue',Arial,sans-serif;}
+  svg a{cursor:pointer;}
+  svg a:hover rect{stroke-width:2.5;}
+  code{font-size:.92em; background:#f1f1ea; padding:1px 4px; border-radius:3px;}
+  .abbr{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:10px 18px; font-size:.92rem;}
+  .abbr b{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="site"><div class="inner">
+<h1>Metric Spaces — Revision Overview</h1>
+<p>A skimmable map of the A2 Metric Spaces notes (Lauder, after Green/McGerty/Earl): every key definition, every theorem with hypotheses spelled out, proof sketches, and the dependency graph.</p>
+<p style="font-size:.88rem">Numbering follows the notes. Companion page: <a href="index.html">Complex Analysis overview →</a></p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+<b>Contents</b>
+<ul>
+<li><a href="#graph">0. The big picture (dependency graph)</a></li>
+<li><a href="#ch1">1. Differentiability in $\mathbb R^2$ (incl. IFT)</a></li>
+<li><a href="#ch2">2. Metric spaces: axioms, examples, norms, balls</a></li>
+<li><a href="#ch3">3. Limits, continuity, function spaces</a></li>
+<li><a href="#ch4">4. Isometries, homeomorphisms, equivalence</a></li>
+<li><a href="#ch5">5. Open &amp; closed sets; continuity via preimages</a></li>
+<li><a href="#ch6">6. Interiors, closures, limit points</a></li>
+<li><a href="#ch7">7. Completeness &amp; the Contraction Mapping Thm</a></li>
+<li><a href="#ch8">8. Connectedness &amp; path-connectedness</a></li>
+<li><a href="#ch9">9. Sequential compactness</a></li>
+<li><a href="#ch10">10. Compactness &amp; Heine–Borel</a></li>
+<li><a href="#ch11">11. Conformal maps, $\mathbb C_\infty$, Möbius</a></li>
+<li><a href="#hyps">Hypothesis cheat-sheet</a></li>
+<li><a href="#cex">Counterexample gallery</a></li>
+</ul>
+<div class="abbr">
+<b>Abbreviations.</b> <i>cts</i> = continuous &nbsp;·&nbsp; <i>nbhd</i> = neighbourhood &nbsp;·&nbsp; <i>seq.</i> = sequentially &nbsp;·&nbsp; <i>tot. bdd</i> = totally bounded &nbsp;·&nbsp; <i>p.c.</i> = path-connected &nbsp;·&nbsp; <i>clopen</i> = open and closed &nbsp;·&nbsp; $B(a,\varepsilon)$ / $\bar B(a,\varepsilon)$ = open/closed ball &nbsp;·&nbsp; TFAE = the following are equivalent.
+<span class="nonex">non-exam</span> = non-examinable in the notes. <b>Watch the ambient space:</b> "open" always means "open <em>in $X$</em>" — subspace opens are different (Lemma 5.5.1).
+</div>
+<div class="legend">
+<span style="border-left:5px solid var(--def)">Definition</span>
+<span style="border-left:5px solid var(--thm)">Theorem / Corollary</span>
+<span style="border-left:5px solid var(--lem)">Lemma / Proposition</span>
+<span style="border-left:5px solid var(--ex)">Example / technique</span>
+<span style="border-left:5px solid var(--warn)">Warning / counterexample</span>
+</div>
+</nav>
+
+<h2 id="graph">0 &nbsp;The big picture</h2>
+<p>Three storylines, all converging on the parallel complex analysis course. <b>(1) Calculus:</b> cts partials ⇒ differentiable → Inverse Function Theorem, whose proof engine is the Contraction Mapping Theorem. <b>(2) Topology of metric spaces:</b> open sets → continuity via preimages → closure-by-sequences → completeness / connectedness / compactness, each with its own equivalence theorem. <b>(3) Geometry of $\mathbb C_\infty$:</b> Möbius maps and conformality. Red arrows = the load-bearing chains.</p>
+
+<figure class="graphbox">
+<svg viewBox="0 0 1100 940" width="100%" style="min-width:860px">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+</marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+</marker>
+</defs>
+<style>
+.nl{font-size:13.5px; fill:#1f2430; text-anchor:middle; font-weight:600;}
+.ns{font-size:11px; fill:#555; text-anchor:middle;}
+.eg{stroke:#999; stroke-width:1.5; fill:none; marker-end:url(#arr);}
+.eb{stroke:#b91c1c; stroke-width:2.6; fill:none; marker-end:url(#arrR);}
+</style>
+
+<!-- ================= edges ================= -->
+<path class="eg" d="M150,66 L150,132"/>                                      <!-- 1.3.1 -> IFT -->
+<path class="eg" d="M680,66 L680,132"/>                                      <!-- closure/seq -> complete iff closed -->
+<path class="eg" d="M930,66 L930,132"/>                                      <!-- Cauchy -> B(X) complete -->
+<path class="eg" d="M775,160 L823,160"/>                                     <!-- 7.2.1 -> Cb complete -->
+<path class="eg" d="M680,186 L680,252"/>                                     <!-- 7.2.1 -> Cantor -->
+<path class="eb" d="M845,80 C520,95 320,170 252,256"/>                       <!-- Cauchy/complete -> contraction -->
+<path class="eb" d="M150,254 L150,188"/>                                     <!-- contraction -> IFT -->
+<path class="eg" d="M430,66 L430,132"/>                                      <!-- open sets -> preimages -->
+<path class="eg" d="M430,186 L430,252"/>                                     <!-- preimages -> clopen -->
+<path class="eg" d="M430,306 L430,372"/>                                     <!-- clopen -> intervals -->
+<path class="eb" d="M430,426 L430,492"/>                                     <!-- intervals -> pc=>conn -->
+<path class="eg" d="M330,422 C255,450 205,468 188,492"/>                     <!-- intervals -> IVT -->
+<path class="eg" d="M180,546 L180,612"/>                                     <!-- IVT -> sine curve -->
+<path class="eg" d="M435,546 L455,612"/>                                     <!-- pc=>conn -> 8.3.2 -->
+<path class="eg" d="M462,666 C465,750 472,800 478,852"/>                     <!-- 8.3.2 -> CA -->
+<path class="eg" d="M1035,55 C1085,140 1010,220 948,256"/>                   <!-- Cauchy -> 9.5.3 -->
+<path class="eg" d="M918,306 C878,400 818,450 792,492"/>                     <!-- 9.5.3 -> 10.x -->
+<path class="eb" d="M690,426 C720,500 752,560 763,610"/>                     <!-- B-W -> Heine-Borel -->
+<path class="eg" d="M930,426 C900,520 830,570 800,610"/>                     <!-- 9.2-9.3 -> Heine-Borel -->
+<path class="eb" d="M762,546 L766,610"/>                                     <!-- 10.x -> Heine-Borel -->
+<path class="eg" d="M180,786 C180,840 250,878 328,890"/>                     <!-- stereo -> CA -->
+<path class="eg" d="M500,786 L500,852"/>                                     <!-- Mobius -> CA -->
+<path class="eg" d="M800,786 C800,840 730,872 674,884"/>                     <!-- conformal -> CA -->
+
+<!-- ================= nodes ================= -->
+<!-- row 1 -->
+<a href="#thm-131"><rect x="35" y="14" width="230" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/>
+<text class="nl" x="150" y="36">cts partials ⇒ differentiable</text><text class="ns" x="150" y="54">Thm 1.3.1 (MVT + Cauchy–Schwarz)</text></a>
+<a href="#lem-521"><rect x="335" y="14" width="190" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/>
+<text class="nl" x="430" y="36">Open sets &amp; axioms</text><text class="ns" x="430" y="54">5.1.1, 5.2.1</text></a>
+<a href="#cor-615"><rect x="580" y="14" width="200" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/>
+<text class="nl" x="680" y="36">Closure ⟺ sequences</text><text class="ns" x="680" y="54">Lem 6.1.4 / Cor 6.1.5</text></a>
+<a href="#def-cauchy"><rect x="820" y="14" width="220" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/>
+<text class="nl" x="930" y="36">Cauchy seqs; completeness</text><text class="ns" x="930" y="54">7.1.1–7.1.3 (ℝ complete)</text></a>
+
+<!-- row 2 -->
+<a href="#thm-ift"><rect x="45" y="134" width="210" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="150" y="156">Inverse Function Thm</text><text class="ns" x="150" y="174">Thm 1.7.1 (in ℝ²)</text></a>
+<a href="#prop-531"><rect x="325" y="134" width="210" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="430" y="156">cts ⟺ preimages open</text><text class="ns" x="430" y="174">Prop 5.3.1</text></a>
+<a href="#lem-721"><rect x="585" y="134" width="190" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="680" y="156">complete ⟺ closed</text><text class="ns" x="680" y="174">Lemma 7.2.1</text></a>
+<a href="#thm-731"><rect x="825" y="134" width="210" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="930" y="156">B(X), C_b(X) complete</text><text class="ns" x="930" y="174">Thms 7.3.1, 7.3.2</text></a>
+
+<!-- row 3 -->
+<a href="#thm-contraction"><rect x="40" y="254" width="220" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="150" y="276">Contraction Mapping Thm</text><text class="ns" x="150" y="294">Thm 7.4.2 → IFT, A1 ODEs</text></a>
+<a href="#lem-812"><rect x="335" y="254" width="190" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="430" y="276">Clopen criterion</text><text class="ns" x="430" y="294">Lemma 8.1.2 (maps to {0,1})</text></a>
+<a href="#lem-723"><rect x="590" y="254" width="180" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="680" y="276">Cantor nested sets</text><text class="ns" x="680" y="294">Lemma 7.2.3</text></a>
+<a href="#thm-953"><rect x="815" y="254" width="230" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="930" y="276">seq cpt ⟺ complete + tot bdd</text><text class="ns" x="930" y="294">Thm 9.5.3 (diagonal argument)</text></a>
+
+<!-- row 4 -->
+<a href="#thm-818"><rect x="320" y="374" width="220" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="430" y="396">Intervals are connected</text><text class="ns" x="430" y="414">Thm 8.1.8 (sup argument)</text></a>
+<a href="#cor-943"><rect x="580" y="374" width="200" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="680" y="396">Bolzano–Weierstrass in ℝⁿ</text><text class="ns" x="680" y="414">Cor 9.4.3 (via products 9.4.2)</text></a>
+<a href="#lem-921"><rect x="820" y="374" width="240" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="940" y="396">seq cpt ⇒ closed + bdd; EVT</text><text class="ns" x="940" y="414">9.2.1, 9.3.1–9.3.2 (unif cts too)</text></a>
+
+<!-- row 5 -->
+<a href="#thm-818"><rect x="100" y="494" width="160" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text class="nl" x="180" y="516">IVT</text><text class="ns" x="180" y="534">8.1.8 + 8.1.6</text></a>
+<a href="#thm-831"><rect x="335" y="494" width="190" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="430" y="516">p.c. ⇒ connected</text><text class="ns" x="430" y="534">Thm 8.3.1</text></a>
+<a href="#prop-1021"><rect x="640" y="494" width="240" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="760" y="516">compact ⟺ seq compact</text><text class="ns" x="760" y="534">10.2.1 / 10.3.1 → Thm 10.3.2</text></a>
+
+<!-- row 6 -->
+<a href="#thm-sine"><rect x="80" y="614" width="200" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+<text class="nl" x="180" y="636">Topologist's sine curve</text><text class="ns" x="180" y="654">Thm 8.3.3 (conn ⇏ p.c.)</text></a>
+<a href="#thm-832"><rect x="330" y="614" width="260" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="460" y="636">conn open in normed ⇒ p.c.</text><text class="ns" x="460" y="654">Thm 8.3.2 (path-components open)</text></a>
+<a href="#thm-hb"><rect x="680" y="614" width="180" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+<text class="nl" x="770" y="636">Heine–Borel</text><text class="ns" x="770" y="654">Thm 10.3.3</text></a>
+
+<!-- row 7: Ch 11 -->
+<a href="#ster"><rect x="60" y="734" width="240" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="180" y="756">Stereographic projection</text><text class="ns" x="180" y="774">11.1.1; chordal metric on ℂ∞</text></a>
+<a href="#mobius"><rect x="370" y="734" width="260" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="500" y="756">Möbius maps; circlines</text><text class="ns" x="500" y="774">11.1.7–11.1.11; 3-transitivity 11.2.7</text></a>
+<a href="#conf"><rect x="680" y="734" width="240" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text class="nl" x="800" y="756">holo + f′≠0 ⇒ conformal</text><text class="ns" x="800" y="774">Prop 11.2.3</text></a>
+
+<!-- row 8 -->
+<a href="index.html"><rect x="330" y="854" width="340" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
+<text class="nl" x="500" y="876">→ Complex Analysis course</text><text class="ns" x="500" y="894">domains, contours, conformal maps (companion page)</text></a>
+</svg>
+<figcaption><b>Red arrows = the load-bearing chains.</b> Omitted for readability: Lemma 5.5.1 (subspace opens) feeds both the disconnection examples and the open-cover convention; the clopen criterion 8.1.2 also powers the sunflower lemma 8.1.4 and Thm 8.3.2's final step; Cor 6.1.5 (closure ⟺ sequences) is the workhorse inside 7.2.1, 7.2.3, 7.3.2 and 9.2.1; Thm 9.5.3 supplies the total-boundedness machinery for 10.3.1's nested-balls proof.</figcaption>
+</figure>
+
+<h2 id="ch1">1 &nbsp;Differentiability in $\mathbb R^2$</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Total derivative</span> <span class="num">(1.1.1)</span>
+<div class="stmt">$f:\Omega\subseteq\mathbb R^n\to\mathbb R^m$ is <b>differentiable at $a$</b> if there is a <em>linear map</em> $L:\mathbb R^n\to\mathbb R^m$ with
+$$\lim_{h\to0}\frac{f(a+h)-f(a)-Lh}{|h|}=0;$$
+then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5) — which also proves $L$ is unique.</div>
+<ul>
+<li>Workhorse rearrangement (1.2): $f(a+h)-f(a)=Lh+R(h)|h|$, $R(h)\to0$ — "remainder vanishes faster than linearly" (first-order Taylor, tangent plane).</li>
+<li>Why divide by $|h|$, not $h$? You can't divide by a vector — <em>except</em> in $\mathbb R^2\cong\mathbb C$, where dividing by $h$ makes sense and gives a much stronger condition: "the whole subject of complex analysis."</li>
+<li>For $n=1$ this recovers the usual derivative; for $n\ge2$ the difference-quotient definition is "wholly inadequate" since $h/|h|$ has no limit.</li>
+</ul>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Directional derivatives</span> <span class="num">(1.2.1)</span>
+<div class="stmt">$\partial_n f(a)=\lim_{\lambda\to0}\frac{f(a+\lambda n)-f(a)}{\lambda}$ for unit $n$. If $f$ is differentiable at $a$ then all directional derivatives exist and $\partial_nf(a)=Ln$ (eq. 1.4). Codomain dimension is irrelevant (work componentwise, WLOG $m=1$).</div>
+<ul><li><b>"Million dollar question":</b> all directional derivatives exist ⇒ differentiable? <b>No</b> (Ex 1.4.2 below) — but Thm 1.3.1 is the usable partial converse.</li></ul>
+</div>
+
+<div class="card thm" id="thm-131">
+<span class="tag">Thm</span><span class="name">Cts partials ⇒ differentiable</span> <span class="num">(1.3.1)</span>
+<div class="hyp"><b>Hyp:</b> $f:\mathbb R^2\to\mathbb R$ with partial derivatives that <b>exist and are cts</b> (works on any <b>open</b> $\Omega$ — openness ensures the MVT segments below stay in the domain).</div>
+<div class="stmt"><b>Then:</b> $f$ is differentiable, $df(a)=(f_x(a),f_y(a))$.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Telescope</b> one coordinate at a time: $f(a{+}h,b{+}k)-f(a,b)=\big(f(a{+}h,b{+}k)-f(a{+}h,b)\big)+\big(f(a{+}h,b)-f(a,b)\big)$.</li>
+<li><b>1-variable MVT</b> on each bracket: $=f_y(a{+}h,\,b{+}\theta_k k)\,k+f_x(a{+}\theta_h h,\,b)\,h$.</li>
+<li>Subtract $Lh = f_x(a,b)h+f_y(a,b)k$: the error is a dot product of (partial-derivative differences) with $(h,k)$; <b>Cauchy–Schwarz</b> bounds it by $\sqrt{(\Delta f_x)^2+(\Delta f_y)^2}\cdot|(h,k)|$.</li>
+<li>The $|(h,k)|$ cancels the denominator; <b>continuity of the partials</b> kills the $\Delta$'s as $(h,k)\to0$.</li>
+</ul>
+</details>
+<ul><li>This is the theorem the CA notes import to prove "CR + cts partials ⇒ holomorphic" (<a href="index.html#thm-crconv">CA Thm 1.2.7</a>).</li></ul>
+</div>
+
+<div class="card warn">
+<span class="tag">Warn</span><span class="name">The Ch 1 counterexample zoo</span>
+<ul>
+<li><b>Ex 1.4.2:</b> $f=\frac{xy(x+y)}{x^2+y^2}$, $f(0)=0$ — homogeneous of degree 1, so <em>every</em> directional derivative at $0$ exists (equals $f(n)$); but $n\mapsto f(n)$ is not linear, so no total derivative.</li>
+<li>Directional derivatives can all exist while $f$ isn't even <b>cts</b> (sheet 1).</li>
+<li>$f_{xy}=f_{yx}$ can <b>fail</b> without continuity of second partials (sheet 1).</li>
+<li>Differentiable ⇒ cts is true (Thm 1.5.2, immediate from (1.2)); chain rule $dh(a)=dg(f(a))\,df(a)$ holds (Thm 1.5.3, proof <span class="nonex">non-exam</span> — needs matrix norms).</li>
+</ul>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">§1.6 Topology starter-pack (informal, for CA; redone rigorously later)</span>
+<ul>
+<li><b>Open / closed / open nbhd</b> (1.6.1 → Ch 5); <b>path, path-connected</b> (1.6.2 → §8.2); <b>homotopic paths</b> (1.6.3); <b>simply-connected</b> = p.c. + any two paths with common endpoints homotopic (1.6.4); <b>connected</b> (1.6.7 → §8.1); <b>compact</b> via open covers (1.6.10 → Ch 10); <b>bounded</b> (1.6.11).</li>
+<li>$B(0,1)$ is simply-connected; the annulus $B(0,3)\setminus\bar B(0,1)$ is not (Ex 1.6.5).</li>
+<li>Compactness mantra: <em>"a good proxy for finiteness"</em> — every open cover has a finite subcover.</li>
+<li>Thm 1.6.12 (boundedness/attainment on compact sets) is proved by forward reference: compact ⇒ seq cpt (10.2.1) ⇒ image closed+bdd (9.3.1, 9.2.1) ⇒ sup attained (6.2.5).</li>
+<li>§1.6.3 teases metrics: $d_\infty$ ("square balls") defines the <em>same</em> open sets as $d_2$; the "library metric" $\delta$ is a genuine metric that's geometrically useless. Moral: topology only sees the open sets.</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-ift">
+<span class="tag">Thm</span><span class="name">Inverse Function Theorem in $\mathbb R^2$</span> <span class="num">(1.7.1)</span> <span class="nonex">proof non-exam</span>
+<div class="hyp"><b>Hyp:</b> $\Omega\subseteq\mathbb R^2$ <b>open</b>; $f\in C^1(\Omega,\mathbb R^2)$; $df(a)$ <b>invertible</b>.</div>
+<div class="stmt"><b>Then:</b> there's an open $U\ni a$ with $f(U)$ open, $f:U\to f(U)$ a bijection, $f^{-1}\in C^1$, and $df^{-1}(f(a))=df(a)^{-1}$. ("Locally invert nonlinear maps the way you globally invert invertible linear ones.")</div>
+<details class="sk" open><summary>Sketch (1-d model proof via contraction mapping — chosen because it generalizes + is a numerical algorithm)</summary>
+<ul>
+<li>Normalize $a=0$, $f(0)=0$, $f'(0)=1$; set $\psi(x)=x-f(x)$, so $\psi'(0)=0$; continuity of $\psi'$ gives $|\psi'|\le\frac12$ on $[-r,r]$, hence (MVT) $|\psi(x)|\le\frac12|x|$.</li>
+<li>To solve $f(x)=v_0$ with $|v_0|\le r/2$: the map $\phi(x)=x-f(x)+v_0$ sends $\bar B(0,r)$ to itself and is a <b>contraction</b> (constant $\frac12$).</li>
+<li>Unique fixed point $x_\infty$ (= <a href="#thm-contraction">Thm 7.4.2</a>), i.e. $f(x_\infty)=v_0$; iterating $\phi$ from any start <em>computes</em> it.</li>
+<li>The only missing ingredient in 2-d: a notion of <b>size for matrices</b> to make "$|d\psi|\le\frac12$ on a disc" precise (Ex 1.7.3 demos the iteration numerically; it converges for $(0.5,0.5)$ and breaks somewhere past $(0.79,0.79)$ — "a challenge to the reader").</li>
+</ul>
+</details>
+<ul><li><b>Worked use (Ex 1.7.2):</b> $u=x^3y+y^2,\ v=\ln(x+y)$ is locally uniquely solvable for $(x,y)$ near $(6,\ln 3)\mapsto(1,2)$: Jacobian cts and invertible there.</li></ul>
+</div>
+
+<h2 id="ch2">2 &nbsp;Metric spaces</h2>
+
+<div class="card def" id="def-metric">
+<span class="tag">Def</span><span class="name">Metric space</span> <span class="num">(2.2.1, 2.2.2)</span>
+<div class="stmt">$d:X\times X\to\mathbb R$ with (i) $d(x,y)\ge0$, $=0$ iff $x=y$; (ii) $d(x,y)=d(y,x)$; (iii) $d(x,z)\le d(x,y)+d(y,z)$. Reverse triangle inequality (2.2.2): $|d(x,y)-d(x,z)|\le d(y,z)$.</div>
+<ul><li>Motivation: the $\varepsilon$–$\delta$ definition of continuity uses <em>only</em> distance — so axiomatize distance and continuity comes along. The axioms are minimal yet sufficient: that's the point.</li><li>One set, many metrics — always know <em>which</em> $d$ you're using.</li></ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Ex</span><span class="name">The example zoo</span> <span class="num">(2.3.1–2.3.9)</span>
+<ul>
+<li>$\mathbb R$ with $|x-y|$; $\mathbb R^n$ with $d_1=\sum|v_i-w_i|$, $d_2$ (Euclidean), $d_\infty=\max$ — only $d_2$'s triangle inequality needs work: it's $\|x+y\|_2\le\|x\|_2+\|y\|_2$ (2.3.3), proved by squaring + <b>Cauchy–Schwarz</b>.</li>
+<li><b>Discrete metric</b> (2.3.4): $d=1$ for $x\ne y$. "Routine and trivial," but <b>the counterexample factory</b>: not from a norm; $B(a,1)=\{a\}$ but $\bar B(a,1)=X$; every set open.</li>
+<li><b>2-adic</b> (2.3.5): $d(x,y)=2^{-m}$, $2^m\|\,x-y$. Satisfies the stronger <em>ultrametric</em> inequality $d(x,z)\le\max(d(x,y),d(y,z))$. Intuition-breaker: $d(999,1000)=1>\frac18=d(0,1000)$.</li>
+<li><b>Path metric</b> on a connected graph (2.3.6); <b>word metric</b> on a group (2.3.7, = path metric on the Cayley graph); <b>Hamming distance</b> on $\{0,1\}^n$ (2.3.8, = restriction of $d_1$); <b>projective space</b> $\mathbf P(\mathbb R^n)$ with $d(L_1,L_2)=\sin\theta$ (2.3.9, well-defined by Cauchy–Schwarz).</li>
+</ul>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Norms; $\ell^p$ spaces; products; subspaces</span> <span class="num">(2.4.1–2.5.1)</span>
+<ul>
+<li><b>Norm</b> on a real vector space: $\|x\|=0\iff x=0$; $\|\lambda x\|=|\lambda|\|x\|$; triangle. Every norm gives a metric $d=\|x-y\|$ (2.4.2); the converse fails badly — norm-metrics are translation- and scaling-invariant, and any metric with both properties does come from a norm ($\|v\|=d(v,0)$, exercise).</li>
+<li><b>$\ell^p$ sequence spaces</b> (2.4.3): $\ell_1,\ell_2,\ell_\infty$ with $\sum|x_n|$, $(\sum x_n^2)^{1/2}$, $\sup|x_n|$; $\ell_2$ is an inner-product space — <b>Hilbert space</b>.</li>
+<li><b>Subspace</b>: restrict $d$ to any $Y\subseteq X$ ("subspace" ≠ vector subspace!).</li>
+<li><b>Product</b> (2.5.1): $d_{X\times Y}=\sqrt{d_X^2+d_Y^2}$, so $\mathbb R\times\mathbb R=\mathbb R^2$ Euclidean. Triangle inequality again via Cauchy–Schwarz. (max or sum give <em>equivalent</em> metrics — §4.3.)</li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-balls">
+<span class="tag">Def+Lem</span><span class="name">Balls; bounded</span> <span class="num">(2.6.1–2.6.3)</span>
+<div class="stmt">$B(a,\varepsilon)=\{d(x,a)\lt\varepsilon\}$, $\bar B(a,\varepsilon)=\{d(x,a)\le\varepsilon\}$. $Y$ <b>bounded</b> = contained in some open ball $\iff$ some closed ball $\iff$ $\{d(y_1,y_2)\}$ bounded in $\mathbb R$ (2.6.3 — third⇒first: any centre $a\in Y$ works, radius $K+1$).</div>
+<ul><li><b>Caution:</b> "closed ball = open ball + boundary" is <em>false in general</em> (discrete metric again).</li></ul>
+</div>
+
+<h2 id="ch3">3 &nbsp;Limits, continuity, function spaces</h2>
+
+<div class="card def" id="def-limit">
+<span class="tag">Def</span><span class="name">Limits; continuity; uniform continuity</span> <span class="num">(3.1.1–3.1.3)</span>
+<ul>
+<li>$x_n\to x$: $\forall\varepsilon\,\exists N$: $d(x_n,x)\lt\varepsilon$ for $n\ge N$. Limits are <b>unique</b> (triangle inequality with $\varepsilon=\frac12 d(a,b)$); may not exist ($0,1,0,1,\dots$).</li>
+<li><b>Cts at $a$</b>: $\forall\varepsilon\,\exists\delta$: $d_X(a,x)\lt\delta\Rightarrow d_Y(f(a),f(x))\lt\varepsilon$. <b>Uniformly cts</b>: one $\delta(\varepsilon)$ works for all base points.</li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-seqcts">
+<span class="tag">Lemma</span><span class="name">Sequential characterisation of continuity</span> <span class="num">(3.1.4)</span>
+<div class="stmt">$f$ cts at $a$ $\iff$ for every sequence $x_n\to a$ we have $f(x_n)\to f(a)$.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>(⇒) chain the definitions. (⇐) contrapositive: failure of continuity gives an $\varepsilon$ such that $\delta=1/n$ produces $x_n\to a$ with $d(f(x_n),f(a))\ge\varepsilon$.</li>
+</ul></details>
+</div>
+
+<div class="card def" id="def-funcspaces">
+<span class="tag">Def</span><span class="name">Function spaces $B(X)$, $C(X)$, $C_b(X)$</span> <span class="num">(3.2.1–3.2.6)</span>
+<ul>
+<li>$B(X)$ = bounded $f:X\to\mathbb R$ ($X$ <em>any set</em>) with the <b>sup norm</b> $\|f\|_\infty=\sup_X|f|$ — a normed vector space (3.2.2).</li>
+<li>$C(X)$ = cts $f:X\to\mathbb R$ ($X$ a metric space) — a vector space via the $\varepsilon/2$ argument (3.2.4).</li>
+<li>$C_b(X)=C(X)\cap B(X)$ with $d_\infty(f,g)=\|f-g\|_\infty$. Neither $C\subseteq B$ nor $B\subseteq C$ in general; $C[0,1]=C_b[0,1]$ since cts on $[0,1]$ ⇒ bounded (Prelims; later: compactness).</li>
+<li><b>Ex 3.2.6:</b> convergence in $d_\infty$ <em>is</em> uniform convergence — "essentially a tautology, but it takes a little thought to unravel the definitions."</li>
+</ul>
+</div>
+
+<h2 id="ch4">4 &nbsp;Isometries, homeomorphisms, equivalence</h2>
+
+<div class="card def" id="def-isom">
+<span class="tag">Def</span><span class="name">Isometry</span> <span class="num">(4.1.1)</span>
+<div class="stmt">$f:X\to Y$ with $d_Y(f(x),f(y))=d_X(x,y)$. Automatically <b>injective</b>; <b>not</b> automatically surjective — the right-shift on $\ell^2$, $(x_1,x_2,\dots)\mapsto(0,x_1,x_2,\dots)$, is an isometry onto a proper subspace. (Contrast: isometries of $\mathbb R^n$ are $x\mapsto Ax+b$, $A$ orthogonal — Prelims Geometry — hence surjective.) Bijective isometries of $X$ form the group $\operatorname{Isom}(X)$.</div>
+</div>
+
+<div class="card def" id="def-homeo">
+<span class="tag">Def</span><span class="name">Homeomorphism</span> <span class="num">(4.2.1–4.2.4)</span>
+<div class="stmt">cts bijection <b>whose inverse is also cts</b>.</div>
+<ul>
+<li><b>The inverse clause has teeth:</b> $f:[0,1)\cup[2,3]\to[0,2]$ ($x\mapsto x$ resp. $x-1$) is a cts bijection whose inverse jumps at $1$ — not a homeomorphism.</li>
+<li>Homeomorphic pairs: closed disc ≅ square (radial stretch); $(-1,1)\cong\mathbb R$ via $x/(1-|x|)$; all of $\mathbb R$, $(a,b)$, $(a,\infty)$, $(-\infty,a)$ mutually homeomorphic; coffee cup ≅ doughnut.</li>
+<li>Moral for later: completeness is <b>not</b> preserved by homeomorphism ($(0,1)\cong\mathbb R$); connectedness and (seq) compactness <b>are</b>.</li>
+</ul>
+</div>
+
+<div class="card lem" id="prop-432">
+<span class="tag">Prop</span><span class="name">Equivalent metrics</span> <span class="num">(4.3.1, 4.3.2)</span> <span class="nonex">non-exam</span>
+<div class="stmt">$d,d'$ on $X$ are <b>equivalent</b> if $\operatorname{id}:(X,d)\to(X,d')$ is a homeomorphism (⟺ balls of each metric nest inside balls of the other); then limits/continuity/open sets coincide. <b>Strongly equivalent</b>: $d\le Cd'$ and $d'\le Cd$ (strictly stronger). <b>Prop 4.3.2:</b> $d_1,d_2,d_\infty$ on $\mathbb R^n$ are (strongly) equivalent: $\|x\|_\infty\le\|x\|_1\le n\|x\|_\infty$, $\|x\|_\infty\le\|x\|_2\le\sqrt n\,\|x\|_\infty$.</div>
+</div>
+
+<h2 id="ch5">5 &nbsp;Open and closed sets</h2>
+
+<div class="card def" id="def-open5">
+<span class="tag">Def</span><span class="name">Open; closed</span> <span class="num">(5.1.1–5.1.4)</span>
+<ul>
+<li>$U$ <b>open in $X$</b>: every $y\in U$ has $B(y,\delta)\subseteq U$. $F$ <b>closed</b>: $F^c$ open.</li>
+<li>Open balls are open (5.1.2 — <em>not</em> a tautology: pick $\varepsilon'$ with $d(x,a)\lt\varepsilon-\varepsilon'$, triangle inequality); closed balls are closed (5.1.4, same trick with the reverse triangle inequality); singletons closed.</li>
+<li><b>Closed ≠ not-open:</b> $\mathbb R$ is both; $(0,1)$ open only; $[0,1]$ closed only; $(0,1]$ neither.</li>
+<li>In the discrete metric <em>every</em> set is open (and closed).</li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-521">
+<span class="tag">Lemma</span><span class="name">Open-set axioms</span> <span class="num">(5.2.1, 5.2.2)</span>
+<div class="stmt">$X,\emptyset$ open; <b>arbitrary unions</b> of opens are open; <b>finite intersections</b> of opens are open. Dually for closed sets (de Morgan): arbitrary intersections, finite unions.</div>
+<ul>
+<li>Finiteness essential: $\bigcap_n(-\frac1n,\frac1n)=\{0\}$, not open. (Take $\varepsilon=\min\varepsilon_i$ — only positive for finite $I$.)</li>
+<li>These three properties <em>define</em> a <b>topological space</b> (§5.4 <span class="nonex">non-exam</span>): a set + a declared family of "open sets" satisfying them, no metric needed. Metric spaces are topological spaces (5.4.1); some topological spaces are not metrizable; continuity there is <em>defined</em> by Def 5.4.2 = preimage condition, with no $\varepsilon$–$\delta$ available.</li>
+</ul>
+</div>
+
+<div class="card thm" id="prop-531">
+<span class="tag">Prop</span><span class="name">Continuity ⟺ preimages of opens are open</span> <span class="num">(5.3.1)</span>
+<div class="stmt">$f:X\to Y$ is cts $\iff$ $f^{-1}(U)$ is open in $X$ for every open $U\subseteq Y$ $\iff$ preimages of closed sets are closed.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>(⇒) for $a\in f^{-1}(U)$, a ball $B(f(a),\varepsilon)\subseteq U$ exists; continuity converts it into $B(a,\delta)\subseteq f^{-1}(U)$.</li>
+<li>(⇐) apply the hypothesis to the open ball $B(f(a),\varepsilon)$ — that <em>is</em> continuity at $a$.</li>
+</ul>
+</details>
+<ul><li><b>What it does NOT say:</b> cts maps needn't send opens to opens — even injectively: $t\mapsto e^{2\pi it}$, $[0,1)\to S^1$, sends the open set $[0,\frac12)$ to a non-open arc. (Cf. the <em>open mapping theorem</em> in CA for how special holomorphic maps are.)</li></ul>
+</div>
+
+<div class="card lem" id="lem-551">
+<span class="tag">Lemma</span><span class="name">Subspace topology</span> <span class="num">(5.5.1)</span>
+<div class="stmt">For $Y\subseteq X$: $U$ open in $Y$ $\iff$ $U=Y\cap V$, $V$ open in $X$ (and same for closed). Proof: $B_Y(y,r)=Y\cap B_X(y,r)$; for (⇒) take $V=\bigcup_y B_X(y,\varepsilon_y)$.</div>
+<ul>
+<li><b>The classic confuser:</b> $(0,1]$ is not open in $\mathbb R$ but IS open in $Y=(0,1]\cup[2,3]$ (e.g. $B_Y(1,\frac12)=(\frac12,1]$). This example powers the disconnection of $[0,1]\cup[2,3]$ in Ch 8.</li>
+<li>Always say open <em>in what</em>.</li>
+</ul>
+</div>
+
+<h2 id="ch6">6 &nbsp;Interiors, closures, limit points</h2>
+
+<div class="card def" id="def-int">
+<span class="tag">Def</span><span class="name">Interior, closure, boundary, dense</span> <span class="num">(6.1.1–6.1.3)</span>
+<ul>
+<li>$\operatorname{int}(S)$ = union of all opens inside $S$ = largest such; $\bar S$ = intersection of all closeds containing $S$ = smallest such; $\partial S=\bar S\setminus\operatorname{int}(S)$; $S$ <b>dense</b> if $\bar S=X$. (Open/closed taken <em>in $X$</em>, not in the subspace — else trivial.)</li>
+<li>$\operatorname{int}[a,b]=(a,b)$; $\operatorname{int}\mathbb Q=\emptyset$; $\mathbb Q$ and the dyadic rationals are dense in $\mathbb R$.</li>
+</ul>
+</div>
+
+<div class="card thm" id="cor-615">
+<span class="tag">Lem+Cor</span><span class="name">Closure via balls and sequences — the workhorse</span> <span class="num">(6.1.4, 6.1.5)</span>
+<div class="stmt">
+<ul>
+<li><b>6.1.4:</b> $a\in\bar S$ $\iff$ every ball $B(a,\varepsilon)$ meets $S$ (so: dense ⟺ meets every open set).</li>
+<li><b>6.1.5:</b> $a\in\bar S$ $\iff$ some sequence in $S$ converges to $a$. Hence: <b>$S$ closed ⟺ closed under limits of its sequences.</b></li>
+</ul></div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>6.1.4: if a ball misses $S$, its complement is a closed set ⊇ $S$ but ∌ $a$; conversely $\bar S^c$ is open.</li>
+<li>6.1.5: pick $x_n\in B(a,\frac1n)\cap S$ (this innocuous step is where the notes flag the <b>axiom of countable choice</b>, §2.1).</li>
+</ul></details>
+<ul><li>Used constantly in Ch 7 &amp; 9 (7.2.1, 7.2.3, 7.3.2, 9.2.1).</li>
+<li><b>Caution (6.1.6):</b> $\overline{B(a,\varepsilon)}\subseteq\bar B(a,\varepsilon)$ can be <em>strict</em> — discrete metric: $\overline{B(x,1)}=\{x\}$ but $\bar B(x,1)=X$.</li></ul>
+</div>
+
+<div class="card def" id="def-limpt">
+<span class="tag">Def</span><span class="name">Limit points</span> <span class="num">(6.2.1–6.2.5)</span> <span class="num">("cultural reference"; not used later)</span>
+<ul>
+<li>$a\in L(S)$: every ball about $a$ meets $S\setminus\{a\}$. Points of $S$ not in $L(S)$ = <b>isolated points</b>. Ex: $S=(0,1]\cup\{2\}$ ⇒ $L(S)=[0,1]$ — note $0\notin S$ is a limit point, $2\in S$ isn't.</li>
+<li>$L(S)$ is closed (6.2.3); $\bar S=S\cup L(S)$ (6.2.4); <b>$S$ closed ⟺ $L(S)\subseteq S$</b> (6.2.5).</li>
+</ul>
+</div>
+
+<h2 id="ch7">7 &nbsp;Completeness</h2>
+
+<div class="card def" id="def-cauchy">
+<span class="tag">Def</span><span class="name">Cauchy; complete</span> <span class="num">(7.1.1–7.1.3)</span>
+<ul>
+<li><b>Cauchy:</b> $\forall\varepsilon\,\exists N$: $d(x_n,x_m)\lt\varepsilon$ for $n,m\ge N$. <b>Complete:</b> every Cauchy sequence converges (in the space!).</li>
+<li><b>7.1.2:</b> convergent ⇒ Cauchy ⇒ bounded; both converses fail: $1/n$ in $(0,1]$ is Cauchy, not convergent <em>there</em>; $1,\frac12,1,\frac12,\dots$ is bounded, not Cauchy.</li>
+<li>$\mathbb R$ complete (Prelims), hence $\mathbb R^n$ (coordinatewise). $(0,1)$ incomplete yet $\cong\mathbb R$: <b>completeness is not a topological invariant.</b></li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-721">
+<span class="tag">Lemma</span><span class="name">Complete ⟺ closed (inside a complete space)</span> <span class="num">(7.2.1)</span>
+<div class="hyp"><b>Hyp:</b> $X$ <b>complete</b>, $Y\subseteq X$ a subspace.</div>
+<div class="stmt"><b>Then:</b> $Y$ complete $\iff$ $Y$ closed in $X$.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>Both directions are Cor 6.1.5 + uniqueness of limits: closed traps the limit in $Y$; complete forces sequence limits into $Y$.</li>
+</ul></details>
+</div>
+
+<div class="card lem" id="lem-723">
+<span class="tag">Lemma</span><span class="name">Cantor's intersection theorem</span> <span class="num">(7.2.2, 7.2.3)</span>
+<div class="hyp"><b>Hyp:</b> $X$ <b>complete</b>; $S_1\supseteq S_2\supseteq\cdots$ <b>non-empty closed</b>, with $\operatorname{diam}(S_n)\to0$ (diam = $\sup$ of pairwise distances, 7.2.2).</div>
+<div class="stmt"><b>Then:</b> $\bigcap_n S_n$ = exactly one point.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>Pick $x_n\in S_n$: nesting + shrinking diameters make $(x_n)$ Cauchy; the limit lies in every (closed) $S_i$ by 6.1.5; uniqueness since $d(a,b)\le\operatorname{diam}(S_i)\to0$.</li>
+</ul></details>
+<ul><li>Drop $\operatorname{diam}\to0$: uniqueness fails, and the intersection can even be <b>empty</b> — $S_i=[i,\infty)$. (Compare Lemma 10.2.2: compactness instead rescues non-emptiness.)</li></ul>
+</div>
+
+<div class="card thm" id="thm-731">
+<span class="tag">Thm</span><span class="name">$B(X)$ and $C_b(X)$ are complete</span> <span class="num">(7.3.1, 7.3.2)</span>
+<div class="hyp"><b>Hyp:</b> 7.3.1: $X$ <b>any set</b>. 7.3.2: $X$ a metric space.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>$B(X)$:</b> Cauchy in $\|\cdot\|_\infty$ ⇒ pointwise Cauchy ⇒ pointwise limit $f$ ($\mathbb R$ complete); freeze $n$, let $m\to\infty$ in the Cauchy bound to upgrade pointwise → sup-norm convergence; boundedness from the $\varepsilon=1$ tail.</li>
+<li><b>$C_b(X)$:</b> by 7.2.1 just show $C_b(X)$ is <b>closed</b> in $B(X)$; by 6.1.5 that means: uniform limit of cts is cts — the classic <b>$\varepsilon/3$ argument</b>: $|f(x)-f(a)|\le|f(x)-f_n(x)|+|f_n(x)-f_n(a)|+|f_n(a)-f(a)|$.</li>
+</ul>
+</details>
+<ul><li>This is the metric-space rerun of Prelims "uniform limit of cts functions is cts"; in CA it's the analogue of Prop 3.3.12 territory (locally uniform limits).</li></ul>
+</div>
+
+<div class="card thm" id="thm-contraction">
+<span class="tag">Thm</span><span class="name">Contraction Mapping Theorem</span> <span class="num">(7.4.1, 7.4.2)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$X$ <b>non-empty</b> (the notes: "many people have lost a mark for forgetting this") and <b>complete</b>;</li>
+<li>$f:X\to X$ a <b>contraction</b>: $\exists K\in[0,1)$ with $d(f(x),f(y))\le K\,d(x,y)$ — a <em>uniform</em> $K\lt1$, strictly stronger than "$d(f(x),f(y))\lt d(x,y)$".</li>
+</ul></div>
+<div class="stmt"><b>Then:</b> $f$ has a <b>unique fixed point</b>.</div>
+<details class="sk" open><summary>Sketch (constructive — the proof is an algorithm)</summary>
+<ul>
+<li><b>Uniqueness:</b> two fixed points give $d(x_1,x_2)\le K\,d(x_1,x_2)$ ⇒ $d=0$.</li>
+<li><b>Existence:</b> iterate $x_{n+1}=f(x_n)$ from <em>any</em> $x_0$. Induction: $d(x_n,x_{n-1})\le K^{n-1}d(x_0,x_1)$.</li>
+<li>Triangle + geometric series: $d(x_n,x_m)\le\frac{K^m}{1-K}\,d(x_0,x_1)\to0$ ⇒ Cauchy ⇒ (completeness) $x_n\to x$.</li>
+<li>$f$ cts (Lipschitz, 7.4.1) ⇒ $f(x)=\lim f(x_n)=\lim x_{n+1}=x$.</li>
+</ul>
+</details>
+<ul>
+<li><b>Hypotheses are sharp:</b> $f(x)=x+\frac1x$ on $[1,\infty)$ satisfies $d(f(x),f(y))\lt d(x,y)$, no fixed point (no uniform $K$); $f(x)=x/2$ on $(0,1)$ is a genuine contraction, no fixed point (incomplete space).</li>
+<li>Applications: the <a href="#thm-ift">IFT</a> proof engine; Picard's theorem for ODEs (course A1).</li>
+</ul>
+</div>
+
+<h2 id="ch8">8 &nbsp;Connectedness and path-connectedness</h2>
+
+<div class="card def" id="def-conn">
+<span class="tag">Def</span><span class="name">(Dis)connected</span> <span class="num">(8.1.1)</span>
+<div class="stmt"><b>Disconnected:</b> $X=U\sqcup V$ with $U,V$ non-empty <b>open</b>; <b>connected</b> = not. Ex: $[0,1]\cup[2,3]$ is disconnected — both halves are open <em>in the subspace</em> (Lemma 5.5.1's example doing real work).</div>
+</div>
+
+<div class="card lem" id="lem-812">
+<span class="tag">Lemma</span><span class="name">Clopen criterion + subspace criterion</span> <span class="num">(8.1.2, 8.1.3)</span>
+<div class="stmt"><b>8.1.2, TFAE:</b> (i) $X$ connected; (ii) every cts $f:X\to\{0,1\}$ is constant; (iii) the only clopen sets are $\emptyset, X$.
+<b>8.1.3:</b> $Y\subseteq X$ is connected iff whenever $Y\subseteq U\cup V$ ($U,V$ open in $X$) with $U\cap V\cap Y=\emptyset$, then $Y\subseteq U$ or $Y\subseteq V$.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>(i)⇒(ii): $f^{-1}(0), f^{-1}(1)$ are disjoint opens covering $X$. (ii)⇒(iii): characteristic function of a clopen set is cts. (iii)⇒(i): a disconnection makes $U$ clopen.</li>
+<li>8.1.3 is just 8.1.2 + subspace opens (5.5.1).</li>
+</ul></details>
+<ul><li>The {0,1}-criterion is the CA identity-theorem move ("open and closed in a domain ⇒ all or nothing") in its native habitat.</li></ul>
+</div>
+
+<div class="card lem">
+<span class="tag">Lemma</span><span class="name">Building connected sets</span> <span class="num">(8.1.4–8.1.7)</span>
+<ul>
+<li><b>Sunflower lemma (8.1.4):</b> connected sets with a common point have connected union. <em>Sketch:</em> a cts $f\to\{0,1\}$ is constant on each petal, and they share the centre's value.</li>
+<li><b>Closures (8.1.5):</b> $A$ connected, $A\subseteq B\subseteq\bar A$ ⇒ $B$ connected. <em>Sketch:</em> via 8.1.3; $A\subseteq U$ forces $\bar A\subseteq\overline{V^c}=V^c$, so $B\subseteq U$. (This is what makes the sine curve connected.)</li>
+<li><b>Cts images (8.1.6):</b> $X$ connected ⇒ $f(X)$ connected (pull back a disconnection). So connectedness <b>is</b> a topological invariant — unlike completeness.</li>
+<li><b>Components (8.1.7):</b> maximal connected subsets partition $X$ (sunflower + maximality).</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-818">
+<span class="tag">Thm</span><span class="name">Intervals are connected; IVT</span> <span class="num">(8.1.8)</span>
+<div class="hyp"><b>Hyp:</b> $[x,y]\subset\mathbb R$ (any interval works).</div>
+<details class="sk" open><summary>Sketch (the sup argument)</summary>
+<ul>
+<li>Suppose $[x,y]\subseteq U\cup V$, disjoint on $[x,y]$, $x\in U$, $y\in V$ (careful WLOG: shrink the interval so its endpoints witness both sets).</li>
+<li>Let $c=\sup S$ where $S=[x,y]\cap U$ — exists by <b>completeness of $\mathbb R$</b> (sup axiom).</li>
+<li>$c\in U$: openness gives $[c,c+\varepsilon)\subseteq U$, beating the sup. $c\in V$: openness gives $(c-\varepsilon,c]\subseteq V$, so $c-\varepsilon/2$ is a smaller upper bound. Both impossible.</li>
+<li><b>IVT falls out:</b> $f([a,b])$ is connected (8.1.6), hence an interval, hence contains everything between $f(a)$ and $f(b)$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Path-connectedness</span> <span class="num">(8.2.1, 8.2.2)</span>
+<div class="stmt">$X$ is <b>p.c.</b> if any $a,b$ are joined by a path (cts $\gamma:[0,1]\to X$). "Joined by a path" is an equivalence relation (constant path / reversal $\gamma(1-t)$ / concatenation $\gamma_1\star\gamma_2$); classes = <b>path-components</b>.</div>
+</div>
+
+<div class="card thm" id="thm-831">
+<span class="tag">Thm</span><span class="name">Path-connected ⇒ connected</span> <span class="num">(8.3.1)</span>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Take cts $f:X\to\{0,1\}$ and any $a,b$; the composite $f\circ\gamma:[0,1]\to\{0,1\}$ is cts on the <em>connected</em> $[0,1]$ (Thm 8.1.8) ⇒ constant ⇒ $f(a)=f(b)$ ⇒ $f$ constant ⇒ connected (8.1.2).</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-832">
+<span class="tag">Thm</span><span class="name">Connected open in a normed space ⇒ path-connected</span> <span class="num">(8.3.2)</span>
+<div class="hyp"><b>Hyp:</b> $X$ <b>connected</b>, <b>open</b>, in a <b>normed space</b> (all three needed!).</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Path-components are open:</b> around $a$ take $B(a,\varepsilon)\subseteq X$ (openness); the straight segment $(1-t)a+tb$ stays in the ball (norm structure: $\|\gamma(t)-a\|\le\|a-b\|\lt\varepsilon$), so the whole ball joins to $a$.</li>
+<li>Path-components partition $X$ into opens; more than one would disconnect $X$ ⇒ exactly one.</li>
+</ul>
+</details>
+<ul><li><b>The CA payoff:</b> for open $U\subseteq\mathbb C$, connected ⟺ path-connected — this is why "domain" in complex analysis can mean either.</li></ul>
+</div>
+
+<div class="card warn" id="thm-sine">
+<span class="tag">Thm</span><span class="name">Topologist's sine curve: connected ⇏ path-connected</span> <span class="num">(8.3.3)</span> <span class="nonex">proof non-exam</span>
+<figure>
+<svg viewBox="0 0 460 170" width="440">
+<line x1="30" y1="85" x2="450" y2="85" stroke="#ccc"/>
+<line x1="60" y1="10" x2="60" y2="160" stroke="#b91c1c" stroke-width="5" stroke-linecap="round"/>
+<polyline fill="none" stroke="#2563eb" stroke-width="1.8" points="450,28 430,40 410,55 390,75 370,99 350,124 330,140 318,142 305,130 295,108 287,80 280,52 274,33 269,28 264,38 259,62 254,95 250,124 246,140 242,138 238,118 234,85 230,52 227,33 224,32 221,50 218,85 215,120 212,138 209,128 206,95 204,60 202,38 200,40 198,70 196,105 194,132 192,128 190,95 188,60 187,45 185,55 184,90 182,124 181,130 180,100 179,68 178,55 177,75 176,110 175,125 174,98 173,70 172,72 171,105 170,120 169,92 168,73 167,90 166,115 165,95 164,78 163,98 162,112 161,90 160,82"/>
+<text x="40" y="172" font-size="12" fill="#b91c1c">{0}×[−1,1]</text>
+<text x="360" y="20" font-size="12" fill="#2563eb">y = sin(1/x)</text>
+</svg>
+<figcaption>$A=\{0\}\times[-1,1]\;\cup\;\{(x,\sin\frac1x):x\in(0,1]\}$ — the curve oscillates infinitely often near the axis; no path can cross the gap.</figcaption>
+</figure>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Connected:</b> the curve part $E$ is the cts image of $(0,1]$ ⇒ connected (8.1.6 + 8.1.8); $A=\bar E$ ⇒ connected by the <b>closure lemma 8.1.5</b>.</li>
+<li><b>Not p.c.:</b> suppose $\gamma$ runs from $(0,0)$ to $(1,\sin1)$. Let $t=\sup\gamma^{-1}(\ell)$ ($\ell$ = the segment; closed, so $\gamma(t)\in\ell$, and $\gamma(u)\in E$ for $u\gt t$).</li>
+<li>Continuity of $y\circ\gamma$ at $t$: on $[t,t+\delta]$ the $y$-coordinate varies by $\le1$ (eq. 8.1).</li>
+<li>But $x\circ\gamma$ is cts with $x(\gamma(t))=0\lt x(\gamma(t+\delta))$, so by the <b>IVT</b> it sweeps an interval $[0,c]$ — and on $(0,c]$, $\sin\frac1x$ hits both $\pm1$ infinitely often. Contradiction.</li>
+</ul>
+</details>
+</div>
+
+<h2 id="ch9">9 &nbsp;Sequential compactness</h2>
+
+<div class="card def" id="def-seqcpt">
+<span class="tag">Def</span><span class="name">Sequentially compact</span> <span class="num">(9.1.1, 9.1.2)</span>
+<div class="stmt">Every sequence in $X$ has a subsequence converging <b>in $X$</b>.</div>
+<ul><li>$[0,1]$ ✓ (Bolzano–Weierstrass). $(0,1)$ ✗ ($1/n$); $\mathbb Q\cap[0,1]$ ✗ (decimal truncations of $\pi-3$); $\mathbb R$ ✗ ($x_n=n$).</li></ul>
+</div>
+
+<div class="card lem" id="lem-921">
+<span class="tag">Lemmas</span><span class="name">First properties</span> <span class="num">(9.2.1–9.3.2)</span>
+<ul>
+<li><b>9.2.1:</b> seq cpt subspace ⇒ <b>closed and bounded</b>. <em>Sketch:</em> not closed ⇒ a sequence escapes to a boundary point (6.1.5), all subsequences follow; unbounded ⇒ pick $d(y_0,y_n)\ge n$, no subsequence can settle. Converse false: $(0,1)$ inside itself.</li>
+<li><b>9.2.2:</b> closed subset of seq cpt is seq cpt.</li>
+<li><b>9.3.1:</b> cts image of seq cpt is seq cpt ($f(x_{n_k})\to f(a)$ by continuity). Hence seq cpt is a homeomorphism invariant, and:</li>
+<li><b>EVT:</b> cts $f:X\to\mathbb R$ on seq cpt $X$ has closed bounded image ⇒ bounded and attains its bounds.</li>
+<li><b>9.3.2:</b> cts on seq cpt ⇒ <b>uniformly cts</b>. <em>Sketch:</em> if not, get $a_n,b_n$ with $d(a_n,b_n)\lt\frac1n$ but $|f(a_n)-f(b_n)|\ge\varepsilon$; pass to $a_{n_k}\to\ell$, drag $b$ along, contradict continuity at $\ell$ via $\varepsilon/2$.</li>
+</ul>
+</div>
+
+<div class="card thm" id="cor-943">
+<span class="tag">Prop+Cor</span><span class="name">Products; Bolzano–Weierstrass in $\mathbb R^n$</span> <span class="num">(9.4.1–9.4.3)</span>
+<div class="stmt"><b>9.4.2:</b> a product of two seq cpt spaces is seq cpt. <b>Cor 9.4.3 (B–W):</b> closed + bounded in $\mathbb R^n$ ⇒ seq cpt.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>9.4.1: convergence in $X\times Y$ = coordinatewise (projections are 1-Lipschitz).</li>
+<li>9.4.2: subsequence for the $x$'s, then a sub-subsequence for the $y$'s — "rather unpleasant triple subscripts," but the point is just: refine twice.</li>
+<li>9.4.3: bounded ⇒ inside a cube $[-M,M]^n$; B–W on $\mathbb R$ + products (iterated) make the cube seq cpt; closed subset of seq cpt is seq cpt (9.2.2).</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="thm-953">
+<span class="tag">Thm</span><span class="name">Seq compact ⟺ complete + totally bounded</span> <span class="num">(9.5.1–9.5.3)</span>
+<div class="hyp"><b>Defn (9.5.2):</b> <b>totally bounded</b> = for every $\varepsilon\gt0$, finitely many $\varepsilon$-balls cover $X$.</div>
+<div class="stmt"><b>Thm 9.5.3</b> ("one of the more substantial theorems of the course"): $X$ seq cpt $\iff$ $X$ complete and totally bounded.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>(⇒) complete:</b> Cauchy + convergent subsequence ⇒ convergent (9.5.1). <b>Totally bounded</b> by greedy contradiction: if no finite $\varepsilon$-cover, greedily pick $x_{n+1}$ outside $\bigcup B(x_i,\varepsilon)$ — an $\varepsilon$-separated sequence has no Cauchy subsequence.</li>
+<li><b>(⇐), the substantial direction:</b> fix finite covers by balls of radius $2^{-m}$ for every $m$.</li>
+<li><b>Pigeonhole cascade:</b> some radius-1 ball holds infinitely many terms → subsequence $\sigma^{(0)}$; some radius-$\frac12$ ball holds infinitely many of those → $\sigma^{(1)}$; iterate.</li>
+<li><b>Diagonal:</b> $\sigma^*_i$ := $i$-th term of $\sigma^{(i)}$. For $n,m\ge N$ both terms lie in one ball of radius $2^{-N}$ ⇒ Cauchy ⇒ converges by completeness.</li>
+<li>Note flagged in the notes: the argument shows <em>any sequence in a totally bounded space has a Cauchy subsequence</em> — completeness enters only at the last step.</li>
+</ul>
+</details>
+<ul>
+<li><b>Complete + bounded does NOT suffice (9.5.1):</b> the <b>moving bump</b> — in $C_b(\mathbb R)$, $f_n=\phi(\cdot-n)$ (a tent of height 1 slid to position $n$) all live in $\bar B(0,1)$, which is complete (7.2.1 + 7.3.2) and bounded; but $\|f_n-f_m\|_\infty=1$ for $n\ne m$: no Cauchy subsequence. Total boundedness is the right strengthening; in $\mathbb R^n$ bounded ⟺ totally bounded (via 9.4.3).</li>
+</ul>
+</div>
+
+<h2 id="ch10">10 &nbsp;Compactness</h2>
+
+<div class="card def" id="def-cpt">
+<span class="tag">Def</span><span class="name">Open covers; compactness</span> <span class="num">(10.1.1–10.1.3)</span>
+<div class="stmt">$X$ is <b>compact</b> if every open cover $\{U_i\}_{i\in I}$ has a finite subcover. $\mathbb R$ is not: $\{(-n,n)\}_{n\in\mathbb N}$.</div>
+<ul>
+<li>Motivation problem acknowledged head-on, with von Neumann: <em>"in mathematics you don't understand things. You just get used to them."</em> Why it's the right notion: (a) equivalent to seq cpt in metric spaces (this chapter); (b) it's the definition that survives into general topological spaces, where the equivalence <b>fails</b>.</li>
+<li>For subspaces $Y\subseteq X$, covers by opens <em>of $X$</em> — equivalent to the internal definition by Lemma 5.5.1.</li>
+</ul>
+</div>
+
+<div class="card thm" id="prop-1021">
+<span class="tag">Prop</span><span class="name">Compact ⇒ sequentially compact</span> <span class="num">(10.2.1, 10.2.2)</span>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Lemma 10.2.2:</b> in a compact space, nested non-empty closed $S_1\supseteq S_2\supseteq\cdots$ have non-empty intersection — else the complements form an open cover with no finite subcover. (Compactness replaces the complete + diam→0 hypotheses of Cantor 7.2.3.)</li>
+<li>Apply to closures of the tails $A_n=\{x_n,x_{n+1},\dots\}$: pick $a\in\bigcap\bar A_n$; since $a\in\bar A_{n_k+1}$, choose $x_{n_{k+1}}$ within $1/(k{+}1)$ of $a$ — a convergent subsequence.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="prop-1031">
+<span class="tag">Prop</span><span class="name">Sequentially compact ⇒ compact</span> <span class="num">(10.3.1)</span> <span class="nonex">proof non-exam</span>
+<details class="sk" open><summary>Sketch (direct nested-balls construction — these notes do <em>not</em> use a Lebesgue number)</summary>
+<ul>
+<li>Seq cpt ⇒ complete + totally bounded (9.5.3); fix finite covers by radius-$2^{-m}$ balls for each $m$.</li>
+<li>If some open cover $\{U_i\}$ had no finite subcover: some radius-$\frac12$ ball $B_1$ is not finitely coverable; among radius-$\frac14$ balls <em>meeting</em> $B_1$, one ($B_2$) is not finitely coverable (else $B_1$ would be); iterate.</li>
+<li>Centres: $d(x_m,x_{m+1})\lt2^{-m}+2^{-(m+1)}$ ⇒ geometric series ⇒ Cauchy ⇒ $x_n\to x$ (completeness).</li>
+<li>$x\in U_1$ for some member; $B(x,\varepsilon)\subseteq U_1$; for large $n$, $B_n\subseteq B(x,\varepsilon)\subseteq U_1$ — so $B_n$ <em>is</em> finitely coverable (by one set!). Contradiction.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-hb">
+<span class="tag">Thm</span><span class="name">The equivalence theorem + Heine–Borel</span> <span class="num">(10.3.2, 10.3.3)</span>
+<div class="stmt">
+<ul>
+<li><b>10.3.2 (TFAE, any metric space):</b> compact $\iff$ seq compact $\iff$ complete + totally bounded.</li>
+<li><b>10.3.3 (Heine–Borel):</b> $S\subseteq\mathbb R^n$ compact $\iff$ <b>closed and bounded</b>.</li>
+</ul></div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>10.3.2 = 10.2.1 + 10.3.1 + 9.5.3, nothing more.</li>
+<li>Heine–Borel: (⇒) compact ⇒ seq cpt ⇒ closed + bounded (9.2.1); (⇐) closed + bounded ⇒ seq cpt (B–W, 9.4.3) ⇒ compact (10.3.1).</li>
+</ul></details>
+<ul><li><b>Scope warning:</b> "closed + bounded ⇒ compact" is an $\mathbb R^n$ fact, not a metric-space fact — the moving bump (9.5.1) is the standard counterexample in infinite dimensions.</li></ul>
+</div>
+
+<h2 id="ch11">11 &nbsp;Conformal maps and $\mathbb C_\infty$</h2>
+
+<div class="card def" id="ster">
+<span class="tag">Def+Lem</span><span class="name">Stereographic projection; the chordal metric; $\mathbb C_\infty$</span> <span class="num">(11.1.1–11.1.3)</span>
+<figure>
+<svg viewBox="0 0 440 190" width="420">
+<line x1="20" y1="140" x2="430" y2="140" stroke="#888" stroke-width="1.5"/>
+<circle cx="180" cy="95" r="46" fill="none" stroke="#1f2430" stroke-width="2"/>
+<circle cx="180" cy="49" r="4" fill="#b91c1c"/>
+<text x="188" y="44" font-size="13" fill="#b91c1c">N = ∞</text>
+<circle cx="340" cy="140" r="3.5" fill="#2563eb"/>
+<text x="348" y="156" font-size="13" fill="#2563eb">z ∈ ℂ</text>
+<line x1="180" y1="49" x2="340" y2="140" stroke="#2563eb" stroke-dasharray="5 3"/>
+<circle cx="219" cy="71" r="3.5" fill="#047857"/>
+<text x="227" y="64" font-size="13" fill="#047857">S(z)</text>
+<text x="36" y="130" font-size="12" fill="#666">𝕊 ⊂ ℝ³, ℂ = {z-plane}</text>
+</svg>
+<figcaption>$S(z)$ = where the line from $z$ to the north pole meets the sphere; $S(\infty):=N$ completes the bijection $\mathbb C_\infty\to\mathbb S$.</figcaption>
+</figure>
+<ul>
+<li>Formula (11.1.1): $S(z)=\frac1{1+|z|^2}\big(2\operatorname{Re}z,\,2\operatorname{Im}z,\,|z|^2-1\big)$ (parametrize the line, solve for the sphere point).</li>
+<li><b>Chordal metric</b> = pull back $\mathbb R^3$ distance: $d(z,w)=\dfrac{2|z-w|}{\sqrt{1+|z|^2}\sqrt{1+|w|^2}}$ (11.1.2, via $\|S(z)-S(w)\|^2=2-2\langle S(z),S(w)\rangle$), and $d(z,\infty)=\dfrac2{\sqrt{1+|z|^2}}$ (11.1.3).</li>
+<li>On $\mathbb C$ it's <b>equivalent</b> (same opens/limits — strongly so on bounded sets, not globally) to the usual metric, but it also makes sense of $\infty$: $\mathbb C_\infty=\mathbb C\cup\{\infty\}\cong\mathbb S$, and "$z_n\to\infty$" becomes literal metric convergence.</li>
+<li><b>Translations, dilations, inversion are cts bijections of $\mathbb C_\infty$</b> (11.1.4–11.1.6): continuity at $\infty$/$0$ checked via the chordal formulas. Geometric gem: under $S$, inversion $z\mapsto1/z$ is just <b>rotation of the sphere by $\pi$ about the $x$-axis</b>.</li>
+<li>Forward ref: $\mathbb C_\infty$ = first Riemann surface (Part B Geometry of Surfaces).</li>
+</ul>
+</div>
+
+<div class="card def" id="mobius">
+<span class="tag">Def+Prop</span><span class="name">Möbius maps</span> <span class="num">(11.1.7–11.1.9)</span>
+<div class="stmt">For $g=\begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}\in\mathrm{GL}_2(\mathbb C)$: $\Psi_g(z)=\dfrac{az+b}{cz+d}$ on $\mathbb C_\infty$, with $\Psi_g(-d/c)=\infty$, $\Psi_g(\infty)=a/c$ (or $\infty\mapsto\infty$ if $c=0$). $\Psi_g=\Psi_{g'}$ iff $g=\lambda g'$.</div>
+<ul>
+<li><b>11.1.8:</b> $\Psi_{g_1g_2}=\Psi_{g_1}\circ\Psi_{g_2}$ — a group action of $\mathrm{GL}_2(\mathbb C)$ on $\mathbb C_\infty$.</li>
+<li><b>11.1.9 (generators):</b> every Möbius map = composition of translations $T(a)$, dilations $D(b)$, inversion $J$. <em>Sketch:</em> the matrix identity $g=T(\frac ac)\,D(\frac{bc-ad}c)\,J\,T(d)\,D(c)$ ($c\neq0$; the case $c=0$ is easier) — proving it at the matrix level handles the $\infty$ bookkeeping for free via 11.1.8.</li>
+</ul>
+</div>
+
+<div class="card thm" id="circlines">
+<span class="tag">Prop</span><span class="name">Circlines map to circlines</span> <span class="num">(11.1.10, 11.1.11)</span> <span class="nonex">proof non-exam</span>
+<div class="stmt"><b>Circline</b> = circle in $\mathbb C$, or line $\cup\,\{\infty\}$ (lines: $|z-a|=|z-b|$). Möbius maps send circlines to circlines.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>By the generator decomposition (11.1.9), check translations/dilations (obvious) and inversion; the only interesting case: <b>circles through $0$ ↔ lines not through $0$</b> under $z\mapsto1/z$.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="conf">
+<span class="tag">Def+Prop</span><span class="name">Conformality; holo + $f'\neq0$ ⇒ conformal</span> <span class="num">(11.2.1–11.2.6)</span>
+<div class="hyp"><b>Defns:</b> tangent vector of a $C^1$ path with $\gamma'\neq0$ (11.2.1); $T$ is <b>conformal at $z_0$</b> if for every pair of $C^1$ paths through $z_0$, the angle between tangent vectors is preserved by $T\circ\gamma_i$ (11.2.2).</div>
+<div class="stmt"><b>Prop 11.2.3:</b> $f$ holo on open $U$, $f'(z_0)\neq0$ ⇒ $f$ conformal at $z_0$. <b>Lemma 11.2.6:</b> Möbius maps are conformal ($f'=\frac{ad-bc}{(cz+d)^2}\neq0$). <b>Lemma 11.2.5</b> <span class="nonex">non-exam</span>: stereographic projection is conformal (planes through $N$ cut the sphere in circles; symmetry swaps the angles at $N$ and at $S(z_0)$).</div>
+<details class="sk" open><summary>Sketch of 11.2.3 — why holomorphy is exactly angle-preservation</summary>
+<ul>
+<li>Chain rule for $\eta_i=f\circ\gamma_i$: split the difference quotient as $\frac{f(\gamma(h))-f(z_0)}{\gamma(h)-z_0}\cdot\frac{\gamma(h)-z_0}{h}$ (legal since $\gamma'(0)\neq0$ keeps $\gamma(h)\neq z_0$); the first factor $\to f'(z_0)$ by <em>complex</em> differentiability.</li>
+<li>So $\eta_i'(0)=f'(z_0)\,\gamma_i'(0)$: writing $f'(z_0)=\rho e^{i\theta}$, <b>both</b> tangent vectors get rotated by the <em>same</em> $\theta$ (and scaled by $\rho$) — angle differences survive.</li>
+<li>This is the geometric meaning of the CR equations: multiplication by a complex number = rotation + scaling (cf. <a href="index.html#thm-cr">CA Thm 1.2.2, proof 2</a>).</li>
+<li><b>$f'\neq0$ is necessary (Ex 11.2.4):</b> $z^2$ at the origin <em>doubles</em> angles.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="prop-1127">
+<span class="tag">Prop</span><span class="name">3-point transitivity</span> <span class="num">(11.2.7)</span>
+<div class="hyp"><b>Hyp:</b> $z_1,z_2,z_3$ and $w_1,w_2,w_3$ triples of pairwise distinct points of $\mathbb C_\infty$.</div>
+<div class="stmt"><b>Then:</b> there is a <b>unique</b> Möbius $f$ with $f(z_i)=w_i$. (Plausibility: 4 matrix entries minus rescaling = 3 complex degrees of freedom.)</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Reduce</b> to mapping any triple to $(0,1,\infty)$, using the group structure (11.1.8): $f=f_2\circ f_1^{-1}$.</li>
+<li><b>Existence:</b> $f(z)=\dfrac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}$ (limit versions when some $z_i=\infty$).</li>
+<li><b>Uniqueness:</b> reduces to — a Möbius map fixing $0,1,\infty$ is the identity: $f(\infty)=\infty\Rightarrow c=0$; $f(0)=0\Rightarrow b=0$; $f(1)=1\Rightarrow a=d$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card ex" id="ex-1128">
+<span class="tag">Ex</span><span class="name">Upper half-plane → unit disc</span> <span class="num">(11.2.8)</span>
+<figure>
+<svg viewBox="0 0 460 150" width="430">
+<rect x="20" y="20" width="170" height="55" fill="#e0f2fe"/>
+<line x1="20" y1="75" x2="190" y2="75" stroke="#1f2430" stroke-width="2"/>
+<text x="85" y="50" font-size="13">ℍ</text>
+<text x="60" y="92" font-size="11" fill="#666">0&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;∞ on ℝ</text>
+<path d="M215,65 L255,65" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrM)"/>
+<defs><marker id="arrM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker></defs>
+<text x="200" y="55" font-size="13" fill="#b91c1c">f(z) = (iz+1)/(z+i)</text>
+<circle cx="350" cy="72" r="48" fill="#e0f2fe" stroke="#1f2430" stroke-width="2"/>
+<circle cx="350" cy="72" r="2.5" fill="#1f2430"/>
+<text x="342" y="64" font-size="12">0</text>
+<text x="402" y="135" font-size="12" fill="#666">B(0,1)</text>
+</svg>
+</figure>
+<ul>
+<li>Strategy: $\partial\mathbb H=\mathbb R\cup\{\infty\}$ must go to the unit circle (circline → circline, 11.1.11); a circle is pinned by 3 points, so use 3-transitivity: send $0\mapsto-i$, $1\mapsto1$, $\infty\mapsto i$ ⇒ $f(z)=\frac{iz+1}{z+i}$.</li>
+<li>Which side lands inside? Möbius maps are cts; the two components of $\mathbb C\setminus\mathbb R$ go to the two components of $\mathbb C\setminus S^1$ (connectedness!); test one point: $f(i)=0\in B(0,1)$ ⇒ $f(\mathbb H)=B(0,1)$.</li>
+<li>Note how the chapter's three threads combine: circlines + transitivity + connectedness (Ch 8) in one worked example.</li>
+</ul>
+</div>
+
+<h2 id="hyps">Hypothesis cheat-sheet</h2>
+<table>
+<tr><th>Hypothesis</th><th>What it buys / where it's needed</th></tr>
+<tr><td><b>cts partials</b> (not just partials!)</td><td>differentiability (1.3.1) — partials alone don't even give continuity</td></tr>
+<tr><td><b>complete</b></td><td>closed ⟺ complete subspaces (7.2.1); Cantor (7.2.3); Contraction Mapping (7.4.2); the (⇐) of 9.5.3. NOT a topological invariant ($(0,1)\cong\mathbb R$).</td></tr>
+<tr><td><b>non-empty</b></td><td>Contraction Mapping Theorem — the classic dropped mark</td></tr>
+<tr><td><b>uniform $K\lt1$</b></td><td>contraction; "$d(f(x),f(y))\lt d(x,y)$" is NOT enough ($x+\frac1x$)</td></tr>
+<tr><td><b>closed</b> sets in Cantor / nested lemmas</td><td>traps the limit; with diam→0 (7.2.3, needs complete) or inside a compact space (10.2.2)</td></tr>
+<tr><td><b>open + normed space</b></td><td>connected ⇒ path-connected (8.3.2) — fails without openness (sine curve) and uses straight segments (norm)</td></tr>
+<tr><td><b>totally bounded</b> (not just bounded)</td><td>9.5.3; bounded suffices only in $\mathbb R^n$ (moving bump kills it in $C_b(\mathbb R)$)</td></tr>
+<tr><td><b>closed + bounded</b></td><td>⟺ compact only in $\mathbb R^n$ (Heine–Borel 10.3.3)</td></tr>
+<tr><td><b>seq compact domain</b></td><td>EVT + uniform continuity for free (9.3.1–9.3.2)</td></tr>
+<tr><td><b>$f'(z_0)\neq0$</b></td><td>conformality of holo maps (11.2.3) — $z^2$ doubles angles at $0$</td></tr>
+<tr><td><b>open in $X$ vs open in $Y$</b></td><td>always specify the ambient space (5.5.1) — drives the disconnection examples and the open-cover convention</td></tr>
+</table>
+
+<h2 id="cex">Counterexample gallery</h2>
+<table>
+<tr><th>Claim it kills</th><th>Counterexample</th></tr>
+<tr><td>"all directional derivatives ⇒ differentiable"</td><td>$\frac{xy(x+y)}{x^2+y^2}$: degree-1 homogeneous, $\partial_n f(0)=f(n)$ non-linear — 1.4.2</td></tr>
+<tr><td>"closed ball = closure of open ball"; "metrics come from norms"; "open sets are special"</td><td>the discrete metric, three ways: $\overline{B(x,1)}=\{x\}\subsetneq X=\bar B(x,1)$; not translation/scaling-compatible with any norm; every set open — 2.3.4, 6.1.6</td></tr>
+<tr><td>"distance behaves like geometry"</td><td>2-adic: $d(999,1000)=1\gt\frac18=d(0,1000)$ — 2.3.5</td></tr>
+<tr><td>"isometries are surjective"</td><td>right-shift on $\ell^2$ — §4.1</td></tr>
+<tr><td>"cts bijection = homeomorphism"</td><td>$[0,1)\cup[2,3]\to[0,2]$; also $t\mapsto e^{2\pi it}$ shows cts injections needn't be open maps — 4.2.1, 5.3.1</td></tr>
+<tr><td>"arbitrary intersections of opens are open"</td><td>$\bigcap_n(-\frac1n,\frac1n)=\{0\}$ — 5.2.1</td></tr>
+<tr><td>"completeness is topological"</td><td>$(0,1)\cong\mathbb R$, one complete, one not — 7.1.3</td></tr>
+<tr><td>"nested closed non-empty sets always intersect"</td><td>$S_i=[i,\infty)$ in $\mathbb R$ (no shrinking diameter / no compactness) — 7.2.3</td></tr>
+<tr><td>"shrinking distances ⇒ fixed point"</td><td>$x+\frac1x$ on $[1,\infty)$; and $x/2$ on $(0,1)$ (incomplete) — 7.4.2</td></tr>
+<tr><td>"connected ⇒ path-connected"</td><td>topologist's sine curve — 8.3.3</td></tr>
+<tr><td>"closed + bounded ⇒ (seq) compact"</td><td>moving bump $f_n=\phi(\cdot-n)$ in $\bar B(0,1)\subset C_b(\mathbb R)$: $\|f_n-f_m\|_\infty=1$ — 9.5.1</td></tr>
+<tr><td>"seq cpt subset of itself ⇒ closed in a bigger space"</td><td>$(0,1)$ in $(0,1)$: closed + bounded <em>there</em>, still not seq cpt — after 9.2.1</td></tr>
+<tr><td>"conformal everywhere"</td><td>$z^2$ doubles angles where $f'=0$ — 11.2.4</td></tr>
+</table>
+
+<p style="margin-top:48px;color:#777;font-size:.9rem">Built from <code>MS_notes.pdf</code> (77 pp, A2 Metric Spaces, Lauder). Numbering and proof strategies follow the notes; items marked <span class="nonex">non-exam</span> are flagged as in the source. Companion: <a href="index.html">Complex Analysis overview</a>.</p>
+
+</div>
+</body>
+</html>

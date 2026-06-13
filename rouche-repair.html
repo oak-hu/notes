@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rouché: the gap and its simplest repair</title>
+<script>
+  MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+  body { max-width: 46rem; margin: 3rem auto; padding: 0 1.2rem;
+         font: 18px/1.65 Georgia, 'Times New Roman', serif; color: #1a1a1a; }
+  h1 { font-size: 1.6rem; line-height: 1.25; }
+  h2 { font-size: 1.2rem; margin-top: 2.2rem; border-bottom: 1px solid #ddd; padding-bottom: .25rem; }
+  .box { background: #f6f8fa; border-left: 3px solid #888; padding: .7rem 1rem; margin: 1.2rem 0; }
+  .gap { border-left-color: #c0392b; background: #fdf3f2; }
+  .fix { border-left-color: #1e7e34; background: #f1f8f3; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: .92em; background:#eee; padding:0 .2em; border-radius:3px;}
+  .small { color:#555; font-size:.92em; }
+</style>
+</head>
+<body>
+
+<h1>Rouché's theorem: where the textbook proof has a gap, and the simplest repair</h1>
+
+<p class="small">Re: CA notes, Theorem 3.6.3. Setup: $f,g$ holomorphic, $\gamma$ a simple
+contour with its interior in $U$, and $|f|>|g|$ on $\gamma^\ast$. Put
+$$h=\frac{f+g}{f}=1+\frac{g}{f}.$$
+Write $\operatorname{ord}_a(\cdot)$ for the vanishing order at a point $a$ (positive $=$ zero,
+negative $=$ pole, $0$ $=$ neither), and let $N_f,\,N_{f+g}$ be the number of zeros inside
+$\gamma$, counted with multiplicity.</p>
+
+<h2>The sentence is true — but only one way</h2>
+
+<p>The notes say: <em>"its zeros are zeros of $f+g$ and its poles are zeros of $f$."</em>
+As <strong>implications</strong> these are correct:</p>
+
+<div class="box">
+$$a \text{ a pole of } h \;\Longrightarrow\; \operatorname{ord}_a(h)<0 \;\Longrightarrow\; \operatorname{ord}_a(f)>\operatorname{ord}_a(f+g)\ge 0 \;\Longrightarrow\; a \text{ a zero of } f,$$
+$$a \text{ a zero of } h \;\Longrightarrow\; \operatorname{ord}_a(h)>0 \;\Longrightarrow\; \operatorname{ord}_a(f+g)>\operatorname{ord}_a(f)\ge 0 \;\Longrightarrow\; a \text{ a zero of } f+g.$$
+</div>
+
+<p>The trouble is the <strong>converse</strong>. A zero of $f+g$ need <em>not</em> be a zero of $h$:
+if $f$ also vanishes there to equal-or-higher order, the quotient cancels and $\operatorname{ord}_a(h)\le 0$.
+So the map "zeros/poles of $h$" $\leftrightarrow$ "zeros of $f+g$ / zeros of $f$" is not a
+multiplicity-preserving bijection, and the proof's jump from</p>
+
+<div class="box gap">
+$$Z_h = P_h \qquad\text{(the winding-number argument)}$$
+<p style="margin:.4rem 0 0">to "$\,f$ and $f+g$ have the same number of zeros$\,$" is <strong>not justified by the quoted sentence.</strong></p>
+</div>
+
+<p class="small"><strong>Sharpest witness: $g=f/2$.</strong> Then $|g|=\tfrac12|f|<|f|$ (hypothesis holds),
+but $h=\tfrac{3}{2}$ is <em>constant</em>: no zeros, no poles. Yet every zero of $f$ is an
+equal-order zero of $f+g=\tfrac32 f$. So here <em>every</em> zero of $f+g$ is one of the
+"unaccounted" coincident zeros — none of them is a zero of $h$.</p>
+
+<h2>The simplest repair: count net order, not zeros-vs-poles</h2>
+
+<p>Don't decompose $h$ into its zeros and poles at all. The one identity you need holds
+<strong>pointwise at every $a$</strong>, with no exceptions for coincidences, because $h=(f+g)/f$:</p>
+
+<div class="box fix">
+$$\operatorname{ord}_a(h) \;=\; \operatorname{ord}_a(f+g) \;-\; \operatorname{ord}_a(f).$$
+</div>
+
+<p>The argument principle gives the <em>signed</em> count $Z_h-P_h=\sum_a \operatorname{ord}_a(h)$.
+Sum the identity over all $a$ inside $\gamma$ and split:</p>
+
+$$Z_h - P_h \;=\; \sum_a \operatorname{ord}_a(h) \;=\; \underbrace{\sum_a \operatorname{ord}_a(f+g)}_{=\,N_{f+g}} \;-\; \underbrace{\sum_a \operatorname{ord}_a(f)}_{=\,N_f} \;=\; N_{f+g}-N_f.$$
+
+<p>The winding-number argument from the notes still shows the left side is $0$ (on $\gamma^\ast$,
+$|g/f|<1$, so $\Gamma=h\circ\gamma$ lies in $B(1,1)\subset\{\operatorname{Re}>0\}$, and a principal
+branch of $\log$ closes up: $\oint_\Gamma dz/z = 0$). Hence</p>
+
+<div class="box fix">
+$$N_{f+g}-N_f \;=\; 0.$$
+</div>
+
+<p>A coincident zero contributes $+\operatorname{ord}_a(f+g)$ to $N_{f+g}$ and $+\operatorname{ord}_a(f)$ to $N_f$;
+in the <em>difference</em> these cancel exactly as much as they do in $\operatorname{ord}_a(h)$. Nothing is lost,
+precisely because we only ever use the net order. In the $g=f/2$ case: $0-0$ on the left, $N_{f+g}-N_f=k-k=0$
+at each zero on the right. Consistent.</p>
+
+<h2>Equivalent one-line phrasing (no $h$ decomposition at all)</h2>
+
+<p>If you prefer to never mention zeros/poles of $h$: the logarithmic derivative is additive,
+$\dfrac{(f+g)'}{f+g}-\dfrac{f'}{f}=\dfrac{h'}{h}$, so</p>
+
+$$\underbrace{\frac{1}{2\pi i}\oint_\gamma \frac{(f+g)'}{f+g}}_{N_{f+g}} \;-\; \underbrace{\frac{1}{2\pi i}\oint_\gamma \frac{f'}{f}}_{N_f} \;=\; \frac{1}{2\pi i}\oint_\gamma \frac{h'}{h} \;=\;0.$$
+
+<p>Here $N_{f+g}$ and $N_f$ are each computed by the argument principle applied to the genuinely
+holomorphic $f+g$ and $f$ <em>independently</em> — shared zeros counted correctly in each — and $h$
+appears only to certify the difference vanishes. The "zero of both" worry cannot even arise.</p>
+
+<p class="small">(Hypothesis $|f|>|g|$ on $\gamma^\ast$ is what makes all three integrals legal:
+$|f+g|\ge |f|-|g|>0$ and $|f|>0$ on $\gamma^\ast$, so neither $f$ nor $f+g$ vanishes on the contour,
+and $\Gamma$ avoids $0$.)</p>
+
+</body>
+</html>

@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complex Analysis — Revision Overview</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','svg'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root{
+    --def:#2563eb; --thm:#b91c1c; --lem:#047857; --ex:#b45309; --rem:#6b7280; --warn:#d97706;
+    --defbg:#eff6ff; --thmbg:#fef2f2; --lembg:#ecfdf5; --exbg:#fffbeb; --rembg:#f9fafb;
+    --ink:#1f2430; --accent:#4f46e5;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#fcfcfa; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 120px;}
+  header.site{background:#1e1b4b; color:#eef; padding:38px 22px 30px; margin-bottom:26px;}
+  header.site h1{margin:0 0 6px; font-size:1.9rem; font-weight:normal; letter-spacing:.5px;}
+  header.site p{margin:4px 0; color:#c7c9f4; max-width:920px;}
+  header.site .inner{max-width:920px;margin:0 auto;}
+  nav.toc{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:14px 20px; margin-bottom:30px; font-size:.95rem;}
+  nav.toc b{color:var(--accent)}
+  nav.toc a{color:#333; text-decoration:none; border-bottom:1px dotted #bbb;}
+  nav.toc a:hover{color:var(--accent)}
+  nav.toc ul{margin:4px 0 10px; padding-left:22px; columns:2; column-gap:36px;}
+  nav.toc li{margin:2px 0; break-inside:avoid;}
+  h2{font-size:1.5rem; border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:56px; color:#26204f;}
+  h3{font-size:1.18rem; margin-top:38px; color:#3b3470;}
+  h4{margin-top:28px;}
+  .card{border-left:5px solid var(--rem); background:var(--rembg); border-radius:0 8px 8px 0; padding:12px 18px 10px; margin:18px 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:99px; color:#fff; margin-right:8px; vertical-align:2px;}
+  .card .name{font-weight:bold;}
+  .def{border-color:var(--def); background:var(--defbg);} .def .tag{background:var(--def);}
+  .thm{border-color:var(--thm); background:var(--thmbg);} .thm .tag{background:var(--thm);}
+  .lem{border-color:var(--lem); background:var(--lembg);} .lem .tag{background:var(--lem);}
+  .ex{border-color:var(--ex); background:var(--exbg);} .ex .tag{background:var(--ex);}
+  .rem{border-color:var(--rem); background:var(--rembg);} .rem .tag{background:var(--rem);}
+  .warn{border-color:var(--warn); background:#fff7ed;} .warn .tag{background:var(--warn);}
+  .hyp{margin:8px 0 4px;}
+  .hyp ul, .stmt ul, .card ul{margin:4px 0 8px; padding-left:24px;}
+  .card li{margin:3px 0;}
+  details.sk{margin:10px 0 6px; border-top:1px dashed #c9c9bf; padding-top:6px;}
+  details.sk summary{cursor:pointer; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#5b5b8a;}
+  details.sk[open] summary{margin-bottom:4px;}
+  .nonex{font-family:Arial,sans-serif; font-size:.7rem; background:#e0e7ff; color:#3730a3; border-radius:4px; padding:1px 6px; vertical-align:2px;}
+  .num{color:#777; font-weight:normal;}
+  figure{margin:22px auto; text-align:center;}
+  figcaption{font-size:.88rem; color:#666; max-width:640px; margin:8px auto 0;}
+  table{border-collapse:collapse; width:100%; font-size:.93rem; margin:16px 0;}
+  th,td{border:1px solid #ddd; padding:7px 10px; text-align:left; vertical-align:top;}
+  th{background:#eef0ff;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.85rem; margin:12px 0;}
+  .legend span{padding:2px 10px; border-radius:99px; border:1px solid #ccc; background:#fff;}
+  .graphbox{background:#fff; border:1px solid #e3e3dd; border-radius:12px; padding:10px; overflow-x:auto;}
+  svg text{font-family:'Helvetica Neue',Arial,sans-serif;}
+  svg a{cursor:pointer;}
+  svg a:hover rect{stroke-width:2.5;}
+  code{font-size:.92em; background:#f1f1ea; padding:1px 4px; border-radius:3px;}
+  .abbr{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:10px 18px; font-size:.92rem;}
+  .abbr b{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="site"><div class="inner">
+<h1>Complex Analysis — Revision Overview</h1>
+<p>A skimmable map of the lecture notes (Oxford A2.2-style, Belyaev): every key definition, every theorem with its hypotheses spelled out, proof sketches, and the dependency graph of the main results.</p>
+<p style="font-size:.88rem">Numbering follows the notes. Click any node in the graph to jump to the result. Companion page: <a href="ms_index.html" style="color:#a5b4fc">Metric Spaces overview →</a></p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+<b>Contents</b>
+<ul>
+<li><a href="#graph">0. The big picture (dependency graph)</a></li>
+<li><a href="#ch1-diff">1.1–1.2 Holomorphy &amp; Cauchy–Riemann</a></li>
+<li><a href="#ch1-harm">1.3 Harmonic functions</a></li>
+<li><a href="#ch1-ps">1.4 Power series, exp, Log</a></li>
+<li><a href="#ch1-branch">1.5 Branch cuts &amp; multifunctions</a></li>
+<li><a href="#ch2-paths">2.1–2.2 Paths &amp; integration, FTC</a></li>
+<li><a href="#ch2-cauchy">2.3 Cauchy's theorem (Goursat, star-like)</a></li>
+<li><a href="#ch2-homotopy">2.4 Homotopy &amp; the Deformation theorem</a></li>
+<li><a href="#ch2-winding">2.5 Winding numbers &amp; Prop 2.5.6</a></li>
+<li><a href="#ch3-cif">3.1–3.2 Cauchy's Integral Formula; homology form</a></li>
+<li><a href="#ch3-apps">3.3 Taylor, Liouville, FTA, Morera</a></li>
+<li><a href="#ch3-identity">3.4 Identity theorem</a></li>
+<li><a href="#ch3-sing">3.5 Singularities, Laurent, Residue thm</a></li>
+<li><a href="#ch3-arg">3.6 Argument principle, Rouché, open mapping</a></li>
+<li><a href="#ch3-calc">3.7 Residue calculus toolbox</a></li>
+<li><a href="#appendix">Appendices A &amp; B</a></li>
+<li><a href="#hyps">Hypothesis cheat-sheet</a></li>
+<li><a href="#cex">Counterexample gallery</a></li>
+</ul>
+<div class="abbr">
+<b>Abbreviations.</b> <i>holo</i> = holomorphic &nbsp;·&nbsp; <i>cts</i> = continuous &nbsp;·&nbsp; <i>nbhd</i> = neighbourhood &nbsp;·&nbsp; <b>domain</b> = <em>connected</em> open set &nbsp;·&nbsp; <i>s.c.</i> = simply connected &nbsp;·&nbsp; <i>p.w.-C¹</i> = piecewise-C¹ &nbsp;·&nbsp; $\gamma^*$ = image of path $\gamma$ &nbsp;·&nbsp; $I(\gamma,z)$ = winding number &nbsp;·&nbsp; <i>est. lemma</i> = estimation/ML lemma 2.2.8(4) &nbsp;·&nbsp; $B(z,r)$ = open ball.
+<span class="nonex">non-exam</span> = non-examinable in the notes.
+</div>
+<div class="legend">
+<span style="border-left:5px solid var(--def)">Definition</span>
+<span style="border-left:5px solid var(--thm)">Theorem / Corollary</span>
+<span style="border-left:5px solid var(--lem)">Lemma / Proposition</span>
+<span style="border-left:5px solid var(--ex)">Example / technique</span>
+<span style="border-left:5px solid var(--warn)">Warning / counterexample</span>
+</div>
+</nav>
+
+<h2 id="graph">0 &nbsp;The big picture</h2>
+<p>The course in one diagram. The spine the notes build is:
+<b>Cauchy–Goursat for triangles → star-like Cauchy → Deformation theorem → Cauchy's Integral Formula → Taylor's theorem (holo ⇒ analytic)</b>, with <b>Prop 2.5.6</b> (analyticity of Cauchy-type integrals, by M-test + geometric series) feeding Taylor from the side. Everything in Chapter 3 then falls out of CIF + Taylor.</p>
+
+<figure class="graphbox">
+<svg viewBox="0 0 1100 1060" width="100%" style="min-width:860px">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+</marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+</marker>
+</defs>
+<style>
+.nd{stroke-width:1.8;}
+.nl{font-size:13.5px; fill:#1f2430; text-anchor:middle; font-weight:600;}
+.ns{font-size:11px; fill:#555; text-anchor:middle;}
+.eg{stroke:#999; stroke-width:1.5; fill:none; marker-end:url(#arr);}
+.eb{stroke:#b91c1c; stroke-width:2.6; fill:none; marker-end:url(#arrR);}
+</style>
+
+<!-- ================= edges ================= -->
+<path class="eg" d="M130,66 C130,100 175,118 215,134"/>                      <!-- est -> Goursat -->
+<path class="eg" d="M385,66 C370,95 330,115 312,134"/>                       <!-- FTC -> Goursat -->
+<path class="eb" d="M260,186 L260,252"/>                                     <!-- Goursat -> star-like -->
+<path class="eg" d="M430,66 C470,160 390,210 350,256"/>                      <!-- FTC -> star-like -->
+<path class="eb" d="M260,306 L260,372"/>                                     <!-- star-like -> deformation -->
+<path class="eg" d="M367,400 L418,400"/>                                     <!-- deformation -> s.c. Cauchy -->
+<path class="eg" d="M495,66 C620,100 590,280 555,372"/>                      <!-- FTC/2.2.16 -> s.c. Cauchy -->
+<path class="eb" d="M285,426 C330,470 380,495 415,507"/>                     <!-- deformation -> CIF -->
+<path class="eg" d="M765,426 C715,470 665,490 640,502"/>                     <!-- 2.5.10 -> CIF -->
+<path class="eg" d="M695,66 C710,220 660,400 600,494"/>                      <!-- winding -> CIF -->
+<path class="eg" d="M833,40 L787,40"/>                                       <!-- 2.5.6 -> winding (constancy) -->
+<path class="eb" d="M530,546 L530,612"/>                                     <!-- CIF -> Taylor -->
+<path class="eb" d="M960,66 C1050,330 850,560 658,630"/>                     <!-- 2.5.6 -> Taylor -->
+<path class="eg" d="M425,538 C260,575 165,660 115,732"/>                     <!-- CIF -> Liouville -->
+<path class="eg" d="M430,658 C375,690 335,710 308,732"/>                     <!-- Taylor -> Morera -->
+<path class="eg" d="M330,66 C70,250 140,560 268,732"/>                       <!-- 2.2.16 -> Morera -->
+<path class="eg" d="M482,666 L466,732"/>                                     <!-- Taylor -> Identity -->
+<path class="eg" d="M605,662 C630,685 645,705 652,732"/>                     <!-- Taylor -> Riemann removable -->
+<path class="eg" d="M650,532 C800,565 860,650 876,732"/>                     <!-- CIF 3.1.3 -> Laurent -->
+<path class="eg" d="M100,786 L100,852"/>                                     <!-- Liouville -> FTA -->
+<path class="eg" d="M290,786 L290,852"/>                                     <!-- Morera -> 3.3.12 -->
+<path class="eg" d="M655,786 L635,852"/>                                     <!-- Riemann -> Casorati -->
+<path class="eb" d="M880,786 L880,852"/>                                     <!-- Laurent -> Residue thm -->
+<path class="eb" d="M800,898 C660,935 580,950 530,970"/>                     <!-- Residue thm -> Arg principle -->
+<path class="eg" d="M795,892 C560,930 350,935 250,972"/>                     <!-- Residue thm -> calculus -->
+<path class="eg" d="M557,1000 L586,1000"/>                                   <!-- arg -> Rouché -->
+<path class="eg" d="M712,1000 L741,1000"/>                                   <!-- Rouché -> open mapping -->
+<path class="eg" d="M897,1000 L916,1000"/>                                   <!-- open mapping -> IFT -->
+
+<!-- ================= nodes ================= -->
+<!-- row 1: foundations -->
+<a href="#lem-est"><rect class="nd" x="30" y="14" width="200" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="130" y="36">Estimation (ML) lemma</text><text class="ns" x="130" y="54">2.2.8(4)</text></a>
+<a href="#thm-ftc"><rect class="nd" x="275" y="14" width="230" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="390" y="36">FTC for path integrals</text><text class="ns" x="390" y="54">2.2.13 + converse 2.2.16</text></a>
+<a href="#def-winding"><rect class="nd" x="575" y="14" width="210" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="680" y="36">Winding numbers</text><text class="ns" x="680" y="54">2.5.1, 2.5.2, 2.5.4</text></a>
+<a href="#prop-256"><rect class="nd" x="835" y="14" width="240" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="955" y="36">Cauchy-type integrals</text><text class="ns" x="955" y="54">are analytic — Prop 2.5.6 (M-test)</text></a>
+
+<!-- rows 2-4: the spine -->
+<a href="#thm-goursat"><rect class="nd" x="145" y="134" width="230" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="260" y="156">Cauchy–Goursat: triangles</text><text class="ns" x="260" y="174">Thm 2.3.1 (bisection argument)</text></a>
+<a href="#thm-starlike"><rect class="nd" x="145" y="254" width="230" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="260" y="276">Cauchy thm: star-like U</text><text class="ns" x="260" y="294">build a primitive</text></a>
+<a href="#thm-deform"><rect class="nd" x="155" y="374" width="210" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="260" y="396">Deformation theorem</text><text class="ns" x="260" y="414">Thm 2.4.7 (homotopy Cauchy)</text></a>
+<a href="#thm-sc"><rect class="nd" x="420" y="374" width="220" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="530" y="396">Cauchy on s.c. domains</text><text class="ns" x="530" y="414">Thm 2.4.9 ⇒ primitives exist</text></a>
+<a href="#prop-2510"><rect class="nd" x="685" y="374" width="210" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="790" y="396">γ ≃ small circle</text><text class="ns" x="790" y="414">Prop 2.5.10 (unproved topology)</text></a>
+
+<!-- row 5: CIF -->
+<a href="#thm-cif"><rect class="nd" x="410" y="494" width="240" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="530" y="516">Cauchy's Integral Formula</text><text class="ns" x="530" y="534">Thm 3.1.1 (+ 3.1.3 multi-curve)</text></a>
+
+<!-- row 6: Taylor -->
+<a href="#thm-taylor"><rect class="nd" x="410" y="614" width="240" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="530" y="636">Taylor: holo ⇒ analytic</text><text class="ns" x="530" y="654">Cor 3.3.2 (+ derivative formulae)</text></a>
+
+<!-- row 7 -->
+<a href="#thm-liouville"><rect class="nd" x="25" y="734" width="150" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="100" y="756">Liouville</text><text class="ns" x="100" y="774">Thm 3.3.4</text></a>
+<a href="#thm-morera"><rect class="nd" x="220" y="734" width="140" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="290" y="756">Morera</text><text class="ns" x="290" y="774">Thm 3.3.8</text></a>
+<a href="#thm-identity"><rect class="nd" x="380" y="734" width="160" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="460" y="756">Identity theorem</text><text class="ns" x="460" y="774">Thm 3.4.3</text></a>
+<a href="#thm-riemann"><rect class="nd" x="565" y="734" width="190" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="660" y="756">Riemann removable sing.</text><text class="ns" x="660" y="774">Thm 3.5.21</text></a>
+<a href="#thm-laurent"><rect class="nd" x="800" y="734" width="160" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="880" y="756">Laurent's thm</text><text class="ns" x="880" y="774">Thm 3.5.9</text></a>
+
+<!-- row 8 -->
+<a href="#thm-fta"><rect class="nd" x="30" y="854" width="140" height="52" rx="9" fill="#fffbeb" stroke="#b45309"/>
+<text class="nl" x="100" y="876">Fund. thm algebra</text><text class="ns" x="100" y="894">Thm 3.3.6</text></a>
+<a href="#prop-3312"><rect class="nd" x="195" y="854" width="190" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="290" y="876">loc-unif limits are holo</text><text class="ns" x="290" y="894">Prop 3.3.12</text></a>
+<a href="#thm-cw"><rect class="nd" x="520" y="854" width="200" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="620" y="876">Casorati–Weierstrass</text><text class="ns" x="620" y="894">Thm 3.5.25</text></a>
+<a href="#thm-residue"><rect class="nd" x="790" y="854" width="180" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="880" y="876">Residue theorem</text><text class="ns" x="880" y="894">Thm 3.5.27</text></a>
+
+<!-- row 9 -->
+<a href="#ch3-calc"><rect class="nd" x="30" y="974" width="220" height="52" rx="9" fill="#fffbeb" stroke="#b45309"/>
+<text class="nl" x="140" y="996">Residue calculus §3.7</text><text class="ns" x="140" y="1014">semicircle · Jordan · indent · cot · keyhole</text></a>
+<a href="#thm-arg"><rect class="nd" x="365" y="974" width="190" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="460" y="996">Argument principle</text><text class="ns" x="460" y="1014">Thm 3.6.2</text></a>
+<a href="#thm-rouche"><rect class="nd" x="588" y="974" width="122" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="649" y="996">Rouché</text><text class="ns" x="649" y="1014">Thm 3.6.3</text></a>
+<a href="#thm-open"><rect class="nd" x="743" y="974" width="152" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="819" y="996">Open mapping</text><text class="ns" x="819" y="1014">Thm 3.6.6</text></a>
+<a href="#thm-ift"><rect class="nd" x="918" y="974" width="152" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="994" y="996">Inverse fn thm</text><text class="ns" x="994" y="1014">Thm 3.6.8</text></a>
+</svg>
+<figcaption><b>Red arrows = the main spine.</b> Some dependencies are omitted to keep the picture readable: the est. lemma feeds nearly every analytic estimate (CIF's vanishing term, Liouville, Jordan's lemma…); the Deformation thm also gives contour-independence in Laurent's thm and null-homotopy in the Residue thm; Taylor feeds Morera (a primitive is holo, hence C<sup>∞</sup>); Rouché's proof routes through the argument principle. The <a href="#thm-homology">homology form 3.2.5</a> <span class="nonex">non-exam</span> is an independent route to CIF that bypasses homotopy entirely (Dixon's proof: Liouville + removable singularities only).</figcaption>
+</figure>
+
+<h2 id="ch1-diff">1.1–1.2 &nbsp;Holomorphy &amp; the Cauchy–Riemann equations</h2>
+
+<div class="card def" id="def-open">
+<span class="tag">Def</span><span class="name">Open set, neighbourhood, domain</span> <span class="num">(0.3.2, 0.3.3)</span>
+<ul>
+<li>$U\subset\mathbb C$ is <b>open</b> if every $z\in U$ has a ball $B(z,\varepsilon)\subset U$.</li>
+<li>A <b>nbhd of $a$</b> = open set containing $a$ (for limits the notes relax this: $U$ just contains some $B(a,r)$).</li>
+<li>A <b>domain</b> $D$ = <em>connected</em> open subset of $\mathbb C$. The open-vs-domain distinction matters all course long — watch for it below.</li>
+</ul>
+</div>
+
+<div class="card def" id="def-diff">
+<span class="tag">Def</span><span class="name">Complex differentiability; holomorphic</span> <span class="num">(1.1.1, 1.1.4)</span>
+<div class="stmt">
+<ul>
+<li>$f$ is <b>differentiable at $a$</b> if $\displaystyle\lim_{z\to a}\frac{f(z)-f(a)}{z-a}$ exists; the limit is $f'(a)$. ($f:U\to\mathbb C$, $U$ open $\ni a$.)</li>
+<li>$f$ is <b>holo on $U$</b> ($U$ open) if differentiable at every point of $U$; <b>holo at $a$</b> = holo on some open $U\ni a$.</li>
+<li>Sum/product/quotient/chain rules hold exactly as in $\mathbb R$ (Lemma 1.1.2) — so polynomials are holo, with $\,(z^n)'=nz^{n-1}$.</li>
+</ul>
+</div>
+</div>
+
+<div class="card lem" id="lem-eps">
+<span class="tag">Lemma</span><span class="name">Linear-approximation form</span> <span class="num">(1.1.3)</span>
+<div class="stmt">$f$ differentiable at $a$ with derivative $f'(a)$ $\iff$
+$$f(z)=f(a)+f'(a)(z-a)+\varepsilon(z)(z-a),\qquad \varepsilon(z)\to 0 \text{ as } z\to a.$$
+</div>
+<ul><li><b>The workhorse form.</b> Used to prove the derivative rules, both proofs of CR, the converse 1.2.7, the chain rule for paths 2.1.3, and to kill the linear part in Goursat's bisection.</li></ul>
+</div>
+
+<div class="card thm" id="thm-cr">
+<span class="tag">Thm</span><span class="name">Cauchy–Riemann equations</span> <span class="num">(1.2.2)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$U$ a nbhd of $z_0$, $f:U\to\mathbb C$ <b>differentiable at the single point $z_0$</b>;</li>
+<li>$f=u+iv$ with $u,v$ real.</li>
+</ul></div>
+<div class="stmt"><b>Then:</b>
+<ul>
+<li>all four partials exist at $z_0$ and
+$$\partial_x u=\partial_y v,\qquad \partial_x v=-\partial_y u;$$</li>
+<li>$f'(z_0)=\partial_x u+i\,\partial_x v$ (four equivalent expressions via CR).</li>
+</ul></div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Proof 1:</b> the difference-quotient limit is direction-independent. Approach along $z_0+h$ ($h$ real) → $f'=\partial_x u+i\partial_x v$; along $z_0+ih$ → $f'=-i\partial_y u+\partial_y v$. Equate, split Re/Im.</li>
+<li><b>Proof 2:</b> by 1.1.3, $f$ is real-differentiable with Jacobian = multiplication by $f'(z_0)=re^{i\theta}$, i.e. the rotation–scaling matrix $\begin{pmatrix} r\cos\theta &amp; -r\sin\theta\\ r\sin\theta &amp; r\cos\theta\end{pmatrix}$ — CR is exactly the statement that the Jacobian has this special form (real-linear vs <em>complex</em>-linear).</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-crconv">
+<span class="tag">Thm</span><span class="name">Converse: CR + cts partials ⇒ holo</span> <span class="num">(1.2.7)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$U\subseteq\mathbb C$ <b>open</b>; $f=(u,v):U\to\mathbb C$;</li>
+<li>all four partials <b>exist, are cts on $U$</b>, and satisfy CR.</li>
+</ul></div>
+<div class="stmt"><b>Then:</b> $f$ is holo on $U$, $f'=\partial_x u+i\,\partial_x v$.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Metric Spaces does the heavy lifting: cts partials ⇒ <em>real</em> differentiable, $f(z)=f(z_0)+L(z-z_0)+R(z)$ with $L$ the Jacobian.</li>
+<li>CR ⇒ Jacobian $=\begin{pmatrix}\partial_x u &amp; -\partial_x v\\ \partial_x v &amp; \partial_x u\end{pmatrix}$ = multiplication by the complex number $\partial_x u+i\partial_x v$.</li>
+<li>That is exactly the Lemma 1.1.3 form ⇒ complex differentiable.</li>
+</ul>
+</details>
+<ul><li><b>Continuity of the partials is essential</b>: $f=xy/(x^2+y^2)$, $f(0)=0$ satisfies CR at $0$ (all partials vanish) yet isn't even cts there (Ex 1.2.8).</li></ul>
+</div>
+
+<div class="card warn">
+<span class="tag">Warn</span><span class="name">Complex differentiability is much stronger than real</span> <span class="num">(1.2.4, 1.2.9)</span>
+<ul>
+<li>$f(z)=\operatorname{Re} z$ (i.e. $u=x,v=0$): perfectly smooth as a real map, complex differentiable <b>nowhere</b> ($\partial_x u=1\ne 0=\partial_y v$).</li>
+<li>If $f'(z_0)\ne0$ then $\overline{f(z)}$ and $f(\bar z)$ are <b>not</b> differentiable (at $z_0$, $\bar z_0$): conjugation flips CR — such functions are <em>anti-holomorphic</em>.</li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-zeroderiv">
+<span class="tag">Lemma</span><span class="name">$f'\equiv 0$ on $\mathbb C$ ⇒ constant</span> <span class="num">(1.2.10)</span>
+<ul>
+<li>Via CR + 1-variable MVT: $u,v$ constant along horizontal and vertical lines.</li>
+<li>Needed <em>now</em> for properties of $\exp$ (Prop 1.4.10); the proper version on <b>domains</b> is Cor 2.2.15.</li>
+</ul>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Wirtinger derivatives</span> <span class="num">(1.2.11, 1.2.12)</span> <span class="nonex">intuition only</span>
+<ul>
+<li>$\partial_z=\tfrac12(\partial_x-i\partial_y)$, $\partial_{\bar z}=\tfrac12(\partial_x+i\partial_y)$.</li>
+<li>CR $\iff \partial_{\bar z}f=0$, and then $f'=\partial_z f$. Slogan: holo = "depends on $z$, not on $\bar z$" (e.g. $|z|^2=z\bar z$: $\partial_{\bar z}=z\neq0$). The notes stress this is intuition, <b>not</b> usable in proofs.</li>
+</ul>
+</div>
+
+<h2 id="ch1-harm">1.3 &nbsp;Harmonic functions</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Laplacian; harmonic; harmonic conjugates</span> <span class="num">(1.3.1, 1.3.2)</span>
+<ul>
+<li>$\Delta u=\partial_{xx}u+\partial_{yy}u$; $u$ (twice differentiable, on open $U\subseteq\mathbb R^2$) is <b>harmonic</b> if $\Delta u=0$.</li>
+<li>$u,v$ harmonic with $u+iv$ holo are <b>harmonic conjugates</b>.</li>
+</ul>
+</div>
+
+<div class="card thm">
+<span class="tag">Thm</span><span class="name">Re/Im of holo are harmonic</span> <span class="num">(1.3.3)</span>
+<div class="hyp"><b>Hyp:</b> $U$ open, $f=u+iv$ holo on $U$, and ($C^2$ assumption, <em>later redundant</em> since holo ⇒ $C^\infty$) $u,v$ twice cts differentiable.</div>
+<div class="stmt"><b>Then:</b> $u,v$ harmonic.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>CR twice: $\partial_{xx}u=\partial_{xy}v$, $\partial_{yy}u=-\partial_{yx}v$; symmetry of mixed partials kills the sum.</li>
+<li>Wirtinger view: $\Delta=4\,\partial_z\partial_{\bar z}$.</li>
+<li><span class="nonex">non-exam</span> On a <b>s.c. domain</b> every harmonic $u$ has a conjugate $v$, i.e. is locally $\operatorname{Re}$ of a holo function.</li>
+</ul>
+</details>
+</div>
+
+<h2 id="ch1-ps">1.4 &nbsp;Power series, exp/trig, Log</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Radius of convergence</span> <span class="num">(1.4.1)</span>
+<div class="stmt">For $\sum a_nz^n$ with convergence set $S$: $\;R=\sup\{|z|:z\in S\}$ (or $\infty$).</div>
+</div>
+
+<div class="card lem" id="prop-142">
+<span class="tag">Prop</span><span class="name">Convergence disc + root formula</span> <span class="num">(1.4.2)</span>
+<div class="stmt">
+<ul>
+<li>$B(0,R)\subseteq S\subseteq \bar B(0,R)$; convergence is <b>absolute</b> on $B(0,R)$ and <b>uniform on $\bar B(0,r)$ for every $r \lt R$</b> (boundary: anything can happen);</li>
+<li>$\dfrac 1R=\limsup_n |a_n|^{1/n}$.</li>
+</ul></div>
+<details class="sk"><summary>Sketch</summary>
+<ul>
+<li>Pick $|w|&gt;r$ with $\sum a_nw^n$ convergent ⇒ terms bounded by $M$ ⇒ $|a_nz^n|\le M|r/w|^n$ on $\bar B(0,r)$ ⇒ <b>Weierstrass M-test</b> (the same comparison-with-geometric-series move that later powers Prop 2.5.6 and Laurent).</li>
+<li>Root formula: $n$-th roots of $|a_nw^n|\le M$ give $\limsup\le 1/R$; conversely $|a_n|^{1/n}\le L'$ eventually ⇒ converges for $|z| \lt 1/L'$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card lem" id="prop-144">
+<span class="tag">Prop</span><span class="name">Term-by-term differentiation</span> <span class="num">(1.4.4; sums/products 1.4.3)</span>
+<div class="stmt">$\sum_{n\ge1} na_nz^{n-1}$ has the <b>same</b> radius $R$, and $s'(z)=\sum na_nz^{n-1}$ on $B(0,R)$. Hence power series are <b>infinitely</b> complex differentiable; sums and products of series work on $|z|\lt\min(R_1,R_2)$ (Cauchy product).</div>
+<ul><li><b>Consequence (Rmk 1.4.5):</b> $f(z)=\sum a_n(z-z_0)^n$ has $a_n=f^{(n)}(z_0)/n!$ — such $f$ are called <b>analytic</b>, and analytic ⇒ holo. The course's headline (Cor 3.3.2) is the converse.</li></ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Ex</span><span class="name">exp, cos, sin</span> <span class="num">(1.4.6–1.4.11)</span>
+<ul>
+<li>$e^z=\sum z^n/n!$, $\cos z=\frac{e^{iz}+e^{-iz}}2$, $\sin z=\frac{e^{iz}-e^{-iz}}{2i}$ — entire; $\exp'=\exp$, $\sin'=\cos$, $\cos'=-\sin$ (all by 1.4.4).</li>
+<li><b>Prop 1.4.10:</b> $e^{z+w}=e^ze^w$. <em>Sketch:</em> $f(z)=e^ze^{a-z}$ has $f'\equiv0$ ⇒ constant (Lemma 1.2.10) $=f(0)=e^a$.</li>
+<li><b>Cor 1.4.11:</b> $e^{x+iy}=e^x(\cos y+i\sin y)$ ⇒ range of $\exp$ is $\mathbb C\setminus\{0\}$, and $\exp$ is $2\pi i$-periodic — <em>not injective</em>, which is the whole logarithm problem.</li>
+<li>Not every real-$C^\infty$ function extends to $\mathbb C$; real-analytic ones do locally, e.g. $1/(1+x^2)\rightsquigarrow 1/(1+z^2)$ holo off $\pm i$ (Ex 1.4.7).</li>
+</ul>
+</div>
+
+<div class="card lem" id="prop-1412">
+<span class="tag">Prop</span><span class="name">Simplified inverse function theorem</span> <span class="num">(1.4.12)</span>
+<div class="hyp"><b>Hyp:</b> $f:U\to\mathbb C$ holo; $f$ one-to-one on some $V\ni z_0$; <b>the inverse $g$ is <em>assumed</em> cts</b> (this is the cheat — $\mathbb C$ has no order, so the Prelims monotonicity argument is unavailable; the honest version is Thm 3.6.8).</div>
+<div class="stmt"><b>Then:</b> $g$ differentiable at $w_0=f(z_0)$ with $g'(w_0)=1/f'(z_0)$.</div>
+<details class="sk"><summary>Sketch</summary><ul><li>$\frac{g(w)-g(w_0)}{w-w_0}=\frac{z-z_0}{f(z)-f(z_0)}\to\frac1{f'(z_0)}$, where $z\to z_0$ <em>because</em> $g$ is cts.</li></ul></details>
+</div>
+
+<div class="card lem" id="prop-1414">
+<span class="tag">Prop</span><span class="name">Principal logarithm</span> <span class="num">(1.4.14, 1.4.16, 1.4.21)</span>
+<div class="stmt">
+<ul>
+<li>On $D=\mathbb C\setminus(-\infty,0]$, with $z=|z|e^{i\theta}$, $\theta\in(-\pi,\pi]$: $\;\operatorname{Log} z=\log|z|+i\theta$ is <b>holo with $\operatorname{Log}'z=1/z$</b>.</li>
+<li>$\theta$ = <b>principal value of the argument</b>; <b>principal power</b>: $z^\alpha:=\exp(\alpha\operatorname{Log}z)$.</li>
+</ul></div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Apply Prop 1.4.12: Log is an inverse of exp by construction; only need <em>continuity</em>.</li>
+<li>$\log|z|$ obviously cts; for $\theta(z)$ use the law-of-cosines trick: $\cos(\theta(z+h)-\theta(z))=\frac{|z|^2+|z+h|^2-|h|^2}{2|z||z+h|}\to1$.</li>
+<li>Then $\operatorname{Log}'(z)=1/\exp'(\operatorname{Log}z)=1/z$.</li>
+<li>Removing $(-\infty,0]$ is <b>essential</b>: across the negative axis the argument jumps $\pi\rightsquigarrow-\pi$.</li>
+<li>(Rmk 1.4.20 foreshadows: $\log z=\int_1^z dw/w$ — made rigorous by §2.5's cut-plane discussion.)</li>
+</ul>
+</details>
+</div>
+
+<div class="card warn">
+<span class="tag">Warn</span><span class="name">Log and powers don't behave</span>
+<ul>
+<li>$\operatorname{Log}(zw)\neq\operatorname{Log}z+\operatorname{Log}w$ in general: $\operatorname{Log}(e^{2\pi i/3})+\operatorname{Log}(e^{2\pi i/3})=\tfrac{4\pi i}3$ but $\operatorname{Log}(e^{4\pi i/3})=-\tfrac{2\pi i}3$.</li>
+<li>$\sqrt{1/{-1}}=i\neq -i=\sqrt1/\sqrt{-1}$.</li>
+</ul>
+</div>
+
+<h2 id="ch1-branch">1.5 &nbsp;Branch cuts &amp; multifunctions</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Multifunction, branch, branch point, branch cut</span> <span class="num">(1.5.1–1.5.3)</span>
+<ul>
+<li><b>Multifunction</b> on $U$: a map $f:U\to\mathcal P(\mathbb C)$ (each point ↦ a <em>set</em> of values), e.g. $[z^{1/2}]=\{w:w^2=z\}$, $[\log z]=\{w:e^w=z\}$.</li>
+<li><b>Branch</b> on $V\subseteq U$: a genuine function $g$ with $g(z)\in f(z)$; cts/holo branch if $g$ is.</li>
+<li>$z_0$ is <b>not a branch point</b> if some punctured disc $D\setminus\{z_0\}$ admits a holo branch (footnote: any s.c. domain works — uses Cauchy later). Branch point <b>at $\infty$</b>: no holo branch on any $\{|z|&gt;R\}$.</li>
+<li><b>Branch cut</b>: curve(s) whose complement admits a holo branch; must contain all branch points.</li>
+</ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Ex</span><span class="name">Branches of $[z^{1/2}]$ and $[\log z]$</span> <span class="num">(1.5.5–1.5.7)</span>
+<ul>
+<li>$z=re^{i\theta}\Rightarrow$ the two roots are $\pm\sqrt re^{i\theta/2}$. Choosing $\theta\in[0,2\pi)$ gives a branch holo on $\mathbb C\setminus[0,\infty)$ (cut = positive axis); choosing $\theta\in(-\pi,\pi)$ gives the principal branch, cut $(-\infty,0]$.</li>
+<li>$[\log z]=\{\log|z|+i(\theta+2\pi n)\}$; each cts choice of $\arg$ on a cut plane gives a holo branch (same proof as Prop 1.4.14).</li>
+<li>$[z^\alpha]:=\exp(\alpha[\log z])$; each branch $L$ of log gives a branch $\exp(\alpha L)$ ("principal" = via Log).</li>
+</ul>
+</div>
+
+<div class="card lem">
+<span class="tag">Prop</span><span class="name">Multifunction arithmetic — and its limits</span> <span class="num">(1.5.8, 1.5.9)</span>
+<div class="stmt">As <em>sets</em>: $[\log z]+[\log w]=[\log zw]$ and $[z^\alpha][w^\alpha]=[(zw)^\alpha]$ (direct computation; $n+k$ ranges over all of $\mathbb Z$).</div>
+<ul>
+<li><b>But</b> $[z^\alpha][z^\beta]\neq[z^{\alpha+\beta}]$ in general: $[1^{1/2}][1^{1/2}]=\{\pm1\}\neq\{1\}=[1^1]$.</li>
+<li>Exercise 1.5.10's bogus proof that $[\log(-z)]=[\log z]$: the flaw is that $2[\log z]\neq[\log z]+[\log z]$ — you can't cancel in set equations.</li>
+</ul>
+</div>
+
+<div class="card ex" id="ex-1512">
+<span class="tag">Ex</span><span class="name">$[(z^2-1)^{1/2}]$: a bounded branch cut</span> <span class="num">(1.5.11–1.5.12)</span>
+<figure>
+<svg viewBox="0 0 420 150" width="400">
+<line x1="10" y1="75" x2="410" y2="75" stroke="#bbb"/>
+<line x1="210" y1="10" x2="210" y2="140" stroke="#bbb"/>
+<line x1="140" y1="75" x2="280" y2="75" stroke="#b91c1c" stroke-width="5" stroke-linecap="round"/>
+<circle cx="140" cy="75" r="4" fill="#1f2430"/><circle cx="280" cy="75" r="4" fill="#1f2430"/>
+<text x="132" y="62" font-size="13">−1</text><text x="276" y="62" font-size="13">1</text>
+<circle cx="340" cy="32" r="3.5" fill="#2563eb"/><text x="349" y="36" font-size="13" fill="#2563eb">z</text>
+<line x1="280" y1="75" x2="340" y2="32" stroke="#2563eb" stroke-dasharray="4 3"/>
+<line x1="140" y1="75" x2="340" y2="32" stroke="#2563eb" stroke-dasharray="4 3"/>
+<text x="300" y="68" font-size="12" fill="#2563eb">θ₁</text><text x="180" y="68" font-size="12" fill="#2563eb">θ₂</text>
+<text x="186" y="100" font-size="13" fill="#b91c1c">cut = [−1,1]</text>
+</svg>
+<figcaption>Crossing $(-\infty,-1)$ both $\theta_1,\theta_2$ jump by $2\pi$, so $e^{i(\theta_1+\theta_2)/2}$ jumps by $e^{2\pi i}=1$: the jumps <b>cancel</b>. Crossing $(-1,1)$ only $\theta_1$ jumps ⇒ genuine discontinuity.</figcaption>
+</figure>
+<ul>
+<li>Write $f(z)=|z-1|^{1/2}|z+1|^{1/2}e^{i\theta_1/2}e^{i\theta_2/2}$ ($\theta_i$ = args of $z\mp1$, cut along $(-\infty,0]$ each). Naively the cut is $(-\infty,1]$, but the cancellation above shrinks it to $[-1,1]$ — a <b>bounded</b> cut, so there's a holo branch near $\infty$.</li>
+<li><b>Binomial series (1.5.11):</b> the principal branch $f=\exp(\alpha\operatorname{Log}(1+z))$ equals $\sum_k\binom\alpha k z^k$ on $B(0,1)$. <em>Sketch:</em> both satisfy $(1+z)s'=\alpha s$; the ratio $g=s/f$ has $g'\equiv0$, $g(0)=1$ ⇒ $s=f$.</li>
+</ul>
+</div>
+
+<h2 id="ch2-paths">2.1–2.2 &nbsp;Paths, integration, FTC</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Paths, reparametrization, oriented curves</span> <span class="num">(2.1.1–2.1.7)</span>
+<ul>
+<li><b>Path</b>: cts $\gamma:[a,b]\to\mathbb C$; <b>closed</b> if $\gamma(a)=\gamma(b)$; image written $\gamma^*$.</li>
+<li><b>$C^1$</b>: $\gamma'$ exists and is cts; <b>p.w.-$C^1$</b>: finite concatenation of $C^1$ pieces (corners allowed). Opposite path $\gamma^-$; concatenation $\gamma_1\star\gamma_2$.</li>
+<li><b>Equivalent paths</b>: $\gamma_1=\gamma_2\circ s$ with $s$ a $C^1$ bijection, $s'&gt;0$ (same direction). Equivalence classes = <b>oriented curves</b>.</li>
+<li>Standard paths: circle $z_0+re^{2\pi it}$ (positive orientation), segment $[a,b]$, triangle $\gamma_{a,b,c}$.</li>
+<li>Chain rule for paths (2.1.3, via the $\varepsilon$-form 1.1.3) underlies everything below. Caution (2.1.2): a $C^1$ path's <em>image</em> can still have a corner where $\gamma'=0$; the notes allow constant paths.</li>
+</ul>
+</div>
+
+<div class="card def" id="def-pathint">
+<span class="tag">Def</span><span class="name">Path integral; length; arc-length integral</span> <span class="num">(2.2.4, 2.2.6)</span>
+<div class="stmt">For $\gamma$ p.w.-$C^1$ and $f$ cts on $\gamma^*$ (finitely many bounded discontinuities allowed, by Lemma 2.2.1):
+$$\int_\gamma f(z)\,dz=\int_a^b f(\gamma(t))\,\gamma'(t)\,dt,\qquad
+\ell(\gamma)=\int_a^b|\gamma'(t)|\,dt,\qquad
+\int_\gamma f\,|dz|=\int_a^b f(\gamma(t))\,|\gamma'(t)|\,dt.$$</div>
+<ul><li>Independent of parametrization (2.2.5, chain rule + substitution) — so it's an invariant of the <em>oriented curve</em>.</li></ul>
+</div>
+
+<div class="card lem" id="lem-est">
+<span class="tag">Prop</span><span class="name">Basic properties + Estimation (ML) lemma</span> <span class="num">(2.2.8, 2.2.10)</span>
+<div class="hyp"><b>Hyp:</b> $f,g$ cts on open $U$; $\gamma,\eta$ p.w.-$C^1$ in $U$.</div>
+<div class="stmt">
+<ul>
+<li>Linearity; $\int_{\gamma^-}f=-\int_\gamma f$; $\int_{\gamma\star\eta}=\int_\gamma+\int_\eta$;</li>
+<li><b>Estimation lemma:</b> $\displaystyle\Big|\int_\gamma f\,dz\Big|\le \sup_{\gamma^*}|f|\cdot\ell(\gamma)$;</li>
+<li><b>(2.2.10)</b> $f_n\to f$ uniformly on $\gamma^*$ ⇒ $\int_\gamma f_n\to\int_\gamma f$ (immediate from est. lemma).</li>
+</ul></div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>Key input is the complex triangle inequality (2.2.3): write $\int f=re^{i\theta}$, project $f$ onto the $e^{i\theta}$ direction, use the real triangle inequality.</li>
+<li>$\sup$ exists since $\gamma^*$ is compact.</li>
+</ul></details>
+<ul><li><b>This is the single most reused estimate in the course</b> — Goursat, CIF's vanishing term, Liouville, residue calculus, Jordan's lemma all run on it.</li></ul>
+</div>
+
+<div class="card thm" id="thm-ftc">
+<span class="tag">Thm</span><span class="name">FTC for path integrals</span> <span class="num">(2.2.13)</span>
+<div class="hyp"><b>Hyp:</b> $U$ <b>open</b>; $f:U\to\mathbb C$ cts with a <b>primitive</b> $F$ ($F'=f$ on $U$, Def 2.2.11); $\gamma:[a,b]\to U$ p.w.-$C^1$.</div>
+<div class="stmt"><b>Then:</b>
+$$\int_\gamma f(z)\,dz=F(\gamma(b))-F(\gamma(a)),$$
+so $\oint_\gamma f=0$ around every <b>closed</b> path.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>$C^1$ case: $\frac{d}{dt}F(\gamma(t))=f(\gamma(t))\gamma'(t)$ by the path chain rule 2.2.12 (which uses the $\varepsilon$-form); apply real FTC to Re/Im.</li>
+<li>p.w. case: telescope over the $C^1$ pieces.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm">
+<span class="tag">Cor</span><span class="name">$f'\equiv0$ on a domain ⇒ constant; primitives unique up to constant</span> <span class="num">(2.2.15, 2.2.17)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a <b>domain</b> (connectedness essential!), $f'\equiv0$ on $U$.</div>
+<details class="sk"><summary>Sketch</summary><ul><li>Domains are polygonally connected (Metric Spaces) ⇒ join $z_0\to w$ by a p.w.-$C^1$ path; $f(w)-f(z_0)=\int_\gamma f'=0$ by FTC.</li></ul></details>
+</div>
+
+<div class="card thm" id="thm-2216">
+<span class="tag">Thm</span><span class="name">Converse FTC: vanishing loop integrals ⇒ primitive</span> <span class="num">(2.2.16)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a <b>domain</b>; $f$ <b>cts</b> (holo not needed!); $\oint_\gamma f=0$ for <b>every</b> closed path in $U$.</div>
+<div class="stmt"><b>Then:</b> $f$ has a primitive on $U$. Combined with 2.2.13: for cts $f$ on a domain, <em>primitive exists $\iff$ all loop integrals vanish</em>.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Fix $z_0$; define $F(z)=\int_\gamma f$ along any path $z_0\to z$.</li>
+<li>Well-defined: two paths concatenate to a loop, whose integral is $0$.</li>
+<li>$F'=f$: append a straight segment $w\to z$ inside a ball; $\big|\frac{F(z)-F(w)}{z-w}-f(w)\big|\le\sup_t|f(w+t(z-w))-f(w)|\to0$ by continuity.</li>
+</ul>
+</details>
+</div>
+
+<div class="card warn" id="ex-2218">
+<span class="tag">Warn</span><span class="name">The fundamental counterexample: $1/z$</span> <span class="num">(2.2.18)</span>
+<div class="stmt">$$\oint_{|z|=1}\frac{dz}z=\int_0^{2\pi}\frac{ie^{it}}{e^{it}}dt=2\pi i\neq0
+\;\Rightarrow\; 1/z \text{ has \textbf{no} primitive on } \mathbb C\setminus\{0\}.$$</div>
+<ul>
+<li>Yet on $\mathbb C\setminus(-\infty,0]$ it <em>does</em>: $\operatorname{Log}$. <b>Existence of a primitive depends on the domain, not just the function.</b> This single computation drives winding numbers, CIF's "$f(w)\times$ orientation" term, and residues.</li>
+</ul>
+</div>
+
+<h2 id="ch2-cauchy">2.3 &nbsp;Cauchy's theorem</h2>
+
+<div class="card thm" id="thm-goursat">
+<span class="tag">Thm</span><span class="name">Cauchy / Cauchy–Goursat theorem</span> <span class="num">(2.3.1)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$U$ a <b>domain</b>; $f$ <b>holo on $U$</b> (differentiable only — no $C^1$ assumption on $f'$: that's Goursat's point);</li>
+<li>$\gamma$ closed (not necessarily simple), with $\gamma^*$ <b>and all bounded components of $\mathbb C\setminus\gamma^*$</b> inside $U$ ("no holes of $U$ inside $\gamma$").</li>
+</ul></div>
+<div class="stmt"><b>Then:</b> $\displaystyle\oint_\gamma f(z)\,dz=0$.</div>
+
+<figure>
+<svg viewBox="0 0 560 180" width="540">
+<!-- big triangle -->
+<polygon points="40,160 240,160 140,20" fill="none" stroke="#1f2430" stroke-width="2"/>
+<!-- midpoint triangle -->
+<polygon points="140,160 190,90 90,90" fill="#fde2e2" stroke="#b91c1c" stroke-width="1.5"/>
+<line x1="90" y1="90" x2="190" y2="90" stroke="#b91c1c" stroke-width="1.5"/>
+<line x1="140" y1="160" x2="90" y2="90" stroke="#b91c1c" stroke-width="1.5"/>
+<line x1="140" y1="160" x2="190" y2="90" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="128" y="120" font-size="12" fill="#b91c1c">S₄</text>
+<text x="85" y="145" font-size="12">S₁</text><text x="180" y="145" font-size="12">S₂</text><text x="132" y="70" font-size="12">S₃</text>
+<!-- nested -->
+<polygon points="310,160 470,160 390,40 " fill="none" stroke="#1f2430" stroke-width="2"/>
+<polygon points="350,160 430,160 390,100" fill="none" stroke="#b45309" stroke-width="1.6"/>
+<polygon points="370,160 410,160 390,130" fill="none" stroke="#b91c1c" stroke-width="1.4"/>
+<polygon points="380,160 400,160 390,145" fill="#fde2e2" stroke="#b91c1c" stroke-width="1.2"/>
+<circle cx="390" cy="155" r="2.5" fill="#b91c1c"/>
+<text x="400" y="150" font-size="13" fill="#b91c1c">z₀</text>
+<text x="430" y="60" font-size="12">T ⊃ T₁ ⊃ T₂ ⊃ … → z₀</text>
+</svg>
+<figcaption>Goursat: split $T$ by edge midpoints — interior edges cancel in pairs, so $\int_{\partial T}=\sum_i\int_{\partial S_i}$; keep the worst quarter and iterate to a nested point $z_0$.</figcaption>
+</figure>
+
+<details class="sk" open><summary>Sketch — step 1: triangles (the bisection argument)</summary>
+<ul>
+<li>Subdivide $T$ into 4 similar triangles; new edges traversed twice with opposite orientations ⇒ cancel.</li>
+<li>If $|I|=|\int_{\partial T}f|&gt;0$, some quarter has $|\int|\ge|I|/4$; iterate: nested $T_n$ with $|\int_{\partial T_n}f|\ge 4^{-n}|I|$ and $\ell(\partial T_n)=2^{-n}\ell(\partial T)$.</li>
+<li>Nested compacts shrink to a point $z_0$; differentiability there gives $f(z)=f(z_0)+f'(z_0)(z-z_0)+\epsilon(z)(z-z_0)$, $|\epsilon|\lt\varepsilon$ on $T_n$ for large $n$.</li>
+<li>The linear part has a primitive ⇒ integrates to $0$ (FTC); the error gives $\big|\int_{\partial T_n}f\big|\le\varepsilon\,\ell(\partial T_n)^2 = \varepsilon\,4^{-n}\ell(\partial T)^2$ (est. lemma).</li>
+<li>Combine: $|I|\le\varepsilon\,\ell(\partial T)^2$ for every $\varepsilon$ — contradiction. <em>Holomorphy used only pointwise!</em></li>
+</ul>
+</details>
+<details class="sk" open><summary>Sketch — step 2: star-like domains <span id="thm-starlike"></span></summary>
+<ul>
+<li>$X$ <b>convex</b>: all segments $[z,w]\subseteq X$; <b>star-like</b>: some centre $z_0$ sees every point (Def 2.3.3; discs/triangles convex, the cross star-like not convex).</li>
+<li>Define $F(z)=\int_{[z_0,z]}f$ along the canonical segment (no well-definedness issue).</li>
+<li>For nearby $w,z$ the triangle $z_0,z,w$ lies in $U$ (star-likeness) ⇒ step 1 gives $\int_{\partial T}f=0$ ⇒ $F(z)-F(w)=\int_{[w,z]}f$; the 2.2.16 estimate then gives $F'=f$.</li>
+<li>FTC ⇒ all loop integrals vanish on star-like $U$.</li>
+</ul>
+</details>
+<details class="sk"><summary>Sketch — step 3: general case <span class="nonex">non-exam outline</span></summary>
+<ul>
+<li>Closed polygons: decompose into simple polygons, triangulate, edges cancel.</li>
+<li>General $\gamma$: Riemann sums $=$ integrals over inscribed polygonal curves ($=0$); justify the polygonal approximation limit.</li>
+</ul>
+</details>
+</div>
+
+<h2 id="ch2-homotopy">2.4 &nbsp;Homotopy &amp; the Deformation theorem</h2>
+
+<div class="card def" id="def-homotopy">
+<span class="tag">Def</span><span class="name">Homotopy; null-homotopic; simply connected</span> <span class="num">(2.4.1, 2.4.2)</span>
+<ul>
+<li>Paths $\gamma_0,\gamma_1$ from $a$ to $b$ in open $U$ are <b>homotopic in $U$</b> if a cts $h:[0,1]^2\to U$ interpolates them <b>with endpoints pinned</b>.</li>
+<li>For <b>closed</b> curves the definition differs: endpoints move freely but every intermediate curve $\gamma_s$ must stay closed. <b>Null-homotopic</b> = homotopic to a constant.</li>
+<li>$U$ a domain is <b>simply connected (s.c.)</b> if any two paths with common endpoints are homotopic ⟺ every closed curve is null-homotopic (equivalence = nontrivial topology, quoted).</li>
+<li>Star-like ⇒ s.c. (contract along the rays: $h(t,s)=sz_0+(1-s)\gamma(t)$, Ex 2.4.4). Annuli $A(z_0,r,R)$ are <b>not</b> s.c. (Ex 2.4.5). Quoted criterion: for bounded-ish $U$, s.c. $\iff \mathbb C\setminus U$ connected ("no holes").</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-deform">
+<span class="tag">Thm</span><span class="name">Deformation theorem (homotopy Cauchy)</span> <span class="num">(2.4.7)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a <b>domain</b>; $f$ holo on $U$; $\gamma_1,\gamma_2$ <b>homotopic in $U$</b> (so: same endpoints, or both closed).</div>
+<div class="stmt"><b>Then:</b> $\displaystyle\int_{\gamma_1}f=\int_{\gamma_2}f$.</div>
+<details class="sk" open><summary>Sketch (proof = Thm A.0.2 in the appendix <span class="nonex">non-exam</span>)</summary>
+<ul>
+<li>Compactness: $K=h([0,1]^2)$ admits $\varepsilon$ with $B(z,\varepsilon)\subseteq U$ for all $z\in K$; $h$ uniformly cts ⇒ chop the square into $N^2$ cells each mapping into an $\varepsilon$-disc.</li>
+<li>Replace the level curves by piecewise-<em>linear</em> interpolants $\nu_k$ (the levels of a merely cts $h$ needn't be integrable! Rmk A.0.3).</li>
+<li>On each disc $f$ has a primitive (convex ⇒ star-like Cauchy); adjacent primitives differ by constants; FTC + telescoping converts $\int_{\nu_k}$ into $\int_{\nu_{k+1}}$.</li>
+<li><b>Moral:</b> deformation = "locally, primitives always exist"; the theorem matters exactly on domains where no <em>global</em> primitive exists (Rmk 2.4.8).</li>
+</ul>
+</details>
+<ul><li><b>Ex 2.4.12:</b> in an annulus around $0$, any $\gamma$ homotopic to a counterclockwise circle has $\oint_\gamma dz/z=2\pi i$ — deformation with a <em>nonzero</em> common value.</li></ul>
+</div>
+
+<div class="card thm" id="thm-sc">
+<span class="tag">Thm</span><span class="name">Cauchy's theorem for s.c. domains</span> <span class="num">(2.4.9)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a <b>s.c. domain</b>, $f$ holo on $U$.</div>
+<div class="stmt"><b>Then:</b> path integrals depend only on endpoints; $\oint_\gamma f=0$ for every closed $\gamma$; hence (via 2.2.16) <b>every holo $f$ on a s.c. domain has a primitive</b>. (Converse also true — quoted, Rmk 2.4.10.)</div>
+<ul><li><b>Ex 2.4.11:</b> $U$ s.c., $0\notin U$ ⇒ a holo branch of $\log$ exists on $U$ (a primitive of $1/z$).</li></ul>
+</div>
+
+<h2 id="ch2-winding">2.5 &nbsp;Winding numbers</h2>
+
+<div class="card lem" id="def-winding">
+<span class="tag">Prop+Def</span><span class="name">Continuous argument; winding number</span> <span class="num">(2.5.1, 2.5.2)</span>
+<div class="stmt">
+<ul>
+<li><b>2.5.1 (lifting):</b> any <em>cts</em> $\gamma:[0,1]\to\mathbb C\setminus\{0\}$ can be written $\gamma(t)=|\gamma(t)|e^{2\pi i a(t)}$ with $a$ cts, unique up to adding one integer globally.</li>
+<li><b>2.5.2:</b> for closed $\gamma$ avoiding $z_0$: $\;I(\gamma,z_0)=a(1)-a(0)\in\mathbb Z$ (applied to $\gamma-z_0$) — the <b>winding number / index</b>. Defined for merely cts closed paths.</li>
+</ul></div>
+<details class="sk"><summary>Sketch of 2.5.1</summary>
+<ul>
+<li>WLOG $|\gamma|=1$; uniform continuity ⇒ chop $[0,1]$ so each sub-arc stays in a half-plane, where a cts arg exists;</li>
+<li>at the junctions the local args differ by integers — adjust and glue;</li>
+<li>uniqueness: $a-b$ is cts, integer-valued, on connected $[0,1]$ ⇒ constant.</li>
+</ul>
+</details>
+<figure>
+<svg viewBox="0 0 300 170" width="280">
+<path d="M150,30 C230,30 250,85 250,90 C250,135 200,150 150,150 C95,150 60,125 60,90 C60,55 100,45 150,45 C195,45 215,70 215,90 C215,115 185,128 150,128 C115,128 95,112 95,92" fill="none" stroke="#2563eb" stroke-width="2"/>
+<polygon points="95,92 90,82 102,84" fill="#2563eb"/>
+<circle cx="152" cy="90" r="3.5" fill="#b91c1c"/>
+<text x="160" y="86" font-size="13" fill="#b91c1c">z₀</text>
+<text x="138" y="110" font-size="12" fill="#2563eb">I = 2</text>
+<text x="20" y="25" font-size="12" fill="#666">I = 0 outside</text>
+</svg>
+<figcaption>$I(\gamma,\cdot)$ counts net turns; it is constant on each component of $\mathbb C\setminus\gamma^*$ and $0$ on the unbounded one (2.5.6, 2.5.8).</figcaption>
+</figure>
+</div>
+
+<div class="card lem" id="lem-254">
+<span class="tag">Lemma</span><span class="name">Winding number as an integral</span> <span class="num">(2.5.4)</span>
+<div class="hyp"><b>Hyp:</b> $\gamma$ p.w.-$C^1$ closed, $z_0\notin\gamma^*$.</div>
+<div class="stmt">$$I(\gamma,z_0)=\frac1{2\pi i}\oint_\gamma\frac{dz}{z-z_0}.$$</div>
+<details class="sk"><summary>Sketch</summary><ul><li>Write $\gamma=z_0+re^{2\pi ia}$ with $r,a$ p.w.-$C^1$; the integrand integrates to $[\log r(t)+2\pi i\,a(t)]_0^1=2\pi i(a(1)-a(0))$ since $r(0)=r(1)$.</li></ul></details>
+<ul><li>Cut-plane payoff: if a simple curve $\Gamma$ joins $0$ to $\infty$, every loop in $\mathbb C\setminus\Gamma^*$ has $I=0$ ⇒ $\oint dz/z=0$ ⇒ (2.2.16) $1/z$ has a primitive there = <b>a branch of log on any cut plane</b>. Rmk 2.5.3: existence of a holo log-branch conversely forces $I=0$.</li></ul>
+</div>
+
+<div class="card thm" id="prop-256">
+<span class="tag">Prop</span><span class="name">Analyticity of Cauchy-type integrals — the M-test engine</span> <span class="num">(2.5.6, 2.5.7)</span>
+<div class="hyp"><b>Hyp:</b> $U$ open, $\gamma$ a closed path in $U$, $f$ merely <b>cts on $\gamma^*$</b> (no holomorphy!).</div>
+<div class="stmt"><b>Then:</b> $\;w\mapsto I_f(\gamma,w)=\dfrac1{2\pi i}\displaystyle\oint_\gamma\frac{f(z)}{z-w}\,dz\;$ is <b>analytic</b> on $\mathbb C\setminus\gamma^*$, with
+$$I_f^{(n)}(z_0)=\frac{n!}{2\pi i}\oint_\gamma\frac{f(z)}{(z-z_0)^{n+1}}\,dz.$$
+In particular ($f\equiv1$): $I(\gamma,\cdot)$ is cts and integer-valued ⇒ <b>constant on each component</b> of $\mathbb C\setminus\gamma^*$, and $=0$ on the unbounded one (est. lemma, Rmk 2.5.8).</div>
+<details class="sk" open><summary>Sketch (the user-requested one, verbatim move)</summary>
+<ul>
+<li>WLOG $z_0=0\notin\gamma^*$; pick $r$ with $B(0,2r)\cap\gamma^*=\emptyset$, so $|w/z|\lt\tfrac12$ for $w\in B(0,r)$, $z\in\gamma^*$.</li>
+<li>Geometric series: $\dfrac{f(z)}{z-w}=\dfrac{f(z)}z\cdot\dfrac1{1-w/z}=\sum_{n\ge0}\dfrac{f(z)}{z^{n+1}}\,w^n$.</li>
+<li>$\gamma^*$ compact ⇒ $|f|\le M$ ⇒ terms dominated by $\frac M{2r}2^{-n}$ ⇒ <b>Weierstrass M-test</b>: uniform convergence in $z$ on $\gamma^*$.</li>
+<li>Swap $\sum\leftrightarrow\oint$ (uniform convergence, 2.2.10): $I_f(\gamma,w)=\sum_n\big(\frac1{2\pi i}\oint\frac{f(z)}{z^{n+1}}dz\big)w^n$ — a power series in $w$. Done.</li>
+</ul>
+</details>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Positively oriented; Jordan curve theorem (quoted)</span> <span class="num">(2.5.9)</span>
+<ul>
+<li><b>JCT (stated, not proved):</b> a <em>simple</em> closed curve has exactly one bounded complementary component ("inside") and one unbounded; winding number on the inside is $\pm1$.</li>
+<li>$\gamma$ <b>positively oriented</b>: $I(\gamma,w)=+1$ for $w$ inside (independent of $w$ by 2.5.6).</li>
+</ul>
+</div>
+
+<div class="card lem" id="prop-2510">
+<span class="tag">Prop</span><span class="name">Simple curves are homotopic to small circles</span> <span class="num">(2.5.10, ⚠ stated without proof)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a domain; $\gamma$ simple, positively oriented, $\gamma\cup\text{inside}\subseteq U$; $w$ inside $\gamma$; $B(w,r)$ inside $\gamma$.</div>
+<div class="stmt"><b>Then:</b> $\gamma$ is homotopic to the circle $\gamma_r$ (about $w$) inside $U\setminus\{w\}$. <em>This is the topological input that lets the Deformation theorem shrink contours in the CIF proof.</em></div>
+</div>
+
+<h2 id="ch3-cif">3.1–3.2 &nbsp;Cauchy's Integral Formula</h2>
+
+<div class="card thm" id="thm-cif">
+<span class="tag">Thm</span><span class="name">Cauchy's Integral Formula (CIF)</span> <span class="num">(3.1.1)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$U$ <b>open</b> (not nec. a domain/s.c.); $f$ holo on $U$;</li>
+<li>$\gamma$ <b>simple, positively oriented, closed</b>, with $\gamma^*$ <b>and its inside</b> contained in $U$; $w$ inside $\gamma$.</li>
+</ul></div>
+<div class="stmt"><b>Then:</b>
+$$f(w)=\frac1{2\pi i}\oint_\gamma\frac{f(z)}{z-w}\,dz.$$
+(Non-simple $\gamma$: weight the LHS by $I(\gamma,w)$ — Rmk 3.1.2.)</div>
+
+<figure>
+<svg viewBox="0 0 460 200" width="440">
+<path d="M230,18 C340,10 420,60 415,105 C410,160 330,190 225,185 C115,180 40,150 45,95 C50,45 120,25 230,18 Z" fill="none" stroke="#1f2430" stroke-width="2.2"/>
+<polygon points="230,18 240,11 242,24" fill="#1f2430"/>
+<circle cx="230" cy="100" r="34" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="6 4"/>
+<polygon points="230,66 239,60 240,72" fill="#b91c1c"/>
+<circle cx="230" cy="100" r="3.5" fill="#b91c1c"/>
+<text x="238" y="96" font-size="14" fill="#b91c1c">w</text>
+<text x="268" y="74" font-size="13" fill="#b91c1c">γᵣ</text>
+<text x="398" y="40" font-size="14">γ</text>
+<path d="M330,55 C300,70 280,80 268,88" fill="none" stroke="#888" stroke-width="1.3" stroke-dasharray="3 3"/>
+<path d="M150,168 C180,150 200,138 212,128" fill="none" stroke="#888" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="55" y="190" font-size="12" fill="#666">deform γ ⇝ γᵣ in U∖{w}, then let r → 0</text>
+</svg>
+<figcaption>The proof in one picture: deformation shrinks $\gamma$ to a tiny circle $\gamma_r$ about $w$; subtract-and-add $f(w)$ splits the integral into a vanishing term + $f(w)\cdot(\text{orientation})$.</figcaption>
+</figure>
+
+<details class="sk" open><summary>Sketch (deformation on shrinking circles + subtract-and-add)</summary>
+<ul>
+<li>$f(z)/(z-w)$ is holo on $U\setminus\{w\}$; by <b>Prop 2.5.10</b> $\gamma\simeq\gamma_r$ there, so by the <b>Deformation thm 2.4.7</b>: $\oint_\gamma=\oint_{\gamma_r}$ for every small $r$.</li>
+<li><b>Subtract and add $f(w)$:</b>
+$$\frac1{2\pi i}\oint_{\gamma_r}\frac{f(z)}{z-w}dz=\underbrace{\frac1{2\pi i}\oint_{\gamma_r}\frac{f(z)-f(w)}{z-w}dz}_{\to\,0}\;+\;f(w)\cdot\underbrace{\frac1{2\pi i}\oint_{\gamma_r}\frac{dz}{z-w}}_{=\,I(\gamma_r,w)\,=\,1}.$$</li>
+<li>Vanishing: $f$ differentiable at $w$ ⇒ the difference quotient is <em>bounded</em> near $w$; est. lemma with $\ell(\gamma_r)=2\pi r\to0$.</li>
+<li>The LHS is $r$-independent (step 1) ⇒ it <em>equals</em> $f(w)$.</li>
+</ul>
+</details>
+<ul><li><b>Honesty flag (Rmk 3.1.5):</b> the Deformation thm is only proved in the appendix. For circles one can avoid it: split the annulus between two concentric circles into 4 star-like sectors where primitives exist; cuts cancel ⇒ the two circle integrals agree — and circles suffice for most applications.</li></ul>
+</div>
+
+<div class="card thm" id="cor-313">
+<span class="tag">Cor</span><span class="name">CIF for multiple boundary curves</span> <span class="num">(3.1.3)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a <b>bounded domain</b> with p.w.-$C^1$ boundary in finitely many components; $f$ holo on (an open set containing) $\bar U$; outer boundary counterclockwise, inner boundaries clockwise.</div>
+<div class="stmt"><b>Then:</b> $\displaystyle\int_{\partial U}f=0$ and $\displaystyle\frac1{2\pi i}\int_{\partial U}\frac{f(z)}{z-w}dz=f(w)$ for $w\in U$.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>Add finitely many <b>cuts</b> joining the boundary components so $U$ minus the cuts is s.c.; apply CIF to the single resulting contour; each cut is traversed twice in opposite directions ⇒ cancels.</li>
+<li>The two-circle case is the engine of <b>Laurent's theorem</b>.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="thm-homology">
+<span class="tag">Thm</span><span class="name">Homology form of Cauchy's theorem</span> <span class="num">(3.2.5)</span> <span class="nonex">non-exam</span>
+<div class="hyp"><b>Hyp:</b> $f$ holo on $U$; $\Gamma=\sum m_i\gamma_i$ a <b>cycle</b> in $U$ (formal $\mathbb Z$-combination of closed paths, Def 3.2.1) whose inside lies in $U$, i.e. $I(\Gamma,z)=0$ for all $z\notin U$.</div>
+<div class="stmt"><b>Then:</b> $\displaystyle\int_\Gamma f=0$, and for $z\in U\setminus\Gamma^*$:
+$\;\dfrac1{2\pi i}\displaystyle\int_\Gamma\dfrac{f(\zeta)}{\zeta-z}d\zeta=I(\Gamma,z)\,f(z)$.</div>
+<details class="sk"><summary>Sketch (Dixon's argument — also Thm A.0.4)</summary>
+<ul>
+<li>Define $g_z(\zeta)=\frac{f(\zeta)-f(z)}{\zeta-z}$, extended by $g_z(z)=f'(z)$: holo in $\zeta$ (Riemann removable sing.), and $F(z)=\frac1{2\pi i}\int_\Gamma g_z$ is holo in $z$ (Prop 2.5.6 / Thm A.0.1).</li>
+<li>Off the inside of $\Gamma$, $F$ agrees with $G(z)=\frac1{2\pi i}\int_\Gamma\frac{f(\zeta)}{\zeta-z}d\zeta$ (there $I(\Gamma,z)=0$); glue $F$ on $U$ with $G$ on $V=\mathbb C\setminus(\Gamma^*\cup\mathrm{ins}\,\Gamma)$ ⇒ an <b>entire</b> $H$.</li>
+<li>$H\to0$ at $\infty$ (est. lemma) ⇒ $H\equiv0$ by <b>Liouville</b> ⇒ integral formula; apply it to $(z-w)f(z)$ to get $\int_\Gamma f=0$.</li>
+<li><b>Rmk 3.2.6 (dependency gold):</b> this uses only consequences of <em>Cauchy for a disc</em> — the homology and homotopy forms are logically independent routes.</li>
+</ul>
+</details>
+</div>
+
+<h2 id="ch3-apps">3.3 &nbsp;Applications: Taylor, Liouville, FTA, Morera</h2>
+
+<div class="card thm" id="thm-taylor">
+<span class="tag">Thm</span><span class="name">Taylor's theorem: holo ⇒ analytic</span> <span class="num">(Cor 3.3.2, Def 3.3.3)</span>
+<div class="hyp"><b>Hyp:</b> $U$ <b>open</b>, $f$ holo on $U$, $z_0\in U$, $B(z_0,R)\subseteq U$.</div>
+<div class="stmt"><b>Then:</b> $f$ equals its Taylor series on the whole of $B(z_0,R)$, and for any $r\lt R$:
+$$f^{(n)}(z_0)=\frac{n!}{2\pi i}\oint_{|z-z_0|=r}\frac{f(z)}{(z-z_0)^{n+1}}\,dz \tag{3.3.1}$$
+("Cauchy's Integral Formulae"). Hence <b>holo ⟺ analytic ⟺ $C^\infty$</b> — the terms are used interchangeably from here on.</div>
+<details class="sk" open><summary>Sketch — two arrows meet here</summary>
+<ul>
+<li><b>From CIF (3.1.1):</b> $f(w)=\frac1{2\pi i}\oint_{\gamma_r}\frac{f(z)}{z-w}dz$ for $w$ inside the circle;</li>
+<li><b>from Prop 2.5.6:</b> the right-hand side is a Cauchy-type integral of a cts function, hence a <em>power series in $w$</em> (geometric series + M-test + swap), with coefficients $\frac1{2\pi i}\oint\frac{f(z)}{z^{n+1}}dz$;</li>
+<li>power-series coefficients are derivatives (1.4.4/2.5.7) ⇒ formula (3.3.1).</li>
+<li>Intuition (Rmk 3.3.1): $f$ inside = "convolution" of $f|_{\text{circle}}$ against the $C^\infty$ kernel $\frac1{z-w}$ — smoothness is inherited from the kernel.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-liouville">
+<span class="tag">Thm</span><span class="name">Liouville</span> <span class="num">(3.3.4)</span>
+<div class="hyp"><b>Hyp:</b> $f$ <b>entire</b> (holo on all of $\mathbb C$, Def in §3.3) and <b>bounded</b>, $|f|\le M$.</div>
+<div class="stmt"><b>Then:</b> $f$ is constant.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>CIF on the circle $|z|=R$, two centres at once: $f(w)-f(0)=\frac1{2\pi i}\oint_{\gamma_R}f(z)\big(\frac1{z-w}-\frac1z\big)dz=\frac1{2\pi i}\oint_{\gamma_R}\frac{w\,f(z)}{z(z-w)}dz$.</li>
+<li>Est. lemma: $|f(w)-f(0)|\le\frac{M|w|}{R-|w|}\to0$ as $R\to\infty$.</li>
+</ul>
+</details>
+<ul><li>No real analogue: $1/(1+x^2)$ is bounded, real-analytic, non-constant (Rmk 3.3.5). The recurring dichotomy: entire functions are constant or unbounded — "as good as possible or as bad as possible".</li></ul>
+</div>
+
+<div class="card thm" id="thm-fta">
+<span class="tag">Thm</span><span class="name">Fundamental theorem of algebra</span> <span class="num">(3.3.6)</span>
+<div class="hyp"><b>Hyp:</b> $p$ a non-constant polynomial over $\mathbb C$.</div>
+<div class="stmt"><b>Then:</b> $p$ has a root (hence, by induction, splits into linear factors — Rmk 3.3.7).</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>If $p$ never vanishes, $1/p$ is entire.</li>
+<li>Leading-term domination: $|p(z)|\ge\frac12|z|^n$ for $|z|\ge R$ ⇒ $1/p$ bounded (cts on the compact $\bar B(0,R)$, small outside).</li>
+<li>Liouville ⇒ $1/p$ constant — contradiction. (Every proof of FTA hinges on the leading term dominating.)</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-morera">
+<span class="tag">Thm</span><span class="name">Morera (converse of Cauchy)</span> <span class="num">(3.3.8, 3.3.9)</span>
+<div class="hyp"><b>Hyp:</b> $U$ <b>open</b>; $f$ <b>cts</b> on $U$; $\oint_\gamma f=0$ for every closed path in $U$.</div>
+<div class="stmt"><b>Then:</b> $f$ is holo.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>2.2.16 ⇒ $f$ has a primitive $F$ (work on a ball/component if needed);</li>
+<li>$F$ holo ⇒ $F$ is $C^\infty$ (Taylor 3.3.2!) ⇒ $f=F'$ holo.</li>
+<li><b>Triangle version (3.3.9):</b> holomorphy is local, and on a ball it's enough that $\int_{\partial T}f=0$ for all triangles $T$ with solid interior in $U$ — giving the characterisation: <em>cts $f$ is holo $\iff$ all triangle integrals vanish</em>.</li>
+</ul>
+</details>
+</div>
+
+<div class="card lem" id="prop-3312">
+<span class="tag">Prop</span><span class="name">Locally-uniform limits of holo are holo</span> <span class="num">(3.3.10–3.3.12)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a domain; holo $f_n\to f$ <b>uniformly on compacts</b> of $U$ (Def 3.3.10; e.g. power-series partial sums on $B(0,R)$ — uniform on every $\bar B(0,r)$, $r\lt R$, but usually <em>not</em> on $B(0,R)$, Ex 3.3.11).</div>
+<div class="stmt"><b>Then:</b> $f$ is holo.</div>
+<details class="sk"><summary>Sketch</summary>
+<ul>
+<li>$f$ cts; on any ball $B(w,r)\subseteq U$ (convex ⇒ star-like Cauchy) $\oint_\gamma f_n=0$;</li>
+<li>$\gamma^*$ compact ⇒ uniform convergence there ⇒ $\oint_\gamma f=\lim\oint_\gamma f_n=0$;</li>
+<li>Morera on the ball.</li>
+</ul>
+</details>
+<ul><li><em>Contrast with $\mathbb R$:</em> uniform limits of real-differentiable functions can be nowhere differentiable. (Used later for Thm A.0.1: integrals depending on a parameter are holo.)</li></ul>
+</div>
+
+<h2 id="ch3-identity">3.4 &nbsp;The identity theorem</h2>
+
+<div class="card lem" id="prop-341">
+<span class="tag">Prop</span><span class="name">Zeros are isolated (or locally everything)</span> <span class="num">(3.4.1, 3.4.2)</span>
+<div class="hyp"><b>Hyp:</b> $U$ <b>open</b>, $g$ holo on $U$, $g(z_0)=0$.</div>
+<div class="stmt"><b>Then:</b> either $g\equiv0$ near $z_0$, or $z_0$ is an <b>isolated zero</b> and
+$$g(z)=(z-z_0)^k g_1(z),\qquad g_1 \text{ holo},\; g_1(z_0)\neq0,$$
+with $k\ge1$ unique — the <b>multiplicity / order of vanishing</b>.</div>
+<details class="sk"><summary>Sketch</summary>
+<ul>
+<li>Taylor at $z_0$: all $c_n=0$ ⇒ $g\equiv0$ on the ball; else take $k=\min\{n:c_n\neq0\}$ and factor the series;</li>
+<li>$g_1(z_0)=c_k\neq0$ + continuity ⇒ $g\neq0$ on a punctured ball;</li>
+<li>uniqueness of $k$ by comparing growth as $z\to z_0$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-identity">
+<span class="tag">Thm</span><span class="name">Identity theorem</span> <span class="num">(3.4.3)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$U$ a <b>domain</b> — connectedness is the whole point;</li>
+<li>$f_1,f_2$ holo on $U$; $S=\{f_1=f_2\}$ has a <b>limit point inside $U$</b>.</li>
+</ul></div>
+<div class="stmt"><b>Then:</b> $f_1\equiv f_2$ on all of $U$. (So agreement on any tiny disc, or on a convergent sequence with its limit in $U$, propagates globally — "analytic continuation is unique".)</div>
+<details class="sk" open><summary>Sketch (clopen/connectedness argument)</summary>
+<ul>
+<li>$g=f_1-f_2$; by 3.4.1 each zero is isolated or interior: $S=V\cup T$, $V=\operatorname{int}S$ open, $T$ = isolated zeros.</li>
+<li>$S$ closed in $U$ (continuity), and limit points of $V$ can't be isolated ⇒ $V$ is <b>open and closed</b> in $U$.</li>
+<li>$U$ connected ⇒ $V=\emptyset$ (then $S$ has no limit point — contradiction) or $V=U$.</li>
+</ul>
+</details>
+<ul><li><b>The limit point must lie in $U$</b> (Rmk 3.4.4): $f(z)=e^{1/z}-1$ on $\mathbb C\setminus\{0\}$ vanishes at $1/(2\pi in)\to0$, but $0\notin U$ and $f\not\equiv0$.</li></ul>
+</div>
+
+<h2 id="ch3-sing">3.5 &nbsp;Isolated singularities, Laurent series, residues</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Isolated singularity; meromorphic; the trichotomy</span> <span class="num">(3.5.1–3.5.3)</span>
+<ul>
+<li>$z_0$ is an <b>isolated singularity</b> of $f$ if $f$ is holo on some $B(z_0,r)\setminus\{z_0\}$ but not at $z_0$.</li>
+<li><b>Meromorphic on $U$</b>: only isolated singularities, all of them poles.</li>
+<li>Trichotomy:
+<ul>
+<li><b>removable</b>: $f$ agrees near $z_0$ with a holo $g$ (e.g. $\frac{\sin z}z$ at $0$);</li>
+<li><b>pole of order $n$</b>: $f(z)=(z-z_0)^{-n}g(z)$, $g$ holo, $g(z_0)\neq0$ (e.g. $\frac{\sin z}{z^{n+1}}$);</li>
+<li><b>essential</b>: neither (e.g. $\sin(1/z)$, $e^{1/z}$).</li>
+</ul></li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-laurent">
+<span class="tag">Thm</span><span class="name">Laurent's theorem</span> <span class="num">(3.5.9, Cor 3.5.14)</span>
+<div class="hyp"><b>Hyp:</b> $0\lt r\lt R$; $f$ holo on an open set containing the <b>closed</b> annulus $\bar A(z_0,r,R)$.</div>
+<div class="stmt"><b>Then:</b> on $A$,
+$$f(z)=\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n,\qquad
+c_n=\frac1{2\pi i}\oint_{\gamma_s}\frac{f(z)}{(z-z_0)^{n+1}}\,dz \;\;(\text{any } s\in[r,R]),$$
+unique, converging uniformly on closed sub-annuli. <b>Cor 3.5.14:</b> at an isolated singularity, the expansion holds on the punctured disc $B(z_0,R)\setminus\{z_0\}$ (coefficients are $r$-independent; let $r\to0$). If $f$ is holo on the full ball, $c_{n\lt0}=0$ and Laurent = Taylor (3.5.12).</div>
+
+<figure>
+<svg viewBox="0 0 460 200" width="430">
+<circle cx="150" cy="100" r="85" fill="#f1f5ff" stroke="#1f2430" stroke-width="2"/>
+<circle cx="150" cy="100" r="38" fill="#fcfcfa" stroke="#b91c1c" stroke-width="2"/>
+<polygon points="150,15 160,8 161,21" fill="#1f2430"/>
+<polygon points="150,138 140,144 139,132" fill="#b91c1c"/>
+<circle cx="150" cy="100" r="2.8" fill="#1f2430"/>
+<text x="156" y="96" font-size="13">z₀</text>
+<text x="238" y="40" font-size="13">γ_R (ccw)</text>
+<text x="160" y="153" font-size="12" fill="#b91c1c">γ_r (cw)</text>
+<circle cx="208" cy="62" r="3" fill="#2563eb"/><text x="215" y="58" font-size="13" fill="#2563eb">w</text>
+<text x="300" y="95" font-size="13">f(w) = (CIF on γ_R) − (CIF on γ_r)</text>
+<text x="300" y="118" font-size="12" fill="#666">outer → Σ_{n≥0} c_n(w−z₀)ⁿ</text>
+<text x="300" y="136" font-size="12" fill="#666">inner → Σ_{n&lt;0} c_n(w−z₀)ⁿ</text>
+</svg>
+<figcaption>Two-circle CIF (Cor 3.1.3): expand the kernel one way on the big circle, the other way on the small one.</figcaption>
+</figure>
+
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Cor 3.1.3 on the annulus: $f(w)=\frac1{2\pi i}\oint_{\gamma_R}\frac{f(z)}{z-w}dz-\frac1{2\pi i}\oint_{\gamma_r}\frac{f(z)}{z-w}dz$.</li>
+<li>Outer: $|w|\lt|z|$ ⇒ $\frac1{z-w}=\sum_{n\ge0}\frac{w^n}{z^{n+1}}$ ⇒ nonnegative powers ("same way we showed holo ⇒ analytic", i.e. Prop 2.5.6's move).</li>
+<li>Inner: $|z|\lt|w|$ ⇒ expand in $z/w$ ⇒ <em>negative</em> powers (mind the sign flip).</li>
+<li>Uniform convergence ⇒ term-by-term integration ⇒ uniqueness of the $c_n$; the Deformation thm makes $c_n$ contour-independent (any curve homotopic to $\gamma_s$ in $A$ works, Rmk 3.5.11).</li>
+</ul>
+</details>
+</div>
+
+<div class="card def" id="def-residue">
+<span class="tag">Def</span><span class="name">Principal part; residue</span> <span class="num">(3.5.15–3.5.17)</span>
+<ul>
+<li><b>Principal part</b> $P_{z_0}f=\sum_{n\le-1}c_n(z-z_0)^n$ — converges on all of $\mathbb C\setminus\{z_0\}$, uniformly off any $B(z_0,r)$ (Prop 3.5.16).</li>
+<li><b>Residue</b> $\operatorname{Res}_{z_0}f=c_{-1}$. Why $c_{-1}$? Integrate term-by-term over a small circle: every $(z-z_0)^n$, $n\neq-1$, has a primitive ⇒ dies; only $\oint\frac{dz}{z-z_0}=2\pi i$ survives, giving $\frac1{2\pi i}\oint_{\gamma_s}f=c_{-1}$.</li>
+</ul>
+</div>
+
+<div class="card thm">
+<span class="tag">Thm</span><span class="name">Laurent classification of singularities</span> <span class="num">(3.5.18)</span>
+<div class="stmt">At an isolated singularity:
+<ul>
+<li><b>removable</b> $\iff$ no negative terms;</li>
+<li><b>pole of order $n$</b> $\iff$ principal part is finite, lowest term $c_{-n}\neq0$;</li>
+<li><b>essential</b> $\iff$ infinitely many negative terms.</li>
+</ul></div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>No principal part ⇒ the series <em>is</em> a holo extension. Removable ⇒ negative coefficients are integrals of holo functions ⇒ vanish (Cauchy).</li>
+<li>Finite principal part ⇒ $f=(z-z_0)^{-n}g$ with $g(z_0)=c_{-n}\neq0$ (factor the series); conversely Taylor-expand $g$.</li>
+<li>Essential = elimination.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="thm-riemann">
+<span class="tag">Thm</span><span class="name">Riemann's removable singularity theorem</span> <span class="num">(3.5.21)</span>
+<div class="hyp"><b>Hyp:</b> $U$ open, $z_0\in U$, $f$ holo on $U\setminus\{z_0\}$.</div>
+<div class="stmt"><b>Then:</b> $z_0$ removable $\iff$ $f$ <b>bounded</b> near $z_0$.</div>
+<details class="sk" open><summary>Sketch ($h=(z-z_0)^2f$ trick)</summary>
+<ul>
+<li>Set $h=(z-z_0)^2f$, $h(z_0)=0$: the difference quotient at $z_0$ is $(z-z_0)f(z)\to0$ by boundedness ⇒ $h$ holo on all of $U$ with a double zero.</li>
+<li>Taylor (3.3.2): $h=\sum_{k\ge2}a_k(z-z_0)^k$ ⇒ $f=\sum_{k\ge0}a_{k+2}(z-z_0)^k$ near $z_0$ — a holo extension.</li>
+</ul>
+</details>
+<ul><li>Real contrast (Rmk 3.5.22): $\operatorname{sign}(x)$, $\sin(1/x)$, $|x|$ are bounded and analytic off $0$ but don't extend differentiably — impossible behaviours in $\mathbb C$.</li></ul>
+</div>
+
+<div class="card lem">
+<span class="tag">Lemma</span><span class="name">Pole $\iff$ $|f|\to\infty$</span> <span class="num">(3.5.23, 3.5.24)</span>
+<div class="stmt">$z_0$ is a pole $\iff |f(z)|\to\infty$ as $z\to z_0$; then $1/f$ (set $=0$ at $z_0$) is holo with a zero of order = order of the pole.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>(⇒) factor $f=(z-z_0)^{-n}g$.</li>
+<li>(⇐) $1/f\to0$ ⇒ bounded ⇒ Riemann 3.5.21 extends it; its zero has finite order $n$ ⇒ $f=(z-z_0)^{-n}g^{-1}$.</li>
+<li>On the Riemann sphere $\mathbb C_\infty$ removable and pole merge: $f$ extends $\mathbb C_\infty$-valued.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="thm-cw">
+<span class="tag">Thm</span><span class="name">Casorati–Weierstrass</span> <span class="num">(3.5.25)</span>
+<div class="hyp"><b>Hyp:</b> $f$ holo on $U\setminus\{a\}$ with an <b>essential</b> singularity at $a$; $B(a,\rho)\subseteq U$.</div>
+<div class="stmt"><b>Then:</b> $f\big(B(a,\rho)\setminus\{a\}\big)$ is <b>dense in $\mathbb C$</b>. ("Either a limit exists, or it fails in the most spectacular way.")</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>If some $z_0$ is missed by a margin, $g=1/(f-z_0)$ is bounded near $a$ ⇒ extends holomorphically (Riemann 3.5.21);</li>
+<li>then $f=z_0+1/g$ has at most a pole at $a$ — contradiction.</li>
+<li>Picard (quoted, Rmk 3.5.26): in fact $f$ takes <em>every</em> value infinitely often, with at most one exception — $e^{1/z}$ omits exactly $0$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-residue">
+<span class="tag">Thm</span><span class="name">Residue theorem</span> <span class="num">(3.5.27)</span>
+<div class="hyp"><b>Hyp:</b>
+<ul>
+<li>$U$ open; $\gamma$ closed, with $\gamma^*$ <b>and its inside</b> in $U$;</li>
+<li>$f$ holo on $U\setminus S$, $S$ <b>finite</b>, $S\cap\gamma^*=\emptyset$.</li>
+</ul></div>
+<div class="stmt"><b>Then:</b>
+$$\frac1{2\pi i}\oint_\gamma f(z)\,dz=\sum_{a\in S} I(\gamma,a)\operatorname{Res}_a(f).$$
+(In practice $\gamma$ is simple and positively oriented, so the weights are $1$ inside, $0$ outside — Rmk 3.5.28.)</div>
+<details class="sk" open><summary>Sketch ("almost a trivial corollary by now")</summary>
+<ul>
+<li>Subtract all principal parts: $g=f-\sum_{a\in S}P_a(f)$ has only removable singularities ⇒ holo on $U$ ⇒ $\oint_\gamma g=0$ (Deformation thm: $\gamma$ is null-homotopic in $U$).</li>
+<li>Each $P_a(f)$ converges <em>uniformly on $\gamma^*$</em> (Prop 3.5.16) ⇒ integrate term-by-term;</li>
+<li>powers $\neq-1$ have primitives ⇒ die; the $c_{-1}$ term gives $2\pi i\,I(\gamma,a)\operatorname{Res}_a f$ (Lemma 2.5.4).</li>
+</ul>
+</details>
+</div>
+
+<h2 id="ch3-arg">3.6 &nbsp;Argument principle, Rouché, open mapping</h2>
+
+<div class="card lem">
+<span class="tag">Lemma</span><span class="name">Logarithmic derivative</span> <span class="num">(3.6.1)</span>
+<div class="stmt">If $f$ has a zero (pole) of order $k$ at $z_0$, then $f'/f$ has a <b>simple pole</b> there with residue $k$ ($-k$): write $f=(z-z_0)^{\pm k}g$, $g(z_0)\neq0$, so $\frac{f'}f=\frac{\pm k}{z-z_0}+\frac{g'}g$ with $g'/g$ holo.</div>
+</div>
+
+<div class="card thm" id="thm-arg">
+<span class="tag">Thm</span><span class="name">Argument principle</span> <span class="num">(3.6.2)</span>
+<div class="hyp"><b>Hyp:</b> $f$ meromorphic on $U$; $\gamma$ <b>simple, positively oriented</b>, $\gamma\cup\text{inside}\subseteq U$; no zeros/poles of $f$ on $\gamma^*$.</div>
+<div class="stmt"><b>Then</b> (zeros $N$, poles $P$ inside, counted with multiplicity):
+$$N-P=\frac1{2\pi i}\oint_\gamma\frac{f'(z)}{f(z)}\,dz=I(f\circ\gamma,\,0),$$
+the number of times the <em>image curve</em> winds around $0$.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Residue theorem applied to $f'/f$, whose residues are the orders $\pm k$ (Lemma 3.6.1);</li>
+<li>last equality: substitute $w=f(\gamma(t))$ in $\oint_{f\circ\gamma}\frac{dw}w$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-rouche">
+<span class="tag">Thm</span><span class="name">Rouché</span> <span class="num">(3.6.3)</span>
+<div class="hyp"><b>Hyp:</b> $f,g$ holo on open $U$; $\gamma$ simple, $\gamma\cup\text{interior}\subseteq U$; $\;|f|\gt|g|$ <b>on $\gamma^*$</b>.</div>
+<div class="stmt"><b>Then:</b> $f$ and $f+g$ have the same number of zeros inside $\gamma$ (with multiplicity). Slogan: <em>count zeros of a hard function by comparing with an easy dominant one.</em></div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>$h=(f+g)/f=1+g/f$: zeros of $h$ ↔ zeros of $f+g$, poles ↔ zeros of $f$; want #zeros = #poles.</li>
+<li>On $\gamma^*$, $|g/f|\lt1$ ⇒ $h\circ\gamma$ stays in $B(1,1)\subset\{\operatorname{Re}\gt0\}$, where $\operatorname{Log}$ is a primitive of $1/z$ ⇒ $I(h\circ\gamma,0)=0$ ⇒ argument principle gives $N-P=0$.</li>
+</ul>
+</details>
+<ul><li><b>Ex 3.6.5:</b> $p(z)=z^4+5z+2$. On $|z|=2$: $|z^4|=16\gt12\ge|5z+2|$ ⇒ 4 roots in $B(0,2)$. On $|z|=1$: $|5z+2|\ge3\gt1=|z^4|$ ⇒ exactly 1 root in $B(0,1)$, hence 3 in the annulus.</li></ul>
+</div>
+
+<div class="card thm" id="thm-open">
+<span class="tag">Thm</span><span class="name">Open mapping theorem</span> <span class="num">(3.6.6, 3.6.7)</span>
+<div class="hyp"><b>Hyp:</b> $f$ holo and <b>non-constant on a domain</b> $U$ (domain, not just open — needs zeros of $f-w_0$ isolated, via the identity theorem).</div>
+<div class="stmt"><b>Then:</b> $f$ maps open sets to open sets. Refinement (degree, Rmk 3.6.7): if $f-w_0$ vanishes to order $d$ at $z_0$, then near $z_0$, $f$ is exactly $d$-to-$1$ onto a nbhd of $w_0$; $f'(z_0)\neq0$ ⇒ locally injective.</div>
+<details class="sk" open><summary>Sketch (Rouché perturbation)</summary>
+<ul>
+<li>$g=f-w_0$ has an isolated zero at $z_0$; pick $r$ with no other zeros in $\bar B(z_0,r)$ and $|g|\ge\delta$ on the boundary circle.</li>
+<li>For $|w-w_0|\lt\delta$: $|w_0-w|\lt|g|$ on the circle ⇒ Rouché: $f-w$ has as many zeros as $f-w_0$ in $B(z_0,r)$, i.e. $\ge1$ ⇒ $B(w_0,\delta)\subseteq f(B(z_0,r))$.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-ift">
+<span class="tag">Thm</span><span class="name">Inverse function theorem (honest version)</span> <span class="num">(3.6.8, 3.6.9)</span>
+<div class="hyp"><b>Hyp:</b> $f$ holo and <b>injective</b> on $U$ with $f'\neq0$ everywhere; $g=f^{-1}$ on $f(U)$.</div>
+<div class="stmt"><b>Then:</b> $g$ is holo with $g'(w)=1/f'(g(w))$.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>The hard part — continuity of $g$, which 1.4.12 had to <em>assume</em> — is now free: $g^{-1}(V)=f(V)$ is open by the <b>open mapping theorem</b>.</li>
+<li>Then the difference-quotient computation of 1.4.12 finishes.</li>
+<li><b>Bonus (Rmk 3.6.9 + Appendix B):</b> $f'\neq0$ is <em>automatic</em> for injective holo $f$ — if $f'(z_0)=0$ then $f-f(z_0)=(z-z_0)^kg$ with $k\ge2$, and a holo branch of $g^{1/k}$ writes $f=w_0+\phi^k$ with $\phi'(z_0)\neq0$, so $f$ is locally $k$-to-1 (open mapping on $\phi$). Contrast $x\mapsto x^3$ on $\mathbb R$: "complex analysis is nicer".</li>
+</ul>
+</details>
+</div>
+
+<h2 id="ch3-calc">3.7 &nbsp;Residue calculus toolbox</h2>
+
+<h3>Computing residues</h3>
+
+<div class="card lem">
+<span class="tag">Lemma</span><span class="name">Residue at a pole of order $m$</span> <span class="num">(3.7.1)</span>
+<div class="stmt">$$\operatorname{Res}_{z_0}(f)=\lim_{z\to z_0}\frac1{(m-1)!}\,\frac{d^{m-1}}{dz^{m-1}}\Big[(z-z_0)^m f(z)\Big].$$
+(Multiply away the pole; the $(m{-}1)$-th Taylor coefficient is $c_{-1}$.)</div>
+<ul>
+<li><b>The workhorse (Rmk 3.7.2):</b> for a <b>simple</b> pole of $f=g/h$ with $g(z_0)\neq0$, $h$ a simple zero:
+$$\operatorname{Res}_{z_0}\frac gh=\frac{g(z_0)}{h'(z_0)}.$$
+E.g. $\operatorname{Res}_{\pi k}\frac{e^z}{\sin z}=\frac{e^{\pi k}}{\cos\pi k}$ (Ex 3.7.3).</li>
+<li><b>Series manipulation often beats 3.7.1</b> (Ex 3.7.4–3.7.6): e.g. $\frac1{\sin^2z}=\frac1{z^2}+\frac13+\dots$ ⇒ $\operatorname{Res}_0=0$; and $\frac1{z^2\sinh^3z}=\frac1{z^5}-\frac1{2z^3}+\frac{17}{120\,z}+O(1)$ ⇒ $\operatorname{Res}_0=\frac{17}{120}$ — by geometric/binomial expansion of $\frac1{(1+g)^k}$ with $O(z^k)$ bookkeeping.</li>
+</ul>
+</div>
+
+<h3>The contour catalogue</h3>
+
+<figure>
+<svg viewBox="0 0 980 230" width="100%" style="min-width:760px">
+<!-- (1) semicircle -->
+<line x1="20" y1="170" x2="220" y2="170" stroke="#1f2430" stroke-width="2"/>
+<path d="M210,170 A90,90 0 0 1 30,170" fill="none" stroke="#b91c1c" stroke-width="2"/>
+<polygon points="120,80 132,76 128,88" fill="#b91c1c"/>
+<polygon points="125,170 115,164 115,176" fill="#1f2430"/>
+<circle cx="100" cy="125" r="3" fill="#2563eb"/><circle cx="150" cy="110" r="3" fill="#2563eb"/>
+<text x="60" y="210" font-size="13">1. Half-disk Γ_R</text>
+<text x="60" y="226" font-size="11" fill="#666">rational ∫ℝ; ML kills arc</text>
+<!-- (2) indented -->
+<line x1="270" y1="170" x2="345" y2="170" stroke="#1f2430" stroke-width="2"/>
+<line x1="375" y1="170" x2="450" y2="170" stroke="#1f2430" stroke-width="2"/>
+<path d="M375,170 A15,15 0 0 0 345,170" fill="none" stroke="#b45309" stroke-width="2"/>
+<path d="M440,170 A80,80 0 0 1 280,170" fill="none" stroke="#b91c1c" stroke-width="2"/>
+<circle cx="360" cy="170" r="3" fill="#b45309"/>
+<text x="352" y="192" font-size="12" fill="#b45309">ε</text>
+<text x="300" y="210" font-size="13">2. Indented contour</text>
+<text x="300" y="226" font-size="11" fill="#666">simple pole on ℝ → πi·Res</text>
+<!-- (3) square -->
+<rect x="510" y="60" width="120" height="120" fill="none" stroke="#b91c1c" stroke-width="2"/>
+<circle cx="530" cy="120" r="2.5" fill="#1f2430"/><circle cx="550" cy="120" r="2.5" fill="#1f2430"/><circle cx="570" cy="120" r="2.5" fill="#1f2430"/><circle cx="590" cy="120" r="2.5" fill="#1f2430"/><circle cx="610" cy="120" r="2.5" fill="#1f2430"/>
+<line x1="505" y1="120" x2="635" y2="120" stroke="#bbb"/>
+<text x="520" y="210" font-size="13">3. Square Γ_N + cot(πz)</text>
+<text x="520" y="226" font-size="11" fill="#666">Σ 1/n² etc.; |cot| ≤ C on Γ_N</text>
+<!-- (4) keyhole -->
+<circle cx="790" cy="120" r="85" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="0"/>
+<circle cx="790" cy="120" r="18" fill="#fcfcfa" stroke="#b45309" stroke-width="2"/>
+<rect x="800" y="112" width="80" height="16" fill="#fcfcfa" stroke="none"/>
+<line x1="805" y1="112" x2="876" y2="112" stroke="#1f2430" stroke-width="2"/>
+<line x1="805" y1="128" x2="876" y2="128" stroke="#1f2430" stroke-width="2"/>
+<line x1="790" y1="120" x2="880" y2="120" stroke="#b91c1c" stroke-width="3" stroke-dasharray="5 4"/>
+<text x="700" y="210" font-size="13">4. Keyhole Γ_{R,ε}</text>
+<text x="700" y="226" font-size="11" fill="#666">branch cut on ℝ₊; segments add</text>
+</svg>
+</figure>
+
+<div class="card ex">
+<span class="tag">Tech</span><span class="name">1. Trig integrals → unit circle</span> <span class="num">(3.7.7, 3.7.8)</span>
+<ul>
+<li>$z=e^{it}$: $\cos t=\tfrac12(z+z^{-1})$, $\sin t=\tfrac1{2i}(z-z^{-1})$, $dt=\frac{dz}{iz}$ — any $\int_0^{2\pi}R(\cos t,\sin t)\,dt$ becomes a rational contour integral over $|z|=1$.</li>
+<li>E.g. $\int_0^{2\pi}\frac{dt}{1+3\cos^2t}=\oint\frac{-4iz\,dz}{3+10z^2+3z^4}=2\pi i\big(\tfrac1{4i}+\tfrac1{4i}\big)=\pi$ (poles inside: $\pm i/\sqrt3$).</li>
+</ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Tech</span><span class="name">2. Half-disk for $\int_{\mathbb R}$ of rational functions</span> <span class="num">(3.7.9)</span>
+<ul>
+<li>Close $[-R,R]$ with the upper semicircle; residues at UHP poles; est. lemma kills the arc when the integrand decays like $|z|^{-2}$ or faster.</li>
+<li>E.g. $\int_0^\infty\frac{dx}{1+x^2+x^4}=\frac\pi{2\sqrt3}$: poles $e^{i\pi/3},e^{2i\pi/3}$ in the UHP, $\operatorname{Res}=1/p'$; arc $\le \pi R/(R^4-R^2-1)\to0$.</li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-jordan">
+<span class="tag">Lemma</span><span class="name">Jordan's lemma — oscillatory integrands</span> <span class="num">(3.7.10, 3.7.11, 3.7.12)</span>
+<div class="hyp"><b>Hyp:</b> $f$ cts on the upper semicircle $\gamma_R$; $\alpha\gt0$.</div>
+<div class="stmt">$$\Big|\int_{\gamma_R}f(z)e^{i\alpha z}\,dz\Big|\le\frac\pi\alpha\,M_R,\qquad M_R=\max_{\gamma_R^*}|f|;$$
+so if $f\to0$ at $\infty$ in the UHP (holo off finitely many singularities), the arc integral $\to0$ — <em>even though the arc length grows like $R$</em>.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>Concavity of $\sin$ (Lemma 3.7.10, via MVT twice): $\sin t\ge\frac{2t}\pi$ on $[0,\frac\pi2]$;</li>
+<li>$|e^{i\alpha z}|=e^{-\alpha R\sin t}\le e^{-2\alpha Rt/\pi}$ ⇒ $\big|\int\big|\le 2RM_R\int_0^{\pi/2}e^{-2\alpha Rt/\pi}dt\lt\frac\pi\alpha M_R$.</li>
+<li>Variants (3.7.12): sub-arcs/sectors, same proof; $\alpha\lt0$ ⇒ use the <em>lower</em> half-plane (apply to $f(-z)$).</li>
+<li><b>Standard trick:</b> for $\int\frac{\sin x}x$-type integrals use $e^{iz}$, never $\sin z$ ($\sin$ blows up in the UHP); take Im at the end.</li>
+</ul>
+</details>
+</div>
+
+<div class="card lem" id="lem-indent">
+<span class="tag">Lemma</span><span class="name">Indentation lemma — simple pole on the contour</span> <span class="num">(3.7.15; 3.7.13–3.7.14)</span>
+<div class="hyp"><b>Hyp:</b> $f$ meromorphic with a <b>simple</b> pole at $a$; $\gamma_\varepsilon(t)=a+\varepsilon e^{it}$, $t\in[\alpha,\beta]$.</div>
+<div class="stmt">$$\lim_{\varepsilon\to0}\int_{\gamma_\varepsilon}f(z)\,dz=i\,(\beta-\alpha)\operatorname{Res}_a(f)$$
+— a half-turn picks up $\pm\pi i\cdot\operatorname{Res}$ (sign = direction).</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>$f=\frac c{z-a}+g$, $g$ holo ⇒ bounded ⇒ its bit is $O(\varepsilon)$ (est. lemma); the $\frac c{z-a}$ term computes exactly to $ic(\beta-\alpha)$.</li>
+</ul></details>
+<ul>
+<li><b>Worked classic, both ways (3.7.13/3.7.14):</b> $\int_{-\infty}^\infty\frac{\sin x}x\,dx=\pi$. Either integrate the <em>entire</em> function $\frac{e^{iz}-1}z$ (removable singularity — no indent needed; Jordan kills $e^{iz}/z$ on the arc, $\oint\frac{dz}z$ over the arc $=i\pi$); or indent at $0$ and collect $-i\pi\cdot\operatorname{Res}_0\frac{e^{iz}}z=-i\pi$ from the clockwise half-circle.</li>
+</ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Tech</span><span class="name">3. Summation of series: squares + $\cot\pi z$</span> <span class="num">(3.7.16–3.7.19)</span>
+<ul>
+<li>$\cot\pi z$ has simple poles at every $n\in\mathbb Z$, each with residue $\frac1\pi$ (Laurent: $\cot z=\frac1z-\frac z3+O(z^3)$).</li>
+<li><b>Lemma 3.7.16:</b> on the squares $\Gamma_N$ with vertices $(N{+}\tfrac12)(\pm1\pm i)$, $|\cot\pi z|\le C$ uniformly in $N$ (horizontal sides via $\coth$, vertical via $\tanh$, periodicity).</li>
+<li>For $\sum\frac1{n^2}$: integrate $g=\frac{\cot\pi z}{z^2}$ over $\Gamma_N$; est. lemma: $\big|\oint g\big|\le C\cdot\frac{\text{perimeter}}{N^2}\to0$; residue thm: $0=\operatorname{Res}_0+\sum_{n\neq0}\frac1{\pi n^2}$ with $\operatorname{Res}_0=-\frac\pi3$ ⇒ $\boxed{\sum_{n\ge1}\frac1{n^2}=\frac{\pi^2}6}$.</li>
+<li>Same scheme: $\sum\frac1{n^2+1}$ (extra residues at $\pm i$), $\zeta(2k)$ from deeper Laurent coefficients of $\cot$ <span class="nonex">non-exam</span>; $\zeta$ continues to $\mathbb C\setminus\{1\}$ uniquely by the identity theorem.</li>
+</ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Tech</span><span class="name">4. Keyhole contours: multivalued integrands</span> <span class="num">(3.7.20)</span>
+<ul>
+<li>For $\int_0^\infty\frac{x^{1/2}}{1+x^2}dx$: take the branch $z^{1/2}=r^{1/2}e^{it/2}$, $t\in[0,2\pi)$ (cut on $\mathbb R_{\gt0}$), and the keyhole $\Gamma_{R,\varepsilon}$ hugging the cut.</li>
+<li>ML estimates kill both circles ($R^{1/2}/R^2\to0$; $\varepsilon^{1/2}\to0$).</li>
+<li><b>Key point:</b> across the cut $z^{1/2}$ flips sign, and the lower segment is traversed backwards — the two straight pieces <b>add</b> instead of cancelling: total $=2\int_0^\infty$.</li>
+<li>Residues at $\pm i$ <em>computed in the chosen branch</em> ($i=e^{i\pi/2}$, $-i=e^{3i\pi/2}$): $2\pi i(\tfrac12e^{-i\pi/4}+\tfrac12e^{-3i\pi/4})=\pi\sqrt2$ ⇒ integral $=\frac\pi{\sqrt2}$.</li>
+</ul>
+</div>
+
+<div class="card rem">
+<span class="tag">Summary</span><span class="name">Which contour for which integral?</span>
+<table>
+<tr><th>Integral type</th><th>Contour</th><th>Key trick</th></tr>
+<tr><td>$\int_0^{2\pi}R(\cos t,\sin t)\,dt$</td><td>unit circle</td><td>$z=e^{it}$; rational in $z$; residues inside $|z|=1$</td></tr>
+<tr><td>$\int_{\mathbb R}$ rational, decay $\ge|z|^{-2}$</td><td>half-disk</td><td>ML estimate on arc; UHP residues</td></tr>
+<tr><td>$\int_{\mathbb R}f(x)e^{i\alpha x}$, $f\to0$</td><td>half-disk (UHP if $\alpha\gt0$)</td><td>Jordan's lemma; use $e^{iz}$ not $\cos/\sin$; Re/Im at the end</td></tr>
+<tr><td>simple pole on the axis</td><td>indented half-disk</td><td>half-circle contributes $\pm\pi i\,\operatorname{Res}$ (3.7.15) — or remove the pole à la $\frac{e^{iz}-1}z$</td></tr>
+<tr><td>$\sum_n f(n)$</td><td>squares $\Gamma_N$</td><td>multiply by $\cot\pi z$ (res $\frac1\pi$ at each $n$); uniform bound 3.7.16; sum $=-$(other residues)</td></tr>
+<tr><td>$\int_0^\infty x^{\alpha}\,(\text{rational})$, $\alpha\notin\mathbb Z$</td><td>keyhole</td><td>branch jump across the cut makes segments add; residues in the chosen branch</td></tr>
+</table>
+</div>
+
+<h2 id="appendix">Appendices <span class="nonex">all non-examinable</span></h2>
+
+<div class="card thm">
+<span class="tag">Thm</span><span class="name">Parameter integrals are holo</span> <span class="num">(A.0.1)</span>
+<div class="hyp"><b>Hyp:</b> $U$ open; $F:U\times[a,b]\to\mathbb C$ with $z\mapsto F(z,s)$ holo for each $s$, and $F$ cts jointly.</div>
+<div class="stmt"><b>Then:</b> $f(z)=\int_a^b F(z,s)\,ds$ is holo on $U$.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>Riemann sums $f_n(z)=\frac1n\sum_i F(z,i/n)$ are holo (finite sums);</li>
+<li>uniform continuity of $F$ on $K\times[0,1]$ ⇒ $f_n\to f$ uniformly on compacts ⇒ Prop 3.3.12.</li>
+</ul></details>
+</div>
+
+<div class="card thm">
+<span class="tag">Thm</span><span class="name">Proof of the Deformation theorem</span> <span class="num">(A.0.2, A.0.3)</span>
+<ul><li>The grid-of-discs argument sketched at <a href="#thm-deform">Thm 2.4.7</a> above; the subtlety A.0.3: interpolate with piecewise-linear paths because the homotopy's level curves are only cts, hence possibly non-integrable.</li></ul>
+</div>
+
+<div class="card thm">
+<span class="tag">Thm</span><span class="name">Homology/winding-number Cauchy for paths</span> <span class="num">(A.0.4, A.0.5)</span>
+<div class="hyp"><b>Hyp:</b> $f$ holo on $U$; $\gamma$ closed in $U$ with $I(\gamma,z)=0$ for all $z\notin U$ ("inside ⊆ $U$").</div>
+<div class="stmt"><b>Then:</b> $\oint_\gamma f=0$ and $\frac1{2\pi i}\oint_\gamma\frac{f(\zeta)}{\zeta-z}d\zeta=I(\gamma,z)f(z)$. If $U$ is s.c. this applies to <em>every</em> closed path in $U$ (then $1/(z-w)$ is holo on $U$ for $w\notin U$, so $I(\gamma,w)=0$ by homotopy Cauchy).</div>
+<ul><li>Same Dixon glue-an-entire-function proof as <a href="#thm-homology">3.2.5</a>. <b>A.0.5:</b> in practice it's usually easier to verify "$U$ s.c." than to compute a path's inside; and the bookkeeping shows homology and homotopy forms are established essentially independently.</li></ul>
+</div>
+
+<div class="card lem">
+<span class="tag">Claim</span><span class="name">Appendix B: injectivity forces $f'\neq0$</span>
+<div class="stmt">If $f$ holo, non-constant, $f'(z_0)=0$, then $f$ is at least 2-to-1 near $z_0$.</div>
+<details class="sk"><summary>Sketch</summary><ul>
+<li>$f-w_0=(z-z_0)^kh$, $h(z_0)\neq0$, $k\ge2$; a holo $k$-th-root branch on a slit disc gives $\phi=(z-z_0)h^{1/k}$ with $f=w_0+\phi^k$, $\phi'(z_0)\neq0$;</li>
+<li>open mapping: $\phi$ covers a ball $B(0,r)$, and $z\mapsto z^k$ is exactly $k$-to-1 there.</li>
+</ul></details>
+</div>
+
+<h2 id="hyps">Hypothesis cheat-sheet</h2>
+<p>The recurring exam trap: <em>which results need connectedness, and which need more?</em></p>
+<table>
+<tr><th>Assumption on $U$</th><th>Suffices for</th></tr>
+<tr><td><b>open</b></td><td>holomorphy (1.1.4), CR converse (1.2.7), path-integral properties &amp; est. lemma (2.2.8), FTC (2.2.13), CIF (3.1.1, with the inside-of-$\gamma$ condition), Taylor (3.3.2), Morera (3.3.8), zeros isolated locally (3.4.1), Riemann removable (3.5.21), Casorati–Weierstrass (3.5.25), residue thm (3.5.27, with inside-of-$\gamma$ condition), Rouché (3.6.3)</td></tr>
+<tr><td><b>domain</b> (connected open)</td><td>$f'\equiv0\Rightarrow$ const (2.2.15), primitives unique up to const (2.2.17), converse FTC (2.2.16), Cauchy 2.3.1, Deformation thm (2.4.7), <b>identity theorem (3.4.3)</b>, <b>open mapping (3.6.6)</b>, loc-unif limits (3.3.12)</td></tr>
+<tr><td><b>star-like / convex</b></td><td>the provable-in-course Cauchy theorem (primitive by radial integration); triangle-only Morera (3.3.9); discs are convex — this is why "holomorphy is local" arguments work</td></tr>
+<tr><td><b>simply connected domain</b></td><td>path-independence of all integrals, $\oint=0$ always, <b>every holo $f$ has a primitive</b> (2.4.9); holo branches of $\log$ exist (2.4.11); harmonic conjugates exist</td></tr>
+</table>
+<table>
+<tr><th>Assumption on $\gamma$ / $f$</th><th>Where it matters</th></tr>
+<tr><td>cts path vs <b>p.w.-$C^1$</b></td><td>winding numbers and homotopy need only cts; <em>integration</em> needs p.w.-$C^1$ (hence the PL interpolation in A.0.2)</td></tr>
+<tr><td>$\gamma$ closed + "inside ⊆ $U$"</td><td>Cauchy 2.3.1, CIF, residue thm — this is the "no holes of $U$ inside $\gamma$" condition; on a s.c. domain it's automatic</td></tr>
+<tr><td>$f$ cts (no holomorphy)</td><td>est. lemma, 2.2.16, Prop 2.5.6, Morera's hypothesis, Jordan's lemma bound</td></tr>
+<tr><td>$f$ differentiable at one point only</td><td>CR equations (1.2.2); the pointwise estimate in Goursat and in CIF's vanishing term</td></tr>
+</table>
+
+<h2 id="cex">Counterexample gallery</h2>
+<table>
+<tr><th>Claim it kills</th><th>Counterexample</th></tr>
+<tr><td>"real-smooth ⇒ complex differentiable"</td><td>$f(z)=\operatorname{Re}z$: nowhere complex differentiable (CR fails) — 1.2.4</td></tr>
+<tr><td>"CR at a point ⇒ differentiable there"</td><td>$f=\frac{xy}{x^2+y^2}$, $f(0)=0$: CR holds at $0$, $f$ not even cts — 1.2.8</td></tr>
+<tr><td>"iterated limits = joint limit"</td><td>$f=\frac{xy}{x+y}$ at $0$ — Rmk 1.0.1</td></tr>
+<tr><td>"holo functions stay holo under conjugation"</td><td>$\bar f(z)$, $f(\bar z)$ are <em>anti</em>-holo when $f'\neq0$ — 1.2.9</td></tr>
+<tr><td>"cts on a punctured domain ⇒ has a primitive"</td><td>$1/z$ on $\mathbb C\setminus\{0\}$: $\oint_{|z|=1}=2\pi i$ — 2.2.18 (but a primitive exists on every cut plane!)</td></tr>
+<tr><td>"Log is a homomorphism / powers multiply"</td><td>$\operatorname{Log}(zw)\neq\operatorname{Log}z+\operatorname{Log}w$; $[1^{1/2}][1^{1/2}]=\{\pm1\}\neq[1^1]$ — §1.4.4, 1.5.9</td></tr>
+<tr><td>"a $C^1$ path has a smooth image"</td><td>$\gamma=t^2$ / $it^2$: $C^1$ with a corner at $0$ — 2.1.2</td></tr>
+<tr><td>"bounded + analytic off a point ⇒ extends, in $\mathbb R$"</td><td>$\operatorname{sign}x$, $\sin\frac1x$, $|x|$ — fine in $\mathbb R$, impossible in $\mathbb C$ (Riemann 3.5.21) — 3.5.22</td></tr>
+<tr><td>"bounded entire-like functions exist in $\mathbb R$"</td><td>$\frac1{1+x^2}$: bounded, real-analytic, non-constant — no Liouville on $\mathbb R$ — 3.3.5</td></tr>
+<tr><td>"identity thm without the limit point in $U$"</td><td>$e^{1/z}-1$ on $\mathbb C\setminus\{0\}$: zeros $\to0\notin U$ — 3.4.4</td></tr>
+<tr><td>"essential singularities omit lots of values"</td><td>$e^{1/z}$ omits exactly one value ($0$) — Picard is sharp — 3.5.26</td></tr>
+<tr><td>"injective real-differentiable needs $f'\neq0$"</td><td>$x\mapsto x^3$ on $\mathbb R$ — fails in $\mathbb C$ (App B) — 3.6.9</td></tr>
+</table>
+
+<p style="margin-top:48px;color:#777;font-size:.9rem">Built from <code>CA_notes.pdf</code> (114 pp). Numbering and proof strategies follow the notes; appendix material and items marked <span class="nonex">non-exam</span> are flagged as in the source.</p>
+
+</div>
+</body>
+</html>
