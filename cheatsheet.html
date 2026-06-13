@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Complex Analysis — exam cheat sheet</title>
+<style>
+  :root{ --found:#047857; --foundbg:#ecfdf5; --spine:#b91c1c; --spinebg:#fef2f2;
+         --cons:#2563eb; --consbg:#eff6ff; --head:#b45309; --headbg:#fffbeb; }
+  *{box-sizing:border-box;}
+  body{ width:1600px; margin:0; padding:26px 30px 34px; background:#fff; color:#15191f;
+        font:14.5px/1.42 -apple-system,'Helvetica Neue',Arial,sans-serif; -webkit-font-smoothing:antialiased;}
+  h1{font-size:26px; margin:0 0 2px;}
+  .sub{color:#667; font-size:13px; margin:0 0 14px;}
+  h2.sec{font-size:19px; margin:26px 0 10px; padding-bottom:4px; border-bottom:2px solid #222;}
+  .legend{font-size:12.5px; color:#444; margin:-4px 0 14px;}
+  .legend span{display:inline-block; padding:1px 8px; margin-right:8px; border-left:5px solid #999;}
+  .cols3{column-count:3; column-gap:20px;}
+  .cols2{column-count:2; column-gap:22px;}
+  .band{ column-span:all; -webkit-column-span:all; margin:12px 0 7px; padding:3px 10px;
+         font-weight:700; font-size:13px; letter-spacing:.06em; text-transform:uppercase;
+         color:#fff; background:#475569; border-radius:4px;}
+  .it{ break-inside:avoid; -webkit-column-break-inside:avoid; border-left:4px solid #999;
+       background:#fafafa; border-radius:0 5px 5px 0; padding:5px 9px 6px; margin:0 0 8px;}
+  .it .nm{font-weight:700;}
+  .it .nu{color:#7a8190; font-weight:600; font-size:12px;}
+  .it .tk{display:block; margin-top:2px;}
+  .it .rs{display:block; margin-top:2px;}
+  .it .rs b{color:#0f172a;}
+  .it .pf{display:block; margin-top:3px; color:#334; font-size:13.5px;}
+  .it .pf::before{content:"↳ "; color:#94a3b8;}
+  .found{border-color:var(--found); background:var(--foundbg);}
+  .spine{border-color:var(--spine); background:var(--spinebg);}
+  .cons{border-color:var(--cons); background:var(--consbg);}
+  .head{border-color:var(--head); background:var(--headbg);}
+  .warnnote{color:#9a3412; font-size:12.5px;}
+  em{color:#334; font-style:italic;}
+  code{font-family:ui-monospace,Menlo,monospace; font-size:.92em;}
+</style>
+</head>
+<body>
+
+<h1>Complex Analysis — one-page exam map</h1>
+<p class="sub">Spine in <b>red</b>: Goursat (triangles) → star-like Cauchy → Deformation → CIF → Taylor (holo ⇒ analytic). Everything in Ch.3 falls out of <b>CIF + Taylor</b>. Colours: <span style="color:var(--found)">■ foundations/tools</span> · <span style="color:var(--spine)">■ the spine</span> · <span style="color:var(--cons)">■ consequences</span> · <span style="color:var(--head)">■ headline results / techniques</span>.</p>
+
+<!-- ============================ SECTION 1: TRICKS ============================ -->
+<h2 class="sec">① Trick map — the one move that makes each proof go</h2>
+<div class="cols3">
+
+  <div class="band" style="background:var(--found)">Foundations / engines</div>
+  <div class="it found"><span class="nm">Estimation (ML) lemma</span> <span class="nu">2.2.8(4)</span>
+    <span class="tk">Write ∮f = re<sup>iθ</sup>, project f onto the e<sup>iθ</sup> direction → real triangle inequality. ⇒ |∮<sub>γ</sub>f| ≤ sup|f|·ℓ(γ). Powers every "→0" estimate.</span></div>
+  <div class="it found"><span class="nm">FTC for path integrals</span> <span class="nu">2.2.13 / conv 2.2.16</span>
+    <span class="tk">Chain rule: d/dt F(γ(t)) = f(γ(t))γ′(t). Converse: F(z)=∮ along <em>any</em> path z₀→z is well-defined ⟺ loops vanish. ⇒ primitive ⟺ ∮=0.</span></div>
+  <div class="it found"><span class="nm">Winding number</span> <span class="nu">2.5.1/2/4</span>
+    <span class="tk">Lift γ=|γ|e<sup>2πi a</sup> (uniform-cts → glue local args); integer-valued + cts ⇒ locally constant. I(γ,z₀)=a(1)−a(0)=1/2πi ∮ dz/(z−z₀).</span></div>
+  <div class="it found"><span class="nm">Cauchy-type integrals are analytic</span> <span class="nu">Prop 2.5.6 — THE engine</span>
+    <span class="tk">Geometric series 1/(z−w)=Σ wⁿ/z<sup>n+1</sup>; |f|≤M on compact γ* ⇒ M-test ⇒ uniform ⇒ swap Σ↔∮. Makes ∮f/(z−w) a power series in w. Drives Taylor & Laurent.</span></div>
+
+  <div class="band" style="background:var(--spine)">The spine</div>
+  <div class="it spine"><span class="nm">Cauchy–Goursat (triangles)</span> <span class="nu">2.3.1</span>
+    <span class="tk">Bisection: split T into 4, keep the worst, nest to a point; differentiability (ε-form) kills the estimate. ⇒ ∮<sub>∂T</sub>f=0. Base case of everything.</span></div>
+  <div class="it spine"><span class="nm">Cauchy on star-like U</span> <span class="nu">2.4.x</span>
+    <span class="tk">Build a primitive F(z)=∮ from the star centre; Goursat on triangles ⇒ F′=f ⇒ ∮=0.</span></div>
+  <div class="it spine"><span class="nm">Deformation theorem</span> <span class="nu">2.4.7</span>
+    <span class="tk">Chop the homotopy square into cells, each landing in a disc where a primitive exists; telescope adjacent primitives. "Locally, primitives always exist."</span></div>
+  <div class="it spine"><span class="nm">Cauchy on s.c. domains</span> <span class="nu">2.4.9</span>
+    <span class="tk">Null-homotopic ⇒ ∮=0; with 2.2.16 ⇒ every holo f on a simply-connected domain has a primitive.</span></div>
+  <div class="it spine"><span class="nm">γ ≃ small circle</span> <span class="nu">2.5.10 (topology, unproved)</span>
+    <span class="tk">The topological licence to shrink any simple contour to a tiny circle — used inside the CIF proof.</span></div>
+  <div class="it spine"><span class="nm">Cauchy's Integral Formula</span> <span class="nu">3.1.1 (+3.1.3)</span>
+    <span class="tk">Deform γ to a tiny circle about w; ∮(f(z)−f(w))/(z−w) →0 (bounded integrand, est. lemma), leaving f(w)·I(γ,w). Multi-curve: add cuts to make s.c.</span></div>
+  <div class="it spine"><span class="nm">Taylor: holo ⇒ analytic</span> <span class="nu">Cor 3.3.2</span>
+    <span class="tk">Feed CIF into Prop 2.5.6: the CIF integrand is a Cauchy-type integral ⇒ power series in w. ⇒ holo ⟺ analytic ⟺ C<sup>∞</sup>; f<sup>(n)</sup>(z₀)=n!/2πi ∮ f/(z−z₀)<sup>n+1</sup>.</span></div>
+
+  <div class="band" style="background:var(--cons)">Falls out of CIF + Taylor</div>
+  <div class="it cons"><span class="nm">Liouville</span> <span class="nu">3.3.4</span>
+    <span class="tk">Two-centre CIF: f(w)−f(0)=1/2πi ∮ w·f/(z(z−w)); est. lemma ≤ M|w|/(R−|w|) → 0 as R→∞.</span></div>
+  <div class="it head"><span class="nm">Fundamental thm of algebra</span> <span class="nu">3.3.6</span>
+    <span class="tk">Else 1/p entire; leading term ⇒ |p|≥½|z|ⁿ ⇒ 1/p bounded ⇒ Liouville ⇒ const. ✗. (Always: leading term dominates.)</span></div>
+  <div class="it cons"><span class="nm">Morera</span> <span class="nu">3.3.8</span>
+    <span class="tk">cts + all triangle/loop ∮=0 ⇒ primitive F (2.2.16); F holo ⇒ C<sup>∞</sup> (Taylor!) ⇒ f=F′ holo. Converse of Cauchy.</span></div>
+  <div class="it cons"><span class="nm">Loc-unif limits stay holo</span> <span class="nu">3.3.12</span>
+    <span class="tk">On a ball ∮f=lim ∮f<sub>n</sub>=0 (uniform on compact γ*) ⇒ Morera.</span></div>
+  <div class="it cons"><span class="nm">Identity theorem</span> <span class="nu">3.4.3</span>
+    <span class="tk">Zeros isolated-or-everywhere (Taylor factor (z−z₀)<sup>k</sup>g₁, g₁(z₀)≠0); clopen + connected ⇒ agreement on a set with an interior limit point spreads globally.</span></div>
+  <div class="it cons"><span class="nm">Riemann removable sing.</span> <span class="nu">3.5.21</span>
+    <span class="tk">h=(z−z₀)²f extends holo with a double zero (diff-quotient → 0 by boundedness); Taylor ⇒ f extends. ⇒ bounded ⟺ removable.</span></div>
+  <div class="it cons"><span class="nm">Casorati–Weierstrass</span> <span class="nu">3.5.25</span>
+    <span class="tk">Miss a value by a margin ⇒ 1/(f−z₀) bounded ⇒ Riemann ⇒ pole, not essential. ✗ ⇒ image dense.</span></div>
+  <div class="it spine"><span class="nm">Laurent's theorem</span> <span class="nu">3.5.9</span>
+    <span class="tk">Two-circle CIF (3.1.3) on the annulus; geometric series outward & inward + M-test ⇒ f=Σ<sub>−∞</sub><sup>∞</sup> c<sub>n</sub>(z−z₀)ⁿ.</span></div>
+  <div class="it spine"><span class="nm">Residue theorem</span> <span class="nu">3.5.27</span>
+    <span class="tk">Subtract all principal parts → holo remainder, ∮=0 (deformation); only the c<sub>−1</sub>/(z−a) terms survive (others have primitives). ⇒ ∮=2πi Σ I(γ,a)Res<sub>a</sub>f.</span></div>
+
+  <div class="band" style="background:var(--cons)">Argument-principle family</div>
+  <div class="it cons"><span class="nm">Argument principle</span> <span class="nu">3.6.2</span>
+    <span class="tk">Residue thm on f′/f (residues = orders ±k, Lem 3.6.1). N−P = 1/2πi ∮ f′/f = I(f∘γ, 0) = winding of the image curve about 0.</span></div>
+  <div class="it cons"><span class="nm">Rouché</span> <span class="nu">3.6.3</span>
+    <span class="tk">|f|>|g| on γ* ⇒ apply arg principle to f and f+g <em>separately</em>; difference = 1/2πi ∮ h′/h, h=(f+g)/f, and h(γ)⊂B(1,1)⊂{Re>0} ⇒ ∮h′/h=0. <span class="warnnote">(Don't match zeros/poles of h — they cancel at shared zeros, e.g. g=f/2.)</span></span></div>
+  <div class="it cons"><span class="nm">Open mapping</span> <span class="nu">3.6.6</span>
+    <span class="tk">Rouché perturbation: |w−w₀|<δ≤|f−w₀| on a small circle ⇒ f−w has as many zeros as f−w₀ inside ⇒ B(w₀,δ)⊆ image. Nonconstant holo on a domain is open.</span></div>
+  <div class="it cons"><span class="nm">Inverse function thm</span> <span class="nu">3.6.8</span>
+    <span class="tk">Continuity of f<sup>−1</sup> is now free (open mapping); then the 1.4.12 difference-quotient gives g′=1/f′(g). (f′≠0 is automatic for injective holo.)</span></div>
+
+  <div class="band" style="background:var(--head)">Residue-calculus toolbox §3.7</div>
+  <div class="it head"><span class="nm">Jordan's lemma</span> <span class="nu">3.7.10–12</span>
+    <span class="tk">sin t ≥ 2t/π on [0,π/2] ⇒ |e<sup>iαz</sup>|=e<sup>−αR sin t</sup> decays ⇒ arc ∮ f e<sup>iαz</sup> → 0 if f→0 in UHP. Use e<sup>iz</sup> (never sin z); take Im at the end.</span></div>
+  <div class="it head"><span class="nm">Indentation lemma</span> <span class="nu">3.7.15</span>
+    <span class="tk">Small arc of angle (β−α) at a <em>simple</em> pole picks up i(β−α)Res — a half-turn = ±πi·Res. (Holo part is O(ε).)</span></div>
+  <div class="it head"><span class="nm">Standard contours</span> <span class="nu">§3.7</span>
+    <span class="tk">semicircle (rational) · Jordan (oscillatory ∫sin x/x) · indent (pole on axis) · π cot πz / π csc (sum Σ1/n²) · keyhole (branch cuts, x<sup>α</sup>).</span></div>
+
+</div>
+
+<!-- ============================ SECTION 2: SKETCHES ============================ -->
+<h2 class="sec">② Result + proof sketch — same order</h2>
+<div class="cols2">
+
+  <div class="band" style="background:var(--found)">Foundations / engines</div>
+  <div class="it found"><span class="nm">Estimation (ML) lemma</span> <span class="nu">2.2.8(4)</span>
+    <span class="rs"><b>Result:</b> |∮<sub>γ</sub>f dz| ≤ sup<sub>γ*</sub>|f| · ℓ(γ).</span>
+    <span class="pf">∮f = re<sup>iθ</sup>; take Re of e<sup>−iθ</sup>∮f, bound by real triangle inequality; sup attained as γ* compact.</span></div>
+  <div class="it found"><span class="nm">FTC / converse</span> <span class="nu">2.2.13, 2.2.16</span>
+    <span class="rs"><b>Result:</b> ∮<sub>γ</sub>f = F(γ(b))−F(γ(a)); for cts f on a domain, primitive exists ⟺ all loop integrals vanish.</span>
+    <span class="pf">Chain rule + real FTC on Re/Im. Converse: F(z)=∮<sub>z₀→z</sub>f well-defined (two paths = a loop, ∮=0); F′=f by appending a segment + continuity.</span></div>
+  <div class="it found"><span class="nm">Winding number</span> <span class="nu">2.5.1, 2.5.4</span>
+    <span class="rs"><b>Result:</b> I(γ,z₀) = a(1)−a(0) ∈ ℤ = 1/2πi ∮<sub>γ</sub> dz/(z−z₀).</span>
+    <span class="pf">Lift γ=|γ|e<sup>2πi a</sup>: uniform continuity chops [0,1] into half-plane arcs; glue local args (differ by integers). Integral form: integrand = d/dt[log r + 2πi a].</span></div>
+  <div class="it found"><span class="nm">Cauchy-type integrals are analytic</span> <span class="nu">Prop 2.5.6</span>
+    <span class="rs"><b>Result:</b> w ↦ 1/2πi ∮ f(z)/(z−w) dz is analytic off γ*, with the n! / (z−z₀)<sup>n+1</sup> derivative formula.</span>
+    <span class="pf">|w/z|<½ near z₀ ⇒ 1/(z−w)=Σ wⁿ/z<sup>n+1</sup>; |f|≤M on compact γ* ⇒ M-test ⇒ uniform ⇒ swap Σ↔∮ ⇒ power series in w. <em>The reusable move.</em></span></div>
+
+  <div class="band" style="background:var(--spine)">The spine</div>
+  <div class="it spine"><span class="nm">Cauchy–Goursat (triangles)</span> <span class="nu">2.3.1</span>
+    <span class="rs"><b>Result:</b> f holo ⇒ ∮<sub>∂T</sub>f = 0 for any triangle T ⊂ U.</span>
+    <span class="pf">Bisect into 4 sub-triangles, keep the one with largest |∮|, iterate → nested triangles shrinking to a point z*; differentiability ε-form makes ∮ = o(diam²·perimeter) → 0.</span></div>
+  <div class="it spine"><span class="nm">Cauchy, star-like / Deformation / s.c.</span> <span class="nu">2.4.7, 2.4.9</span>
+    <span class="rs"><b>Result:</b> homotopic paths (rel endpoints) give equal integrals; on s.c. domains ∮=0 and primitives exist.</span>
+    <span class="pf">Star-like: F(z)=∮<sub>centre→z</sub>, Goursat ⇒ F′=f. Deformation: chop homotopy square into cells inside discs (local primitives), telescope. s.c.: null-homotopic ⇒ ∮=0, then 2.2.16.</span></div>
+  <div class="it spine"><span class="nm">Cauchy's Integral Formula</span> <span class="nu">3.1.1, 3.1.3</span>
+    <span class="rs"><b>Result:</b> f(w) = 1/2πi ∮<sub>γ</sub> f(z)/(z−w) dz for w inside γ.</span>
+    <span class="pf">Deform γ to a circle of radius ε about w (2.5.10 + deformation); split f(z)=f(w)+(f(z)−f(w)); first term gives f(w)·I=f(w), second → 0 by est. lemma. Multi-curve: cut into a s.c. region.</span></div>
+  <div class="it spine"><span class="nm">Taylor: holo ⇒ analytic</span> <span class="nu">Cor 3.3.2</span>
+    <span class="rs"><b>Result:</b> f = Σ c<sub>n</sub>(z−z₀)ⁿ on all of B(z₀,R); c<sub>n</sub>=f<sup>(n)</sup>(z₀)/n! = 1/2πi ∮ f/(z−z₀)<sup>n+1</sup>.</span>
+    <span class="pf">CIF writes f as a Cauchy-type integral; Prop 2.5.6 expands it as a power series in w. Two arrows (CIF + 2.5.6) meet here. ⇒ holo ⟺ analytic ⟺ C<sup>∞</sup>.</span></div>
+
+  <div class="band" style="background:var(--cons)">Falls out of CIF + Taylor</div>
+  <div class="it cons"><span class="nm">Liouville</span> <span class="nu">3.3.4</span>
+    <span class="rs"><b>Result:</b> bounded entire ⇒ constant.</span>
+    <span class="pf">Two-centre CIF: f(w)−f(0) = 1/2πi ∮<sub>|z|=R</sub> w f(z)/(z(z−w)); est. lemma ≤ M|w|/(R−|w|) → 0 as R→∞.</span></div>
+  <div class="it head"><span class="nm">Fundamental theorem of algebra</span> <span class="nu">3.3.6</span>
+    <span class="rs"><b>Result:</b> every non-constant p ∈ ℂ[z] has a root (⇒ splits into linear factors).</span>
+    <span class="pf">If p≠0 then 1/p entire; |p|≥½|z|ⁿ for |z|≥R ⇒ 1/p bounded ⇒ Liouville ⇒ p constant. ✗.</span></div>
+  <div class="it cons"><span class="nm">Morera</span> <span class="nu">3.3.8/9</span>
+    <span class="rs"><b>Result:</b> cts f with ∮<sub>∂T</sub>f=0 for all triangles ⇒ f holo (converse of Cauchy).</span>
+    <span class="pf">2.2.16 (locally) ⇒ primitive F; F holo ⇒ C<sup>∞</sup> by Taylor ⇒ f=F′ holo. Holomorphy is local, so triangles on balls suffice.</span></div>
+  <div class="it cons"><span class="nm">Loc-unif limits stay holo</span> <span class="nu">3.3.12</span>
+    <span class="rs"><b>Result:</b> f<sub>n</sub> holo → f locally uniformly ⇒ f holo.</span>
+    <span class="pf">On a ball ∮<sub>γ</sub>f<sub>n</sub>=0 (star-like Cauchy); uniform on compact γ* ⇒ ∮f=lim∮f<sub>n</sub>=0; Morera.</span></div>
+  <div class="it cons"><span class="nm">Identity theorem</span> <span class="nu">3.4.1–3.4.3</span>
+    <span class="rs"><b>Result:</b> two holo functions agreeing on a set with a limit point in the (connected) domain agree everywhere.</span>
+    <span class="pf">g=f₁−f₂: each zero is isolated or interior (Taylor ⇒ g=(z−z₀)<sup>k</sup>g₁ or g≡0). int(zero set) is clopen in U; connected ⇒ all of U.</span></div>
+  <div class="it cons"><span class="nm">Riemann removable singularity</span> <span class="nu">3.5.21</span>
+    <span class="rs"><b>Result:</b> z₀ removable ⟺ f bounded near z₀.</span>
+    <span class="pf">h=(z−z₀)²f, h(z₀)=0: diff-quotient (z−z₀)f → 0 ⇒ h holo with double zero; Taylor ⇒ f = Σ<sub>k≥0</sub> a<sub>k+2</sub>(z−z₀)<sup>k</sup> extends.</span></div>
+  <div class="it cons"><span class="nm">Casorati–Weierstrass</span> <span class="nu">3.5.25</span>
+    <span class="rs"><b>Result:</b> near an essential singularity, the image is dense in ℂ.</span>
+    <span class="pf">If f misses B(z₀,δ), then 1/(f−z₀) bounded ⇒ removable (Riemann) ⇒ a is a pole/removable, not essential. ✗.</span></div>
+  <div class="it spine"><span class="nm">Laurent's theorem</span> <span class="nu">3.5.9</span>
+    <span class="rs"><b>Result:</b> on an annulus, f = Σ<sub>n=−∞</sub><sup>∞</sup> c<sub>n</sub>(z−z₀)ⁿ, c<sub>n</sub>=1/2πi ∮ f/(z−z₀)<sup>n+1</sup>.</span>
+    <span class="pf">Two-circle CIF (3.1.3): f(w)=(outer ∮)−(inner ∮); expand outer in (z−z₀)<sup>−</sup> powers, inner in (z−z₀)<sup>+</sup> powers via geometric series + M-test.</span></div>
+  <div class="it spine"><span class="nm">Residue theorem</span> <span class="nu">3.5.27</span>
+    <span class="rs"><b>Result:</b> 1/2πi ∮<sub>γ</sub>f = Σ<sub>a</sub> I(γ,a) Res<sub>a</sub>f.</span>
+    <span class="pf">g = f − Σ principal parts has only removable singularities ⇒ holo ⇒ ∮<sub>γ</sub>g=0 (γ null-homotopic). Each P<sub>a</sub> converges uniformly on γ*; only c<sub>−1</sub>/(z−a) lacks a primitive ⇒ gives 2πi·I·Res.</span></div>
+
+  <div class="band" style="background:var(--cons)">Argument-principle family</div>
+  <div class="it cons"><span class="nm">Argument principle</span> <span class="nu">3.6.2</span>
+    <span class="rs"><b>Result:</b> N−P = 1/2πi ∮<sub>γ</sub> f′/f = I(f∘γ, 0) (zeros − poles inside, with multiplicity).</span>
+    <span class="pf">Residue theorem on f′/f: by Lem 3.6.1 it has simple poles with residues = orders ±k. Last equality: substitute w=f(γ(t)) in ∮ dw/w.</span></div>
+  <div class="it cons"><span class="nm">Rouché</span> <span class="nu">3.6.3</span>
+    <span class="rs"><b>Result:</b> |f|>|g| on γ* ⇒ f and f+g have equally many zeros inside γ.</span>
+    <span class="pf">On γ*: f≠0, f+g≠0 ⇒ arg principle gives N<sub>f</sub>, N<sub>f+g</sub> separately. Quotient rule: h′/h = (f+g)′/(f+g) − f′/f with h=(f+g)/f, so N<sub>f+g</sub>−N<sub>f</sub> = 1/2πi ∮ h′/h; |g/f|<1 ⇒ h(γ)⊂B(1,1)⊂{Re>0} ⇒ ∮h′/h=0. <span class="warnnote">Count f, f+g separately — never match zeros/poles of h (cancel at shared zeros: g=f/2 ⇒ h≡3/2).</span></span></div>
+  <div class="it cons"><span class="nm">Open mapping theorem</span> <span class="nu">3.6.6/7</span>
+    <span class="rs"><b>Result:</b> non-constant holo on a domain is an open map; order-d zero of f−w₀ ⇒ locally d-to-1.</span>
+    <span class="pf">g=f−w₀ has isolated zero at z₀; |g|≥δ on a small circle. For |w−w₀|<δ: |w₀−w|<|g| ⇒ Rouché ⇒ f−w has a zero inside ⇒ B(w₀,δ) ⊆ f(B(z₀,r)).</span></div>
+  <div class="it cons"><span class="nm">Inverse function theorem</span> <span class="nu">3.6.8/9</span>
+    <span class="rs"><b>Result:</b> injective holo f with f′≠0 ⇒ f<sup>−1</sup> holo, (f<sup>−1</sup>)′(w)=1/f′(f<sup>−1</sup>(w)).</span>
+    <span class="pf">Continuity of f<sup>−1</sup> is free: (f<sup>−1</sup>)<sup>−1</sup>(V)=f(V) open by open mapping. Then 1.4.12's difference-quotient finishes. (Injective holo ⇒ f′≠0 automatically.)</span></div>
+
+  <div class="band" style="background:var(--head)">Residue-calculus toolbox §3.7</div>
+  <div class="it head"><span class="nm">Jordan's lemma</span> <span class="nu">3.7.10–12</span>
+    <span class="rs"><b>Result:</b> |∮<sub>γ_R</sub> f e<sup>iαz</sup>| ≤ (π/α) max<sub>γ_R</sub>|f| → 0 if f→0 in the UHP (α>0).</span>
+    <span class="pf">sin t ≥ 2t/π on [0,π/2] (concavity) ⇒ |e<sup>iαz</sup>|=e<sup>−αR sin t</sup> ≤ e<sup>−2αRt/π</sup>; integrate. α<0 ⇒ use LHP. Take Im at the end; never integrate sin z (blows up upward).</span></div>
+  <div class="it head"><span class="nm">Indentation (pole on contour)</span> <span class="nu">3.7.15</span>
+    <span class="rs"><b>Result:</b> small arc of angle (β−α) at a simple pole a: ∮<sub>γ_ε</sub>f → i(β−α)Res<sub>a</sub>f.</span>
+    <span class="pf">f = c/(z−a) + g (g holo, bounded ⇒ O(ε) by est. lemma); the c/(z−a) term integrates exactly to ic(β−α). Half-turn ⇒ ±πi·Res.</span></div>
+
+</div>
+
+</body>
+</html>
