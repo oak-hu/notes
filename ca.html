@@ -1041,8 +1041,10 @@ the number of times the <em>image curve</em> winds around $0$.</div>
 <div class="stmt"><b>Then:</b> $f$ and $f+g$ have the same number of zeros inside $\gamma$ (with multiplicity). Slogan: <em>count zeros of a hard function by comparing with an easy dominant one.</em></div>
 <details class="sk" open><summary>Sketch</summary>
 <ul>
-<li>$h=(f+g)/f=1+g/f$: zeros of $h$ ↔ zeros of $f+g$, poles ↔ zeros of $f$; want #zeros = #poles.</li>
-<li>On $\gamma^*$, $|g/f|\lt1$ ⇒ $h\circ\gamma$ stays in $B(1,1)\subset\{\operatorname{Re}\gt0\}$, where $\operatorname{Log}$ is a primitive of $1/z$ ⇒ $I(h\circ\gamma,0)=0$ ⇒ argument principle gives $N-P=0$.</li>
+<li>Write $h=(f+g)/f$. Hyp ⇒ on $\gamma^*$ both $f\neq0$ and $f+g\neq0$ (since $|f+g|\ge|f|-|g|\gt0$), so the argument principle applies to each <em>separately</em>: $N_f=\tfrac1{2\pi i}\oint_\gamma \tfrac{f'}{f}$, $\;N_{f+g}=\tfrac1{2\pi i}\oint_\gamma \tfrac{(f+g)'}{f+g}$.</li>
+<li>Quotient rule on $\gamma^*$: $\tfrac{h'}{h}=\tfrac{(f+g)'}{f+g}-\tfrac{f'}{f}$, so $N_{f+g}-N_f=\tfrac1{2\pi i}\oint_\gamma \tfrac{h'}{h}$.</li>
+<li>On $\gamma^*$, $|g/f|\lt1$ ⇒ $h\circ\gamma\subset B(1,1)\subset\{\operatorname{Re}\gt0\}$, where $\operatorname{Log}$ is a primitive of $1/w$ ⇒ $\oint_\gamma h'/h=0$. Hence $N_{f+g}=N_f$. $\;\square$</li>
+<li class="warn"><b>Don't</b> argue "zeros of $h$ ↔ zeros of $f+g$, poles ↔ zeros of $f$, so #zeros=#poles": the converse fails at a <em>common</em> zero of $f,f+g$, where the orders cancel in $h$ (take $g=f/2$: $h\equiv\tfrac32$, no zeros/poles, yet $f,f+g$ share every zero). Counting $f$ and $f+g$ separately above sidesteps it — $h$ only ever supplies the difference of two clean holomorphic zero-counts.</li>
 </ul>
 </details>
 <ul><li><b>Ex 3.6.5:</b> $p(z)=z^4+5z+2$. On $|z|=2$: $|z^4|=16\gt12\ge|5z+2|$ ⇒ 4 roots in $B(0,2)$. On $|z|=1$: $|5z+2|\ge3\gt1=|z^4|$ ⇒ exactly 1 root in $B(0,1)$, hence 3 in the annulus.</li></ul>
