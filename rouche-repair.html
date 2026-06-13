@@ -24,7 +24,7 @@
 
 <h1>Rouché's theorem: where the textbook proof has a gap, and the simplest repair</h1>
 
-<p class="small">Re: CA notes, Theorem 3.6.3. Setup: $f,g$ holomorphic, $\gamma$ a simple
+<p class="small">Re: CA notes, Theorem 3.6.3. Setup: $f,g$ holomorphic on $U$, $\gamma$ a simple
 contour with its interior in $U$, and $|f|>|g|$ on $\gamma^\ast$. Put
 $$h=\frac{f+g}{f}=1+\frac{g}{f}.$$
 Write $\operatorname{ord}_a(\cdot)$ for the vanishing order at a point $a$ (positive $=$ zero,
@@ -56,47 +56,61 @@ but $h=\tfrac{3}{2}$ is <em>constant</em>: no zeros, no poles. Yet every zero of
 equal-order zero of $f+g=\tfrac32 f$. So here <em>every</em> zero of $f+g$ is one of the
 "unaccounted" coincident zeros — none of them is a zero of $h$.</p>
 
-<h2>The simplest repair: count net order, not zeros-vs-poles</h2>
+<h2>The repair: stay in the holomorphic argument principle, connect by the log-derivative</h2>
 
-<p>Don't decompose $h$ into its zeros and poles at all. The one identity you need holds
-<strong>pointwise at every $a$</strong>, with no exceptions for coincidences, because $h=(f+g)/f$:</p>
+<p>The fix is <em>not</em> to count "net order" of $h$ — that quietly upgrades the argument principle
+to a meromorphic, net-order form the notes never prove, which is the very thing in dispute. Instead,
+apply the argument principle <strong>only to holomorphic functions with no zeros on $\gamma^\ast$</strong>,
+where it is exactly the unambiguous statement the notes give:</p>
 
-<div class="box fix">
-$$\operatorname{ord}_a(h) \;=\; \operatorname{ord}_a(f+g) \;-\; \operatorname{ord}_a(f).$$
+<div class="box">
+For $F$ holomorphic on $U$ with $F\neq 0$ on $\gamma^\ast$,
+$$\frac{1}{2\pi i}\oint_\gamma \frac{F'(z)}{F(z)}\,dz \;=\; N_F \quad(\text{zeros of }F\text{ inside }\gamma,\ \text{with multiplicity}).$$
+No poles anywhere — nothing to biject, nothing to cancel.
 </div>
 
-<p>The argument principle gives the <em>signed</em> count $Z_h-P_h=\sum_a \operatorname{ord}_a(h)$.
-Sum the identity over all $a$ inside $\gamma$ and split:</p>
+<p><strong>Step 1 — the hypothesis makes both functions admissible.</strong> On $\gamma^\ast$,
+$|f|>|g|\ge 0$ gives $f\neq 0$, and $|f+g|\ge |f|-|g|>0$ gives $f+g\neq 0$. So the argument
+principle applies to each of $f$ and $f+g$:</p>
 
-$$Z_h - P_h \;=\; \sum_a \operatorname{ord}_a(h) \;=\; \underbrace{\sum_a \operatorname{ord}_a(f+g)}_{=\,N_{f+g}} \;-\; \underbrace{\sum_a \operatorname{ord}_a(f)}_{=\,N_f} \;=\; N_{f+g}-N_f.$$
+$$N_f=\frac{1}{2\pi i}\oint_\gamma \frac{f'}{f}\,dz,\qquad
+  N_{f+g}=\frac{1}{2\pi i}\oint_\gamma \frac{(f+g)'}{f+g}\,dz.$$
 
-<p>The winding-number argument from the notes still shows the left side is $0$ (on $\gamma^\ast$,
-$|g/f|<1$, so $\Gamma=h\circ\gamma$ lies in $B(1,1)\subset\{\operatorname{Re}>0\}$, and a principal
-branch of $\log$ closes up: $\oint_\Gamma dz/z = 0$). Hence</p>
+<p><strong>Step 2 — the log-derivative identity, on the contour only.</strong> Wherever $f\neq 0$
+and $f+g\neq 0$ — in particular at every point of $\gamma^\ast$ — the quotient rule on $h=(f+g)/f$ gives</p>
 
 <div class="box fix">
-$$N_{f+g}-N_f \;=\; 0.$$
+$$\frac{h'}{h}\;=\;\frac{(f+g)'}{f+g}\;-\;\frac{f'}{f}.$$
 </div>
 
-<p>A coincident zero contributes $+\operatorname{ord}_a(f+g)$ to $N_{f+g}$ and $+\operatorname{ord}_a(f)$ to $N_f$;
-in the <em>difference</em> these cancel exactly as much as they do in $\operatorname{ord}_a(h)$. Nothing is lost,
-precisely because we only ever use the net order. In the $g=f/2$ case: $0-0$ on the left, $N_{f+g}-N_f=k-k=0$
-at each zero on the right. Consistent.</p>
+<p>This is just $\big(\log(f+g)-\log f\big)' $; it needs nothing about the <em>interior</em> of $\gamma$.
+Subtracting the two integrals in Step 1 and using it on $\gamma^\ast$:</p>
 
-<h2>Equivalent one-line phrasing (no $h$ decomposition at all)</h2>
+$$N_{f+g}-N_f \;=\; \frac{1}{2\pi i}\oint_\gamma\!\left(\frac{(f+g)'}{f+g}-\frac{f'}{f}\right)dz
+\;=\; \frac{1}{2\pi i}\oint_\gamma \frac{h'}{h}\,dz.$$
 
-<p>If you prefer to never mention zeros/poles of $h$: the logarithmic derivative is additive,
-$\dfrac{(f+g)'}{f+g}-\dfrac{f'}{f}=\dfrac{h'}{h}$, so</p>
+<p><strong>Step 3 — the winding-number argument (unchanged from the notes), applied to $h$ directly.</strong>
+On $\gamma^\ast$, $|g/f|<1$, so $\Gamma=h\circ\gamma$ has image in $B(1,1)\subset\{\operatorname{Re}>0\}$.
+The principal branch $\operatorname{Log}$ is holomorphic there and is a primitive of $1/w$, and $\Gamma$ is closed
+($\Gamma(1)=\Gamma(0)$), so</p>
 
-$$\underbrace{\frac{1}{2\pi i}\oint_\gamma \frac{(f+g)'}{f+g}}_{N_{f+g}} \;-\; \underbrace{\frac{1}{2\pi i}\oint_\gamma \frac{f'}{f}}_{N_f} \;=\; \frac{1}{2\pi i}\oint_\gamma \frac{h'}{h} \;=\;0.$$
+$$\frac{1}{2\pi i}\oint_\gamma \frac{h'}{h}\,dz \;=\; \frac{1}{2\pi i}\oint_\Gamma \frac{dw}{w}
+\;=\; \frac{1}{2\pi i}\big(\operatorname{Log}\Gamma(1)-\operatorname{Log}\Gamma(0)\big)\;=\;0.$$
 
-<p>Here $N_{f+g}$ and $N_f$ are each computed by the argument principle applied to the genuinely
-holomorphic $f+g$ and $f$ <em>independently</em> — shared zeros counted correctly in each — and $h$
-appears only to certify the difference vanishes. The "zero of both" worry cannot even arise.</p>
+<div class="box fix">
+$$\boxed{\,N_{f+g}-N_f = 0.\,}$$
+</div>
 
-<p class="small">(Hypothesis $|f|>|g|$ on $\gamma^\ast$ is what makes all three integrals legal:
-$|f+g|\ge |f|-|g|>0$ and $|f|>0$ on $\gamma^\ast$, so neither $f$ nor $f+g$ vanishes on the contour,
-and $\Gamma$ avoids $0$.)</p>
+<p>Why this has no gap: the argument principle is only ever used on $f$ and $f+g$, each a
+<em>holomorphic</em> function with no zeros on $\gamma^\ast$, so each integral is unambiguously a
+zero-count — the zeros of $f$ and of $f+g$ are counted <strong>independently</strong>, coincidences and all.
+The function $h$ enters solely as the ratio whose log-derivative is the difference of the two integrands
+<em>on the contour</em>. We never decompose $h$ into zeros and poles, never invoke net order, and never
+need the false converse.</p>
+
+<p class="small"><strong>Check on $g=f/2$.</strong> Then $h\equiv\tfrac32$, so $h'/h\equiv 0$ and the
+middle integral is literally $0$; meanwhile $N_{f+g}-N_f = k-k = 0$ at each shared zero. The two sides
+agree without ever asking whether a shared zero is "a zero or a pole of $h$" — the question never comes up.</p>
 
 </body>
 </html>
