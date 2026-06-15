@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Metric Spaces — exam cheat sheet</title>
+<style>
+  :root{ --found:#047857; --foundbg:#ecfdf5; --spine:#b91c1c; --spinebg:#fef2f2;
+         --cons:#2563eb; --consbg:#eff6ff; --head:#b45309; --headbg:#fffbeb; }
+  *{box-sizing:border-box;}
+  body{ width:1600px; margin:0; padding:26px 30px 34px; background:#fff; color:#15191f;
+        font:14.5px/1.42 -apple-system,'Helvetica Neue',Arial,sans-serif; -webkit-font-smoothing:antialiased;}
+  h1{font-size:26px; margin:0 0 2px;}
+  .sub{color:#667; font-size:13px; margin:0 0 14px;}
+  h2.sec{font-size:19px; margin:26px 0 10px; padding-bottom:4px; border-bottom:2px solid #222;}
+  .legend{font-size:12.5px; color:#444; margin:-4px 0 14px;}
+  .legend span{display:inline-block; padding:1px 8px; margin-right:8px; border-left:5px solid #999;}
+  .cols3{column-count:3; column-gap:20px;}
+  .cols2{column-count:2; column-gap:22px;}
+  .band{ column-span:all; -webkit-column-span:all; margin:12px 0 7px; padding:3px 10px;
+         font-weight:700; font-size:13px; letter-spacing:.06em; text-transform:uppercase;
+         color:#fff; background:#475569; border-radius:4px;}
+  .it{ break-inside:avoid; -webkit-column-break-inside:avoid; border-left:4px solid #999;
+       background:#fafafa; border-radius:0 5px 5px 0; padding:5px 9px 6px; margin:0 0 8px;}
+  .it .nm{font-weight:700;}
+  .it .nu{color:#7a8190; font-weight:600; font-size:12px;}
+  .it .tk{display:block; margin-top:2px;}
+  .it .rs{display:block; margin-top:2px;}
+  .it .rs b{color:#0f172a;}
+  .it .pf{display:block; margin-top:3px; color:#334; font-size:13.5px;}
+  .it .pf::before{content:"↳ "; color:#94a3b8;}
+  .found{border-color:var(--found); background:var(--foundbg);}
+  .spine{border-color:var(--spine); background:var(--spinebg);}
+  .cons{border-color:var(--cons); background:var(--consbg);}
+  .head{border-color:var(--head); background:var(--headbg);}
+  .warnnote{color:#9a3412; font-size:12.5px;}
+  em{color:#334; font-style:italic;}
+  code{font-family:ui-monospace,Menlo,monospace; font-size:.92em;}
+</style>
+</head>
+<body>
+
+<h1>Metric Spaces — one-page exam map</h1>
+<p class="sub">Spine in <b>red</b>: open sets → continuity via preimages → closure-by-sequences → completeness → Contraction Mapping → connectedness / compactness, each with its own equivalence theorem. Colours: <span style="color:var(--found)">■ foundations/tools</span> · <span style="color:var(--spine)">■ the spine</span> · <span style="color:var(--cons)">■ consequences</span> · <span style="color:var(--head)">■ headline results / counterexamples</span>.</p>
+
+<!-- ============================ SECTION 1: TRICKS ============================ -->
+<h2 class="sec">① Trick map — the one move that makes each proof go</h2>
+<div class="cols3">
+
+  <div class="band" style="background:var(--found)">Foundations: metrics, balls, continuity</div>
+  <div class="it found"><span class="nm">Metric axioms</span> <span class="nu">2.2.1/2</span>
+    <span class="tk">d≥0 (=0 ⟺ equal), symmetric, triangle d(x,z)≤d(x,y)+d(y,z). Reverse Δ-ineq |d(x,y)−d(x,z)|≤d(y,z) is the workhorse estimate. Axiomatise <em>distance</em> alone ⇒ ε-δ continuity comes free.</span></div>
+  <div class="it found"><span class="nm">d₂ triangle ineq / norms</span> <span class="nu">2.3.3, 2.4.x</span>
+    <span class="tk">‖x+y‖₂≤‖x‖₂+‖y‖₂ by squaring + <b>Cauchy–Schwarz</b> — the one non-trivial axiom check. Every norm gives a metric d=‖x−y‖; product metric √(d_X²+d_Y²) checks the same way.</span></div>
+  <div class="it found"><span class="nm">Sequential continuity</span> <span class="nu">3.1.4</span>
+    <span class="tk">f cts at a ⟺ (xₙ→a ⇒ f(xₙ)→f(a)). (⇐) by contrapositive: take δ=1/n to build a bad sequence. Converts continuity into a sequence statement — used everywhere.</span></div>
+  <div class="it found"><span class="nm">Limits unique; Cb(X) sup-norm</span> <span class="nu">3.1.1, 3.2.6</span>
+    <span class="tk">Two limits ⇒ split ε=½d(a,b) by triangle ⇒ equal. Convergence in d∞=‖f−g‖∞ <em>is</em> uniform convergence (unravel definitions).</span></div>
+
+  <div class="band" style="background:var(--cons)">Open / closed / topology of continuity</div>
+  <div class="it cons"><span class="nm">Open balls are open</span> <span class="nu">5.1.2/4</span>
+    <span class="tk">For y∈B(a,ε) pick ε′ with d(y,a)&lt;ε−ε′; triangle ⇒ B(y,ε′)⊆B(a,ε). Closed balls closed: same trick, reverse Δ-ineq.</span></div>
+  <div class="it cons"><span class="nm">Open-set axioms</span> <span class="nu">5.2.1/2</span>
+    <span class="tk">X,∅ open; arbitrary ∪, <em>finite</em> ∩. Finiteness essential: ⋂ₙ(−1/n,1/n)={0}. These 3 properties <em>define</em> a topology.</span></div>
+  <div class="it cons"><span class="nm">cts ⟺ preimages open</span> <span class="nu">5.3.1 — THE bridge</span>
+    <span class="tk">(⇒) ball B(f(a),ε)⊆U pulls back to B(a,δ)⊆f⁻¹(U). (⇐) apply to B(f(a),ε) = continuity at a. Topology-only definition of continuity. (cts ⇏ open map: t↦e^{2πit}.)</span></div>
+  <div class="it cons"><span class="nm">Subspace topology</span> <span class="nu">5.5.1</span>
+    <span class="tk">U open in Y ⟺ U=Y∩V, V open in X (B_Y(y,r)=Y∩B_X(y,r)). <b>Always say open <em>in what</em>:</b> (0,1] is open in (0,1]∪[2,3]. Powers the Ch 8 disconnections.</span></div>
+
+  <div class="band" style="background:var(--cons)">Interior, closure, limit points</div>
+  <div class="it cons"><span class="nm">Closure via balls & sequences</span> <span class="nu">6.1.4, 6.1.5 — workhorse</span>
+    <span class="tk">a∈S̄ ⟺ every B(a,ε) meets S ⟺ some sequence in S → a. Hence <b>S closed ⟺ closed under limits of its sequences.</b> Pick xₙ∈B(a,1/n)∩S (countable choice). Drives 7.2.1/7.2.3/7.3.2/9.2.1.</span></div>
+  <div class="it cons"><span class="nm">int / closure as extremal</span> <span class="nu">6.1.1–6.1.3</span>
+    <span class="tk">int(S)=largest open ⊆S; S̄=smallest closed ⊇S; ∂S=S̄∖int(S); dense ⟺ S̄=X ⟺ meets every open set. Q dense in ℝ, int(Q)=∅.</span></div>
+  <div class="it cons"><span class="nm">Limit points</span> <span class="nu">6.2.1–6.2.5</span>
+    <span class="tk">a∈L(S): every ball meets S∖{a}. L(S) closed; S̄=S∪L(S); <b>S closed ⟺ L(S)⊆S.</b></span></div>
+
+  <div class="band" style="background:var(--cons)">Isometry / homeo / equivalence</div>
+  <div class="it cons"><span class="nm">Isometry / homeomorphism</span> <span class="nu">4.1.1, 4.2.1</span>
+    <span class="tk">Isometry: distance-preserving ⇒ injective, <em>not</em> auto-surjective (right-shift on ℓ²). Homeo = cts bijection <b>with cts inverse</b> (the inverse clause has teeth). Completeness NOT preserved; connectedness & seq compactness ARE.</span></div>
+  <div class="it cons"><span class="nm">Equivalent metrics</span> <span class="nu">4.3.1/2</span>
+    <span class="tk">d~d′ ⟺ id:(X,d)→(X,d′) a homeo ⟺ balls nest both ways ⇒ same opens/limits. Strong: d≤Cd′, d′≤Cd. On ℝⁿ, d₁,d₂,d∞ strongly equivalent.</span></div>
+
+  <div class="band" style="background:var(--spine)">Completeness & contraction (the spine)</div>
+  <div class="it spine"><span class="nm">complete ⟺ closed (in complete X)</span> <span class="nu">7.2.1</span>
+    <span class="tk">Both directions = Cor 6.1.5 + uniqueness of limits: closed traps limits in Y; complete forces sequence-limits into Y.</span></div>
+  <div class="it spine"><span class="nm">Cantor intersection</span> <span class="nu">7.2.2/3</span>
+    <span class="tk">Nested non-empty closed Sₙ, diam→0 ⇒ ⋂Sₙ = one point. Pick xₙ∈Sₙ: nesting+shrinking ⇒ Cauchy; limit in every closed Sᵢ (6.1.5). Drop diam→0: can be empty (Sᵢ=[i,∞)).</span></div>
+  <div class="it spine"><span class="nm">B(X), Cb(X) complete</span> <span class="nu">7.3.1/2</span>
+    <span class="tk">B(X): Cauchy in ‖·‖∞ ⇒ pointwise limit (ℝ complete); freeze n, let m→∞ to upgrade to sup-norm. Cb(X): show closed in B(X) (7.2.1) ⇒ uniform limit of cts is cts, the <b>ε/3 argument</b>.</span></div>
+  <div class="it spine"><span class="nm">Contraction Mapping Thm</span> <span class="nu">7.4.2 — engine</span>
+    <span class="tk">X non-empty complete, f a K-contraction (uniform K&lt;1). Iterate xₙ₊₁=f(xₙ): d(xₙ,xₘ)≤K^m/(1−K)·d(x₀,x₁) ⇒ Cauchy ⇒ fixed pt; unique since d≤Kd ⇒ 0. ⇒ IFT, Picard ODEs.</span></div>
+
+  <div class="band" style="background:var(--spine)">Connectedness</div>
+  <div class="it spine"><span class="nm">Clopen / {0,1} criterion</span> <span class="nu">8.1.2/3</span>
+    <span class="tk">TFAE: connected ⟺ every cts f:X→{0,1} constant ⟺ only clopen sets are ∅,X. A disconnection makes one piece clopen / a continuous indicator. The CA identity-theorem move in its native habitat.</span></div>
+  <div class="it spine"><span class="nm">Building connected sets</span> <span class="nu">8.1.4–8.1.7</span>
+    <span class="tk">Sunflower: connected sets sharing a point ⇒ union connected (a {0,1}-map is constant on each, agrees at centre). Closure: A⊆B⊆Ā connected ⇒ B connected. <b>cts image of connected is connected</b> ⇒ topological invariant.</span></div>
+  <div class="it spine"><span class="nm">Intervals connected; IVT</span> <span class="nu">8.1.8</span>
+    <span class="tk"><b>Sup argument:</b> if [x,y]⊆U⊔V with x∈U,y∈V, let c=sup([x,y]∩U) (completeness). c∈U beats the sup; c∈V gives a smaller bound. ✗. IVT: f([a,b]) connected ⇒ interval.</span></div>
+  <div class="it spine"><span class="nm">p.c. ⇒ connected</span> <span class="nu">8.3.1</span>
+    <span class="tk">cts f:X→{0,1}; for any a,b a path γ gives f∘γ cts on connected [0,1] ⇒ constant ⇒ f(a)=f(b) ⇒ f constant.</span></div>
+  <div class="it spine"><span class="nm">conn open in normed ⇒ p.c.</span> <span class="nu">8.3.2</span>
+    <span class="tk"><b>Path-components are open:</b> B(a,ε)⊆X (open) joins to a by straight segments (norm: ‖γ(t)−a‖&lt;ε). Open partition; &gt;1 piece would disconnect ⇒ exactly one. (All 3 hyps needed.) ⇒ CA "domain" is unambiguous.</span></div>
+
+  <div class="band" style="background:var(--spine)">Compactness (sequential & open-cover)</div>
+  <div class="it spine"><span class="nm">seq cpt ⇒ closed + bounded; EVT</span> <span class="nu">9.2.1, 9.3.1/2</span>
+    <span class="tk">Not closed ⇒ escape to a boundary pt (6.1.5); unbounded ⇒ d(y₀,yₙ)≥n. cts image of seq cpt is seq cpt ⇒ <b>EVT</b> (closed+bdd image attains bounds) + <b>uniform continuity</b> (else aₙ,bₙ close but f apart; pass to subseq, contradict).</span></div>
+  <div class="it spine"><span class="nm">Products; B–W in ℝⁿ</span> <span class="nu">9.4.1–9.4.3</span>
+    <span class="tk">Product of seq cpt is seq cpt (subsequence then sub-subsequence). closed+bounded in ℝⁿ ⇒ inside cube [−M,M]ⁿ ⇒ iterated products of B–W on ℝ ⇒ seq cpt (9.2.2).</span></div>
+  <div class="it spine"><span class="nm">seq cpt ⟺ complete + tot bdd</span> <span class="nu">9.5.3 — substantial</span>
+    <span class="tk">tot bdd = finite ε-ball cover ∀ε. (⇒) greedy ε-separated sequence has no Cauchy subseq. (⇐) <b>pigeonhole cascade</b> on radius-2⁻ᵐ covers + <b>diagonal subsequence</b> ⇒ Cauchy ⇒ converges. Bounded ⊊ tot bdd (moving bump).</span></div>
+  <div class="it spine"><span class="nm">compact ⟺ seq compact</span> <span class="nu">10.2.1, 10.3.1</span>
+    <span class="tk">cpt⇒seq cpt: nested closed have non-empty ⋂ (10.2.2, else complements cover with no finite subcover); apply to tail-closures. seq cpt⇒cpt: nested-balls — a non-finitely-coverable shrinking ball gives a Cauchy centre, whose limit lies in one Uᵢ ⇒ contradiction.</span></div>
+
+  <div class="band" style="background:var(--head)">Equivalence theorem + Heine–Borel</div>
+  <div class="it head"><span class="nm">Equivalence theorem</span> <span class="nu">10.3.2</span>
+    <span class="tk">In any metric space: compact ⟺ seq compact ⟺ complete + totally bounded = 10.2.1 + 10.3.1 + 9.5.3, nothing more.</span></div>
+  <div class="it head"><span class="nm">Heine–Borel</span> <span class="nu">10.3.3</span>
+    <span class="tk">S⊆ℝⁿ compact ⟺ closed+bounded. (⇒) cpt⇒seq cpt⇒closed+bdd. (⇐) closed+bdd⇒seq cpt (B–W)⇒cpt. <span class="warnnote">ℝⁿ-only: "closed+bdd⇒cpt" fails in ∞ dim (moving bump).</span></span></div>
+
+  <div class="band" style="background:var(--head)">Differentiation in ℝⁿ</div>
+  <div class="it head"><span class="nm">Total derivative</span> <span class="nu">1.1.1</span>
+    <span class="tk">f:Ω⊆ℝⁿ→ℝᵐ diff at a ⟺ ∃ <em>linear</em> L with (f(a+h)−f(a)−Lh)/|h|→0. Then L=df(a) <b>unique</b>, matrix = <b>Jacobian</b>. Divide by |h| (can't divide by a vector) — except in ℝ²≅ℂ, where /h gives the far stronger holomorphic condition.</span></div>
+  <div class="it head"><span class="nm">Directional derivatives</span> <span class="nu">1.2.1</span>
+    <span class="tk">∂ₙf(a)=limλ→0 (f(a+λn)−f(a))/λ. f diff at a ⇒ all ∂ₙf exist and ∂ₙf(a)=Ln. Work componentwise (WLOG m=1). <b>diff ⇒ cts</b> (1.5.2, from f(a+h)−f(a)=Lh+R|h|).</span></div>
+  <div class="it head"><span class="nm">cts partials ⇒ differentiable</span> <span class="nu">1.3.1 — usable converse</span>
+    <span class="tk">Partials exist <b>and cts</b> on open Ω ⇒ f diff, df=(fₓ,f_y). <b>Telescope</b> one coord at a time + <b>1-var MVT</b> on each bracket; subtract Lh; <b>Cauchy–Schwarz</b> bounds the error by √(Δfₓ²+Δf_y²)·|(h,k)|; |(h,k)| cancels denom, cts partials kill the Δ's. (CA imports this for "CR+cts partials ⇒ holo".)</span></div>
+  <div class="it head"><span class="nm">Million-dollar warning</span> <span class="nu">Ex 1.4.2</span>
+    <span class="tk"><span class="warnnote">All directional derivatives existing ⇏ differentiable.</span> f=xy(x+y)/(x²+y²), f(0)=0: homogeneous deg 1 ⇒ every ∂ₙf(0)=f(n) exists, but n↦f(n) <b>not linear</b> ⇒ no total derivative. (Worse: ∂ₙf all exist while f not even cts; fₓy≠f_yx without cts 2nd partials — sheet 1.)</span></div>
+  <div class="it head"><span class="nm">Chain rule</span> <span class="nu">1.5.3</span>
+    <span class="tk">dh(a)=dg(f(a))·df(a) (compose derivatives = multiply Jacobians). <span class="warnnote">Proof non-exam (needs matrix norms).</span></span></div>
+  <div class="it head"><span class="nm">Inverse Function Theorem</span> <span class="nu">1.7.1 (in ℝ²)</span>
+    <span class="tk">Ω open, f∈C¹, df(a) <b>invertible</b> ⇒ ∃ open U∋a with f(U) open, f:U→f(U) a bijection, f⁻¹∈C¹, df⁻¹(f(a))=df(a)⁻¹. <b>Engine = Contraction Mapping (7.4.2):</b> ψ=x−f(x) has |ψ′|≤½, so φ(x)=x−f(x)+v₀ contracts B̄ ⇒ unique fixed pt solves f=v₀. <span class="warnnote">Proof non-exam.</span></span></div>
+
+  <div class="band" style="background:var(--cons)">Extended plane ℂ∞, Möbius & conformal</div>
+  <div class="it cons"><span class="nm">Stereographic proj / ℂ∞</span> <span class="nu">11.1.1–11.1.3</span>
+    <span class="tk">S(z)=where line z→N meets sphere 𝕊; S(∞):=N gives bijection ℂ∞=ℂ∪{∞}≅𝕊. <b>Chordal metric</b> = pull back ℝ³ distance: d(z,w)=2|z−w|/(√(1+|z|²)√(1+|w|²)), and <b>d(z,∞)=2/√(1+|z|²)</b>. On ℂ equivalent to usual metric, but now "zₙ→∞" is literal metric convergence.</span></div>
+  <div class="it cons"><span class="nm">Translations/dilations/inversion cts</span> <span class="nu">11.1.4–11.1.6</span>
+    <span class="tk">Each is a cts bijection of ℂ∞ (continuity at ∞/0 via the chordal formulas). Gem: under S, inversion z↦1/z is <b>rotation of 𝕊 by π about the x-axis</b>.</span></div>
+  <div class="it cons"><span class="nm">Möbius maps</span> <span class="nu">11.1.7–11.1.9</span>
+    <span class="tk">Ψ_g(z)=(az+b)/(cz+d), g∈GL₂(ℂ); Ψ_g(−d/c)=∞, Ψ_g(∞)=a/c. <b>11.1.8:</b> Ψ_{g₁g₂}=Ψ_{g₁}∘Ψ_{g₂} — group action of GL₂(ℂ). Ψ_g=Ψ_g′ ⟺ g=λg′. <b>11.1.9:</b> every Möbius = composition of translations, dilations, inversion (matrix identity does the ∞-bookkeeping via 11.1.8).</span></div>
+  <div class="it cons"><span class="nm">Circlines → circlines</span> <span class="nu">11.1.10/11</span>
+    <span class="tk">Circline = circle, or line∪{∞}. Möbius maps send circlines to circlines. By 11.1.9 check translations/dilations (trivial) + inversion: the one interesting case is <b>circles through 0 ↔ lines not through 0</b> under z↦1/z. <span class="warnnote">Proof non-exam.</span></span></div>
+  <div class="it cons"><span class="nm">holo + f′≠0 ⇒ conformal</span> <span class="nu">11.2.3, 11.2.6</span>
+    <span class="tk">Conformal = preserves angles between tangent vectors. <b>Chain rule:</b> η′(0)=f′(z₀)γ′(0); f′(z₀)=ρe^{iθ} rotates <em>both</em> tangents by the same θ ⇒ angles survive. Geometric meaning of CR. Möbius conformal (f′=(ad−bc)/(cz+d)²≠0). <span class="warnnote">f′≠0 needed: z² doubles angles at 0 (Ex 11.2.4).</span></span></div>
+  <div class="it cons"><span class="nm">3-point transitivity</span> <span class="nu">11.2.7</span>
+    <span class="tk"><b>Unique</b> Möbius f sending any distinct triple z₁,z₂,z₃ to any distinct w₁,w₂,w₃ (3 complex d.o.f.). Reduce to mapping to (0,1,∞) via the group; existence f(z)=(z−z₁)(z₂−z₃)/((z−z₃)(z₂−z₁)); uniqueness ⟸ a Möbius fixing 0,1,∞ is the identity (c=0, b=0, a=d).</span></div>
+  <div class="it cons"><span class="nm">ℍ → B(0,1)</span> <span class="nu">Ex 11.2.8</span>
+    <span class="tk">∂ℍ=ℝ∪{∞} must map to the unit circle (circline→circline); pin it by 3 points via transitivity: 0↦−i, 1↦1, ∞↦i ⇒ <b>f(z)=(iz+1)/(z+i)</b>. Which side lands inside? Components of ℂ∖ℝ → components of ℂ∖S¹ (connectedness); test f(i)=0∈B(0,1) ⇒ f(ℍ)=B(0,1).</span></div>
+
+</div>
+
+<!-- ============================ SECTION 2: SKETCHES ============================ -->
+<h2 class="sec">② Result + proof sketch — same order</h2>
+<div class="cols2">
+
+  <div class="band" style="background:var(--found)">Foundations: metrics, balls, continuity</div>
+  <div class="it found"><span class="nm">Metric / norm axioms</span> <span class="nu">2.2.1/2, 2.4.x</span>
+    <span class="rs"><b>Result:</b> d≥0, symmetric, triangle; reverse Δ |d(x,y)−d(x,z)|≤d(y,z); every norm gives a metric d=‖x−y‖.</span>
+    <span class="pf">Reverse Δ from two triangle inequalities. d₂ / product √(d_X²+d_Y²): the only hard axiom is the triangle one — square it, apply Cauchy–Schwarz.</span></div>
+  <div class="it found"><span class="nm">Sequential continuity</span> <span class="nu">3.1.4</span>
+    <span class="rs"><b>Result:</b> f cts at a ⟺ for all xₙ→a, f(xₙ)→f(a).</span>
+    <span class="pf">(⇒) chain the ε-δ and convergence definitions. (⇐) contrapositive: a fixed ε with δ=1/n produces xₙ→a but d(f(xₙ),f(a))≥ε.</span></div>
+  <div class="it found"><span class="nm">Limits unique; function spaces</span> <span class="nu">3.1.1, 3.2.1–3.2.6</span>
+    <span class="rs"><b>Result:</b> limits unique; B(X) (sup norm), C(X), Cb(X)=C∩B normed spaces; d∞-convergence = uniform convergence.</span>
+    <span class="pf">Two limits a,b: triangle with ε=½d(a,b) ⇒ a=b. C(X) a vector space via ε/2. Unravelling ‖f−g‖∞&lt;ε is exactly uniform convergence.</span></div>
+
+  <div class="band" style="background:var(--cons)">Open / closed; continuity via preimages</div>
+  <div class="it cons"><span class="nm">Open & closed sets; axioms</span> <span class="nu">5.1.1–5.2.2</span>
+    <span class="rs"><b>Result:</b> open balls open, closed balls closed; X,∅ open, arbitrary ∪ & finite ∩ of opens open (dually for closed).</span>
+    <span class="pf">y∈B(a,ε): take ε′&lt;ε−d(y,a), triangle ⇒ B(y,ε′)⊆B(a,ε). Finite ∩: ε=min εᵢ&gt;0 only for finite I (⋂(−1/n,1/n)={0}).</span></div>
+  <div class="it cons"><span class="nm">Continuity ⟺ preimages of opens open</span> <span class="nu">5.3.1</span>
+    <span class="rs"><b>Result:</b> f cts ⟺ f⁻¹(U) open ∀ open U ⟺ preimages of closed are closed.</span>
+    <span class="pf">(⇒) a∈f⁻¹(U): B(f(a),ε)⊆U, continuity ⇒ B(a,δ)⊆f⁻¹(U). (⇐) apply to U=B(f(a),ε), which is continuity at a. (Note: cts maps need NOT be open — t↦e^{2πit} on [0,½).)</span></div>
+  <div class="it cons"><span class="nm">Subspace topology</span> <span class="nu">5.5.1</span>
+    <span class="rs"><b>Result:</b> for Y⊆X: U open in Y ⟺ U=Y∩V with V open in X (same for closed).</span>
+    <span class="pf">B_Y(y,r)=Y∩B_X(y,r). (⇒) take V=⋃_y B_X(y,ε_y). Classic confuser: (0,1] open in (0,1]∪[2,3] — drives the disconnections.</span></div>
+
+  <div class="band" style="background:var(--cons)">Interior, closure, limit points</div>
+  <div class="it cons"><span class="nm">Closure via balls & sequences</span> <span class="nu">6.1.4, 6.1.5</span>
+    <span class="rs"><b>Result:</b> a∈S̄ ⟺ every B(a,ε) meets S ⟺ some sequence in S → a. ⇒ S closed ⟺ closed under sequence-limits.</span>
+    <span class="pf">6.1.4: a ball missing S ⇒ its complement is closed ⊇S, ∌a; conversely S̄ᶜ open. 6.1.5: pick xₙ∈B(a,1/n)∩S (countable choice). Workhorse of Ch 7 & 9.</span></div>
+  <div class="it cons"><span class="nm">Limit points</span> <span class="nu">6.2.1–6.2.5</span>
+    <span class="rs"><b>Result:</b> L(S) closed; S̄=S∪L(S); S closed ⟺ L(S)⊆S.</span>
+    <span class="pf">a∈L(S) ⟺ every ball meets S∖{a}. Ex: S=(0,1]∪{2} ⇒ L(S)=[0,1] (0∉S is a limit pt; 2∈S isolated).</span></div>
+
+  <div class="band" style="background:var(--cons)">Isometry / homeomorphism / equivalence</div>
+  <div class="it cons"><span class="nm">Isometry, homeomorphism, equiv. metrics</span> <span class="nu">4.1.1, 4.2.1, 4.3.1/2</span>
+    <span class="rs"><b>Result:</b> isometry ⇒ injective (not auto-onto); homeo = cts bijection with cts inverse; equivalent metrics share opens/limits.</span>
+    <span class="pf">Right-shift on ℓ² is a non-surjective isometry. [0,1)∪[2,3]→[0,2] is a cts bijection whose inverse jumps. d~d′ ⟺ id is a homeo ⟺ balls nest both ways; on ℝⁿ, ‖·‖∞≤‖·‖₁≤n‖·‖∞ etc.</span></div>
+
+  <div class="band" style="background:var(--spine)">Completeness & contraction (the spine)</div>
+  <div class="it spine"><span class="nm">complete ⟺ closed; Cantor</span> <span class="nu">7.2.1, 7.2.3</span>
+    <span class="rs"><b>Result:</b> in complete X, Y⊆X complete ⟺ closed. Cantor: nested non-empty closed with diam→0 ⇒ ⋂ = one point.</span>
+    <span class="pf">7.2.1: Cor 6.1.5 + unique limits both ways. Cantor: pick xₙ∈Sₙ, nesting + diam→0 ⇒ Cauchy; limit in every closed Sᵢ; unique since d≤diam(Sᵢ)→0. Drop diam→0: Sᵢ=[i,∞) ⇒ ⋂=∅.</span></div>
+  <div class="it spine"><span class="nm">B(X) and Cb(X) are complete</span> <span class="nu">7.3.1, 7.3.2</span>
+    <span class="rs"><b>Result:</b> B(X) (any set X) and Cb(X) (metric X) are complete in the sup norm.</span>
+    <span class="pf">B(X): Cauchy in ‖·‖∞ ⇒ pointwise Cauchy ⇒ pointwise limit f (ℝ complete); freeze n, m→∞ upgrades to sup-norm; ε=1 tail ⇒ bounded. Cb(X): by 7.2.1 show Cb closed in B(X) = uniform limit of cts is cts, the <b>ε/3 argument</b>.</span></div>
+  <div class="it spine"><span class="nm">Contraction Mapping Theorem</span> <span class="nu">7.4.1, 7.4.2</span>
+    <span class="rs"><b>Result:</b> X non-empty complete, f a contraction (uniform K&lt;1) ⇒ unique fixed point. ⇒ IFT, Picard ODEs.</span>
+    <span class="pf">Iterate from any x₀: d(xₙ,xₙ₋₁)≤Kⁿ⁻¹d(x₀,x₁); triangle+geometric ⇒ Cauchy ⇒ (complete) xₙ→x; f Lipschitz-cts ⇒ f(x)=x. Unique: d(x₁,x₂)≤Kd ⇒ d=0. Sharp: x+1/x on [1,∞) (no uniform K); x/2 on (0,1) (incomplete).</span></div>
+
+  <div class="band" style="background:var(--spine)">Connectedness</div>
+  <div class="it spine"><span class="nm">Clopen / {0,1} criterion; builders</span> <span class="nu">8.1.2–8.1.7</span>
+    <span class="rs"><b>Result:</b> connected ⟺ cts→{0,1} constant ⟺ only clopen ∅,X. Sunflower, closure, cts-image all build/preserve connectedness.</span>
+    <span class="pf">(i)⇒(ii): f⁻¹(0),f⁻¹(1) disjoint opens cover X. Sunflower: a {0,1}-map is constant on each petal, sharing the centre's value. cts image: pull back a disconnection ⇒ topological invariant.</span></div>
+  <div class="it spine"><span class="nm">Intervals connected; IVT</span> <span class="nu">8.1.8</span>
+    <span class="rs"><b>Result:</b> every interval in ℝ is connected; hence IVT.</span>
+    <span class="pf">Sup argument: [x,y]⊆U⊔V, x∈U, y∈V; c=sup([x,y]∩U) by completeness. c∈U ⇒ [c,c+ε)⊆U beats sup; c∈V ⇒ (c−ε,c]⊆V gives smaller bound. ✗. IVT: f([a,b]) connected ⇒ an interval.</span></div>
+  <div class="it spine"><span class="nm">p.c. ⇒ connected; conn open normed ⇒ p.c.</span> <span class="nu">8.3.1, 8.3.2</span>
+    <span class="rs"><b>Result:</b> path-connected ⇒ connected; a connected open subset of a normed space is path-connected.</span>
+    <span class="pf">8.3.1: f∘γ cts on connected [0,1] ⇒ constant ⇒ f(a)=f(b). 8.3.2: path-components are open (B(a,ε)⊆X joins to a by straight segments, norm); open partition, &gt;1 disconnects ⇒ one. ⇒ on open U⊆ℂ, connected ⟺ p.c.</span></div>
+  <div class="it head"><span class="nm">Topologist's sine curve</span> <span class="nu">8.3.3</span>
+    <span class="rs"><b>Result:</b> A={0}×[−1,1] ∪ {(x,sin 1/x):x∈(0,1]} is connected but NOT path-connected.</span>
+    <span class="pf">Connected: curve E = cts image of (0,1] (8.1.6/8.1.8); A=Ē ⇒ connected by closure lemma 8.1.5. Not p.c.: a path from (0,0) would need x∘γ to sweep [0,c] by IVT while sin(1/x) oscillates ±1 — contradiction.</span></div>
+
+  <div class="band" style="background:var(--spine)">Compactness</div>
+  <div class="it spine"><span class="nm">seq cpt first properties; EVT; uniform cts</span> <span class="nu">9.2.1, 9.3.1/2</span>
+    <span class="rs"><b>Result:</b> seq cpt ⇒ closed+bounded; cts image of seq cpt is seq cpt ⇒ EVT (attains bounds) + uniformly cts.</span>
+    <span class="pf">Not closed ⇒ a sequence escapes to ∂ (6.1.5); unbounded ⇒ d(y₀,yₙ)≥n. cts image: f(x_{nₖ})→f(a). Uniform cts: else aₙ,bₙ with d&lt;1/n, |f| apart by ε; subseq aₙₖ→ℓ drags bₙₖ→ℓ, contradicts continuity via ε/2.</span></div>
+  <div class="it spine"><span class="nm">Products; Bolzano–Weierstrass in ℝⁿ</span> <span class="nu">9.4.1–9.4.3</span>
+    <span class="rs"><b>Result:</b> product of seq cpt is seq cpt; closed+bounded in ℝⁿ ⇒ seq cpt.</span>
+    <span class="pf">Convergence in X×Y is coordinatewise (projections 1-Lipschitz); refine the subsequence twice. ℝⁿ: bounded ⇒ inside cube [−M,M]ⁿ; iterated products of B–W on ℝ; closed subset of seq cpt is seq cpt (9.2.2).</span></div>
+  <div class="it spine"><span class="nm">seq compact ⟺ complete + totally bounded</span> <span class="nu">9.5.1–9.5.3</span>
+    <span class="rs"><b>Result:</b> X seq cpt ⟺ complete and totally bounded (finite ε-ball cover ∀ε).</span>
+    <span class="pf">(⇒) complete: Cauchy with convergent subseq converges; tot bdd: else greedily build an ε-separated sequence, no Cauchy subseq. (⇐) pigeonhole down radius-2⁻ᵐ covers, take the diagonal subsequence ⇒ Cauchy ⇒ converges. <b>Complete+bounded ≠ enough:</b> moving bump fₙ=φ(·−n) in B̄(0,1)⊂Cb(ℝ), ‖fₙ−fₘ‖∞=1.</span></div>
+  <div class="it spine"><span class="nm">compact ⟺ seq compact</span> <span class="nu">10.2.1, 10.3.1</span>
+    <span class="rs"><b>Result:</b> in a metric space, compact (finite subcover) ⟺ sequentially compact.</span>
+    <span class="pf">cpt⇒seq cpt: nested non-empty closed have non-empty ⋂ (10.2.2; else complements are a cover with no finite subcover); apply to tail-closures. seq cpt⇒cpt (=complete+tot bdd, 9.5.3): build a shrinking non-finitely-coverable ball; centres Cauchy ⇒ limit x∈ some Uᵢ ⊇ a tail ball ⇒ finitely coverable. ✗.</span></div>
+
+  <div class="band" style="background:var(--head)">Equivalence theorem + Heine–Borel</div>
+  <div class="it head"><span class="nm">Equivalence theorem; Heine–Borel</span> <span class="nu">10.3.2, 10.3.3</span>
+    <span class="rs"><b>Result:</b> compact ⟺ seq compact ⟺ complete + totally bounded (any metric space); S⊆ℝⁿ compact ⟺ closed + bounded.</span>
+    <span class="pf">10.3.2 = 10.2.1 + 10.3.1 + 9.5.3. Heine–Borel: (⇒) cpt⇒seq cpt⇒closed+bdd (9.2.1); (⇐) closed+bdd⇒seq cpt (B–W 9.4.3)⇒cpt (10.3.1). <span class="warnnote">closed+bdd⇒cpt is ℝⁿ-only — moving bump fails it in Cb(ℝ).</span></span></div>
+
+  <div class="band" style="background:var(--head)">Differentiation in ℝⁿ</div>
+  <div class="it head"><span class="nm">Total & directional derivative</span> <span class="nu">1.1.1, 1.2.1</span>
+    <span class="rs"><b>Result:</b> f:Ω⊆ℝⁿ→ℝᵐ diff at a ⟺ ∃ linear L, (f(a+h)−f(a)−Lh)/|h|→0; L=df(a) unique, matrix = Jacobian. Then every ∂ₙf(a) exists and =Ln; and diff ⇒ cts (1.5.2).</span>
+    <span class="pf">L unique because its matrix is forced to be the Jacobian. diff⇒cts from the rearrangement f(a+h)−f(a)=Lh+R(h)|h|, R→0. For n≥2 the difference-quotient definition is inadequate — h/|h| has no limit; only ℝ²≅ℂ lets you divide by h (⇒ complex analysis).</span></div>
+  <div class="it head"><span class="nm">cts partials ⇒ differentiable</span> <span class="nu">1.3.1</span>
+    <span class="rs"><b>Result:</b> f:ℝ²→ℝ with partials that exist and are cts on open Ω ⇒ f diff, df(a)=(fₓ(a),f_y(a)).</span>
+    <span class="pf">Telescope f(a+h,b+k)−f(a,b) one coordinate at a time; 1-var MVT on each bracket; subtract Lh = fₓh+f_yk; the error is (partial-difference)·(h,k), bounded by Cauchy–Schwarz by √(Δfₓ²+Δf_y²)·|(h,k)|. |(h,k)| cancels the denominator; continuity of the partials kills the Δ's as (h,k)→0.</span></div>
+  <div class="it head"><span class="nm">Counterexample + chain rule</span> <span class="nu">Ex 1.4.2, Thm 1.5.3</span>
+    <span class="rs"><b>Result:</b> <span class="warnnote">all directional derivatives existing ⇏ differentiable.</span> Chain rule: dh(a)=dg(f(a))·df(a).</span>
+    <span class="pf">f=xy(x+y)/(x²+y²), f(0)=0: degree-1 homogeneous ⇒ ∂ₙf(0)=f(n) exists for every n, but n↦f(n) is not linear, so no total derivative. (Stronger pathologies: ∂ₙf all exist yet f discontinuous; fₓy≠f_yx without cts 2nd partials.) Chain-rule proof non-exam (matrix norms).</span></div>
+  <div class="it head"><span class="nm">Inverse Function Theorem</span> <span class="nu">1.7.1 (in ℝ²)</span>
+    <span class="rs"><b>Result:</b> Ω open, f∈C¹(Ω,ℝ²), df(a) invertible ⇒ ∃ open U∋a, f(U) open, f:U→f(U) bijection, f⁻¹∈C¹, df⁻¹(f(a))=df(a)⁻¹.</span>
+    <span class="pf">Engine is the Contraction Mapping Theorem (7.4.2). Normalize a=0,f(0)=0,f′(0)=1; ψ(x)=x−f(x) has ψ′(0)=0 so |ψ|≤½|x| near 0; to solve f(x)=v₀ the map φ(x)=x−f(x)+v₀ is a ½-contraction on B̄(0,r), giving a unique fixed point. The only 2-d extra ingredient is a matrix norm. <span class="warnnote">Proof non-exam.</span></span></div>
+
+  <div class="band" style="background:var(--cons)">Extended plane ℂ∞, Möbius & conformal</div>
+  <div class="it cons"><span class="nm">Stereographic projection; chordal metric; ℂ∞</span> <span class="nu">11.1.1–11.1.6</span>
+    <span class="rs"><b>Result:</b> S:ℂ∞→𝕊 (S(∞)=N) a bijection; chordal metric d(z,w)=2|z−w|/(√(1+|z|²)√(1+|w|²)), d(z,∞)=2/√(1+|z|²). Translations, dilations, inversion are cts bijections of ℂ∞.</span>
+    <span class="pf">S(z)=(2Re z, 2Im z, |z|²−1)/(1+|z|²). Chordal metric = pull back ℝ³ distance via ‖S(z)−S(w)‖²=2−2⟨S(z),S(w)⟩. On ℂ it is equivalent to the usual metric (strongly so on bounded sets), but also makes sense of ∞: "zₙ→∞" becomes literal convergence. Gem: under S, z↦1/z is rotation of 𝕊 by π about the x-axis.</span></div>
+  <div class="it cons"><span class="nm">Möbius maps; circlines</span> <span class="nu">11.1.7–11.1.11</span>
+    <span class="rs"><b>Result:</b> Ψ_g(z)=(az+b)/(cz+d), g∈GL₂(ℂ), a group action (Ψ_{g₁g₂}=Ψ_{g₁}∘Ψ_{g₂}); generated by translations/dilations/inversion; sends circlines to circlines.</span>
+    <span class="pf">Ψ_g=Ψ_g′ ⟺ g=λg′. Generators (11.1.9): matrix identity g=T(a/c)D((bc−ad)/c)J·T(d)D(c), proved at matrix level so 11.1.8 handles the ∞-bookkeeping. Circlines (11.1.10/11, proof non-exam): by the generator decomposition, only z↦1/z is interesting — circles through 0 ↔ lines not through 0.</span></div>
+  <div class="it cons"><span class="nm">Conformality; holo + f′≠0 ⇒ conformal</span> <span class="nu">11.2.1–11.2.6</span>
+    <span class="rs"><b>Result:</b> f holo on open U, f′(z₀)≠0 ⇒ f conformal at z₀ (angle-preserving). Möbius maps are conformal.</span>
+    <span class="pf">For ηᵢ=f∘γᵢ split the quotient (f(γ(h))−f(z₀))/(γ(h)−z₀) · (γ(h)−z₀)/h; first factor → f′(z₀) by complex differentiability. So ηᵢ′(0)=f′(z₀)γᵢ′(0): writing f′(z₀)=ρe^{iθ}, both tangents rotate by the same θ ⇒ angle differences survive — the geometric meaning of CR. Möbius: f′=(ad−bc)/(cz+d)²≠0. <span class="warnnote">f′≠0 necessary: z² doubles angles at 0 (Ex 11.2.4).</span></span></div>
+  <div class="it cons"><span class="nm">3-transitivity; ℍ → B(0,1)</span> <span class="nu">11.2.7, Ex 11.2.8</span>
+    <span class="rs"><b>Result:</b> a unique Möbius map carries any distinct triple to any distinct triple. Application: f(z)=(iz+1)/(z+i) maps the upper half-plane onto the unit disc.</span>
+    <span class="pf">Reduce to mapping to (0,1,∞) via the group; existence f(z)=(z−z₁)(z₂−z₃)/((z−z₃)(z₂−z₁)); uniqueness ⟸ a Möbius fixing 0,1,∞ is the identity (c=0, b=0, a=d). For ℍ→B: ∂ℍ=ℝ∪{∞}→S¹ (circline→circline), pin by 0↦−i,1↦1,∞↦i; components of ℂ∖ℝ → components of ℂ∖S¹ (connectedness), test f(i)=0 ⇒ f(ℍ)=B(0,1). Combines circlines + transitivity + connectedness in one example.</span></div>
+
+</div>
+
+</body>
+</html>

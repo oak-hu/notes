@@ -1,0 +1,41 @@
+Section,Topic,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,Count(12y),Count(2022-25),CurrentSyllabus
+A: Metric Spaces,Verify a given function is a metric / norm,X,,,X,,X,X,X,,X,X,X,8,3,yes
+A: Metric Spaces,"Open/closed/closure, limit points, dist(x,F)",X,,,,,X,X,,,X,,X,5,2,yes
+A: Metric Spaces,"Completeness: def, ⟺closed, C[0,1]/C(X,Y) complete",,,X,X,X,,X,X,X,X,X,X,9,4,yes
+A: Metric Spaces,"Compactness & sequential compactness (defs, cpt⇒seqcpt, egs)",,X,X,,,,X,,X,X,X,X,7,4,yes
+A: Metric Spaces,Heine–Borel,,X,,,,,,,,,,,1,0,yes
+A: Metric Spaces,Total boundedness (seqcpt⟺complete+tot.bdd),,,,,,,,,X,,,,1,1,yes
+A: Metric Spaces,"Connectedness (⟺no onto{0,1}; image; R⟺interval)",,X,,X,,X,X,X,,,X,X,7,2,yes
+A: Metric Spaces,Path-connectedness & path-conn ⇒ connected,,X,,X,,X,X,,,,X,X,6,2,yes
+A: Metric Spaces,Continuity defs; cts image of compact/connected,,X,,X,,,X,X,,,X,X,6,2,yes
+A: Metric Spaces,Cts on compact ⇒ attains bounds (EVT),,X,,,,,X,,,,,,2,0,yes
+A: Metric Spaces,Uniform continuity on (seq)compact,,,,,,,,X,X,,,,2,1,yes
+A: Metric Spaces,Contraction Mapping Thm (+fⁿ/uniqueness/appln),X,,X,,X,X,,,X,,X,X,7,3,yes
+A: Metric Spaces,Shrinking / 1-Lipschitz map fixed points,,,X,,X,X,,,X,X,,,5,2,yes
+A: Metric Spaces,"Equivalent metrics (d/(1+d), arctan, φ∘d)",,,,,,X,X,X,X,,,,4,1,yes
+A: Metric Spaces,"Differentiation in Rⁿ (dir. deriv, Jacobian) [NEW]",,,,,,,,,,,,X,1,1,yes
+A: Metric Spaces,C∞/stereographic/Möbius/conformal (now MS Ch11),X,X,X,X,X,X,X,X,X,X,X,X,12,4,yes
+B: Complex Analysis,Cauchy–Riemann equations (state & prove),X,,,,X,X,,,X,X,X,,6,3,yes
+B: Complex Analysis,Branches of log / cut planes / zᵃ / multifunctions,X,X,,X,X,X,,X,X,,X,X,9,3,yes
+B: Complex Analysis,Harmonic / real-holomorphic ⇒ constant,,,,,,X,,,,X,,,2,1,yes
+B: Complex Analysis,Cauchy Integral Formula (state/use/derivatives),,X,X,,X,X,,X,,,,,5,0,yes
+B: Complex Analysis,Liouville (state & prove),,,,,X,X,,X,,,,X,4,1,yes
+B: Complex Analysis,FTA / polynomial root bounds,,X,,,,,,,,,X,,2,1,yes
+B: Complex Analysis,Taylor expansion (write down / compute),,,,,,X,,,X,,X,X,4,3,yes
+B: Complex Analysis,Morera (state; sometimes prove),X,,X,X,,,X,,,,,X,5,1,yes
+B: Complex Analysis,Uniform limit of holo is holo (+ deriv converge),X,,X,X,,,X,,X,,,,5,1,yes
+B: Complex Analysis,Polynomial/rational approximation (Runge),,,,,,,X,,X,,,,2,1,yes
+B: Complex Analysis,Identity Theorem (state/prove; f(1/n)=… exists?),,,,X,,X,,X,,X,,,4,1,yes
+B: Complex Analysis,Classify isolated singularities,X,,,,X,X,X,X,,X,X,X,8,3,yes
+B: Complex Analysis,Removable singularity thm (bounded⇒removable),,,,,,X,,,,X,,X,3,2,yes
+B: Complex Analysis,Casorati–Weierstrass (essential⇒dense),,,,,,X,,,,X,,,2,1,yes
+B: Complex Analysis,Residue Theorem (state),X,X,X,,,X,X,,,,,X,6,1,yes
+B: Complex Analysis,Residue formulas (g/h=g/h′; f′/f order),X,,,,,X,,,,X,X,,4,2,yes
+B: Complex Analysis,Laurent's theorem (state / compute series),X,,,X,,X,X,X,X,,,,6,1,yes
+B: Complex Analysis,Argument principle / count zeros & winding,,,,,,X,,,,,X,,2,1,yes
+B: Complex Analysis,Rouché / locate zeros in a region,,,,,,,,,,,X,,1,1,yes
+B: Complex Analysis,Contour integ. of REAL integrals (the workhorse),X,X,X,X,X,X,X,X,X,X,X,X,12,4,yes
+B: Complex Analysis,Series summation via cot/coth contour,X,,X,,X,,,,,,X,X,5,2,yes
+B: Complex Analysis,Bessel / generating-function integrals,X,,,,,,X,,,,,,2,0,yes
+B: Complex Analysis,Infinite products / Weierstrass / Γ-function [NEW],,,,,,,,,,,,X,1,1,yes
+B: Complex Analysis,OLD CA Q6: conformal regions / Riemann map / Schwarz,X,X,X,X,X,X,X,X,X,X,X,,11,3,OFF (dropped)
