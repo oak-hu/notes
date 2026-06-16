@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear Algebra — Revision Overview</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','svg'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root{
+    --def:#2563eb; --thm:#b91c1c; --lem:#047857; --ex:#b45309; --rem:#6b7280; --warn:#d97706;
+    --defbg:#eff6ff; --thmbg:#fef2f2; --lembg:#ecfdf5; --exbg:#fffbeb; --rembg:#f9fafb;
+    --ink:#1f2430; --accent:#4f46e5;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#fcfcfa; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 120px;}
+  header.site{background:#1e1b4b; color:#eef; padding:38px 22px 30px; margin-bottom:26px;}
+  header.site h1{margin:0 0 6px; font-size:1.9rem; font-weight:normal; letter-spacing:.5px;}
+  header.site p{margin:4px 0; color:#c7c9f4; max-width:920px;}
+  header.site .inner{max-width:920px;margin:0 auto;}
+  header.site a{color:#a5b4fc;}
+  nav.toc{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:14px 20px; margin-bottom:30px; font-size:.95rem;}
+  nav.toc b{color:var(--accent)}
+  nav.toc a{color:#333; text-decoration:none; border-bottom:1px dotted #bbb;}
+  nav.toc a:hover{color:var(--accent)}
+  nav.toc ul{margin:4px 0 10px; padding-left:22px; columns:2; column-gap:36px;}
+  nav.toc li{margin:2px 0; break-inside:avoid;}
+  h2{font-size:1.5rem; border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:56px; color:#26204f;}
+  .wt{float:right; font-size:.95rem; color:#6d28d9; font-weight:bold;}
+  h3{font-size:1.18rem; margin-top:38px; color:#3b3470;}
+  .card{border-left:5px solid var(--rem); background:var(--rembg); border-radius:0 8px 8px 0; padding:12px 18px 10px; margin:18px 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:99px; color:#fff; margin-right:8px; vertical-align:2px;}
+  .card .name{font-weight:bold;}
+  .def{border-color:var(--def); background:var(--defbg);} .def .tag{background:var(--def);}
+  .thm{border-color:var(--thm); background:var(--thmbg);} .thm .tag{background:var(--thm);}
+  .lem{border-color:var(--lem); background:var(--lembg);} .lem .tag{background:var(--lem);}
+  .ex{border-color:var(--ex); background:var(--exbg);} .ex .tag{background:var(--ex);}
+  .rem{border-color:var(--rem); background:var(--rembg);} .rem .tag{background:var(--rem);}
+  .warn{border-color:var(--warn); background:#fff7ed;} .warn .tag{background:var(--warn);}
+  .hyp{margin:8px 0 4px;}
+  .card ul{margin:4px 0 8px; padding-left:24px;}
+  .card li{margin:3px 0;}
+  details.sk{margin:10px 0 6px; border-top:1px dashed #c9c9bf; padding-top:6px;}
+  details.sk summary{cursor:pointer; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#5b5b8a;}
+  details.sk[open] summary{margin-bottom:4px;}
+  .nonex{font-family:Arial,sans-serif; font-size:.7rem; background:#e0e7ff; color:#3730a3; border-radius:4px; padding:1px 6px; vertical-align:2px;}
+  .num{color:#777; font-weight:normal;}
+  figure{margin:22px auto; text-align:center;}
+  figcaption{font-size:.88rem; color:#666; max-width:680px; margin:8px auto 0;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.85rem; margin:12px 0;}
+  .legend span{padding:2px 10px; border-radius:99px; border:1px solid #ccc; background:#fff;}
+  .graphbox{background:#fff; border:1px solid #e3e3dd; border-radius:12px; padding:10px; overflow-x:auto;}
+  svg text{font-family:'Helvetica Neue',Arial,sans-serif;}
+  svg a{cursor:pointer;} svg a:hover rect{stroke-width:2.6;}
+  code{font-size:.92em; background:#f1f1ea; padding:1px 4px; border-radius:3px;}
+  .abbr{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:10px 18px; font-size:.92rem;}
+  .abbr b{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="site"><div class="inner">
+<h1>Linear Algebra (A0) — Revision Overview</h1>
+<p>A skimmable map of the lecture notes (Tillmann–Lauder–Dancer, +SVD by Nakatsukasa): every key result with hypotheses and a proof sketch, and the dependency graph showing how it all fits together.</p>
+<p style="font-size:.88rem">Numbering follows the notes. The <b>⟦n⟧</b> beside each chapter is its <b>official synopsis lecture weight</b>. Click a graph node to jump to its card. Companion: <a href="a0_analysis.html">exam analysis &amp; predictions →</a> · <a href="../">all courses →</a></p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+<b>Contents</b>
+<ul>
+<li><a href="#graph">0. The big picture (dependency graph)</a></li>
+<li><a href="#ch1">1. Vector spaces &amp; linear maps ⟦1⟧</a></li>
+<li><a href="#ch2">2. Rings, polynomials, min/char poly ⟦2+1⟧</a></li>
+<li><a href="#ch3">3. Quotient spaces ⟦2⟧</a></li>
+<li><a href="#ch4">4. Triangular form &amp; Cayley–Hamilton ⟦2⟧</a></li>
+<li><a href="#ch5">5. Primary Decomposition &amp; diagonalisability ⟦3⟧</a></li>
+<li><a href="#ch6">6. Jordan Normal Form ⟦3⟧</a></li>
+<li><a href="#ch7">7. Dual spaces ⟦3⟧</a></li>
+<li><a href="#ch8">8. Inner-product spaces, adjoints, spectral ⟦1+1+2⟧</a></li>
+<li><a href="#ch9">9. Singular Value Decomposition ⟦2⟧</a></li>
+</ul>
+</nav>
+
+<div class="abbr">
+<b>Conventions.</b> $V,W$ finite-dim over a field $F$ unless stated · $T:V\to V$ linear · $m_T$ minimal, $\chi_T=\det(A-xI)$ characteristic polynomial · $V'=\operatorname{Hom}(V,F)$ dual · $U^0$ annihilator · $T^*$ adjoint · $\langle\cdot,\cdot\rangle$ inner product (conjugate-linear in the <em>first</em> slot, per the notes) · ON = orthonormal · <span class="nonex">non-exam</span> = not in the synopsis.
+</div>
+
+<h2 id="graph">0 &nbsp;The big picture</h2>
+<p>Two engines drive the course. <b>Left (red):</b> the polynomial machinery — minimal/characteristic polynomial → Cayley–Hamilton → Primary Decomposition → Jordan form. <b>Right (red):</b> the geometric machinery — inner product → adjoint → Spectral Theorem → SVD. <b>Centre:</b> quotient spaces feed the canonical-form spine, and dual spaces run as a parallel pillar.</p>
+
+<div class="legend">
+<span style="border-left:5px solid var(--lem)">Foundations / tools</span>
+<span style="border-left:5px solid var(--def)">Definitions / dual / structure</span>
+<span style="border-left:5px solid var(--thm)">Main theorems (the two spines)</span>
+<span style="border-left:5px solid var(--ex)">Headline / SVD</span>
+</div>
+
+<figure class="graphbox">
+<svg viewBox="0 0 1200 840" width="100%" style="min-width:900px">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+</defs>
+<style>
+.nd{stroke-width:1.8;} .nl{font-size:13px; fill:#1f2430; text-anchor:middle; font-weight:600;}
+.ns{font-size:10.5px; fill:#555; text-anchor:middle;}
+.eg{stroke:#9aa; stroke-width:1.5; fill:none; marker-end:url(#arr);}
+.eb{stroke:#b91c1c; stroke-width:2.6; fill:none; marker-end:url(#arrR);}
+.ed{stroke:#bbb; stroke-width:1.4; fill:none; stroke-dasharray:5 4;}
+</style>
+
+<!-- edges -->
+<path class="eg" d="M147,66 L147,120"/>                                  <!-- ring->bezout -->
+<path class="eg" d="M275,40 C345,40 360,95 300,140"/>                    <!-- ring->minpoly -->
+<path class="eb" d="M427,172 L427,226"/>                                 <!-- minpoly->triangular -->
+<path class="eb" d="M427,278 L427,332"/>                                 <!-- triangular->ch -->
+<path class="eb" d="M427,384 L427,438"/>                                 <!-- ch->primary -->
+<path class="eb" d="M275,146 C200,300 210,430 300,462"/>                 <!-- bezout->primary -->
+<path class="eg" d="M427,490 L427,544"/>                                 <!-- primary->diag -->
+<path class="eb" d="M360,490 C265,560 265,700 360,762"/>                 <!-- primary->jordan -->
+<path class="eb" d="M427,702 L427,756"/>                                 <!-- nilpotent->jordan -->
+<path class="eg" d="M595,46 L482,232"/>                                  <!-- vs->minpoly? no: vs->quotient below -->
+<path class="eg" d="M722,66 L722,120"/>                                  <!-- vs->quotient -->
+<path class="eg" d="M722,172 L722,226"/>                                 <!-- quotient->induced -->
+<path class="eg" d="M595,252 L484,252"/>                                 <!-- induced->triangular -->
+<path class="eg" d="M595,40 L484,128"/>                                  <!-- vs->minpoly(maps give matrices) -->
+<path class="eg" d="M838,66 C905,200 905,330 838,432"/>                  <!-- vs->dualbasis (down right of col C) -->
+<path class="eg" d="M722,490 L722,544"/>                                 <!-- dualbasis->annih -->
+<path class="eg" d="M722,596 L722,650"/>                                 <!-- annih->dualmap -->
+<path class="eg" d="M1017,66 L1017,120"/>                                <!-- ip->riesz -->
+<path class="eb" d="M1017,172 L1017,226"/>                               <!-- riesz->adjoint -->
+<path class="eb" d="M1017,278 L1017,332"/>                               <!-- adjoint->selfadj -->
+<path class="eg" d="M1017,384 L1017,438"/>                               <!-- selfadj->unitary -->
+<path class="eb" d="M1080,384 C1150,450 1150,500 1080,548"/>             <!-- selfadj->svd -->
+<path class="ed" d="M890,150 C810,330 800,470 838,548"/>                 <!-- riesz<->annih (U⊥ ↔ U⁰) -->
+
+<!-- nodes : col A x=20 cx147, col B x=300 cx427, col C x=595 cx722, col D x=890 cx1017 ; w=255 h=52 -->
+<a href="#ring"><rect class="nd" x="20" y="14" width="255" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="147" y="36">Rings; F[x]; division</text><text class="ns" x="147" y="54">2.1–2.10</text></a>
+<a href="#bezout"><rect class="nd" x="20" y="120" width="255" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="147" y="142">Bézout: gcd = as+bt</text><text class="ns" x="147" y="160">Prop 2.11</text></a>
+
+<a href="#minpoly"><rect class="nd" x="300" y="120" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="427" y="142">Min. &amp; char. polynomial</text><text class="ns" x="427" y="160">2.13–2.18</text></a>
+<a href="#triangular"><rect class="nd" x="300" y="226" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="427" y="248">Triangular form (χ splits)</text><text class="ns" x="427" y="266">Thm 4.5</text></a>
+<a href="#ch"><rect class="nd" x="300" y="332" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="427" y="354">Cayley–Hamilton (m | χ)</text><text class="ns" x="427" y="372">Thm 4.8</text></a>
+<a href="#primary"><rect class="nd" x="300" y="438" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="427" y="460">Primary Decomposition</text><text class="ns" x="427" y="478">Thm 5.2</text></a>
+<a href="#diag"><rect class="nd" x="300" y="544" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="427" y="566">Diagonalisable criterion</text><text class="ns" x="427" y="584">Thm 5.4</text></a>
+<a href="#nilpotent"><rect class="nd" x="300" y="650" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="427" y="672">Nilpotent Jordan form</text><text class="ns" x="427" y="690">Thm 6.1</text></a>
+<a href="#jordan"><rect class="nd" x="300" y="756" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="427" y="778">Jordan Normal Form</text><text class="ns" x="427" y="796">Thm 6.4</text></a>
+
+<a href="#ch1"><rect class="nd" x="595" y="14" width="255" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="722" y="36">Vector spaces; maps</text><text class="ns" x="722" y="54">1.6–1.8</text></a>
+<a href="#quotient"><rect class="nd" x="595" y="120" width="255" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="722" y="142">Quotients; rank–nullity</text><text class="ns" x="722" y="160">3.1–3.7</text></a>
+<a href="#induced"><rect class="nd" x="595" y="226" width="255" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="722" y="248">Induced maps; block form</text><text class="ns" x="722" y="266">3.8–4.3</text></a>
+<a href="#dualbasis"><rect class="nd" x="595" y="438" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="722" y="460">Dual basis; V ≅ V″</text><text class="ns" x="722" y="478">7.3, 7.5</text></a>
+<a href="#annih"><rect class="nd" x="595" y="544" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="722" y="566">Annihilators + dim</text><text class="ns" x="722" y="584">7.8, 7.11</text></a>
+<a href="#dualmap"><rect class="nd" x="595" y="650" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="722" y="672">Dual map = transpose</text><text class="ns" x="722" y="690">7.12–7.15</text></a>
+
+<a href="#ip"><rect class="nd" x="890" y="14" width="255" height="52" rx="9" fill="#ecfdf5" stroke="#047857"/>
+<text class="nl" x="1017" y="36">Inner products; G–S</text><text class="ns" x="1017" y="54">8.1–8.6</text></a>
+<a href="#riesz"><rect class="nd" x="890" y="120" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="1017" y="142">Riesz V≅V′; U⊕U⊥</text><text class="ns" x="1017" y="160">8.7, 8.10</text></a>
+<a href="#adjoint"><rect class="nd" x="890" y="226" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="1017" y="248">Adjoint T*</text><text class="ns" x="1017" y="266">8.13–8.16</text></a>
+<a href="#selfadj"><rect class="nd" x="890" y="332" width="255" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c"/>
+<text class="nl" x="1017" y="354">Spectral theorem</text><text class="ns" x="1017" y="372">8.19–8.21</text></a>
+<a href="#unitary"><rect class="nd" x="890" y="438" width="255" height="52" rx="9" fill="#eff6ff" stroke="#2563eb"/>
+<text class="nl" x="1017" y="460">Orthogonal / Unitary</text><text class="ns" x="1017" y="478">8.22–8.32</text></a>
+<a href="#svd"><rect class="nd" x="890" y="544" width="255" height="52" rx="9" fill="#fffbeb" stroke="#b45309"/>
+<text class="nl" x="1017" y="566">SVD = UΣV*  (new)</text><text class="ns" x="1017" y="584">Thm 9.1</text></a>
+</svg>
+<figcaption>Red arrows = the two main spines. Bézout (Prop 2.11) is what makes Primary Decomposition work; the Spectral Theorem on $A^*A$ is what makes the SVD work. The dashed link records that, under Riesz, the orthogonal complement $U^\perp$ corresponds to the annihilator $U^0$.</figcaption>
+</figure>
+
+<!-- ===================== Ch 1 ===================== -->
+<h2 id="ch1">1 &nbsp;Vector spaces &amp; linear maps <span class="wt">⟦1⟧</span></h2>
+
+<div class="card lem" id="vs">
+<span class="tag">Thm</span><span class="name">Linear maps ↔ matrices</span> <span class="num">(1.8)</span>
+<div class="hyp"><b>Hyp:</b> $V,W$ finite-dim with bases $B,B'$.</div>
+<div class="stmt"><b>Then:</b> $T\mapsto {}_{B'}[T]_B$ is a vector-space isomorphism $\operatorname{Hom}(V,W)\cong M_{m\times n}(F)$ taking composition to matrix product. For $T:V\to V$, change of basis gives ${}_{B'}[T]_{B'}=P^{-1}\,{}_B[T]_B\,P$ with $P={}_B[\mathrm{Id}]_{B'}$.</div>
+<details class="sk"><summary>Sketch</summary>The $j$-th column is the coordinate vector of $T(e_j)$; linearity + spanning make it bijective and multiplicative. When $W=V$, $B[\cdot]B$ is even a <em>ring</em> iso $\operatorname{End}(V)\cong M_n(F)$.</details>
+</div>
+
+<!-- ===================== Ch 2 ===================== -->
+<h2 id="ch2">2 &nbsp;Rings, polynomials, minimal &amp; characteristic polynomials <span class="wt">⟦2+1⟧</span></h2>
+
+<div class="card lem" id="ring">
+<span class="tag">Thm</span><span class="name">Division algorithm; an annihilating polynomial exists</span> <span class="num">(2.8, 2.12)</span>
+<div class="hyp"><b>Hyp:</b> $f,g\in F[x]$, $g\neq0$; $A\in M_n(F)$.</div>
+<div class="stmt"><b>Then:</b> $f=qg+r$ with $\deg r<\deg g$; and there is a nonzero $p\in F[x]$ with $p(A)=0$.</div>
+<details class="sk"><summary>Sketch</summary>Division by induction on degree (subtract the leading term). For the annihilator: $\dim M_n(F)=n^2<\infty$, so $\{I,A,\dots,A^{n^2}\}$ is dependent. The evaluation $f\mapsto f(A)$ is a ring hom $F[x]\to M_n(F)$ with commutative image $F[A]$.</details>
+</div>
+
+<div class="card lem" id="bezout">
+<span class="tag">Prop</span><span class="name">Bézout in $F[x]$</span> <span class="num">(2.11)</span>
+<div class="stmt"><b>Then:</b> for nonzero $a,b$ with $\gcd(a,b)=c$, there exist $s,t\in F[x]$ with $a s+b t=c$. (Equivalently every ideal of $F[x]$ is principal.)</div>
+<details class="sk"><summary>Sketch</summary>Reduce to $\gcd=1$; induct on $\deg a+\deg b$ using $a=qb+r$. <em>This is the engine of the Primary Decomposition Theorem.</em></details>
+</div>
+
+<div class="card def" id="minpoly">
+<span class="tag">Def+Thm</span><span class="name">Minimal &amp; characteristic polynomials; coincidence of roots</span> <span class="num">(2.13–2.18)</span>
+<div class="hyp"><b>Def:</b> $m_A$ = monic least-degree polynomial with $m_A(A)=0$; $\chi_A(x)=\det(A-xI)$.</div>
+<div class="stmt"><b>Then:</b> $p(A)=0\iff m_A\mid p$ (so $m_A$ is unique &amp; basis-independent); and
+$$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
+<details class="sk"><summary>Sketch</summary>Divide $p=q\,m_A+r$; $p(A)=0\Rightarrow r(A)=0$, $\deg r<\deg m_A\Rightarrow r=0$. $\chi(\lambda)=0\iff A-\lambda I$ singular $\iff$ eigenvalue. $m(A)v=m(\lambda)v\Rightarrow m(\lambda)=0$; conversely $m=(x-\lambda)g$, minimality gives $g(A)\neq0$, and $v=g(A)w\neq0$ is a $\lambda$-eigenvector.</details>
+</div>
+
+<!-- ===================== Ch 3 ===================== -->
+<h2 id="ch3">3 &nbsp;Quotient spaces <span class="wt">⟦2⟧</span></h2>
+
+<div class="card lem" id="quotient">
+<span class="tag">Thm</span><span class="name">Quotient space, first isomorphism theorem, rank–nullity</span> <span class="num">(3.1–3.7)</span>
+<div class="stmt"><b>Then:</b> $V/U$ is a vector space with $\dim V=\dim U+\dim(V/U)$; the map $\overline T:V/\ker T\to\operatorname{im}T$ is an isomorphism, hence $\dim V=\dim\ker T+\dim\operatorname{im}T$.</div>
+<details class="sk"><summary>Sketch</summary>Operations on cosets are well-defined because $U$ absorbs its elements; images of a basis of $V$ extending one of $U$ form a basis of $V/U$. First-iso + this dimension count give rank–nullity.</details>
+</div>
+
+<div class="card lem" id="induced">
+<span class="tag">Thm</span><span class="name">Induced map on a quotient; block form</span> <span class="num">(3.8–3.9, 4.3)</span>
+<div class="hyp"><b>Hyp:</b> $U$ a subspace, $T:V\to V$.</div>
+<div class="stmt"><b>Then:</b> $\overline T(v+U)=T(v)+U$ is well-defined $\iff$ $U$ is $T$-invariant. In a basis through $U$ the matrix is block upper-triangular, so $\chi_T=\chi_{T|_U}\cdot\chi_{\overline T}$.</div>
+<details class="sk"><summary>Sketch</summary>Well-defined: $v-v'\in U\Rightarrow T(v)-T(v')\in U$. The lower-left block is $0$; the determinant of a block-triangular matrix is the product of diagonal blocks.</details>
+</div>
+
+<!-- ===================== Ch 4 ===================== -->
+<h2 id="ch4">4 &nbsp;Triangular form &amp; Cayley–Hamilton <span class="wt">⟦2⟧</span></h2>
+
+<div class="card thm" id="triangular">
+<span class="tag">Thm</span><span class="name">Triangular form</span> <span class="num">(4.5)</span>
+<div class="hyp"><b>Hyp:</b> $\chi_T$ is a product of linear factors (automatic over $\mathbb C$).</div>
+<div class="stmt"><b>Then:</b> there is a basis with ${}_B[T]_B$ upper triangular. (Equivalently $m_T$ splits into linear factors.)</div>
+<details class="sk"><summary>Sketch</summary>Induct on $\dim V$: take an eigenvector $v_1$ (root of $\chi$), pass to $V/\langle v_1\rangle$ where $\chi$ loses a factor and dimension drops by one, triangularise there, and prepend $v_1$.</details>
+</div>
+
+<div class="card thm" id="ch">
+<span class="tag">Thm</span><span class="name">Cayley–Hamilton</span> <span class="num">(4.8)</span>
+<div class="stmt"><b>Then:</b> $\chi_T(T)=0$; hence $m_T\mid\chi_T$.</div>
+<details class="sk"><summary>Sketch</summary>Over the algebraic closure triangularise (diagonal $\lambda_1,\dots,\lambda_n$). Each $(A-\lambda_iI)$ sends $\langle e_1,\dots,e_i\rangle$ into $\langle e_1,\dots,e_{i-1}\rangle$, so the product $\prod(A-\lambda_iI)=\chi(A)=0$ (Prop 4.7). <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">"$\det(A-A\cdot I)=0$" is <b>not</b> a proof.</span></details>
+</div>
+
+<!-- ===================== Ch 5 ===================== -->
+<h2 id="ch5">5 &nbsp;Primary Decomposition &amp; diagonalisability <span class="wt">⟦3⟧ heaviest</span></h2>
+
+<div class="card thm" id="primary">
+<span class="tag">Thm</span><span class="name">Primary Decomposition Theorem</span> <span class="num">(Prop 5.1, Thm 5.2)</span>
+<div class="hyp"><b>Hyp:</b> $m_T=f_1^{q_1}\cdots f_r^{q_r}$, the $f_i$ distinct monic irreducibles.</div>
+<div class="stmt"><b>Then:</b> $V=\bigoplus_i \ker f_i(T)^{q_i}$, each summand $T$-invariant, with $m_{T|_{W_i}}=f_i^{q_i}$.</div>
+<details class="sk"><summary>Sketch</summary>Two-factor case $f=ab$, $\gcd=1$: Bézout gives $as+bt=1$, so $a(T)s(T)+b(T)t(T)=I$ — these are the projections onto $\ker a(T)$ and $\ker b(T)$, and their intersection is $0$. Induct on the number of prime factors.</details>
+</div>
+
+<div class="card thm" id="diag">
+<span class="tag">Thm</span><span class="name">Diagonalisability criterion</span> <span class="num">(5.4)</span>
+<div class="stmt"><b>Then:</b> $T$ is diagonalisable $\iff$ $m_T$ is a product of <em>distinct</em> linear factors. (Triangularisable $\iff$ $m_T$ splits — not necessarily distinct.)</div>
+<details class="sk"><summary>Sketch</summary>$\Leftarrow$ Primary Decomposition gives $V=\bigoplus\ker(T-\lambda_iI)$ = eigenspaces. $\Rightarrow$ a diagonal matrix is killed by $\prod(x-\lambda_i)$ over its distinct eigenvalues, and each $\lambda_i$ is a root of $m_T$.</details>
+</div>
+
+<!-- ===================== Ch 6 ===================== -->
+<h2 id="ch6">6 &nbsp;Jordan Normal Form <span class="wt">⟦3⟧ heaviest</span></h2>
+
+<div class="card thm" id="nilpotent">
+<span class="tag">Thm</span><span class="name">Nilpotent Jordan form</span> <span class="num">(6.1)</span>
+<div class="hyp"><b>Hyp:</b> $N$ nilpotent.</div>
+<div class="stmt"><b>Then:</b> $m_N=x^m$ ($m$=nilpotency index) and there is a basis giving block-diagonal nilpotent Jordan blocks (0s with 1s above the diagonal).</div>
+<details class="sk"><summary>Sketch</summary>The kernels strictly increase $\{0\}\subsetneq\ker N\subsetneq\cdots\subsetneq\ker N^m=V$. Top-down, lift a basis of each $\ker N^i/\ker N^{i-1}$ and push it down by $N$ (it stays independent), assembling Jordan strings $N^{i-1}v,\dots,Nv,v$.</details>
+</div>
+
+<div class="card thm" id="jordan">
+<span class="tag">Thm</span><span class="name">Jordan Normal Form</span> <span class="num">(Cor 6.3, Thm 6.4)</span>
+<div class="stmt"><b>Then:</b> over $\mathbb C$ every $T$ has a Jordan form, <b>unique up to block order</b>; the number of blocks $J_i(\lambda)$ is determined by the sequence $\dim\ker(T-\lambda I)^k$.</div>
+<details class="sk"><summary>Sketch</summary>Primary Decomposition into generalised eigenspaces $\ker(T-\lambda_iI)^{m_i}$; on each, $T-\lambda_iI$ is nilpotent, so apply 6.1 and shift back by $\lambda_iI$. The block counts $\Leftrightarrow$ the kernel-dimension sequence $\Rightarrow$ uniqueness.</details>
+</div>
+
+<!-- ===================== Ch 7 ===================== -->
+<h2 id="ch7">7 &nbsp;Dual spaces <span class="wt">⟦3⟧ heaviest</span></h2>
+
+<div class="card def" id="dualbasis">
+<span class="tag">Thm</span><span class="name">Dual basis; second dual</span> <span class="num">(7.3, 7.5)</span>
+<div class="stmt"><b>Then:</b> $e_i'(e_j)=\delta_{ij}$ defines a basis of $V'$ (so $\dim V'=\dim V$); and $v\mapsto E_v$, $E_v(f)=f(v)$, is a <b>natural</b> isomorphism $V\cong V''$ (the iso $V\cong V'$ is <em>not</em> natural).</div>
+<details class="sk"><summary>Sketch</summary>Independence/spanning of $\{e_i'\}$ by evaluating at $e_j$. $E_v$ is injective (if $v\neq0$, extend to a basis and use $e_1'$) and dimensions agree, so it is onto.</details>
+</div>
+
+<div class="card def" id="annih">
+<span class="tag">Thm</span><span class="name">Annihilators: dimension formula; $U^0\cong(V/U)'$</span> <span class="num">(7.8, 7.10–7.11)</span>
+<div class="stmt"><b>Then:</b> $U^0=\{f:f|_U=0\}$ satisfies $\dim U^0=\dim V-\dim U$; also $U^{00}\cong U$ and $U^0\cong(V/U)'$.</div>
+<details class="sk"><summary>Sketch</summary>Extend a basis of $U$; the dual vectors of the <em>non</em>-$U$ basis vectors span $U^0$ (and are independent). $f\mapsto\bar f$, $\bar f(v+U)=f(v)$, is the iso $U^0\cong(V/U)'$.</details>
+</div>
+
+<div class="card def" id="dualmap">
+<span class="tag">Thm</span><span class="name">Dual map = transpose</span> <span class="num">(7.12–7.15)</span>
+<div class="stmt"><b>Then:</b> $T':W'\to V'$, $f\mapsto f\circ T$, has matrix $[T']=[T]^{\mathsf T}$ in the dual bases; consequently $\operatorname{im}T'=(\ker T)^0$, $\ker T'=(\operatorname{im}T)^0$, and $T,T'$ share rank, $\chi$ and $m$.</div>
+<details class="sk"><summary>Sketch</summary>$(T'x_i')(e_j)=x_i'(Te_j)=a_{ij}$, the transpose entry. Rank $=n-\dim\ker$ matches $\dim(\ker T)^0$; transpose preserves $\chi,m$.</details>
+</div>
+
+<!-- ===================== Ch 8 ===================== -->
+<h2 id="ch8">8 &nbsp;Inner-product spaces, adjoints, spectral theorem <span class="wt">⟦1+1+2⟧</span></h2>
+
+<div class="card lem" id="ip">
+<span class="tag">Def+Thm</span><span class="name">Forms, Gram–Schmidt, and $V\cong V'$</span> <span class="num">(8.1–8.7)</span>
+<div class="stmt"><b>Then:</b> a form is <em>non-degenerate</em> $\iff$ $v\mapsto\langle v,\cdot\rangle$ is injective ($V\to V'$, an isomorphism in finite dim); every finite-dim inner-product space has an orthonormal basis (Gram–Schmidt). Positive-definite $\Rightarrow$ non-degenerate (not conversely — Minkowski form).</div>
+<details class="sk"><summary>Sketch</summary>Gram–Schmidt: $w_k=v_k-\sum_{i<k}\frac{\langle w_i,v_k\rangle}{\langle w_i,w_i\rangle}w_i$, then normalise; orthogonal nonzero vectors are independent. Non-degeneracy is exactly injectivity of $\phi:v\mapsto\langle v,\cdot\rangle$.</details>
+</div>
+
+<div class="card def" id="riesz">
+<span class="tag">Thm</span><span class="name">Riesz; orthogonal complement</span> <span class="num">(8.7, 8.10–8.11)</span>
+<div class="stmt"><b>Then:</b> $\phi:V\to V'$, $v\mapsto\langle v,\cdot\rangle$, is a (conjugate-linear) isomorphism in finite dim; and $V=U\oplus U^\perp$, $(U^\perp)^\perp=U$, with $U^\perp$ corresponding to $U^0$ under $\phi$.</div>
+<details class="sk"><summary>Sketch</summary>$\phi$ injective by non-degeneracy + equal dimensions $\Rightarrow$ onto. An ON basis of $U$ extends to one of $V$ (Gram–Schmidt), and the extra vectors span $U^\perp$. <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">$U\oplus U^\perp=V$ can fail in infinite dimension.</span></details>
+</div>
+
+<div class="card thm" id="adjoint">
+<span class="tag">Thm</span><span class="name">Adjoint: exists, unique, = conjugate transpose</span> <span class="num">(8.13–8.16)</span>
+<div class="stmt"><b>Then:</b> there is a unique linear $T^*$ with $\langle v,Tw\rangle=\langle T^*v,w\rangle$; in an <b>orthonormal</b> basis $[T^*]=[T]^{\dagger}$ (conjugate transpose).</div>
+<details class="sk"><summary>Sketch</summary>Uniqueness from non-degeneracy. Existence: $w\mapsto\langle v,Tw\rangle$ is a functional, so Riesz supplies $T^*v$. Matrix entry $b_{ij}=\langle e_i,T^*e_j\rangle=\overline{\langle Te_i,e_j\rangle}=\bar a_{ji}$. <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">The ON-basis hypothesis is essential.</span></details>
+</div>
+
+<div class="card thm" id="selfadj">
+<span class="tag">Thm</span><span class="name">Spectral Theorem (self-adjoint)</span> <span class="num">(8.19–8.21)</span>
+<div class="hyp"><b>Hyp:</b> $T^*=T$, $V$ finite-dim.</div>
+<div class="stmt"><b>Then:</b> all eigenvalues are real and $V$ has an <b>orthonormal basis of eigenvectors</b>.</div>
+<details class="sk"><summary>Sketch</summary>Real eigenvalues: $\lambda\langle w,w\rangle=\langle w,Tw\rangle=\langle Tw,w\rangle=\bar\lambda\langle w,w\rangle$. If $U$ is $T$-invariant so is $U^\perp$; peel off one unit eigenvector and induct on dimension.</details>
+</div>
+
+<div class="card thm" id="unitary">
+<span class="tag">Thm</span><span class="name">Orthogonal / unitary maps; canonical forms</span> <span class="num">(8.22–8.32)</span>
+<div class="stmt"><b>Then:</b> $T^*=T^{-1}\iff$ $T$ preserves $\langle\cdot,\cdot\rangle\iff$ $T$ preserves length; eigenvalues have $|\lambda|=1$. These form the groups $O_n\supset SO_n$, $U_n\supset SU_n$. A <em>unitary</em> map has an ON eigenbasis (8.29); a <em>real orthogonal</em> map has an ON basis with blocks $I,\ -I,\ R_\theta$ (8.32).</div>
+<details class="sk"><summary>Sketch</summary>Equivalences by expanding $\langle T^*Tv,w\rangle$ and polarisation. Real form: $S=T+T^{-1}$ is self-adjoint, so its eigenspaces split $V$; on each, $T^2-\lambda T+I=0$ forces $\pm I$ or a rotation.</details>
+</div>
+
+<div class="card warn" id="normal">
+<span class="tag">Note</span><span class="name">Normal operators</span> <span class="num">(notes Appendix B)</span> <span class="nonex">non-exam</span>
+<div class="stmt">$TT^*=T^*T\Rightarrow$ an ON eigenbasis over $\mathbb C$. The slick statement is <b>not in the synopsis</b>, but exam questions (A0 2016, 2019, 2023) <em>build it from scratch</em> using $\lVert Tv\rVert=\lVert T^*v\rVert\Rightarrow(Tv=\lambda v\Rightarrow T^*v=\bar\lambda v)$ and orthogonality of distinct eigenspaces. Know the building blocks, don't quote the theorem.</div>
+</div>
+
+<!-- ===================== Ch 9 ===================== -->
+<h2 id="ch9">9 &nbsp;Singular Value Decomposition <span class="wt">⟦2⟧ · new</span></h2>
+
+<div class="card ex" id="svd">
+<span class="tag">Thm</span><span class="name">Singular Value Decomposition; polar form</span> <span class="num">(9.1, 9.2)</span>
+<div class="stmt"><b>Then:</b> any $A\in F^{m\times n}$ ($m\ge n$) factors as $A=U\Sigma V^*$ with $U,V$ having orthonormal columns and $\Sigma=\operatorname{diag}(\sigma_1\ge\cdots\ge\sigma_n\ge0)$, where $\sigma_i=\sqrt{\lambda_i(A^*A)}$. Then $\operatorname{rank}A=\#\{\sigma_i>0\}$, $\sigma_1=\lVert A\rVert_{\mathrm{op}}$, and (polar) $A=U_pH$ with $H\succeq0$ self-adjoint.</div>
+<details class="sk"><summary>Sketch</summary>$A^*A$ is positive-semidefinite, so the Spectral Theorem diagonalises it: $A^*A=VD^2V^*$. Put $B=AV$ (orthogonal columns, $B^*B=D^2$); on the nonzero block $U=BD^{-1}$ has ON columns; extend $U$ to ON columns to finish.</details>
+</div>
+
+<div class="card rem">
+<span class="tag">Exam</span><span class="name">How this maps to the paper</span>
+<div class="stmt">3 questions, best 2 count, 1.5 hr. The three pillars: <b>canonical forms</b> (Ch 2–6, red-left), <b>dual spaces</b> (Ch 7), <b>inner product</b> (Ch 8–9, red-right). The two heaviest (synopsis ⟦3⟧) are <b>Primary Decomposition + Jordan</b> and <b>Dual spaces</b>. The <b>SVD is freshly added (Oct 2024) and never yet examined</b> — a strong 2026 bet. Full breakdown: <a href="a0_analysis.html">exam analysis &amp; predictions →</a>.</div>
+</div>
+
+</div>
+</body>
+</html>
