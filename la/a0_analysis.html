@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A0 Linear Algebra — exam analysis & predictions</title>
+<style>
+ body{max-width:50rem;margin:2.5rem auto;padding:0 1.2rem;font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Georgia,serif;color:#1a1a1a;}
+ h1{font-size:1.6rem;line-height:1.25;} h2{font-size:1.2rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.2rem;}
+ h3{font-size:1.05rem;margin-top:1.4rem;} code{background:#eef;padding:0 .25em;border-radius:3px;font-size:.92em;}
+ table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:14px;} th,td{border:1px solid #ccc;padding:5px 8px;text-align:left;vertical-align:top;}
+ th{background:#f1f5f9;} tr:nth-child(even){background:#fafafa;}
+ blockquote{color:#555;border-left:3px solid #bbb;margin:1rem 0;padding:.2rem 1rem;font-size:.95em;}
+ em{color:#444;} hr{border:none;border-top:1px solid #ddd;margin:1.6rem 0;} img{max-width:100%;}
+</style></head><body>
+<h1 id="a0-linear-algebra--past-paper-patterns--2026-predictions">A0
+(Linear Algebra) — past-paper patterns &amp; 2026 predictions</h1>
+<p><em>Built from all 10 papers, 2016–2025 (Oxford Part A, paper A0),
+cross-checked against the current notes (Tillmann/Lauder/Dancer, Oct
+2024) and the <strong>official synopsis lecture weightings</strong> ⟦n⟧.
+Companion files: <code>a0_heatmap.png</code> (topic × year),
+<code>a0_topic_matrix.csv</code>.</em></p>
+<hr />
+<h2 id="0-tldr--what-id-bet-on-for-2026">0. TL;DR — what I'd bet on for
+2026</h2>
+<ol type="1">
+<li><strong>Format is rock-stable:</strong> 3 questions, <strong>best 2
+count</strong>, 1.5 hours. So you only need <strong>two</strong>
+questions — and you get to choose. Strategically you can prepare
+<strong>two of the three pillars</strong> thoroughly and still cover the
+paper.</li>
+<li><strong>The three pillars never move:</strong> every year the paper
+is built from (P) <strong>canonical forms</strong> — min/char poly,
+Cayley–Hamilton, primary decomposition, Jordan; (D) <strong>dual
+spaces</strong>; (I) <strong>inner-product spaces</strong> — forms,
+adjoints, spectral theorem, orthogonal/unitary. Usually one question per
+pillar (occasionally one pillar is split across two questions, or merged
+with another).</li>
+<li><strong>Weight your revision by the synopsis:</strong> the two ⟦3⟧
+(heaviest) topics are <strong>Primary Decomposition + Jordan</strong>
+and <strong>Dual spaces</strong>. These are also the most-examined.
+They're your highest-yield revision.</li>
+<li><strong>One genuinely new strand: the SVD.</strong> It was <em>added
+to the notes in Oct 2024</em> (Nakatsukasa section), sits in the
+synopsis ⟦2⟧ line, and has <strong>never been examined</strong> (absent
+2016–2025). Freshly-added, untested syllabus content is a classic target
+— I'd put real odds on <strong>SVD appearing in 2026</strong>, most
+likely as a part of the inner-product question.</li>
+<li><strong>Recurring flavour to expect: char-p / finite-field
+twists</strong> (2018, 2019, 2022, 2023, 2025) and
+<strong>bilinear/sesquilinear forms</strong> beyond the plain inner
+product (2021, 2025).</li>
+</ol>
+<p>This paper is <strong>proof-heavy and computation-light</strong> —
+the only "computations" are small (find the min poly of a 3×3, compute a
+JNF, Gram–Schmidt a 2–3 element basis, write down an adjoint matrix).
+That suits a bookwork-strong, sustained-computation-averse style very
+well: A0 is almost all the thing you're good at.</p>
+<hr />
+<h2 id="1-the-three-pillars-and-how-they-map-to-questions">1. The three
+pillars (and how they map to questions)</h2>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Topics</th>
+<th>Synopsis weight</th>
+<th>Appears</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P — Canonical forms</strong></td>
+<td>min/char poly, Cayley–Hamilton, primary decomposition, Jordan,
+diagonalisability, quotients</td>
+<td>⟦1+2+3⟧ = <strong>6 lec</strong> (biggest)</td>
+<td>every year, often <strong>1–2 questions</strong></td>
+</tr>
+<tr>
+<td><strong>D — Dual spaces</strong></td>
+<td>dual basis, dual map = transpose, annihilators + dim formula, V≅V″,
+U⁰≅(V/U)′, rank T=rank T′</td>
+<td>⟦3⟧</td>
+<td>most years, <strong>a full question</strong></td>
+</tr>
+<tr>
+<td><strong>I — Inner-product spaces</strong></td>
+<td>forms (non-deg ⟺ V≅V′), Gram–Schmidt, adjoint, <strong>spectral
+theorem</strong>, orthogonal/unitary + groups, <strong>SVD</strong></td>
+<td>⟦1+1+2⟧ = <strong>4 lec</strong></td>
+<td>every year, <strong>a full question</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The Q-number ↔︎ pillar mapping drifts (e.g. dual spaces was Q2 in
+2016/2019/2020/2023 but Q3 in 2018, folded into Q1 in 2023/2025), so
+<strong>don't memorise "Q2 = dual."</strong> Prepare by <em>pillar</em>,
+not by question number.</p>
+<hr />
+<h2 id="2-star-bookwork-ranked-by-likelihood-what-to-memorise">2. ⭐
+Bookwork ranked by likelihood (what to memorise)</h2>
+<p>A0 is bookwork-dominated, so this list <em>is</em> most of the exam.
+Ranked by frequency × synopsis weight.</p>
+<h3 id="tier-1--near-certain-memorise-the-proof-cold">Tier 1 —
+near-certain, memorise the proof cold</h3>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Years asked</th>
+<th>Synopsis</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min poly well-defined; p(A)=0 ⟺ m|p; roots of m = roots of χ
+= eigenvalues</strong></td>
+<td>16,17,19,20,21,25</td>
+<td>⟦1⟧</td>
+<td>The universal opener; one-line divide-and-remainder proof.</td>
+</tr>
+<tr>
+<td><strong>Diagonalisable ⟺ m = product of distinct linear
+factors</strong></td>
+<td>16,19,20,22,24,25</td>
+<td>⟦3⟧</td>
+<td>The single most-reused theorem; proof = Primary Decomposition.</td>
+</tr>
+<tr>
+<td><strong>Primary Decomposition Theorem</strong> (coprime split via
+Bézout)</td>
+<td>16,19,22,23,25</td>
+<td>⟦3⟧</td>
+<td>Heaviest topic. Know the <code>as+bt=1 ⇒ projections</code> proof
+and the induction.</td>
+</tr>
+<tr>
+<td><strong>Adjoint exists / unique / = conjugate-transpose in an ON
+basis</strong></td>
+<td>16,17,18,22,23,24</td>
+<td>⟦1⟧</td>
+<td>Opens most inner-product questions.</td>
+</tr>
+<tr>
+<td><strong>Annihilator dimension formula
+<code>dim U⁰ = dim V − dim U</code></strong></td>
+<td>17,19,23,25</td>
+<td>⟦3⟧</td>
+<td>Core dual-spaces bookwork.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-2--high-know-the-proof">Tier 2 — high; know the proof</h3>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Years</th>
+<th>Synopsis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cayley–Hamilton (state &amp; prove)</strong> — triangularise
+over C̄, flag argument</td>
+<td>17, 22</td>
+<td>⟦2⟧</td>
+</tr>
+<tr>
+<td><strong>Self-adjoint Spectral Theorem</strong> — real eigenvalues +
+ON eigenbasis</td>
+<td>17, 18, 24</td>
+<td>⟦2⟧</td>
+</tr>
+<tr>
+<td><strong>Jordan Normal Form</strong> — existence (nilpotent
+ker-filtration) + computing a JNF from kernel dims</td>
+<td>16,21,22,23,24</td>
+<td>⟦3⟧</td>
+</tr>
+<tr>
+<td><strong>Dual map = transpose <code>[T′]=[T]ᵀ</code>;
+<code>im T′=(ker T)⁰</code>; rank T = rank T′</strong></td>
+<td>16,17,18,19,20,23</td>
+<td>⟦3⟧</td>
+</tr>
+<tr>
+<td><strong>Triangularisable ⟺ χ (equiv. m) splits into linear
+factors</strong></td>
+<td>16, 23</td>
+<td>⟦2⟧</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-3--know-it-lighter">Tier 3 — know it, lighter</h3>
+<ul>
+<li><strong>V ≅ V″ natural iso</strong> (16), <strong>U⁰ ≅
+(V/U)′</strong> (17, and a named synopsis bullet) — quick, occasionally
+asked.</li>
+<li><strong>Orthogonal/unitary ⟺ preserves length; |λ|=1; groups
+Oₙ/SOₙ/Uₙ/SUₙ; real canonical form</strong> (20, 25) — ⟦2⟧.</li>
+<li><strong>Non-degenerate bilinear/sesquilinear form ⟺ V≅V′</strong>
+(21, 25) — the abstract-forms angle; ⟦1⟧.</li>
+<li><strong>D+N (Jordan–Chevalley)</strong> (20), <strong>positive
+operators / √</strong> (18) — one-off but clean.</li>
+</ul>
+<h3 id="tier-4--build-from-pieces-not-quotable-bookwork">Tier 4 —
+build-from-pieces, not quotable bookwork</h3>
+<ul>
+<li><strong>Normal operators</strong> (16, 19, 23): the slick spectral
+theorem for normal maps is <strong>Appendix B / explicitly
+non-examinable</strong> and <strong>not in the synopsis</strong>. But
+exam questions <em>construct</em> it from examinable tools (‖Tv‖=‖T*v‖,
+T-invariance of U⊥, primary decomposition), spelling out each step. Know
+the building blocks; don't expect to cite "the normal spectral
+theorem."</li>
+</ul>
+<hr />
+<h2
+id="3-new--drifting-content-to-watch-lower-confidence-higher-payoff">3.
+New / drifting content to watch (lower confidence, higher payoff)</h2>
+<ul>
+<li><strong>⭐ SVD — the standout.</strong> Added to the notes Oct 2024,
+in the synopsis ⟦2⟧, <strong>never yet examined</strong>. Newly-added
+bookwork is a prime target. Learn: statement <code>A=UΣV*</code>, the
+construction via the spectral theorem on the positive-semidefinite
+<code>A*A</code> (σᵢ=√λᵢ(A*A)), <code>rank=#σᵢ&gt;0</code>,
+<code>σ₁=‖A‖_op</code>, and the polar decomposition corollary
+<code>A=UₚH</code>. Most likely a <em>part</em> of the inner-product
+question (built on the spectral theorem you already need).</li>
+<li><strong>Char-p / finite fields</strong> (2018, 2019, 2022, 2023,
+<strong>2025</strong>): a recurring twist on the canonical-form pillar —
+minimal polynomials over 𝔽ₚ, <code>xᵖ−1</code>, Frobenius,
+diagonalisability failing/holding in characteristic p. Increasingly
+common; worth a focused look at how separability (m′=0) interacts with
+diagonalisability.</li>
+<li><strong>Abstract bilinear/sesquilinear forms</strong> (2021, 2025):
+non-degenerate forms, V=W×W′, group actions preserving a form. The
+synopsis names "non-degenerate symmetric bilinear forms ⟺ V≅V′," so this
+is fair game beyond the standard inner product.</li>
+</ul>
+<hr />
+<h2 id="4-strategy-given-best-2-of-3-and-a-bookwork-strong-style">4.
+Strategy, given best-2-of-3 and a bookwork-strong style</h2>
+<ul>
+<li><strong>Bank two pillars completely.</strong> The safest pair is
+<strong>Canonical forms (P) + Dual spaces (D)</strong> — together
+they're ⟦6⟧+⟦3⟧ of synopsis weight, the two heaviest areas, and both are
+almost pure proof with only tiny computations. That alone is designed to
+cover ~2 questions most years.</li>
+<li><strong>Keep the inner-product pillar as your third</strong> — it's
+where the new SVD and the spectral theorem live; a little more variety
+(forms, groups) but still proof-led.</li>
+<li><strong>Memorise cold (Tier 1):</strong> min-poly facts,
+diagonalisability ⟺ distinct linear factors, Primary Decomposition,
+adjoint construction, annihilator dimension formula.</li>
+<li><strong>Learn the SVD now</strong> even though it's never appeared —
+it's the highest expected-value "new" bet for 2026, and it's short.</li>
+<li>The computations that remain (min poly of a small matrix, a JNF,
+Gram–Schmidt, an adjoint matrix) are <strong>bounded, mechanical,
+5-minute</strong> tasks — not the sustained marathons of the A2 contour
+integrals. This paper rewards exactly your strengths.</li>
+</ul>
+<p><em>Caveat: the format and three-pillar structure are extremely
+well-corroborated (10 consistent years). The SVD prediction rests on the
+"new untested syllabus content" heuristic plus the dated notes/synopsis
+— high expected value but inherently a single-shot bet; the char-p and
+forms flavours are trends, not guarantees.</em></p>
+</body></html>

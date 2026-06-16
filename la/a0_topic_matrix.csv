@@ -1,0 +1,28 @@
+Pillar,Topic,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,Count,Synopsis⟦w⟧
+Canonical form,Minimal poly: def / m|f / well-defined,X,X,,X,X,X,,,,X,6,1
+Canonical form,Characteristic poly & coincidence of roots,X,X,,X,,,,,X,X,5,1
+Canonical form,Cayley–Hamilton (state & prove),,X,,,,,X,,,,2,2
+Canonical form,Diagonalisable ⟺ m = distinct linear factors,X,,,X,X,,X,,X,X,6,3
+Canonical form,Triangularisable ⟺ χ/m splits,X,,,,,,,X,,,2,2
+Canonical form,Primary Decomposition Theorem,X,,,X,,,X,X,,X,5,3
+Canonical form,Jordan Normal Form (compute / structure),X,,,,,X,X,X,X,,5,3
+Canonical form,Nilpotent structure (ker filtration),,,X,,X,X,,X,,,4,3
+Canonical form,D+N (Jordan–Chevalley) decomposition,,,,,X,,,,,,1,3
+Canonical form,Quotient spaces / induced maps,,,X,,,X,X,X,,,4,2
+Canonical form,Char p / finite-field twist,,,X,X,,,X,X,,X,5,—
+Dual spaces,"Dual basis / dual space (def, is-a-basis)",X,X,,X,,,,,,X,4,3
+Dual spaces,Dual map = transpose,X,,,X,,,,X,,,3,3
+Dual spaces,Annihilator + dim formula,,X,,X,,,,X,,X,4,3
+Dual spaces,im T′=(ker T)⁰ ; rank T = rank T′,,X,X,X,X,,,,,,4,3
+Dual spaces,V ≅ V″ natural isomorphism,X,,,,,,,,,,1,3
+Dual spaces,U⁰ ≅ (V/U)′,,X,,,,,,,,,1,3
+Dual spaces,Infinite-dim dual subtleties,X,,X,X,X,,,,,,4,—
+Inner product,Bilinear/sesquilinear forms; non-deg ⟺ V≅V′,,,,,,X,,,,X,2,1
+Inner product,Gram–Schmidt / V = U ⊕ U⊥,,,,X,,,X,,X,,3,1
+Inner product,Adjoint: exists / unique / matrix,X,X,X,,,,X,X,X,,6,1
+Inner product,Self-adjoint Spectral Theorem,,X,X,,,,,,X,,3,2
+Inner product,Normal operators (built stepwise),X,,,X,,,,X,,,3,App B*
+Inner product,Positive operators / square roots,,,X,,,,,,,,1,—
+Inner product,Orthogonal/unitary + groups Oₙ SOₙ Uₙ SUₙ,,,,,X,,,,,X,2,2
+Inner product,Real orthogonal canonical form / reflections,,,,,X,,,,,,1,2
+Inner product,Singular Value Decomposition [NEW Oct-2024],,,,,,,,,,,0,2

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Linear Algebra — exam cheat sheet</title>
+<style>
+  :root{ --found:#047857; --foundbg:#ecfdf5; --spine:#b91c1c; --spinebg:#fef2f2;
+         --cons:#2563eb; --consbg:#eff6ff; --head:#b45309; --headbg:#fffbeb; }
+  *{box-sizing:border-box;}
+  body{ width:1600px; margin:0; padding:26px 30px 34px; background:#fff; color:#15191f;
+        font:14.5px/1.42 -apple-system,'Helvetica Neue',Arial,sans-serif; -webkit-font-smoothing:antialiased;}
+  h1{font-size:26px; margin:0 0 2px;}
+  .sub{color:#667; font-size:13px; margin:0 0 14px;}
+  h2.sec{font-size:19px; margin:26px 0 10px; padding-bottom:4px; border-bottom:2px solid #222;}
+  .cols3{column-count:3; column-gap:20px;}
+  .cols2{column-count:2; column-gap:22px;}
+  .band{ column-span:all; -webkit-column-span:all; margin:12px 0 7px; padding:3px 10px;
+         font-weight:700; font-size:13px; letter-spacing:.05em; text-transform:uppercase;
+         color:#fff; background:#475569; border-radius:4px;}
+  .band .w{float:right; font-weight:700; letter-spacing:0; text-transform:none; opacity:.95;}
+  .it{ break-inside:avoid; -webkit-column-break-inside:avoid; border-left:4px solid #999;
+       background:#fafafa; border-radius:0 5px 5px 0; padding:5px 9px 6px; margin:0 0 8px;}
+  .it .nm{font-weight:700;}
+  .it .nu{color:#7a8190; font-weight:600; font-size:12px;}
+  .it .tk{display:block; margin-top:2px;}
+  .it .rs{display:block; margin-top:2px;}
+  .it .rs b{color:#0f172a;}
+  .it .pf{display:block; margin-top:3px; color:#334; font-size:13.5px;}
+  .it .pf::before{content:"↳ "; color:#94a3b8;}
+  .found{border-color:var(--found); background:var(--foundbg);}
+  .spine{border-color:var(--spine); background:var(--spinebg);}
+  .cons{border-color:var(--cons); background:var(--consbg);}
+  .head{border-color:var(--head); background:var(--headbg);}
+  .warn{border-color:var(--head); background:#fff7ed;}
+  .warnnote{color:#9a3412; font-size:12.5px;}
+  em{color:#334; font-style:italic;}
+  code{font-family:ui-monospace,Menlo,monospace; font-size:.92em;}
+</style>
+</head>
+<body>
+
+<h1>Linear Algebra (A0) — one-page exam map</h1>
+<p class="sub">Bands follow the <b>official synopsis</b>; the <b>⟦n⟧</b> badge is its <b>lecture weighting</b>. Heaviest: <b>Primary Decomposition + Jordan ⟦3⟧</b> and <b>Dual spaces ⟦3⟧</b> — revise these hardest. Exam shape (best 2 of 3): <b>Q1</b> ≈ min/char poly · diagonalisation · Cayley–Hamilton · Jordan; <b>Q2</b> ≈ dual spaces; <b>Q3</b> ≈ inner-product / adjoints / spectral. Colours: <span style="color:var(--found)">■ foundations</span> · <span style="color:var(--spine)">■ the engine</span> · <span style="color:var(--cons)">■ structure theory</span> · <span style="color:var(--head)">■ headline / SVD</span>.</p>
+
+<!-- ============================ SECTION 1: TRICKS ============================ -->
+<h2 class="sec">① Trick map — the one move that makes each proof go</h2>
+<div class="cols3">
+
+  <div class="band" style="background:var(--found)">Vector spaces &amp; linear maps<span class="w">⟦1⟧</span></div>
+  <div class="it found"><span class="nm">Maps ↔ matrices</span> <span class="nu">Thm 1.8</span>
+    <span class="tk">T ↦ <sub>B′</sub>[T]<sub>B</sub> is an iso Hom(V,W) ≅ M<sub>m×n</sub>, composition ↦ multiplication. Change of basis: <sub>B′</sub>[T]<sub>B′</sub> = P⁻¹·<sub>B</sub>[T]<sub>B</sub>·P, P = <sub>B</sub>[Id]<sub>B′</sub>. (Columns = coords of T(eⱼ).)</span></div>
+
+  <div class="band" style="background:var(--found)">Rings, F[x], division &amp; Bézout<span class="w">⟦2⟧</span></div>
+  <div class="it found"><span class="nm">Division algorithm + Bézout</span> <span class="nu">Thm 2.8, 2.11</span>
+    <span class="tk">F[x] Euclidean: f=qg+r, deg r&lt;deg g. ⇒ gcd(a,b)=c writes as <b>as+bt=c</b>; every ideal of F[x] is principal. <em>Bézout drives Primary Decomposition.</em></span></div>
+  <div class="it found"><span class="nm">An annihilating polynomial exists</span> <span class="nu">Lem 2.12</span>
+    <span class="tk">dim M<sub>n</sub>(F)=n²&lt;∞ ⇒ {I,A,…,A^(n²)} dependent ⇒ p≠0 with p(A)=0. f(A)g(A)=g(A)f(A); Av=λv ⇒ f(A)v=f(λ)v. (F[A] is a commutative subring; f↦f(A) a ring hom, 1st-iso Thm 2.7.)</span></div>
+
+  <div class="band" style="background:var(--spine)">Characteristic &amp; minimal polynomials<span class="w">⟦1⟧</span></div>
+  <div class="it spine"><span class="nm">Minimal polynomial</span> <span class="nu">Def 2.13, Thm 2.14</span>
+    <span class="tk">m<sub>A</sub> = monic least-degree annihilator. f(A)=0 ⇒ m<sub>A</sub>|f (divide; remainder would be smaller) ⇒ unique. Basis-independent (m<sub>P⁻¹AP</sub>=m<sub>A</sub>).</span></div>
+  <div class="it spine"><span class="nm">Eigenvalue ⟺ root of χ ⟺ root of m</span> <span class="nu">Thm 2.18</span>
+    <span class="tk">χ<sub>A</sub>=det(A−xI). λ eigenvalue ⟺ χ(λ)=0. And m(λ)=0: forward via m(A)v=m(λ)v; reverse m=(x−λ)g, v=g(A)w≠0 is an eigenvector. <em>χ &amp; m share the same roots.</em></span></div>
+
+  <div class="band" style="background:var(--spine)">Quotients · rank–nullity · triangular form · Cayley–Hamilton<span class="w">⟦2⟧</span></div>
+  <div class="it cons"><span class="nm">Quotient V/U &amp; first iso</span> <span class="nu">3.1, 3.5–3.7</span>
+    <span class="tk">Cosets v+U well-defined since U absorbs. Extend basis of U ⇒ <b>dim V=dim U+dim(V/U)</b>; V/ker T ≅ im T ⇒ rank–nullity.</span></div>
+  <div class="it cons"><span class="nm">Induced map on V/U</span> <span class="nu">3.8, 3.9, 4.3</span>
+    <span class="tk">T̄(v+U)=T(v)+U well-defined ⟺ U is T-invariant. Basis through U ⇒ block upper-triangular matrix ⇒ χ<sub>T</sub>=χ<sub>T|U</sub>·χ<sub>T̄</sub>.</span></div>
+  <div class="it spine"><span class="nm">Triangularisable ⟺ χ splits</span> <span class="nu">Thm 4.5</span>
+    <span class="tk">Induct: eigenvector v₁ (root of χ), pass to V/⟨v₁⟩ (χ drops a factor, dim drops 1), triangularise, lift. ⟺ m<sub>T</sub> splits into linear factors.</span></div>
+  <div class="it spine"><span class="nm">Cayley–Hamilton</span> <span class="nu">Thm 4.8</span>
+    <span class="tk">Over F̄ triangularise (diag λ₁…λₙ); ∏(A−λᵢI)=0 since (A−λᵢI) drops the flag ⟨e₁..eᵢ⟩→⟨e₁..eᵢ₋₁⟩. ⇒ χ<sub>T</sub>(T)=0, <b>m<sub>T</sub>|χ<sub>T</sub></b>. <span class="warnnote">"det(A−A·I)=0" is NOT a proof.</span></span></div>
+
+  <div class="band" style="background:var(--spine)">Primary Decomposition, diagonalisability &amp; Jordan<span class="w">⟦3⟧ heaviest</span></div>
+  <div class="it spine"><span class="nm">Coprime splitting</span> <span class="nu">Prop 5.1</span>
+    <span class="tk">f=ab, gcd=1, f(T)=0 ⇒ V=ker a(T)⊕ker b(T), T-invariant. <em>Trick: as+bt=1 ⇒ a(T)s(T)+b(T)t(T)=I gives the projections.</em></span></div>
+  <div class="it spine"><span class="nm">Primary Decomposition Theorem</span> <span class="nu">Thm 5.2</span>
+    <span class="tk">m<sub>T</sub>=∏fᵢ^qᵢ (distinct irreducible) ⇒ V=⊕ker fᵢ(T)^qᵢ, T-invariant, m<sub>T|Wᵢ</sub>=fᵢ^qᵢ. Induct on r via 5.1.</span></div>
+  <div class="it spine"><span class="nm">Diagonalisable ⟺ m = distinct linear factors</span> <span class="nu">Thm 5.4</span>
+    <span class="tk">⇐ 5.2 ⇒ V=⊕ker(T−λᵢI)=eigenspaces. ⇒ diagonal T killed by ∏(x−λᵢ) over distinct eigenvalues. (Triangularisable ⟺ m splits into linear factors, not nec. distinct.)</span></div>
+  <div class="it spine"><span class="nm">Nilpotent ⇒ Jordan basis</span> <span class="nu">Thm 6.1</span>
+    <span class="tk">N nilpotent ⇒ m=xᵐ; strict flag ker Nⁱ. Lift bases of ker Nⁱ/ker Nⁱ⁻¹, push down by N (stays independent) ⇒ Jordan strings.</span></div>
+  <div class="it spine"><span class="nm">Jordan Normal Form</span> <span class="nu">Cor 6.3, Thm 6.4</span>
+    <span class="tk">Primary decomp + shift λI on each ker(T−λᵢI)^mᵢ. <b>#blocks Jᵢ(λ)</b> from dim ker(T−λI)ᵏ ⇒ unique up to order. Exists over C.</span></div>
+  <div class="it cons"><span class="nm">D+N decomposition</span> <span class="nu">A0 2020 Q1</span>
+    <span class="tk">Over C, T=D+N uniquely, D diagonalisable, N nilpotent, DN=ND (diag &amp; strictly-upper parts of JNF).</span></div>
+
+  <div class="band" style="background:var(--cons)">Dual spaces<span class="w">⟦3⟧ heaviest</span></div>
+  <div class="it cons"><span class="nm">Dual basis &amp; double dual</span> <span class="nu">Thm 7.3, 7.5</span>
+    <span class="tk">e′ᵢ(eⱼ)=δᵢⱼ is a basis (dim V′=dim V). V ≅ V″ <b>naturally</b> via v↦E<sub>v</sub>, E<sub>v</sub>(f)=f(v) — no basis; V≅V′ is <em>not</em> natural.</span></div>
+  <div class="it cons"><span class="nm">Annihilator + dimension formula</span> <span class="nu">Thm 7.8, 7.11</span>
+    <span class="tk">U⁰={f: f|<sub>U</sub>=0}. Dual vectors of the non-U basis span it ⇒ <b>dim U⁰=dim V−dim U</b>. Also U⁰ ≅ (V/U)′ and U⁰⁰ ≅ U.</span></div>
+  <div class="it cons"><span class="nm">Dual map = transpose</span> <span class="nu">Def 7.12, Thm 7.15</span>
+    <span class="tk">T′:W′→V′, f↦f∘T. In dual bases <b>[T′]=[T]ᵀ</b> ⇒ T,T′ share rank, χ, m. <em>im T′=(ker T)⁰, ker T′=(im T)⁰.</em></span></div>
+
+  <div class="band" style="background:var(--cons)">Inner products: forms, Gram–Schmidt, complements<span class="w">⟦1⟧</span></div>
+  <div class="it cons"><span class="nm">Forms ⟺ map V→V′</span> <span class="nu">§8, 8.7</span>
+    <span class="tk">Bilinear (R) / sesquilinear conjugate-symmetric (C); <b>non-degenerate ⟺ v↦⟨v,·⟩ : V→V′ is injective</b> (iso in finite dim). Positive-definite ⇒ non-degenerate (not conversely — Minkowski).</span></div>
+  <div class="it cons"><span class="nm">Gram–Schmidt &amp; orthogonal complement</span> <span class="nu">8.6, 8.10, 8.11</span>
+    <span class="tk">wₖ=vₖ−Σ⟨wᵢ,vₖ⟩/⟨wᵢ,wᵢ⟩wᵢ, normalise ⇒ ON basis; ON basis of U extends to V ⇒ <b>V=U⊕U⊥</b>, (U⊥)⊥=U, U⊥↔U⁰. <span class="warnnote">U⊕U⊥=V can fail in ∞ dim.</span></span></div>
+
+  <div class="band" style="background:var(--cons)">Adjoints<span class="w">⟦1⟧</span></div>
+  <div class="it spine"><span class="nm">Adjoint: exists, unique, = conjugate transpose</span> <span class="nu">8.13–8.16</span>
+    <span class="tk">⟨v,Tw⟩=⟨T*v,w⟩. Unique by non-degeneracy; exists in finite dim via Riesz (w↦⟨v,Tw⟩ is a functional). In an <b>orthonormal</b> basis [T*]=[T]<sup>†</sup>. <span class="warnnote">ON basis essential.</span> (S+T)*=S*+T*, (λT)*=λ̄T*, (ST)*=T*S*, m<sub>T*</sub>=m̄<sub>T</sub>.</span></div>
+
+  <div class="band" style="background:var(--head)">Orthogonal/unitary maps, groups, spectral diagonalisation &amp; SVD<span class="w">⟦2⟧</span></div>
+  <div class="it spine"><span class="nm">Spectral Theorem (self-adjoint)</span> <span class="nu">8.19–8.21</span>
+    <span class="tk">T*=T ⇒ eigenvalues real (λ⟨w,w⟩=⟨Tw,w⟩=λ̄⟨w,w⟩); U T-invariant ⇒ U⊥ too ⇒ induct ⇒ <b>orthonormal eigenbasis</b>.</span></div>
+  <div class="it cons"><span class="nm">Orthogonal/unitary = isometry; the groups</span> <span class="nu">8.22–8.26</span>
+    <span class="tk">T*=T⁻¹ ⟺ preserves ⟨,⟩ ⟺ preserves length; |λ|=1, |det|=1. Groups O<sub>n</sub>⊃SO<sub>n</sub>, U<sub>n</sub>⊃SU<sub>n</sub> (Def 8.25). Unitary ⇒ ON eigenbasis (8.29).</span></div>
+  <div class="it cons"><span class="nm">Real orthogonal canonical form</span> <span class="nu">Thm 8.32</span>
+    <span class="tk">Real orthogonal T ⇒ ON basis with blocks I, −I, rotations R<sub>θ</sub>. Trick: S=T+T⁻¹ self-adjoint splits V; on each piece T²−λT+I=0 ⇒ rotation.</span></div>
+  <div class="it head"><span class="nm">Singular Value Decomposition</span> <span class="nu">Thm 9.1, Cor 9.2</span>
+    <span class="tk">A=UΣV*, U,V ON columns, Σ=diag(σ₁≥…≥0). Spectral theorem on A*A=VD²V* (positive-semidef); σᵢ=√λᵢ(A*A), U=AVD⁻¹. rank=#σᵢ&gt;0, σ₁=‖A‖<sub>op</sub>; polar A=UₚH.</span></div>
+  <div class="it warn"><span class="nm">Normal operators</span> <span class="nu">notes App. B — not in synopsis</span>
+    <span class="tk">TT*=T*T ⇒ ‖Tv‖=‖T*v‖ ⇒ Tv=λv⇒T*v=λ̄v ⇒ ON eigenbasis over C. <span class="warnnote">Not a synopsis item, but exams (’15,’19,’23) build it stepwise from self-adjoint tools — know the building blocks, not as quotable bookwork.</span></span></div>
+
+</div>
+
+<!-- ============================ SECTION 2: SKETCHES ============================ -->
+<h2 class="sec">② Result + proof sketch — same order</h2>
+<div class="cols2">
+
+  <div class="band" style="background:var(--found)">Vector spaces, rings, polynomials<span class="w">⟦1⟧+⟦2⟧</span></div>
+  <div class="it found"><span class="nm">Maps ↔ matrices; division &amp; Bézout; ∃ annihilator</span> <span class="nu">1.8, 2.8–2.12</span>
+    <span class="rs"><b>Result:</b> Hom(V,W)≅M<sub>m×n</sub> (composition→product); F[x] has f=qg+r ⇒ gcd=as+bt &amp; principal ideals; every A has p≠0 with p(A)=0.</span>
+    <span class="pf">Matrix columns = T(eⱼ) coords. Division/Bézout by induction on degree. Annihilator: n²+1 powers of A dependent in the n²-dim M<sub>n</sub>(F).</span></div>
+
+  <div class="band" style="background:var(--spine)">Characteristic &amp; minimal polynomials<span class="w">⟦1⟧</span></div>
+  <div class="it spine"><span class="nm">m well-defined, m|f; the three coincide</span> <span class="nu">Thm 2.14, 2.18</span>
+    <span class="rs"><b>Result:</b> ∃! monic m<sub>A</sub> with p(A)=0 ⟺ m<sub>A</sub>|p; and {eigenvalues} = {roots of χ} = {roots of m}.</span>
+    <span class="pf">p=q·m<sub>A</sub>+r, p(A)=0 ⇒ r(A)=0, deg r&lt;deg m ⇒ r=0. χ(λ)=0 ⟺ A−λI singular ⟺ eigenvalue; m(A)v=m(λ)v ⇒ m(λ)=0; converse via v=g(A)w for m=(x−λ)g.</span></div>
+
+  <div class="band" style="background:var(--spine)">Quotients, rank–nullity, triangular form, Cayley–Hamilton<span class="w">⟦2⟧</span></div>
+  <div class="it cons"><span class="nm">Quotient, first iso, rank–nullity, induced map</span> <span class="nu">3.1–3.9, 4.3</span>
+    <span class="rs"><b>Result:</b> dim V=dim U+dim(V/U); V/ker T≅im T ⇒ rank–nullity; U T-invariant ⇒ T̄ on V/U well-defined, χ<sub>T</sub>=χ<sub>T|U</sub>·χ<sub>T̄</sub>.</span>
+    <span class="pf">Images of basis vectors outside U give a basis of V/U. T̄(v+ker T)=Tv is an iso onto im T. Block-triangular matrix in a basis through U.</span></div>
+  <div class="it spine"><span class="nm">Triangular form &amp; Cayley–Hamilton</span> <span class="nu">Thm 4.5, 4.8</span>
+    <span class="rs"><b>Result:</b> χ splits ⇒ ∃ basis with T upper-triangular (always over C); χ<sub>T</sub>(T)=0, hence m<sub>T</sub>|χ<sub>T</sub>.</span>
+    <span class="pf">Triangular: induct via an eigenvector and V/⟨v₁⟩. C–H: over F̄ triangularise; each (A−λᵢI) lowers the standard flag, so ∏(A−λᵢI)=χ(A)=0 (Prop 4.7).</span></div>
+
+  <div class="band" style="background:var(--spine)">Primary Decomposition, diagonalisability &amp; Jordan<span class="w">⟦3⟧ heaviest</span></div>
+  <div class="it spine"><span class="nm">Primary Decomposition Theorem</span> <span class="nu">Prop 5.1, Thm 5.2</span>
+    <span class="rs"><b>Result:</b> m<sub>T</sub>=∏fᵢ^qᵢ ⇒ V=⊕ker fᵢ(T)^qᵢ, T-invariant, m<sub>T|Wᵢ</sub>=fᵢ^qᵢ.</span>
+    <span class="pf">Two-factor: as+bt=1 ⇒ I=a(T)s(T)+b(T)t(T); summands are the kernels, intersection 0. Induct on number of prime factors.</span></div>
+  <div class="it spine"><span class="nm">Diagonalisability criterion</span> <span class="nu">Thm 5.4</span>
+    <span class="rs"><b>Result:</b> T diagonalisable ⟺ m<sub>T</sub> = product of <em>distinct</em> linear factors.</span>
+    <span class="pf">⇐ 5.2 gives V=⊕ eigenspaces. ⇒ diagonal T annihilated by ∏(x−λᵢ) over distinct eigenvalues, each a root of m.</span></div>
+  <div class="it spine"><span class="nm">Jordan Normal Form (existence &amp; uniqueness)</span> <span class="nu">Thm 6.1, 6.4</span>
+    <span class="rs"><b>Result:</b> over C every T has a JNF, unique up to block order; #blocks Jᵢ(λ) read from dim ker(T−λI)ᵏ.</span>
+    <span class="pf">Nilpotent case: strict flag ker Nⁱ, lift quotient bases and push down by N into Jordan strings. General: primary decomposition, then shift by λᵢI on each generalised eigenspace.</span></div>
+
+  <div class="band" style="background:var(--cons)">Dual spaces<span class="w">⟦3⟧ heaviest</span></div>
+  <div class="it cons"><span class="nm">Dual basis, double dual, annihilator</span> <span class="nu">7.3, 7.5, 7.8, 7.11</span>
+    <span class="rs"><b>Result:</b> {e′ᵢ} a basis (dim V′=dim V); V≅V″ naturally; dim U⁰=dim V−dim U; U⁰≅(V/U)′.</span>
+    <span class="pf">Independence/spanning of dual basis by evaluating at eⱼ. E<sub>v</sub> injective + equal dims ⇒ iso. U⁰ spanned by dual vectors of the non-U basis vectors.</span></div>
+  <div class="it cons"><span class="nm">Dual map is the transpose</span> <span class="nu">7.12–7.15</span>
+    <span class="rs"><b>Result:</b> [T′]=[T]ᵀ in dual bases; im T′=(ker T)⁰; T,T′ share rank, χ, m.</span>
+    <span class="pf">(T′x′ᵢ)(eⱼ)=x′ᵢ(Teⱼ)=aᵢⱼ ⇒ transpose. rank = n−dim ker = dim(ker T)⁰; transpose ⇒ same χ, m.</span></div>
+
+  <div class="band" style="background:var(--cons)">Inner products: forms, Gram–Schmidt, complements<span class="w">⟦1⟧</span></div>
+  <div class="it cons"><span class="nm">Non-deg form ⟺ V≅V′; Gram–Schmidt; V=U⊕U⊥</span> <span class="nu">8.6, 8.7, 8.10</span>
+    <span class="rs"><b>Result:</b> v↦⟨v,·⟩ is injective (iso in finite dim) ⟺ non-degenerate; every finite-dim IP space has an ON basis; V=U⊕U⊥.</span>
+    <span class="pf">Gram–Schmidt orthogonalises by subtracting projections. ϕ injective by non-degeneracy + equal dims ⇒ onto. ON basis of U extends ⇒ complement is U⊥.</span></div>
+
+  <div class="band" style="background:var(--spine)">Adjoints<span class="w">⟦1⟧</span></div>
+  <div class="it spine"><span class="nm">Adjoint exists, unique, = conjugate transpose</span> <span class="nu">8.14–8.16</span>
+    <span class="rs"><b>Result:</b> ∃! linear T* with ⟨v,Tw⟩=⟨T*v,w⟩; in an ON basis [T*]=[T]<sup>†</sup>.</span>
+    <span class="pf">Uniqueness: non-degeneracy. Existence: w↦⟨v,Tw⟩ is a functional ⇒ Riesz gives T*v. Matrix: bᵢⱼ=⟨eᵢ,T*eⱼ⟩=⟨Teᵢ,eⱼ⟩‾=a‾ⱼᵢ.</span></div>
+
+  <div class="band" style="background:var(--head)">Orthogonal/unitary, groups, spectral diagonalisation &amp; SVD<span class="w">⟦2⟧</span></div>
+  <div class="it spine"><span class="nm">Spectral Theorem; isometries; canonical form</span> <span class="nu">8.21, 8.23, 8.29, 8.32</span>
+    <span class="rs"><b>Result:</b> self-adjoint ⇒ real eigenvalues + ON eigenbasis; T*=T⁻¹ ⟺ preserves ⟨,⟩ ⟺ preserves length; unitary ⇒ ON eigenbasis; real orthogonal ⇒ blocks I,−I,R<sub>θ</sub>.</span>
+    <span class="pf">Self-adjoint: real eigenvalues, U⊥ invariant, induct. Isometry equivalences by expanding ⟨T*Tv,w⟩ + polarisation. Real form: S=T+T⁻¹ self-adjoint splits V; T²−λT+I=0 on each piece.</span></div>
+  <div class="it head"><span class="nm">Singular Value Decomposition</span> <span class="nu">Thm 9.1, Cor 9.2</span>
+    <span class="rs"><b>Result:</b> any A∈F<sup>m×n</sup>=UΣV* (U,V ON columns, Σ=diag σ₁≥…≥0); σᵢ=√(λᵢ of A*A); rank=#σᵢ&gt;0; σ₁=‖A‖<sub>op</sub>; polar A=UₚH.</span>
+    <span class="pf">A*A is positive-semidefinite ⇒ spectral theorem A*A=VD²V*. B=AV has orthogonal columns; U=BD⁻¹ on the nonzero block, extend to ON columns ⇒ A=UΣV*.</span></div>
+
+</div>
+
+</body>
+</html>
