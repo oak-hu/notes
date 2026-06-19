@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>A0 Linear Algebra 2025 — model solutions</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+   body{max-width:52rem;margin:2.2rem auto;padding:0 1.2rem;font:17px/1.62 Georgia,'Times New Roman',serif;color:#1a1a1a;}
+   h1{font-size:1.6rem;line-height:1.25;} h2{font-size:1.3rem;margin-top:2rem;border-bottom:2px solid #4f46e5;padding-bottom:4px;color:#26204f;}
+   h3{font-size:1.08rem;margin-top:1.5rem;color:#3b3470;}
+   table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:14.5px;} th,td{border:1px solid #ccc;padding:6px 9px;text-align:left;vertical-align:top;}
+   th{background:#eef0ff;} code{background:#f1f1ea;padding:1px 4px;border-radius:3px;font-size:.92em;}
+   .back{font-size:.9rem;} a{color:#0a58ca;text-decoration:none;} hr{border:none;border-top:1px solid #ddd;margin:1.5rem 0;}
+   em{color:#444;}
+  </style>
+  <p class="back"><a href="../">← all courses</a> · <a href="la.html">revision overview</a> · <a href="a0_analysis.html">exam analysis</a></p>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">A0 Linear Algebra 2025 — model solutions</h1>
+</header>
+<h1 id="a0-linear-algebra-2025-model-solutions">A0 Linear Algebra 2025 —
+model solutions</h1>
+<p><em>Worked solutions to the Trinity 2025 paper (A0, Linear Algebra).
+Conventions follow the course notes: <span
+class="math inline">\(V&#39;=\operatorname{Hom}(V,F)\)</span>, <span
+class="math inline">\(\chi_T(x)=\det(T-xI)\)</span>, inner products /
+sesquilinear forms are <strong>conjugate-linear in the first
+slot</strong>.</em></p>
+<hr />
+<h2 id="question-1">Question 1</h2>
+<h3 id="ai-definitions">(a)(i) Definitions</h3>
+<p>The <strong>dual space</strong> of <span
+class="math inline">\(V\)</span> is <span
+class="math inline">\(V&#39;=\operatorname{Hom}(V,F)\)</span>, the
+vector space of linear functionals <span class="math inline">\(f:V\to
+F\)</span>. For a subspace <span class="math inline">\(W\subseteq
+V\)</span>, the <strong>annihilator</strong> of <span
+class="math inline">\(W\)</span> is <span
+class="math display">\[W^{0}=\{f\in V&#39;\;:\;f(w)=0\ \text{for all
+}w\in W\}.\]</span></p>
+<h3 id="aii-dim-w0-dim-v---dim-w">(a)(ii) <span
+class="math inline">\(\dim W^0 = \dim V - \dim W\)</span></h3>
+<p>Let <span class="math inline">\(\dim V=n\)</span>, <span
+class="math inline">\(\dim W=k\)</span>. Pick a basis <span
+class="math inline">\(e_1,\dots,e_k\)</span> of <span
+class="math inline">\(W\)</span> and extend it to a basis <span
+class="math inline">\(e_1,\dots,e_n\)</span> of <span
+class="math inline">\(V\)</span>; let <span
+class="math inline">\(e_1&#39;,\dots,e_n&#39;\)</span> be the dual basis
+(<span class="math inline">\(e_i&#39;(e_j)=\delta_{ij}\)</span>). I
+claim <span class="math inline">\(W^0=\langle
+e_{k+1}&#39;,\dots,e_n&#39;\rangle\)</span>.</p>
+<ul>
+<li>For <span class="math inline">\(j&gt;k\)</span>: <span
+class="math inline">\(e_j&#39;(e_i)=0\)</span> for all <span
+class="math inline">\(i\le k\)</span>, so <span
+class="math inline">\(e_j&#39;\)</span> vanishes on a basis of <span
+class="math inline">\(W\)</span>, hence on <span
+class="math inline">\(W\)</span>. Thus <span
+class="math inline">\(e_j&#39;\in W^0\)</span>.</li>
+<li>Conversely if <span class="math inline">\(f=\sum_{i=1}^n a_i
+e_i&#39;\in W^0\)</span>, then for <span class="math inline">\(i\le
+k\)</span> we have <span class="math inline">\(e_i\in W\)</span>, so
+<span class="math inline">\(a_i=f(e_i)=0\)</span>. Hence <span
+class="math inline">\(f\in\langle
+e_{k+1}&#39;,\dots,e_n&#39;\rangle\)</span>.</li>
+</ul>
+<p>These <span class="math inline">\(n-k\)</span> functionals are part
+of the dual basis, so are linearly independent. Therefore <span
+class="math inline">\(\dim W^0=n-k=\dim V-\dim W\)</span>. <span
+class="math inline">\(\qquad\blacksquare\)</span></p>
+<h3 id="b-vmathbbrx_le-d-basis-1xdotsxd-dim-vd1">(b) <span
+class="math inline">\(V=\mathbb{R}[x]_{\le d}\)</span>, basis <span
+class="math inline">\(\{1,x,\dots,x^d\}\)</span>, <span
+class="math inline">\(\dim V=d+1\)</span></h3>
+<p>A computation used throughout: for <span class="math inline">\(0\le
+i,j\le d\)</span>, <span
+class="math display">\[\delta_i(x^j)=\left.\frac{d^i}{dx^i}x^j\right|_{0}=j(j-1)\cdots(j-i+1)\,x^{\,j-i}\Big|_0=\begin{cases}
+i! &amp; j=i\\ 0 &amp; j\ne i,\end{cases}\qquad\text{i.e. }
+\delta_i(x^j)=i!\,\delta_{ij}. \tag{$\star$}\]</span></p>
+<h3 id="bi-delta_iin-v">(b)(i) <span class="math inline">\(\delta_i\in
+V&#39;\)</span></h3>
+<p>Differentiation <span class="math inline">\(f\mapsto f^{(i)}\)</span>
+is linear and maps polynomials to polynomials, and evaluation at <span
+class="math inline">\(0\)</span> is linear; their composite <span
+class="math inline">\(\delta_i:f\mapsto f^{(i)}(0)\)</span> is therefore
+a linear map <span class="math inline">\(V\to\mathbb{R}\)</span>,
+i.e. <span class="math inline">\(\delta_i\in V&#39;\)</span>.</p>
+<h3 id="bii-delta_i0le-ile-d-is-a-basis-of-v">(b)(ii) <span
+class="math inline">\(\{\delta_i:0\le i\le d\}\)</span> is a basis of
+<span class="math inline">\(V&#39;\)</span></h3>
+<p>There are <span class="math inline">\(d+1\)</span> of them and <span
+class="math inline">\(\dim V&#39;=\dim V=d+1\)</span>, so it suffices to
+prove linear independence. Suppose <span
+class="math inline">\(\sum_{i=0}^d c_i\delta_i=0\)</span>. Applying this
+to <span class="math inline">\(x^j\)</span> and using <span
+class="math inline">\((\star)\)</span> gives <span
+class="math inline">\(c_j\,j!=0\)</span>, so <span
+class="math inline">\(c_j=0\)</span> for every <span
+class="math inline">\(j\)</span>. Hence they are independent, and being
+<span class="math inline">\(d+1\)</span> independent vectors in a <span
+class="math inline">\((d+1)\)</span>-dimensional space, they form a
+basis. <span class="math inline">\(\qquad\blacksquare\)</span></p>
+<p><em>(Equivalently, <span class="math inline">\((\star)\)</span> says
+<span class="math inline">\(\delta_i=i!\,b_i\)</span> where <span
+class="math inline">\(\{b_i\}\)</span> is the dual basis to <span
+class="math inline">\(\{x^i\}\)</span>.)</em></p>
+<h3 id="biii-iint_01-as-a-combination-of-the-delta_i">(b)(iii) <span
+class="math inline">\(I=\int_0^1\)</span> as a combination of the <span
+class="math inline">\(\delta_i\)</span></h3>
+<p><span class="math inline">\(I(f)=\int_0^1 f\)</span> is linear, so
+<span class="math inline">\(I\in V&#39;\)</span>. Since the <span
+class="math inline">\(\delta_i\)</span> form a basis, <span
+class="math inline">\(I=\sum_{i=0}^d c_i\delta_i\)</span> for unique
+<span class="math inline">\(c_i\)</span>. Evaluate both sides on <span
+class="math inline">\(x^j\)</span> using <span
+class="math inline">\((\star)\)</span> and <span
+class="math inline">\(I(x^j)=\int_0^1 x^j\,dx=\tfrac1{j+1}\)</span>:
+<span class="math display">\[\frac1{j+1}=I(x^j)=\Big(\sum_i
+c_i\delta_i\Big)(x^j)=c_j\,j!\quad\Longrightarrow\quad
+c_j=\frac{1}{(j+1)\,j!}=\frac{1}{(j+1)!}.\]</span> Therefore <span
+class="math display">\[\boxed{\,I=\sum_{i=0}^{d}\frac{1}{(i+1)!}\,\delta_i\,.}\]</span></p>
+<h3 id="biv-minimal-and-characteristic-polynomials-of-t">(b)(iv) Minimal
+and characteristic polynomials of <span
+class="math inline">\(T\)</span></h3>
+<p>Write <span class="math inline">\(f=\sum_{j=0}^d a_j x^j\)</span>. By
+<span class="math inline">\((\star)\)</span>, <span
+class="math inline">\(\delta_i(f)=i!\,a_i\)</span>, so <span
+class="math inline">\(\dfrac{\delta_i(f)}{i!}=a_i\)</span> and <span
+class="math display">\[T f=\sum_{i=0}^d
+\frac{x^{d-i}}{i!}\,\delta_i(f)=\sum_{i=0}^d a_i\,x^{d-i}.\]</span> Thus
+<span class="math inline">\(T\)</span> <strong>reverses
+coefficients</strong>: <span
+class="math inline">\(T(x^j)=x^{d-j}\)</span>. Its matrix in the basis
+<span class="math inline">\(\{1,x,\dots,x^d\}\)</span> is the <span
+class="math inline">\((d+1)\times(d+1)\)</span> exchange (anti-identity)
+matrix. Consequently <span
+class="math display">\[T^2(x^j)=T(x^{d-j})=x^{j}\quad\Longrightarrow\quad
+T^2=\mathrm{Id}.\]</span> So <span class="math inline">\(m_T\mid
+x^2-1=(x-1)(x+1)\)</span>. For <span
+class="math inline">\(d\ge1\)</span>, <span
+class="math inline">\(T\ne\pm\mathrm{Id}\)</span> (e.g. <span
+class="math inline">\(T(1)=x^d\ne 1\)</span>), and both eigenvalues
+occur — <span class="math inline">\(1+x^d\)</span> is a <span
+class="math inline">\((+1)\)</span>-eigenvector and <span
+class="math inline">\(x^d-1\)</span> a <span
+class="math inline">\((-1)\)</span>-eigenvector. Hence <span
+class="math display">\[\boxed{\,m_T(x)=x^2-1=(x-1)(x+1).}\]</span> In
+particular <span class="math inline">\(T\)</span> is diagonalisable
+(distinct linear factors). The <span
+class="math inline">\((+1)\)</span>-eigenspace is the symmetric
+polynomials (<span class="math inline">\(a_j=a_{d-j}\)</span>) and the
+<span class="math inline">\((-1)\)</span>-eigenspace the antisymmetric
+ones (<span class="math inline">\(a_j=-a_{d-j}\)</span>). Counting (with
+<span class="math inline">\(m=d+1\)</span> coefficients): the <span
+class="math inline">\((+1)\)</span>-space has dimension <span
+class="math inline">\(\lceil m/2\rceil\)</span> and the <span
+class="math inline">\((-1)\)</span>-space <span
+class="math inline">\(\lfloor m/2\rfloor\)</span>. Hence (monic form)
+<span class="math display">\[\boxed{\,\chi_T(x)=\pm(x-1)^{\lceil
+(d+1)/2\rceil}(x+1)^{\lfloor (d+1)/2\rfloor},}\]</span> the sign being
+<span class="math inline">\((-1)^{d+1}\)</span> under the convention
+<span class="math inline">\(\chi_T=\det(T-xI)\)</span>. Concretely: if
+<span class="math inline">\(d\)</span> is odd, both exponents are <span
+class="math inline">\(\tfrac{d+1}2\)</span>; if <span
+class="math inline">\(d\)</span> is even, they are <span
+class="math inline">\(\tfrac{d+2}2\)</span> and <span
+class="math inline">\(\tfrac d2\)</span>.</p>
+<hr />
+<h2 id="question-2">Question 2</h2>
+<h3 id="ai-unitary">(a)(i) Unitary</h3>
+<p><span class="math inline">\(T:V\to V\)</span> is
+<strong>unitary</strong> if <span
+class="math inline">\(T^*T=TT^*=\mathrm{Id}\)</span> (equivalently <span
+class="math inline">\(T^*=T^{-1}\)</span>; equivalently <span
+class="math inline">\(\langle Tv,Tw\rangle=\langle v,w\rangle\)</span>
+for all <span class="math inline">\(v,w\)</span>).</p>
+<h3 id="aii-a-unitary-map-has-an-orthonormal-eigenbasis">(a)(ii) A
+unitary map has an orthonormal eigenbasis</h3>
+<p>Induct on <span class="math inline">\(n=\dim V\)</span>. The case
+<span class="math inline">\(n=0\)</span> is vacuous. Since <span
+class="math inline">\(\mathbb C\)</span> is algebraically closed, <span
+class="math inline">\(\chi_T\)</span> has a root <span
+class="math inline">\(\lambda\)</span>, giving a unit eigenvector <span
+class="math inline">\(v\)</span>, <span class="math inline">\(Tv=\lambda
+v\)</span>. From <span class="math inline">\(\langle v,v\rangle=\langle
+Tv,Tv\rangle=|\lambda|^2\langle v,v\rangle\)</span> we get <span
+class="math inline">\(|\lambda|=1\)</span>, so <span
+class="math inline">\(\lambda\ne0\)</span> and <span
+class="math inline">\(T^*v=T^{-1}v=\lambda^{-1}v\)</span>; thus <span
+class="math inline">\(U=\langle v\rangle\)</span> is invariant under
+both <span class="math inline">\(T\)</span> and <span
+class="math inline">\(T^*\)</span>.</p>
+<p><span class="math inline">\(U^\perp\)</span> is <span
+class="math inline">\(T\)</span>-invariant: for <span
+class="math inline">\(w\in U^\perp\)</span> and <span
+class="math inline">\(u\in U\)</span>, <span
+class="math display">\[\langle u,Tw\rangle=\langle
+T^*u,w\rangle=0\qquad(\text{since }T^*u\in U,\ w\in U^\perp),\]</span>
+so <span class="math inline">\(Tw\in U^\perp\)</span>. The restriction
+<span class="math inline">\(T|_{U^\perp}\)</span> is again unitary (it
+preserves the inner product). By induction <span
+class="math inline">\(U^\perp\)</span> has an orthonormal eigenbasis;
+adjoining <span class="math inline">\(v\)</span> gives one for <span
+class="math inline">\(V\)</span>. <span
+class="math inline">\(\qquad\blacksquare\)</span></p>
+<h3 id="b-the-hermitian-form-on-mathbbc3">(b) The Hermitian form on
+<span class="math inline">\(\mathbb{C}^3\)</span></h3>
+<p>With the convention that the form is conjugate-linear in the first
+slot, <span class="math display">\[\langle
+z,w\rangle=\overline{z_3}w_1-\overline{z_2}w_2+\overline{z_1}w_3=z^*Hw,\qquad
+H=\begin{pmatrix}0&amp;0&amp;1\\0&amp;-1&amp;0\\1&amp;0&amp;0\end{pmatrix},\]</span>
+where <span class="math inline">\(z^*\)</span> is the conjugate
+transpose. Note <span class="math inline">\(H=H^*\)</span>
+(Hermitian).</p>
+<h3 id="bi-non-degeneracy">(b)(i) Non-degeneracy</h3>
+<p>A sesquilinear form is <strong>non-degenerate</strong> if <span
+class="math inline">\(\langle v,w\rangle=0\)</span> for all <span
+class="math inline">\(w\)</span> forces <span
+class="math inline">\(v=0\)</span> — equivalently its Gram matrix is
+non-singular. Here <span class="math display">\[\det
+H=1\cdot\det\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}=1\neq0,\]</span>
+so <span class="math inline">\(H\)</span> is invertible and <strong>the
+form is non-degenerate.</strong></p>
+<h3 id="bii-positive-definiteness">(b)(ii) Positive definiteness</h3>
+<p>Positive definite means <span class="math inline">\(\langle
+v,v\rangle&gt;0\)</span> for all <span
+class="math inline">\(v\ne0\)</span>. Take <span
+class="math inline">\(v=(0,1,0)\)</span>: <span
+class="math inline">\(\langle v,v\rangle=-|1|^2=-1&lt;0\)</span> (indeed
+<span class="math inline">\(v=(1,0,0)\)</span> gives <span
+class="math inline">\(\langle v,v\rangle=0\)</span>, an isotropic
+vector). So <strong>the form is not positive definite</strong> — its
+signature is <span class="math inline">\((1,2)\)</span>, the eigenvalues
+of <span class="math inline">\(H\)</span> being <span
+class="math inline">\(+1,-1,-1\)</span>.</p>
+<h3 id="biii-jordan-forms-in-ncap-u">(b)(iii) Jordan forms in <span
+class="math inline">\(N\cap U\)</span></h3>
+<p><span class="math inline">\(U=\{A:\langle Av,Aw\rangle=\langle
+v,w\rangle\ \forall v,w\}=\{A:A^*HA=H\}\)</span>. For <span
+class="math inline">\(A=\begin{pmatrix}1&amp;x&amp;y\\0&amp;1&amp;z\\0&amp;0&amp;1\end{pmatrix}\in
+N\)</span>, compute <span
+class="math display">\[A^*HA=\begin{pmatrix}0&amp;0&amp;1\\[2pt]0&amp;-1&amp;\bar
+x-z\\[2pt]1&amp;x-\bar z&amp;\;y+\bar y-|z|^2\end{pmatrix}.\]</span>
+Setting <span class="math inline">\(A^*HA=H\)</span> gives <span
+class="math inline">\(z=\bar x\)</span> and <span
+class="math inline">\(2\operatorname{Re}(y)=|x|^2\)</span>. Hence <span
+class="math display">\[N\cap
+U=\left\{\begin{pmatrix}1&amp;x&amp;y\\0&amp;1&amp;\bar
+x\\0&amp;0&amp;1\end{pmatrix}:x\in\mathbb C,\
+\operatorname{Re}(y)=\tfrac12|x|^2\right\}\quad(\text{the Heisenberg
+group}).\]</span> Every such <span class="math inline">\(A\)</span> is
+unipotent (only eigenvalue <span class="math inline">\(1\)</span>), so
+its Jordan type is read off from <span
+class="math display">\[A-I=\begin{pmatrix}0&amp;x&amp;y\\0&amp;0&amp;\bar
+x\\0&amp;0&amp;0\end{pmatrix},\qquad
+(A-I)^2=\begin{pmatrix}0&amp;0&amp;|x|^2\\0&amp;0&amp;0\\0&amp;0&amp;0\end{pmatrix}.\]</span></p>
+<table>
+<thead>
+<tr>
+<th>condition</th>
+<th><span class="math inline">\((A-I)^2\)</span></th>
+<th><span class="math inline">\((A-I)\)</span></th>
+<th>Jordan form</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(x\ne0\)</span></td>
+<td><span class="math inline">\(\ne0\)</span></td>
+<td>rank <span class="math inline">\(2\)</span></td>
+<td><span class="math inline">\(J_3(1)\)</span></td>
+<td><span class="math inline">\(x=1,\,y=\tfrac12,\,z=1\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(x=0,\ y\ne0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td>rank <span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(J_2(1)\oplus J_1(1)\)</span></td>
+<td><span class="math inline">\(x=0,\,y=i\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(x=0,\ y=0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(I_3=J_1\oplus J_1\oplus
+J_1\)</span></td>
+<td><span class="math inline">\(A=I\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>(When <span class="math inline">\(x=0\)</span> the constraint forces
+<span class="math inline">\(\operatorname{Re}(y)=0\)</span>, so <span
+class="math inline">\(y\)</span> is purely imaginary; <span
+class="math inline">\(y=i\)</span> is admissible.) So the <strong>three
+possible Jordan normal forms are <span
+class="math inline">\(I_3\)</span>, <span
+class="math inline">\(\,J_2(1)\oplus J_1(1)\)</span>, and <span
+class="math inline">\(J_3(1)\)</span></strong>, with the examples above:
+<span class="math display">\[I,\qquad
+\begin{pmatrix}1&amp;0&amp;i\\0&amp;1&amp;0\\0&amp;0&amp;1\end{pmatrix},\qquad
+\begin{pmatrix}1&amp;1&amp;\tfrac12\\0&amp;1&amp;1\\0&amp;0&amp;1\end{pmatrix}.\]</span></p>
+<h3 id="biv-u-acts-transitively-on-isotropic-lines">(b)(iv) <span
+class="math inline">\(U\)</span> acts transitively on isotropic
+lines</h3>
+<p>Let <span class="math inline">\(\mathcal L=\{L:\dim L=1,\ \langle
+v,v\rangle=0\ \forall v\in L\}\)</span>. First, <span
+class="math inline">\(e_3=(0,0,1)\)</span> is isotropic (<span
+class="math inline">\(\langle e_3,e_3\rangle=0\)</span>), so <span
+class="math inline">\(L_0=\langle e_3\rangle\in\mathcal L\)</span>. I
+show <span class="math inline">\(U\cdot L_0=\mathcal L\)</span>.</p>
+<p><strong>Lines with nonzero third coordinate.</strong> For <span
+class="math inline">\(A\in N\cap U\)</span> as above, <span
+class="math inline">\(A e_3=(y,\bar x,1)\)</span>. As <span
+class="math inline">\(x\)</span> ranges over <span
+class="math inline">\(\mathbb C\)</span> and <span
+class="math inline">\(y\)</span> over <span
+class="math inline">\(\{\operatorname{Re}(y)=\tfrac12|x|^2\}\)</span>,
+the vectors <span class="math inline">\((y,\bar x,1)\)</span> are
+exactly the isotropic vectors with third coordinate <span
+class="math inline">\(1\)</span>: writing <span
+class="math inline">\((\alpha,\beta,1)\)</span> with <span
+class="math inline">\(\alpha=y,\beta=\bar x\)</span>, the isotropy
+condition <span
+class="math inline">\(\langle(\alpha,\beta,1),(\alpha,\beta,1)\rangle=2\operatorname{Re}(\alpha)-|\beta|^2=0\)</span>
+is precisely <span
+class="math inline">\(\operatorname{Re}(y)=\tfrac12|x|^2\)</span>. Now
+any isotropic line with a representative <span
+class="math inline">\(v=(a,b,c)\)</span>, <span
+class="math inline">\(c\ne0\)</span>, equals <span
+class="math inline">\(\langle(a/c,b/c,1)\rangle\)</span> with <span
+class="math inline">\((a/c,b/c,1)\)</span> isotropic; so some <span
+class="math inline">\(A\in N\cap U\)</span> sends <span
+class="math inline">\(e_3\)</span> into it, giving <span
+class="math inline">\(A\,L_0=\langle v\rangle\)</span>.</p>
+<p><strong>Lines with zero third coordinate.</strong> If <span
+class="math inline">\(c=0\)</span>, isotropy forces <span
+class="math inline">\(2\operatorname{Re}(\bar a\cdot
+0)-|b|^2=-|b|^2=0\)</span>, so <span class="math inline">\(b=0\)</span>
+and the line is <span class="math inline">\(\langle e_1\rangle\)</span>.
+The real permutation <span
+class="math inline">\(S=\begin{pmatrix}0&amp;0&amp;1\\0&amp;1&amp;0\\1&amp;0&amp;0\end{pmatrix}\)</span>
+swaps the indices <span class="math inline">\(1,3\)</span>; since <span
+class="math inline">\(H\)</span> is symmetric under this swap, <span
+class="math inline">\(S^*HS=H\)</span>, so <span
+class="math inline">\(S\in U\)</span>, and <span
+class="math inline">\(S\,e_3=e_1\)</span>, giving <span
+class="math inline">\(S\,L_0=\langle e_1\rangle\)</span>.</p>
+<p>Every isotropic line falls into one of these two cases, so <span
+class="math inline">\(U\cdot L_0=\mathcal L\)</span>: <span
+class="math inline">\(U\)</span> acts transitively. <span
+class="math inline">\(\qquad\blacksquare\)</span></p>
+<hr />
+<h2 id="question-3">Question 3</h2>
+<h3 id="a-minimal-polynomial-well-definedness">(a) Minimal polynomial,
+well-definedness</h3>
+<p>The <strong>minimal polynomial</strong> <span
+class="math inline">\(m_T\)</span> is the monic polynomial of least
+degree with <span class="math inline">\(m_T(T)=0\)</span>.</p>
+<p><em>Existence:</em> <span
+class="math inline">\(\operatorname{End}(V)\)</span> has dimension <span
+class="math inline">\(n^2\)</span> (<span class="math inline">\(n=\dim
+V\)</span>), so <span class="math inline">\(I,T,\dots,T^{n^2}\)</span>
+are linearly dependent, giving a nonzero annihilating polynomial;
+scaling to monic and taking least degree gives a candidate.
+<em>Uniqueness:</em> if <span class="math inline">\(m_1,m_2\)</span> are
+both monic of least degree with <span
+class="math inline">\(m_i(T)=0\)</span>, then <span
+class="math inline">\(m_1-m_2\)</span> annihilates <span
+class="math inline">\(T\)</span> and has smaller degree, so it must be
+<span class="math inline">\(0\)</span>. Equivalently, <span
+class="math inline">\(\{p\in F[x]:p(T)=0\}\)</span> is a nonzero ideal
+of the principal ideal domain <span class="math inline">\(F[x]\)</span>,
+generated by a unique monic polynomial, namely <span
+class="math inline">\(m_T\)</span>. <span
+class="math inline">\(\qquad\blacksquare\)</span></p>
+<h3 id="bi-vw_foplus-w_g-primary-decomposition-two-factor-case">(b)(i)
+<span class="math inline">\(V=W_f\oplus W_g\)</span> (Primary
+Decomposition, two-factor case)</h3>
+<p>Since <span class="math inline">\(f,g\)</span> are distinct monic
+irreducibles, <span class="math inline">\(f^a\)</span> and <span
+class="math inline">\(g^b\)</span> are coprime, so by Bézout there are
+<span class="math inline">\(s,t\in F[x]\)</span> with <span
+class="math display">\[s f^a+t g^b=1.\tag{$\dagger$}\]</span> Put <span
+class="math inline">\(W_f=\ker f(T)^a\)</span>, <span
+class="math inline">\(W_g=\ker g(T)^b\)</span> (both <span
+class="math inline">\(T\)</span>-invariant, as <span
+class="math inline">\(f(T)^a\)</span> and <span
+class="math inline">\(g(T)^b\)</span> commute with <span
+class="math inline">\(T\)</span>). Evaluating <span
+class="math inline">\((\dagger)\)</span> at <span
+class="math inline">\(T\)</span> and applying to <span
+class="math inline">\(v\in V\)</span>: <span
+class="math display">\[v=\underbrace{t(T)g(T)^b\,v}_{\in\,W_f}+\underbrace{s(T)f(T)^a\,v}_{\in\,W_g},\]</span>
+because <span class="math inline">\(f(T)^a\big(t(T)g(T)^b
+v\big)=t(T)m_T(T)v=0\)</span> and likewise for the other term. So <span
+class="math inline">\(V=W_f+W_g\)</span>. If <span
+class="math inline">\(v\in W_f\cap W_g\)</span> then <span
+class="math inline">\((\dagger)\)</span> gives <span
+class="math inline">\(v=t(T)g(T)^b v+s(T)f(T)^a v=0+0=0\)</span>. Hence
+<span class="math inline">\(V=W_f\oplus W_g\)</span>.</p>
+<p>For the minimal polynomials: <span
+class="math inline">\(f(T)^a\)</span> kills <span
+class="math inline">\(W_f\)</span>, so <span
+class="math inline">\(m_{T|W_f}\mid f^a\)</span>, forcing <span
+class="math inline">\(m_{T|W_f}=f^c\)</span> with <span
+class="math inline">\(c\le a\)</span>; similarly <span
+class="math inline">\(m_{T|W_g}=g^d\)</span>, <span
+class="math inline">\(d\le b\)</span>. On the direct sum the minimal
+polynomial of <span class="math inline">\(T\)</span> is <span
+class="math inline">\(\operatorname{lcm}(f^c,g^d)=f^c g^d\)</span>
+(coprime factors). But this equals <span class="math inline">\(m_T=f^a
+g^b\)</span>, so <span class="math inline">\(c=a\)</span>, <span
+class="math inline">\(d=b\)</span>. Thus <span
+class="math inline">\(m_{T|W_f}=f^a\)</span> and <span
+class="math inline">\(m_{T|W_g}=g^b\)</span>. <span
+class="math inline">\(\qquad\blacksquare\)</span></p>
+<h3
+id="bii-the-induced-map-on-voperatornameimft-and-its-minimal-polynomial">(b)(ii)
+The induced map on <span
+class="math inline">\(V/\operatorname{im}f(T)\)</span> and its minimal
+polynomial</h3>
+<p><span class="math inline">\(\operatorname{im}f(T)\)</span> is <span
+class="math inline">\(T\)</span>-invariant, since <span
+class="math inline">\(T\big(f(T)v\big)=f(T)(Tv)\in\operatorname{im}f(T)\)</span>.
+By the induced-map lemma, <span class="math inline">\(\overline
+T(v+\operatorname{im}f(T))=Tv+\operatorname{im}f(T)\)</span> is a
+well-defined linear map on the quotient.</p>
+<p>Using <span class="math inline">\(V=W_f\oplus W_g\)</span>: on <span
+class="math inline">\(W_g\)</span> the minimal polynomial is <span
+class="math inline">\(g^b\)</span>, coprime to <span
+class="math inline">\(f\)</span>, so <span
+class="math inline">\(f(T)|_{W_g}\)</span> is invertible and <span
+class="math inline">\(f(T)W_g=W_g\)</span>; on <span
+class="math inline">\(W_f\)</span>, <span
+class="math inline">\(f(T)\)</span> is “nilpotent” (<span
+class="math inline">\(f(T)^a|_{W_f}=0\)</span>). Hence <span
+class="math display">\[\operatorname{im}f(T)=f(T)W_f\oplus W_g,\qquad
+V/\operatorname{im}f(T)\;\cong\;W_f/f(T)W_f,\]</span> and <span
+class="math inline">\(\overline T\)</span> corresponds to the map
+induced by <span class="math inline">\(S:=T|_{W_f}\)</span> on <span
+class="math inline">\(W_f/f(S)W_f\)</span>. Now <span
+class="math inline">\(f(S)\)</span> sends <span
+class="math inline">\(W_f\)</span> into <span
+class="math inline">\(f(S)W_f\)</span>, i.e. into <span
+class="math inline">\(0\)</span> modulo <span
+class="math inline">\(f(S)W_f\)</span>, so <span
+class="math inline">\(f(\overline T)=0\)</span> on the quotient. Thus
+<span class="math inline">\(m_{\overline T}\mid f\)</span>. Since <span
+class="math inline">\(f\)</span> is irreducible and the quotient <span
+class="math inline">\(W_f/f(S)W_f\)</span> is nonzero (<span
+class="math inline">\(f(S)\)</span> is not surjective on <span
+class="math inline">\(W_f\)</span>, being non-invertible), <span
+class="math inline">\(m_{\overline T}\ne 1\)</span>. Therefore <span
+class="math display">\[\boxed{\,m_{\overline T}(x)=f(x).}\]</span>
+<em>(Sanity check: a single Jordan block <span
+class="math inline">\(J_a(\lambda)\)</span> with <span
+class="math inline">\(f=x-\lambda\)</span> has <span
+class="math inline">\(f(S)\)</span> the shift, <span
+class="math inline">\(W_f/\operatorname{im}f(S)\)</span> one-dimensional
+with <span class="math inline">\(\overline T=\lambda\)</span>, minimal
+polynomial <span class="math inline">\(x-\lambda=f\)</span>.)</em></p>
+<h3 id="c-characteristic-p0">(c) Characteristic <span
+class="math inline">\(p&gt;0\)</span></h3>
+<h3 id="ci-a-matrix-in-m_pf-with-minimal-polynomial-xp-1">(c)(i) A
+matrix in <span class="math inline">\(M_p(F)\)</span> with minimal
+polynomial <span class="math inline">\(x^p-1\)</span></h3>
+<p>In characteristic <span class="math inline">\(p\)</span>, <span
+class="math inline">\(x^p-1=(x-1)^p\)</span>. The <span
+class="math inline">\(p\times p\)</span> cyclic permutation (companion)
+matrix <span
+class="math display">\[A=\begin{pmatrix}0&amp;0&amp;\cdots&amp;0&amp;1\\1&amp;0&amp;\cdots&amp;0&amp;0\\0&amp;1&amp;\cdots&amp;0&amp;0\\
+\vdots&amp; &amp;\ddots&amp;
+&amp;\vdots\\0&amp;0&amp;\cdots&amp;1&amp;0\end{pmatrix}\]</span>
+satisfies <span class="math inline">\(A^p=I\)</span>, so its minimal
+polynomial divides <span class="math inline">\(x^p-1\)</span>; being a
+companion matrix it is cyclic, so its minimal polynomial equals its
+characteristic polynomial <span class="math inline">\(x^p-1\)</span>.
+Hence <span class="math inline">\(m_A(x)=x^p-1\ (=(x-1)^p)\)</span>.
+<em>(Equivalently take the single Jordan block <span
+class="math inline">\(J_p(1)=I+N\)</span> with <span
+class="math inline">\(N\)</span> the nilpotent shift: <span
+class="math inline">\((A-I)^p=N^p=0\)</span>, <span
+class="math inline">\((A-I)^{p-1}\ne0\)</span>, so <span
+class="math inline">\(m_A=(x-1)^p=x^p-1\)</span>.)</em></p>
+<h3 id="cii-tpk-is-diagonalisable-over-overline-f-for-some-kge1">(c)(ii)
+<span class="math inline">\(T^{p^k}\)</span> is diagonalisable over
+<span class="math inline">\(\overline F\)</span> for some <span
+class="math inline">\(k\ge1\)</span></h3>
+<p>Recall (the hint): an irreducible <span
+class="math inline">\(f\)</span> is <strong>separable</strong> — has no
+repeated root in <span class="math inline">\(\overline F\)</span> — iff
+<span class="math inline">\(f&#39;\ne0\)</span>, because a repeated root
+of <span class="math inline">\(f\)</span> is a common root of <span
+class="math inline">\(f\)</span> and <span
+class="math inline">\(f&#39;\)</span>, and <span
+class="math inline">\(\gcd(f,f&#39;)\mid f\)</span> is nontrivial only
+if <span class="math inline">\(f&#39;=0\)</span> (as <span
+class="math inline">\(\deg f&#39;&lt;\deg f\)</span> and <span
+class="math inline">\(f\)</span> irreducible).</p>
+<p>Set <span class="math inline">\(m_0=m_T\)</span>. By hypothesis <span
+class="math inline">\(m_0&#39;\equiv0\)</span>. Over characteristic
+<span class="math inline">\(p\)</span>, a polynomial has zero derivative
+iff every exponent appearing is a multiple of <span
+class="math inline">\(p\)</span>, i.e. <span
+class="math inline">\(m_0(x)=m_1(x^p)\)</span> for some <span
+class="math inline">\(m_1\in F[x]\)</span>. Moreover <span
+class="math inline">\(m_1\)</span> is irreducible: a factorisation <span
+class="math inline">\(m_1=uv\)</span> would give <span
+class="math inline">\(m_0(x)=u(x^p)v(x^p)\)</span>, contradicting
+irreducibility of <span class="math inline">\(m_0\)</span>. If <span
+class="math inline">\(m_1&#39;\equiv0\)</span> as well, repeat: <span
+class="math inline">\(m_1(x)=m_2(x^p)\)</span> with <span
+class="math inline">\(m_2\)</span> irreducible, and so on. Since <span
+class="math inline">\(\deg m_{i+1}=\tfrac1p\deg m_i\)</span> strictly
+decreases, the process stops at some <span
+class="math inline">\(k\ge1\)</span> with <span
+class="math display">\[m_T(x)=m_k\!\left(x^{p^k}\right),\qquad m_k\
+\text{irreducible with}\ m_k&#39;\ne0.\]</span> By the hint, <span
+class="math inline">\(m_k\)</span> is separable, hence squarefree (its
+roots in <span class="math inline">\(\overline F\)</span> are
+distinct).</p>
+<p>Now <span class="math inline">\(m_T(T)=0\)</span> reads <span
+class="math inline">\(m_k\!\big(T^{p^k}\big)=0\)</span>, so the minimal
+polynomial of <span class="math inline">\(S:=T^{p^k}\)</span> divides
+the squarefree polynomial <span class="math inline">\(m_k\)</span>, and
+is therefore itself squarefree with distinct roots in <span
+class="math inline">\(\overline F\)</span> — i.e. a product of distinct
+linear factors over <span class="math inline">\(\overline F\)</span>. By
+the diagonalisability criterion, <span
+class="math inline">\(S=T^{p^k}\)</span> is diagonalisable over <span
+class="math inline">\(\overline F\)</span>, with <span
+class="math inline">\(k\ge1\)</span>. <span
+class="math inline">\(\qquad\blacksquare\)</span></p>
+</body>
+</html>
