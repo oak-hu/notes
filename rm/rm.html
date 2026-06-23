@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rings &amp; Modules — Revision Overview</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','svg'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root{
+    --def:#2563eb; --thm:#b91c1c; --lem:#047857; --ex:#b45309; --rem:#6b7280; --warn:#d97706;
+    --defbg:#eff6ff; --thmbg:#fef2f2; --lembg:#ecfdf5; --exbg:#fffbeb; --rembg:#f9fafb;
+    --ink:#1f2430; --accent:#7c3aed;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#fcfcfa; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 120px;}
+  header.site{background:#2e1065; color:#ede9fe; padding:38px 22px 30px; margin-bottom:26px;}
+  header.site h1{margin:0 0 6px; font-size:1.9rem; font-weight:normal; letter-spacing:.5px;}
+  header.site p{margin:4px 0; color:#c4b5fd; max-width:920px;}
+  header.site .inner{max-width:920px;margin:0 auto;}
+  header.site a{color:#c4b5fd;}
+  nav.toc{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:14px 20px; margin-bottom:30px; font-size:.95rem;}
+  nav.toc b{color:var(--accent)}
+  nav.toc a{color:#333; text-decoration:none; border-bottom:1px dotted #bbb;}
+  nav.toc a:hover{color:var(--accent)}
+  nav.toc ul{margin:4px 0 10px; padding-left:22px; columns:2; column-gap:36px;}
+  nav.toc li{margin:2px 0; break-inside:avoid;}
+  h2{font-size:1.5rem; border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:56px; color:#3b0764;}
+  h3{font-size:1.18rem; margin-top:38px; color:#5b21b6;}
+  h4{margin-top:28px;}
+  .card{border-left:5px solid var(--rem); background:var(--rembg); border-radius:0 8px 8px 0; padding:12px 18px 10px; margin:18px 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:99px; color:#fff; margin-right:8px; vertical-align:2px;}
+  .card .name{font-weight:bold;}
+  .def{border-color:var(--def); background:var(--defbg);} .def .tag{background:var(--def);}
+  .thm{border-color:var(--thm); background:var(--thmbg);} .thm .tag{background:var(--thm);}
+  .lem{border-color:var(--lem); background:var(--lembg);} .lem .tag{background:var(--lem);}
+  .ex{border-color:var(--ex); background:var(--exbg);} .ex .tag{background:var(--ex);}
+  .rem{border-color:var(--rem); background:var(--rembg);} .rem .tag{background:var(--rem);}
+  .warn{border-color:var(--warn); background:#fff7ed;} .warn .tag{background:var(--warn);}
+  .hyp{margin:8px 0 4px;}
+  .hyp ul, .stmt ul, .card ul{margin:4px 0 8px; padding-left:24px;}
+  .card li{margin:3px 0;}
+  details.sk{margin:10px 0 6px; border-top:1px dashed #c9c9bf; padding-top:6px;}
+  details.sk summary{cursor:pointer; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#5b21b6;}
+  details.sk[open] summary{margin-bottom:4px;}
+  .nonex{font-family:Arial,sans-serif; font-size:.7rem; background:#ede9fe; color:#5b21b6; border-radius:4px; padding:1px 6px; vertical-align:2px;}
+  .num{color:#777; font-weight:normal;}
+  figure{margin:22px auto; text-align:center;}
+  figcaption{font-size:.88rem; color:#666; max-width:680px; margin:8px auto 0;}
+  table{border-collapse:collapse; width:100%; font-size:.93rem; margin:16px 0;}
+  th,td{border:1px solid #ddd; padding:7px 10px; text-align:left; vertical-align:top;}
+  th{background:#f3effe;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.85rem; margin:12px 0;}
+  .legend span{padding:2px 10px; border-radius:99px; border:1px solid #ccc; background:#fff;}
+  .graphbox{background:#fff; border:1px solid #e3e3dd; border-radius:12px; padding:10px; overflow-x:auto;}
+  svg text{font-family:'Helvetica Neue',Arial,sans-serif;}
+  svg a{cursor:pointer;}
+  svg a:hover rect{stroke-width:2.5;}
+  code{font-size:.92em; background:#f1f1ea; padding:1px 4px; border-radius:3px;}
+  .abbr{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:10px 18px; font-size:.92rem;}
+  .abbr b{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="site"><div class="inner">
+<h1>Rings &amp; Modules — Revision Overview</h1>
+<p>A skimmable map of the Algebra II "Rings and Modules" notes (McGerty/Lauder): every key definition, every theorem with hypotheses spelled out, proof sketches, and the dependency graph.</p>
+<p style="font-size:.88rem">Numbering follows the notes (Oxford A3). Companion pages: <a href="../msca/ca.html">Complex Analysis →</a> &nbsp; <a href="../msca/ms.html">Metric Spaces →</a> &nbsp; <a href="../la/la.html">Linear Algebra →</a></p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+<b>Contents</b>
+<ul>
+<li><a href="#graph">0. The big picture (dependency graph)</a></li>
+<li><a href="#ch1">1. Rings, subrings, homomorphisms, $R[t]$</a></li>
+<li><a href="#ch2">2. Domains, units, field of fractions</a></li>
+<li><a href="#ch3">3. Ideals, quotients, iso theorems, CRT</a></li>
+<li><a href="#ch4">4. Prime/maximal ideals; Euclidean &amp; PIDs</a></li>
+<li><a href="#ch5">5. Fields, the tower law, minimal polynomials</a></li>
+<li><a href="#ch6">6. Unique factorisation (ED⊊PID⊊UFD)</a></li>
+<li><a href="#ch7">7. Modules: definition &amp; examples</a></li>
+<li><a href="#ch8">8. Quotient modules &amp; iso theorems</a></li>
+<li><a href="#ch9">9. Free, torsion, torsion-free; Hom=matrix</a></li>
+<li><a href="#ch10">10. Smith normal form</a></li>
+<li><a href="#ch11">11. The structure theorem</a></li>
+<li><a href="#ch12">12. Rational &amp; Jordan canonical forms</a></li>
+<li><a href="#ch13">13–15. Appendices (convolution, $\mathbb Z$, PID≠ED)</a></li>
+<li><a href="#hyps">Ring-class cheat-sheet</a></li>
+<li><a href="#cex">Counterexample gallery</a></li>
+</ul>
+<div class="abbr">
+<b>Conventions (these notes).</b> Rings have a <b>1</b>; the zero ring is allowed. <b>Commutative from the end of §1 onward.</b> Fields require $1\neq0$. $\;$ <b>ID</b> = integral domain · <b>ED</b> = Euclidean domain · <b>PID</b> = principal ideal domain · <b>UFD</b> = unique factorisation domain · <b>f.g.</b> = finitely generated · $I\lhd R$ = "$I$ is an ideal of $R$" · $R^\times$ = units · $R/I$ = quotient ring · $\langle T\rangle$ = ideal generated by $T$.
+<span class="nonex">non-exam</span> = non-examinable in the notes.
+</div>
+<div class="legend">
+<span style="border-left:5px solid var(--def)">Definition</span>
+<span style="border-left:5px solid var(--thm)">Theorem / Corollary</span>
+<span style="border-left:5px solid var(--lem)">Lemma / Proposition</span>
+<span style="border-left:5px solid var(--ex)">Example / technique</span>
+<span style="border-left:5px solid var(--warn)">Warning / counterexample</span>
+</div>
+</nav>
+
+<h2 id="graph">0 &nbsp;The big picture</h2>
+<p>One foundation, two big arcs. <b>Foundations:</b> rings → ideals → quotients, with the dictionary $R/I$ is a domain $\iff I$ prime, a field $\iff I$ maximal. <b>Arc 1 — the factorisation tower:</b> $\textbf{ED}\Rightarrow\textbf{PID}\Rightarrow\textbf{UFD}$, with $\mathbb Z$ and $k[t]$ the running examples, feeding field theory. <b>Arc 2 — the structure theorem:</b> Smith normal form → present a module by a relation matrix → structure theorem → rational &amp; Jordan canonical forms (via "a $k[t]$-module = a vector space with an operator"). Red = the load-bearing chains.</p>
+
+<figure class="graphbox">
+<svg viewBox="0 0 1100 880" width="100%" style="min-width:880px">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+</marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+</marker>
+</defs>
+<style>
+.nl{font-size:13px; fill:#1f2430; text-anchor:middle; font-weight:600;}
+.ns{font-size:10.5px; fill:#555; text-anchor:middle;}
+.eg{stroke:#999; stroke-width:1.5; fill:none; marker-end:url(#arr);}
+.eb{stroke:#b91c1c; stroke-width:2.6; fill:none; marker-end:url(#arrR);}
+</style>
+<path class="eg" d="M560,40 L700,40"/>
+<path class="eg" d="M430,66 L430,106"/>
+<path class="eg" d="M560,55 C660,95 700,130 720,150"/>
+<path class="eg" d="M455,158 L472,250"/>
+<path class="eg" d="M305,214 C330,235 345,248 358,256"/>
+<path class="eg" d="M825,558 L825,586"/>
+<path class="eg" d="M610,638 C620,665 660,682 700,692"/>
+<path class="eb" d="M170,236 L166,304"/>
+<path class="eb" d="M165,354 L165,382"/>
+<path class="eb" d="M165,434 L165,474"/>
+<path class="eb" d="M165,524 L165,584"/>
+<path class="eb" d="M825,202 L825,270"/>
+<path class="eb" d="M825,322 L825,388"/>
+<path class="eb" d="M825,440 L825,506"/>
+<path class="eb" d="M885,558 C1015,600 1015,660 908,690"/>
+<a href="#ch3"><rect x="300" y="14" width="260" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="430" y="36">Rings · ideals · quotients</text><text class="ns" x="430" y="54">§1–3 (Def 1.1, 3.2, Thm 3.12)</text></a>
+<a href="#cor-316"><rect x="700" y="14" width="200" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="800" y="36">Iso theorems · CRT</text><text class="ns" x="800" y="54">Cor 3.16, Thm 3.18</text></a>
+<a href="#lem-42"><rect x="290" y="106" width="280" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/><text class="nl" x="430" y="128">R/I domain ⟺ prime; field ⟺ maximal</text><text class="ns" x="430" y="146">Lemma 4.2</text></a>
+<a href="#lem-47"><rect x="35" y="184" width="270" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/><text class="nl" x="170" y="206">Division algorithm ⟹ k[t] a PID</text><text class="ns" x="170" y="224">4.6, 4.7; ℤ[i] Euclidean 4.12</text></a>
+<a href="#lem-413"><rect x="40" y="304" width="250" height="50" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="165" y="325">ED ⟹ PID</text><text class="ns" x="165" y="343">Lemma 4.13</text></a>
+<a href="#lem-417"><rect x="40" y="382" width="250" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/><text class="nl" x="165" y="404">irreducible ⟺ prime (in a PID)</text><text class="ns" x="165" y="422">Lemma 4.17</text></a>
+<a href="#thm-68"><rect x="40" y="474" width="250" height="50" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="165" y="495">PID ⟹ UFD</text><text class="ns" x="165" y="513">Thm 6.8 (ACC + irred=prime)</text></a>
+<a href="#thm-616"><rect x="40" y="584" width="250" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/><text class="nl" x="165" y="606">Gauss ⟹ ℤ[t], R[t] UFD</text><text class="ns" x="165" y="624">6.12–6.19</text></a>
+<a href="#ch5"><rect x="350" y="250" width="250" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="475" y="272">Fields: k[t]/⟨f⟩, tower law</text><text class="ns" x="475" y="290">§5 · min poly 5.7, Cor 5.5</text></a>
+<a href="#ch7"><rect x="690" y="150" width="270" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="825" y="172">Modules; submodule of free is free</text><text class="ns" x="825" y="190">§7 · Prop 9.7 (over a PID)</text></a>
+<a href="#cor-912"><rect x="690" y="270" width="270" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/><text class="nl" x="825" y="292">Hom of free modules = matrix</text><text class="ns" x="825" y="310">9.12–9.17 (up to A ∼ PAQ)</text></a>
+<a href="#thm-103"><rect x="690" y="388" width="270" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="825" y="410">Smith normal form (over an ED)</text><text class="ns" x="825" y="428">Thm 10.3 — the algorithm</text></a>
+<a href="#thm-114"><rect x="690" y="506" width="270" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="825" y="528">Structure theorem (invariant factors)</text><text class="ns" x="825" y="546">Thm 11.4</text></a>
+<a href="#cor-117"><rect x="690" y="586" width="270" height="52" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="825" y="608">f.g. abelian groups · torsion-free⟹free</text><text class="ns" x="825" y="626">11.6, 11.7 · primary form 11.9</text></a>
+<a href="#lem-121"><rect x="540" y="586" width="128" height="52" rx="9" fill="#ecfdf5" stroke="#047857" stroke-width="1.8"/><text class="nl" x="604" y="607">k[t]-mod</text><text class="ns" x="604" y="625">= (V, T)</text></a>
+<a href="#thm-124"><rect x="640" y="690" width="320" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="800" y="712">Rational &amp; Jordan canonical forms</text><text class="ns" x="800" y="730">Thm 12.4 (RCF, any field) + Jordan</text></a>
+<a href="#ch6"><rect x="110" y="800" width="380" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/><text class="nl" x="300" y="822">↔ ED ⊊ PID ⊊ UFD strict tower</text><text class="ns" x="300" y="840">ℤ[√−19] PID≠ED · ℤ[t] UFD≠PID · ℤ[√−17] non-UFD</text></a>
+</svg>
+<figcaption><b>Red = the two load-bearing chains</b> (the factorisation tower on the left, the structure-theorem spine on the right). Omitted for readability: the iso theorems (§3) are reused verbatim for modules (§8); k[t] being a Euclidean domain is what lets Smith normal form run over it; Lemma 4.17 (irreducible ⟺ prime in a PID) supplies <em>both</em> the uniqueness half of PID⟹UFD <em>and</em> the "k[t]/⟨f⟩ is a field" used throughout §5. The amber box links to the strict-containment tower.</figcaption>
+</figure>
+
+<h2 id="ch1">1 &nbsp;Rings, subrings, homomorphisms, $R[t]$</h2>
+
+<div class="card def" id="def-ring">
+<span class="tag">Def</span><span class="name">Ring; subring; homomorphism; characteristic</span> <span class="num">(1.1–1.8)</span>
+<ul>
+<li><b>Ring</b> $(R,+,\times,0,1)$: $(R,+)$ abelian group, $\times$ associative with identity $1$, distributive. <b>Convention:</b> rings <em>have a 1</em>; the zero ring ($1=0$) is allowed; <b>commutative from the end of §1 on</b>.</li>
+<li><b>Subring</b> (1.3): contains $0,1$, closed under $+,\times$. <b>Criterion (1.4):</b> $S\subseteq R$ is a subring $\iff 1\in S$ and $s_1-s_2, s_1s_2\in S$ (subgroup test + closure).</li>
+<li><b>Homomorphism</b> (1.5): $f(1)=1$, additive, multiplicative. (Because $f(1)=1$ is required, <b>kernels are never subrings</b> — they're ideals.) Iso = bijective hom.</li>
+<li><b>Characteristic</b> (1.8): the $d\ge0$ with $\{n\cdot 1_R\}\cong\mathbb Z/d\mathbb Z$ (image of the unique hom $\mathbb Z\to R$, the smallest subring).</li>
+</ul>
+</div>
+
+<div class="card ex">
+<span class="tag">Ex</span><span class="name">The example zoo</span> <span class="num">(1.2, 1.7)</span>
+<ul>
+<li>$\mathbb Z$, $\mathbb Z/n\mathbb Z$, fields $\mathbb Q,\mathbb R,\mathbb C$; $\mathbb Z[i]$ (Gaussian integers, "$\mathbb Z$-like" — future PID); $M_n(k)$ and $\mathrm{End}(V)$ (noncommutative); $R\oplus S$, $R^X$.</li>
+<li><b>Polynomials are not functions:</b> over $\mathbb Z/2\mathbb Z$ there are only finitely many functions $R\to R$ but $R[t]$ is infinite.</li>
+<li>$\mathbb C\cong\left\{\begin{pmatrix}a&-b\\b&a\end{pmatrix}:a,b\in\mathbb R\right\}\subseteq M_2(\mathbb R)$ (1.7iv).</li>
+</ul>
+</div>
+
+<div class="card lem" id="lem-110">
+<span class="tag">Lemma</span><span class="name">$R[t]$ via convolution; evaluation homomorphisms</span> <span class="num">(§1.1, 1.10)</span>
+<div class="stmt">$R[t]$ is built rigorously as finitely-supported sequences $\mathbb N\to R$ with convolution $(f*g)(n)=\sum_{k+l=n}f(k)g(l)$ (a subring of the power series ring $R[[t]]$). <b>Lemma 1.10:</b> a hom $\Phi:R[t]\to S$ is determined by, and freely specified by, the pair $(\phi=\Phi|_R,\ s=\Phi(t))$ — "say where the coefficients go and where $t$ goes."</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>$\Phi(\sum a_it^i)=\sum\phi(a_i)s^i$ is forced (uniqueness) and is checked to be a hom (existence).</li>
+</ul></details>
+</div>
+
+<h2 id="ch2">2 &nbsp;Domains, units, field of fractions</h2>
+
+<div class="card def" id="def-domain">
+<span class="tag">Def</span><span class="name">Integral domain; units</span> <span class="num">(2.1, 2.5)</span>
+<ul>
+<li><b>ID</b>: nonzero ring with no zero-divisors ($ab=0\Rightarrow a=0$ or $b=0$) $\iff$ cancellation holds.</li>
+<li><b>Units</b> $R^\times$ form a group: $\mathbb Z^\times=\{\pm1\}$, $k^\times=k\setminus\{0\}$, $M_n(k)^\times=GL_n(k)$.</li>
+<li><b>2.3/2.4:</b> a subring of an ID is an ID; $\operatorname{char}$ of an ID (hence a field) is $0$ or prime. A finite ID is a field (2.7).</li>
+</ul>
+</div>
+
+<div class="card thm" id="prop-29">
+<span class="tag">Prop</span><span class="name">Field of fractions + its universal property</span> <span class="num">(2.8, 2.9)</span>
+<div class="hyp"><b>Hyp:</b> $R$ an <b>integral domain</b> (cancellation is exactly what the construction needs).</div>
+<div class="stmt"><b>Then:</b> $F(R)=\{a/b: b\neq0\}/\!\sim$ (with $a/b\sim c/d\iff ad=bc$) is a field, $R\hookrightarrow F(R)$. <b>Universal property (2.9):</b> any embedding $\theta:R\hookrightarrow k$ into a field extends <em>uniquely</em> to $\tilde\theta:F(R)\hookrightarrow k$ — so $F(R)$ is the smallest field containing $R$ ($\mathbb Q$ from $\mathbb Z$).</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>$\sim$ is an equivalence relation (transitivity uses cancellation — why an ID is needed); operations well-defined; $a/b\neq0\Rightarrow b/a$ inverse.</li>
+<li>Universal property: $\tilde\theta(a/b)=\theta(a)\theta(b)^{-1}$ is forced, well-defined, a hom.</li>
+</ul></details>
+<ul><li><b>2.10:</b> every characteristic-$0$ field contains a unique copy of $\mathbb Q$.</li></ul>
+</div>
+
+<h2 id="ch3">3 &nbsp;Ideals, quotients, the isomorphism theorems</h2>
+
+<div class="card def" id="def-ideal">
+<span class="tag">Def</span><span class="name">Ideal; generated/principal ideals; associates</span> <span class="num">(3.2–3.11)</span>
+<ul>
+<li><b>Ideal</b> $I\lhd R$: additive subgroup with $a\in I, r\in R\Rightarrow ar\in I$ ("absorbs" multiplication). $1\in I\Rightarrow I=R$.</li>
+<li>$\langle T\rangle=R\cdot T$ = smallest ideal containing $T$ (3.6/3.7, the "span" analogue); <b>principal</b> = $\langle a\rangle=aR$.</li>
+<li><b>Associates</b>: $a=ub$, $u\in R^\times$. In a domain, generators of a principal ideal are exactly the associates (3.11).</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-312">
+<span class="tag">Thm</span><span class="name">Quotient ring; ideals = kernels; universal property</span> <span class="num">(3.12–3.15)</span>
+<div class="stmt">For $I\lhd R$, $R/I$ is a ring and $q:R\to R/I$ a surjective hom with $\ker q=I$ (3.12). Hence <b>ideals are exactly the kernels</b> (3.13). <b>Universal property (3.14):</b> a hom $\phi:R\to S$ with $I\subseteq\ker\phi$ factors uniquely through $q$, with $\ker\bar\phi=\ker\phi/I$.</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>$\times$ on cosets is well-defined precisely because $I$ <em>absorbs</em> multiplication: $(r_1+i_1)(r_2+i_2)=r_1r_2+(\text{stuff in }I)$.</li>
+<li>Universal property: surjectivity of $q$ forces $\bar\phi(r+I)=\phi(r)$; well-defined since $I\subseteq\ker\phi$.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="cor-316">
+<span class="tag">Cor</span><span class="name">The three isomorphism theorems</span> <span class="num">(3.16)</span>
+<div class="stmt">
+<ul>
+<li><b>First:</b> $R/\ker\phi\cong\operatorname{im}\phi$.</li>
+<li><b>Second:</b> $A$ subring, $I$ ideal $\Rightarrow (A+I)/I\cong A/(A\cap I)$.</li>
+<li><b>Third:</b> $I_1\subseteq I_2$ ideals $\Rightarrow (R/I_1)/(I_2/I_1)\cong R/I_2$.</li>
+</ul></div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>All three are the universal property (3.14) + first iso theorem applied to the right map — the same template re-used for modules in §8.</li>
+</ul></details>
+<ul><li><b>Ex 3.17:</b> for $\alpha\in\mathrm{End}(V)$, $k[t]\to\mathrm{End}(V)$ has image $\cong k[t]/\langle m_\alpha\rangle$ — the <b>minimal polynomial</b> generates the (principal) kernel. This is the seed of §12.</li></ul>
+</div>
+
+<div class="card thm" id="thm-318">
+<span class="tag">Thm</span><span class="name">Chinese Remainder Theorem</span> <span class="num">(3.18, 3.19)</span>
+<div class="hyp"><b>Hyp:</b> ideals $I,J$ with $I+J=R$ ("comaximal").</div>
+<div class="stmt"><b>Then:</b> $R/(I\cap J)\cong R/I\oplus R/J$. Classically: $m,n$ coprime $\Rightarrow \mathbb Z/mn\cong\mathbb Z/m\oplus\mathbb Z/n$.</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>$r\mapsto(r+I,r+J)$ has kernel $I\cap J$; surjective because $I+J=R$ lets you hit any pair of residues. First iso theorem.</li>
+</ul></details>
+<ul><li>This is exactly the engine of the <a href="#thm-119">primary decomposition</a> form of the structure theorem (Lemma 11.8).</li></ul>
+</div>
+
+<div class="card lem" id="prop-321">
+<span class="tag">Prop</span><span class="name">Ideal correspondence</span> <span class="num">(3.20–3.22)</span>
+<div class="stmt">For a surjection $\phi:R\to S$ with $K=\ker\phi$: $I\mapsto\phi(I)$ and $J\mapsto\phi^{-1}(J)$ are mutually inverse bijections between $\{$ideals of $S\}$ and $\{$ideals of $R$ containing $K\}$. (For $q:R\to R/I$: ideals of $R/I$ ↔ ideals of $R$ containing $I$.)</div>
+<ul><li>This is what makes "$R/I$ field $\iff$ $I$ maximal" work — maximality of $I$ = $R/I$ has no nontrivial ideals.</li></ul>
+</div>
+
+<h2 id="ch4">4 &nbsp;Prime/maximal ideals; Euclidean domains &amp; PIDs</h2>
+
+<div class="card thm" id="lem-42">
+<span class="tag">Lemma</span><span class="name">The quotient dictionary</span> <span class="num">(4.1, 4.2)</span>
+<div class="stmt">For an ideal $I\lhd R$ ($R$ commutative):
+<ul>
+<li>$I$ <b>prime</b> ($ab\in I\Rightarrow a\in I$ or $b\in I$, $I\neq R$) $\iff$ $R/I$ is an <b>integral domain</b>;</li>
+<li>$I$ <b>maximal</b> (no proper ideal strictly contains it) $\iff$ $R/I$ is a <b>field</b>;</li>
+<li>hence <b>maximal $\Rightarrow$ prime</b> (fields are domains).</li>
+</ul></div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>$(a+I)(b+I)=0\iff ab\in I$ — directly gives the prime⟺domain equivalence.</li>
+<li>Field ⟺ no nontrivial ideals; apply the ideal correspondence (3.22) between ideals of $R/I$ and ideals of $R$ containing $I$.</li>
+</ul></details>
+<ul><li><b>$\mathbb Z$ (Ex 4.4):</b> ideals are $d\mathbb Z$; prime $\iff d$ prime; nonzero primes are maximal.</li></ul>
+</div>
+
+<div class="card lem" id="lem-47">
+<span class="tag">Lemma</span><span class="name">Division algorithm ⟹ $k[t]$ is a PID</span> <span class="num">(4.6, 4.7)</span>
+<div class="hyp"><b>Hyp:</b> 4.6: $R$ any ring, $f\in R[t]$ with <b>unit leading coefficient</b>. 4.7: $k$ a <b>field</b>.</div>
+<div class="stmt"><b>4.6:</b> unique $q,r$ with $g=qf+r$, $\deg r\lt\deg f$. <b>4.7:</b> every nonzero ideal of $k[t]$ is $\langle f\rangle$ for a unique monic $f$ — so $k[t]$ is a PID.</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>4.6: induct on $\deg g$, subtracting $a_n^{-1}b_m t^{m-n}f$ to kill the leading term (needs the leading coeff invertible).</li>
+<li>4.7: take $f\in I$ of minimal degree; division forces every $g\in I$ to have remainder $0$ — the "least-degree element generates" pattern.</li>
+</ul></details>
+<ul><li>$k[t]/\langle f\rangle$ has $k$-basis $\{1,t,\dots,t^{\deg f-1\,}\}$ — "adjoin a root of $f$." E.g. $\mathbb C=\mathbb R[t]/\langle t^2+1\rangle$ (Ex 4.8).</li></ul>
+</div>
+
+<div class="card thm" id="lem-413">
+<span class="tag">Def+Lem</span><span class="name">Euclidean domain ⟹ PID</span> <span class="num">(4.10–4.14)</span>
+<div class="hyp"><b>Def 4.10:</b> an ID with $N:R\setminus\{0\}\to\mathbb N$ such that any $a,b$ ($b\neq0$) give $a=bq+r$ with $r=0$ or $N(r)\lt N(b)$. Examples: $\mathbb Z$ ($N=|\cdot|$), $k[t]$ ($N=\deg$), $\mathbb Z[i]$ ($N=a^2+b^2$, Lemma 4.12).</div>
+<div class="stmt"><b>Lemma 4.13:</b> every ideal of a Euclidean domain is principal — <b>ED ⟹ PID</b>.</div>
+<details class="sk" open><summary>Sketch (the "least norm" argument)</summary><ul>
+<li>In a nonzero ideal $I$ pick $d$ of minimal norm $N(d)$; for any $m\in I$, $m=qd+r$ forces $r=m-qd\in I$ with $N(r)\lt N(d)$ — impossible unless $r=0$. So $I=Rd$.</li>
+<li>$\mathbb Z[i]$ Euclidean (4.12): round $s/t\in\mathbb C$ to the nearest Gaussian integer; the error has $N\lt 1$, so $N(s-qt)\lt N(t)$.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="lem-417">
+<span class="tag">Lemma</span><span class="name">In a PID: irreducible ⟺ prime ⟺ maximal</span> <span class="num">(4.16, 4.17)</span>
+<div class="hyp"><b>Hyp:</b> $R$ a <b>PID</b>, $d\neq0$. (<b>Irreducible:</b> non-unit, $d=ab\Rightarrow a$ or $b$ a unit. <b>Prime:</b> $d\mid ab\Rightarrow d\mid a$ or $d\mid b$.)</div>
+<div class="stmt"><b>TFAE:</b> (1) $\langle d\rangle$ prime; (2) $d$ irreducible; (3) $\langle d\rangle$ maximal.</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>(1)⇒(2): $d=ab\in\langle d\rangle$ prime ⇒ (say) $a\in\langle d\rangle$, $a=rd$; cancel in the domain ⇒ $b$ a unit.</li>
+<li>(2)⇒(3): $\langle d\rangle\subseteq\langle a\rangle$ ⇒ $d=ab$ ⇒ irreducibility makes $a$ a unit ($\langle a\rangle=R$) or $b$ a unit ($\langle a\rangle=\langle d\rangle$).</li>
+<li>(3)⇒(1): maximal ⇒ prime always.</li>
+</ul></details>
+<ul><li><b>In any ID: prime ⇒ irreducible</b>; the converse needs a PID. (Failure of the converse is exactly the non-UFD phenomenon — see $\mathbb Z[\sqrt{-17}]$ below.)</li></ul>
+</div>
+
+<h2 id="ch5">5 &nbsp;Fields, the tower law, minimal polynomials</h2>
+
+<div class="card thm" id="ch5-tower">
+<span class="tag">Def+Cor</span><span class="name">Field extensions; the tower law</span> <span class="num">(5.2–5.5)</span>
+<div class="stmt">$E/F$ a field extension; degree $[E:F]=\dim_F E$. <b>Tower law (5.5):</b> $F\subseteq E\subseteq K$ ⇒ $[K:F]=[K:E]\,[E:F]$ (finite iff both factors are).</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>If $\{x_j\}$ is an $F$-basis of $E$ and $\{e_i\}$ an $E$-basis of $K$, then $\{x_je_i\}$ is an $F$-basis of $K$ (5.3) — count $=[E:F][K:E]$.</li>
+</ul></details>
+<ul><li><b>Finite fields (5.1):</b> a finite field has order $p^d$ (it's a $d$-dim space over its prime subfield $\mathbb F_p$).</li></ul>
+</div>
+
+<div class="card thm" id="lem-57">
+<span class="tag">Lemma</span><span class="name">Minimal polynomial</span> <span class="num">(5.6–5.8)</span>
+<div class="hyp"><b>Hyp:</b> $E/F$ finite, $\alpha\in E$ (subfields of $\mathbb C$).</div>
+<div class="stmt"><b>Then:</b> there's a unique monic irreducible $f\in F[t]$ with $F(\alpha)\cong F[t]/\langle f\rangle$ (the <b>minimal polynomial</b>), and $[F(\alpha):F]=\deg f$.</div>
+<details class="sk" open><summary>Sketch — where the whole tower pays off</summary><ul>
+<li>$\{1,\alpha,\dots,\alpha^d\}$ ($d=[F(\alpha):F]$) is dependent ⇒ $\ker(F[t]\xrightarrow{t\mapsto\alpha}E)\neq0$;</li>
+<li>$F[t]$ a PID ⇒ kernel $=\langle f\rangle$; the image is a domain ⇒ $\langle f\rangle$ prime ⇒ (Lemma 4.17) <b>maximal</b> ⇒ image is a <em>field</em>, namely $F(\alpha)$.</li>
+</ul></details>
+<ul><li><b>Ex 5.10–5.11:</b> $\mathbb Q(\sqrt3)\cong\mathbb Q[t]/\langle t^2-3\rangle$; $[\mathbb Q(\sqrt3,2^{1/3}):\mathbb Q]=6$ by the tower law (lcm of $2,3$, then check $\sqrt3\notin\mathbb Q(2^{1/3})$).</li></ul>
+</div>
+
+<h2 id="ch6">6 &nbsp;Unique factorisation: the ED ⊊ PID ⊊ UFD tower</h2>
+
+<div class="card def" id="def-ufd">
+<span class="tag">Def</span><span class="name">UFD; the equivalences</span> <span class="num">(6.4, 6.5)</span>
+<div class="stmt"><b>UFD</b>: an ID where every nonzero non-unit factors into irreducibles, uniquely up to order and units. <b>Lemma 6.5, TFAE:</b> (1) $R$ a UFD; (2) every irreducible is prime <em>and</em> factorisations exist; (3) every nonzero non-unit is a product of <em>primes</em>.</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>Uniqueness comes for free once "irreducible = prime": a prime in one factorisation must match (up to a unit) a factor of the other (induction on the number of factors).</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="thm-68">
+<span class="tag">Thm</span><span class="name">PID ⟹ UFD</span> <span class="num">(6.6, 6.8)</span>
+<div class="hyp"><b>Hyp:</b> $R$ a PID.</div>
+<div class="stmt"><b>Then:</b> $R$ is a UFD.</div>
+<details class="sk" open><summary>Sketch (existence + uniqueness split)</summary><ul>
+<li><b>Uniqueness</b> is free: in a PID irreducible ⟺ prime (Lemma 4.17), so Lemma 6.5 applies.</li>
+<li><b>Existence</b> via the <b>ascending chain condition (6.6):</b> a PID is Noetherian — any chain $I_1\subseteq I_2\subseteq\cdots$ stabilises (their union is principal, $=\langle c\rangle$, and $c$ appears at some finite stage). A non-terminating factorisation would give a strictly ascending chain $\langle a_1\rangle\subsetneq\langle a_2\rangle\subsetneq\cdots$ — contradiction.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="thm-616">
+<span class="tag">Thm</span><span class="name">Gauss's lemma ⟹ $\mathbb Z[t]$, $R[t]$ are UFDs</span> <span class="num">(6.11–6.19)</span>
+<div class="stmt"><b>Content</b> $c(f)$ = hcf of coefficients. <b>Gauss (6.12):</b> $c(fg)=c(f)c(g)$. Consequence: <b>$\mathbb Z[t]$ is a UFD (6.16)</b>, and more generally <b>$R$ a UFD ⟹ $R[t]$ a UFD (6.19)</b> (so $\mathbb Z[t]$, $\mathbb Q[x,y]$ are UFDs).</div>
+<details class="sk" open><summary>Sketch</summary><ul>
+<li>Gauss: reduce mod a prime $p$; $\mathbb F_p[t]$ is a domain, so $p\mid c(fg)\iff p\mid c(f)$ or $p\mid c(g)$.</li>
+<li>$\mathbb Z[t]$: factor over the PID $\mathbb Q[t]$, then use content (6.13/6.15) to pull the factorisation back into $\mathbb Z[t]$; primes of $\mathbb Z[t]$ = primes of $\mathbb Z$ + content-1 irreducibles of $\mathbb Q[t]$.</li>
+</ul></details>
+<ul><li><b>Eisenstein (6.21):</b> if a prime $p$ divides all coeffs but the top, and $p^2\nmid a_0$, then $f$ is irreducible — e.g. $t^3-2$, so $2^{1/3}\notin\mathbb Q$.</li></ul>
+</div>
+
+<div class="card warn">
+<span class="tag">Tower</span><span class="name">$\textbf{ED}\subsetneq\textbf{PID}\subsetneq\textbf{UFD}$ — all strict</span>
+<table>
+<tr><th>Inclusion</th><th>Why</th><th>Strictness witness</th></tr>
+<tr><td>ED ⟹ PID</td><td>least-norm ideal (4.13)</td><td>$\mathbb Z[\tfrac12(1+\sqrt{-19})]$ is a PID, not Euclidean (App C)</td></tr>
+<tr><td>PID ⟹ UFD</td><td>ACC + irred=prime (6.8)</td><td>$\mathbb Z[t]$, $\mathbb Q[x,y]$ are UFDs, not PIDs</td></tr>
+<tr><td>(UFD)</td><td>—</td><td>$\mathbb Z[\sqrt{-17}]$ is <em>not</em> a UFD ($18=2\cdot3\cdot3=(1+\sqrt{-17})(1-\sqrt{-17})$)</td></tr>
+</table>
+</div>
+
+<h2 id="ch7">7 &nbsp;Modules: definition &amp; examples</h2>
+
+<div class="card def" id="def-module">
+<span class="tag">Def</span><span class="name">Module; the two key bridges</span> <span class="num">(7.1, 7.4, 7.6)</span>
+<div class="stmt">An $R$-module = abelian group $M$ + action $R\times M\to M$ satisfying $1m=m$, $(rs)m=r(sm)$, and both distributive laws. "Linear algebra over a ring."</div>
+<ul>
+<li><b>Bridge 1 (Lemma 7.4):</b> an $R$-module structure on $M$ = a ring hom $R\to\operatorname{End}(M)$.</li>
+<li><b>Examples (7.6):</b> $R$ field ⇒ vector space; <b>abelian groups = $\mathbb Z$-modules</b> (uniquely); $R$, ideals $I$, and $R/I$ are modules; <b>free module $R^n$</b>.</li>
+<li><b>Bridge 2 (7.6.8) — the one that powers §12:</b> a $k[t]$-module = a $k$-vector space $V$ together with a chosen operator ($t$ acts as some $T\in\operatorname{End}_k V$). The hom $k[t]\to\operatorname{End}(V)$ is "send $t\mapsto T$." <b>So a $k[t]$-module <em>is</em> a pair $(V,T)$.</b></li>
+</ul>
+</div>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Submodules, generation, linear independence, free, f.g.</span> <span class="num">(7.7–7.9)</span>
+<ul>
+<li>Submodule = subgroup closed under the action; $\langle X\rangle=R\cdot X$. A subset of $R$ is a submodule $\iff$ it's an ideal.</li>
+<li><b>Linearly independent / basis / free</b> (has a basis) / <b>finitely generated</b> — same words as for vector spaces, but the behaviour is very different (below).</li>
+</ul>
+</div>
+
+<h2 id="ch8">8 &nbsp;Quotient modules &amp; the isomorphism theorems</h2>
+
+<div class="card thm" id="cor-88">
+<span class="tag">Def+Cor</span><span class="name">Quotient modules; the three iso theorems</span> <span class="num">(8.1–8.8)</span>
+<div class="stmt">For a submodule $N\le M$, the quotient $M/N$ is a module; module homs have kernels/images that are submodules. The <b>universal property (8.7)</b> and the <b>three isomorphism theorems (8.8)</b> hold, with proofs <em>identical</em> to the ring case (§3) — "word for word."</div>
+<ul>
+<li>$R$ field ⇒ these are the vector-space iso theorems; $R=\mathbb Z$ ⇒ the abelian-group ones.</li>
+<li><b>Submodule correspondence (8.5):</b> submodules of $M/N$ ↔ submodules of $M$ containing $N$.</li>
+</ul>
+</div>
+
+<h2 id="ch9">9 &nbsp;Free, torsion, torsion-free; Hom = matrix</h2>
+
+<div class="card def" id="def-torsion">
+<span class="tag">Def</span><span class="name">Annihilator, torsion, torsion-free</span> <span class="num">(9.1–9.5)</span>
+<div class="hyp"><b>Standing assumption from §9: $R$ an integral domain.</b></div>
+<ul>
+<li>$\operatorname{Ann}(m)=\{r:rm=0\}$ (an ideal); $m$ <b>torsion</b> if $\operatorname{Ann}(m)\neq0$. $M$ <b>torsion</b> / <b>torsion-free</b> accordingly.</li>
+<li>Cyclic module $Rm\cong R/\operatorname{Ann}(m)$ (9.2). $R$ is torsion-free over itself $\iff$ ID.</li>
+<li><b>9.5:</b> $M^{\mathrm{tor}}$ is a submodule and $M/M^{\mathrm{tor}}$ is torsion-free (uses ID: $s,t\neq0\Rightarrow st\neq0$).</li>
+</ul>
+</div>
+
+<div class="card warn">
+<span class="tag">Warn</span><span class="name">Modules are not vector spaces</span> <span class="num">(9.4, §10 intro)</span>
+<ul>
+<li>A finite abelian group is a $\mathbb Z$-module that is <b>not free</b> (a free module is infinite) and is all torsion.</li>
+<li><b>Free ⊊ torsion-free</b> in general: $\langle x,y\rangle\lhd\mathbb C[x,y]$ is torsion-free but not free (9.4). (Over a <em>PID</em>, f.g. torsion-free <em>will</em> be free — Cor 11.6.)</li>
+<li><b>Steinitz exchange fails:</b> $\{2\}$ is a basis of the submodule $2\mathbb Z\le\mathbb Z$ but can't be extended to a basis of $\mathbb Z$ (whose only bases are $\{\pm1\}$). Smith normal form quantifies exactly this failure.</li>
+</ul>
+</div>
+
+<div class="card lem" id="prop-97">
+<span class="tag">Lem+Prop</span><span class="name">Rank; submodules of free modules over a PID are free</span> <span class="num">(9.6, 9.7)</span>
+<div class="stmt"><b>9.6:</b> over any ring, a f.g. free module has a well-defined <b>rank</b> (reduce mod a maximal ideal $I$: $\dim_{R/I}(M/IM)$ is basis-independent). <b>9.7:</b> over a <b>PID</b>, every submodule of $R^n$ is free of rank $\le n$.</div>
+<details class="sk" open><summary>Sketch of 9.7 (induction on $n$)</summary><ul>
+<li>$n=1$: submodules of $R$ are ideals; PID ⇒ principal ⇒ free of rank $\le1$.</li>
+<li>$n\gt1$: intersect with the rank-$(n-1)$ submodule $W$; $N\cap W$ free by induction; $N/(N\cap W)\hookrightarrow M/W\cong R$ is $0$ or rank $1$; assemble a basis.</li>
+</ul></details>
+<ul><li><b>Converse (9.8):</b> over an ID, "every submodule of every free module is free" $\iff$ $R$ is a PID. This is the property §11 leans on.</li></ul>
+</div>
+
+<div class="card thm" id="cor-912">
+<span class="tag">Cor</span><span class="name">Homomorphisms of free modules = matrices, up to $A\sim PAQ$</span> <span class="num">(9.12–9.17)</span>
+<div class="stmt">Choosing bases, a hom $R^m\to R^n$ ↔ a matrix $A\in\operatorname{Mat}_{n,m}(R)$; composition = matrix product; isomorphisms ↔ $GL_n(R)$ (matrices with $\det\in R^\times$). <b>Changing bases</b> replaces $A$ by $PAQ$ with $P\in GL_n(R)$, $Q\in GL_m(R)$.</div>
+<ul><li>So a hom of free modules ↔ an <b>equivalence class</b> of matrices under $A\sim PAQ$. A "canonical form" = a canonical representative of that class — supplied next by Smith normal form.</li></ul>
+</div>
+
+<h2 id="ch10">10 &nbsp;Smith normal form</h2>
+
+<div class="card thm" id="thm-103">
+<span class="tag">Thm</span><span class="name">Smith normal form</span> <span class="num">(10.1–10.3)</span>
+<div class="hyp"><b>Hyp:</b> $A\in\operatorname{Mat}_{n,m}(R)$ over a <b>Euclidean domain</b> $R$. (Elementary row/column ops = left/right multiplication by invertible matrices.)</div>
+<div class="stmt"><b>Then:</b> $A$ is equivalent (by elementary row &amp; column operations) to a diagonal $\operatorname{diag}(d_1,\dots,d_k)$ (padded with zeros), with the <b>divisibility chain</b> $d_1\mid d_2\mid\cdots\mid d_k$. The $d_i$ are unique up to units.</div>
+<details class="sk" open><summary>Sketch (least-norm pivot + gcd)</summary><ul>
+<li>Bring an entry of minimal norm to the $(1,1)$ slot. If it doesn't divide some entry in its row/column, Euclidean division produces a <em>strictly smaller</em>-norm remainder — recurse (norm can't drop forever).</li>
+<li>Once $a_{11}$ divides its whole row and column, clear them; if a deeper entry isn't divisible by $a_{11}$, add its row into row 1 and repeat. End with $a_{11}\mid$ everything; factor it out and induct on the smaller block — forcing $d_1\mid d_2\mid\cdots$.</li>
+</ul></details>
+<figure>
+<svg viewBox="0 0 660 120" width="640">
+<text x="8" y="50" font-size="12" fill="#444">over ℤ:</text>
+<text x="56" y="55" font-size="15" font-family="monospace">[ 2  5  3 ]</text>
+<text x="56" y="75" font-size="15" font-family="monospace">[ 8  6  4 ]</text>
+<text x="56" y="95" font-size="15" font-family="monospace">[ 3  1  0 ]</text>
+<text x="210" y="75" font-size="20" fill="#7c3aed">⟶</text>
+<text x="245" y="58" font-size="11" fill="#7c3aed" text-anchor="middle">ERC ops</text>
+<text x="300" y="55" font-size="15" font-family="monospace">[ 1  0   0 ]</text>
+<text x="300" y="75" font-size="15" font-family="monospace">[ 0  1   0 ]</text>
+<text x="300" y="95" font-size="15" font-family="monospace">[ 0  0  -22 ]</text>
+<text x="470" y="75" font-size="13" fill="#444">= diag(1, 1, −22),&nbsp;&nbsp;1 ∣ 1 ∣ 22</text>
+</svg>
+<figcaption>Smith normal form over $\mathbb Z$ (Ex 10.4): pivot on the smallest entry, clear, repeat. The diagonal entries (the <b>invariant factors</b>) satisfy the divisibility chain.</figcaption>
+</figure>
+</div>
+
+<h2 id="ch11">11 &nbsp;The structure theorem</h2>
+
+<div class="card lem" id="prop-111">
+<span class="tag">Prop+Def</span><span class="name">Presentations: a module as a relation matrix</span> <span class="num">(11.1–11.3)</span>
+<div class="hyp"><b>Hyp:</b> $M$ a f.g. module over a <b>PID</b>.</div>
+<div class="stmt">There is a <b>resolution</b> $0\to R^m\xrightarrow{\psi}R^n\xrightarrow{\phi}M\to0$: generators give the surjection $\phi$; $\ker\phi$ is free (Prop 9.7, over a PID) giving the injection $\psi$. So $M\cong R^n/\operatorname{im}\psi$, and the matrix of $\psi$ is the <b>relation matrix</b> — it records all $R$-linear dependencies among the generators. <b>Up to iso, $M$ is captured by that matrix.</b></div>
+</div>
+
+<div class="card thm" id="thm-114">
+<span class="tag">Thm</span><span class="name">Structure theorem — invariant factor form</span> <span class="num">(11.4, 11.5)</span>
+<div class="hyp"><b>Hyp:</b> $M$ a finitely generated module over a <b>Euclidean domain</b> (true for PIDs too).</div>
+<div class="stmt"><b>Then:</b>
+$$M\;\cong\;\big(R/c_1R\big)\oplus\cdots\oplus\big(R/c_rR\big)\;\oplus\;R^s,\qquad c_1\mid c_2\mid\cdots\mid c_r,$$
+with the $c_i$ nonzero non-units, <b>unique up to units</b>, and $s$ unique.</div>
+<details class="sk" open><summary>Sketch — Smith normal form does all the work</summary><ul>
+<li>Take a presentation $R^m\xrightarrow{\psi}R^n\to M$ with relation matrix $A$ (Prop 11.1).</li>
+<li>Put $A$ into <b>Smith normal form</b> $\operatorname{diag}(d_1\mid\cdots\mid d_m)$ (Thm 10.3) — i.e. choose good bases of $R^m, R^n$.</li>
+<li>In those bases $M\cong R^n/\operatorname{im}\psi\cong\bigoplus R/d_iR\oplus R^{n-m}$; drop the unit $d_i$ (where $R/d_iR=0$) and relabel the survivors $c_i$; the leftover free part is $R^s$.</li>
+</ul></details>
+</div>
+
+<div class="card thm" id="cor-117">
+<span class="tag">Cor</span><span class="name">Corollaries: free-ness &amp; abelian groups</span> <span class="num">(11.6, 11.7)</span>
+<div class="stmt">
+<ul>
+<li><b>11.6:</b> a f.g. <b>torsion-free</b> module over a PID is <b>free</b>; in general the free rank $s=\operatorname{rk}(M/M^{\mathrm{tor}})$ (so $s$ is well-defined). [The torsion part is the $\bigoplus R/c_iR$ summand.]</li>
+<li><b>11.7 (f.g. abelian groups):</b> $A\cong\mathbb Z^r\oplus\mathbb Z/c_1\oplus\cdots\oplus\mathbb Z/c_k$ with $c_1\mid\cdots\mid c_k$ (all $\gt1$), uniquely — just Thm 11.4 with $R=\mathbb Z$, signs fixed by taking $c_i\gt0$.</li>
+</ul></div>
+</div>
+
+<div class="card thm" id="thm-119">
+<span class="tag">Lem+Thm</span><span class="name">Primary decomposition form</span> <span class="num">(11.8–11.11)</span>
+<div class="stmt"><b>Lemma 11.8 (CRT for cyclic modules):</b> $d_1,\dots,d_k$ pairwise coprime ⇒ $R/(d_1\cdots d_k)\cong\bigoplus R/d_iR$; so $R/cR\cong\bigoplus R/p_i^{r_i}R$ for the prime factorisation of $c$. <b>Thm 11.9:</b> hence
+$$M\;\cong\;\bigoplus_{i=1}^k R/p_i^{r_i}R\;\oplus\;R^s\qquad(p_i\text{ irreducible, not necessarily distinct}).$$</div>
+<ul>
+<li><b>Two forms, one module:</b> invariant factors $c_1\mid\cdots\mid c_r$ = <em>fewest</em> cyclic summands (and <b>algorithmic</b>, via Smith); primary $p_i^{r_i}$ = <em>most</em> summands (but needs <b>factorisation</b>, which isn't automatic). Linked by the CRT.</li>
+<li><b>Ex 11.10:</b> $\mathbb Z/44\oplus\mathbb Z/66\cong\mathbb Z/22\oplus\mathbb Z/132$ (invariant, $22\mid132$) $\cong\mathbb Z/2\oplus\mathbb Z/4\oplus\mathbb Z/3\oplus(\mathbb Z/11)^2$ (primary — note $2$ at two powers).</li>
+</ul>
+</div>
+
+<h2 id="ch12">12 &nbsp;Rational &amp; Jordan canonical forms</h2>
+
+<div class="card lem" id="lem-121">
+<span class="tag">Lemma</span><span class="name">Linear maps = torsion $k[t]$-modules</span> <span class="num">(12.1, 12.2)</span>
+<div class="stmt">Via Bridge 2 (§7), a pair $(V,T)$ with $V$ finite-dim is exactly a <b>finitely generated torsion $k[t]$-module</b> ($T$-invariant subspaces = submodules). The <b>companion matrix</b> $C(f)$ of a monic $f=t^n+\sum a_it^i$ is the matrix of "multiply by $t$" on $k[t]/\langle f\rangle$ in the basis $1,t,\dots,t^{n-1}$; for $f=(t-\lambda)^n$ the basis $\{(t-\lambda)^k\}$ (decreasing) gives the <b>Jordan block</b> $J_n(\lambda)$ (Lemma 12.3).</div>
+</div>
+
+<div class="card thm" id="thm-124">
+<span class="tag">Thm</span><span class="name">Rational canonical form (+ Jordan)</span> <span class="num">(12.4, 12.5)</span>
+<div class="hyp"><b>Hyp:</b> $V$ finite-dimensional over <b>any field</b> $k$, $T:V\to V$ linear.</div>
+<div class="stmt"><b>RCF:</b> there are unique monic $f_1\mid f_2\mid\cdots\mid f_k$ and a basis in which $T$ is block-diagonal with companion blocks $C(f_i)$. Over an <b>algebraically closed</b> field, using the <em>primary</em> form instead gives <b>Jordan normal form</b> (blocks $J_r(\lambda)$).</div>
+<details class="sk" open><summary>Sketch — the payoff of the whole course</summary><ul>
+<li>Apply the <b>structure theorem</b> to the torsion $k[t]$-module $(V,T)$: $V\cong\bigoplus k[t]/\langle f_i\rangle$ (invariant factor form), $f_1\mid\cdots\mid f_k$ monic.</li>
+<li>On each cyclic summand, "multiply by $t$" $=T$ has matrix $C(f_i)$ (Lemma 12.3(1)); assemble the bases ⇒ block-diagonal RCF.</li>
+<li><b>Jordan:</b> over $\bar k$ the irreducibles are $t-\lambda$, so the <em>primary</em> form gives summands $k[t]/\langle(t-\lambda)^r\rangle$, on which $t$ acts as $J_r(\lambda)$ (Lemma 12.3(2)).</li>
+<li><b>Computation (12.5):</b> the relation matrix of $(V,T)$ is $tI-A$ over $k[t]$; its Smith normal form gives the invariant factors directly. (Ex 12.6: $tI-A$ reduces to $\operatorname{diag}(1,1,\,t^3+3t^2+2t+1)$, so $A$ is already a companion matrix.)</li>
+</ul></details>
+<ul><li>RCF works over <b>any</b> field — its advantage over Jordan, which needs the eigenvalues to live in $k$. (See the Linear Algebra notes for the eigenvalue-side derivation; this is the module-theoretic one.)</li></ul>
+</div>
+
+<h2 id="ch13">13–15 &nbsp;Appendices</h2>
+
+<div class="card def">
+<span class="tag">App A</span><span class="name">Polynomial rings, group rings, convolution</span> <span class="num">(§13)</span> <span class="nonex">non-exam</span>
+<ul>
+<li>$R[[t]]$ = all sequences $\mathbb N\to R$ under convolution; $R[t]$ = the finitely-supported subring. Fixes "polynomials aren't functions" (over finite rings) by defining them as coefficient sequences; evaluation then recovers the function on any ring.</li>
+<li><b>Group ring $R[G]$</b> = finitely-supported $f:G\to R$ with convolution $(f*g)(x)=\sum_{y_1y_2=x}f(y_1)g(y_2)$; identity $\delta_e$. $R[\mathbb Z]=$ Laurent polynomials $R[t,t^{-1}]$. ($\mathbb C[G]$ = the group algebra of representation theory.)</li>
+</ul>
+</div>
+
+<div class="card thm">
+<span class="tag">App B</span><span class="name">Unique factorisation for $\mathbb Z$, concretely</span> <span class="num">(§14)</span>
+<div class="stmt">Re-proves for $\mathbb Z$ what §4–6 did abstractly — and this concrete chain is exactly what <em>motivates</em> the ED/PID/UFD definitions: division algorithm (14.5) ⟹ ideals of $\mathbb Z$ principal + Bézout (14.8) ⟹ irreducible ⟺ prime (14.14) ⟹ Fundamental Theorem of Arithmetic (14.15).</div>
+</div>
+
+<div class="card warn">
+<span class="tag">App</span><span class="name">The two cautionary rings</span> <span class="num">(14.17, §15)</span>
+<ul>
+<li><b>$\mathbb Z[\sqrt{-17}]$ is not a UFD:</b> $18=2\cdot3\cdot3=(1+\sqrt{-17})(1-\sqrt{-17})$, all irreducible, via the multiplicative norm $N(a+b\sqrt{-17})=a^2+17b^2$ — irreducibles that aren't prime.</li>
+<li><b>$\mathbb Z[\tfrac12(1+\sqrt{-19})]$ is a PID but not Euclidean</b> (§15 <span class="nonex">non-exam</span>): a "weak norm" argument gives PID; a direct check on $2,3,\theta$ rules out any Euclidean function. The witness that PID ⊊ ED is genuinely strict.</li>
+</ul>
+</div>
+
+<h2 id="hyps">Ring-class cheat-sheet</h2>
+<table>
+<tr><th>Class</th><th>Definition</th><th>Gives you</th><th>Examples / non-examples</th></tr>
+<tr><td><b>Field</b></td><td>comm. ring, $1\neq0$, every nonzero element invertible</td><td>$k[t]$ a PID; vector spaces</td><td>$\mathbb Q,\mathbb R,\mathbb C,\mathbb F_p,\mathbb F_{p^d}$</td></tr>
+<tr><td><b>ID</b></td><td>no zero-divisors</td><td>cancellation; field of fractions</td><td>$\mathbb Z$, $k[t]$, $\mathbb Z[i]$; <em>not</em> $\mathbb Z/6$</td></tr>
+<tr><td><b>ED</b></td><td>ID + division algorithm (a norm $N$)</td><td>⟹ PID (least-norm)</td><td>$\mathbb Z$, $k[t]$, $\mathbb Z[i]$</td></tr>
+<tr><td><b>PID</b></td><td>ID, every ideal principal</td><td>⟹ UFD; submodules of free are free; irred ⟺ prime; structure theorem</td><td>$\mathbb Z,k[t]$; $\mathbb Z[\tfrac12(1+\sqrt{-19})]$ (not ED); <em>not</em> $\mathbb Z[t]$</td></tr>
+<tr><td><b>UFD</b></td><td>ID, unique factorisation into irreducibles</td><td>hcf's exist; $R$ UFD ⟹ $R[t]$ UFD</td><td>$\mathbb Z,k[t],\mathbb Z[t],\mathbb Q[x,y]$; <em>not</em> $\mathbb Z[\sqrt{-17}]$</td></tr>
+</table>
+<table>
+<tr><th>Ideal type / module type</th><th>Characterisation</th></tr>
+<tr><td>$I$ prime</td><td>$R/I$ an integral domain (4.2)</td></tr>
+<tr><td>$I$ maximal</td><td>$R/I$ a field (4.2); maximal ⟹ prime</td></tr>
+<tr><td>in a PID: $\langle d\rangle$ prime ⟺ $d$ irreducible ⟺ $\langle d\rangle$ maximal</td><td>Lemma 4.17</td></tr>
+<tr><td>f.g. module over PID</td><td>$\cong R^s\oplus\bigoplus R/c_iR$ (invariant factors) — structure theorem</td></tr>
+<tr><td>f.g. torsion $k[t]$-module</td><td>= a pair $(V,T)$, $V$ finite-dim ⟹ rational/Jordan canonical form</td></tr>
+</table>
+
+<h2 id="cex">Counterexample gallery</h2>
+<table>
+<tr><th>Claim it kills</th><th>Counterexample</th></tr>
+<tr><td>"a polynomial is its function"</td><td>over $\mathbb Z/2\mathbb Z$: finitely many functions, infinitely many polynomials — 1.2(viii)</td></tr>
+<tr><td>"kernels of ring homs are subrings"</td><td>$f(1)=1$ forces $1\notin\ker f$; kernels are ideals, not subrings — §3</td></tr>
+<tr><td>"irreducible ⟹ prime"</td><td>$\mathbb Z[\sqrt{-17}]$: $3$ irreducible but $3\mid18=(1+\sqrt{-17})(1-\sqrt{-17})$, $3\nmid$ either — 14.17</td></tr>
+<tr><td>"every PID is Euclidean"</td><td>$\mathbb Z[\tfrac12(1+\sqrt{-19})]$ — App C</td></tr>
+<tr><td>"every UFD is a PID"</td><td>$\mathbb Z[t]$, $\mathbb Q[x,y]$: UFDs, but $\langle 2,t\rangle$ / $\langle x,y\rangle$ aren't principal — §6</td></tr>
+<tr><td>"torsion-free ⟹ free"</td><td>$\langle x,y\rangle\lhd\mathbb C[x,y]$: torsion-free, not free — 9.4 (true over a PID though)</td></tr>
+<tr><td>"finite abelian groups are free $\mathbb Z$-modules"</td><td>any finite group: free modules are infinite — §9</td></tr>
+<tr><td>"linearly independent sets extend to bases (Steinitz) over any ring"</td><td>$\{2\}\subset\mathbb Z$: a basis of $2\mathbb Z$ not extendable in $\mathbb Z$ — §10 intro</td></tr>
+<tr><td>"Jordan form exists over any field"</td><td>needs eigenvalues in $k$; use rational canonical form instead — 12.4</td></tr>
+</table>
+
+<p style="margin-top:48px;color:#777;font-size:.9rem">Built from <code>R&amp;M_notes.pdf</code> (58 pp, Algebra II: Rings and Modules, McGerty/Lauder). Numbering and proof strategies follow the notes; items marked <span class="nonex">non-exam</span> are flagged as in the source. Companion pages: <a href="../msca/ca.html">Complex Analysis</a> · <a href="../msca/ms.html">Metric Spaces</a> · <a href="../la/la.html">Linear Algebra</a>.</p>
+
+</div>
+</body>
+</html>

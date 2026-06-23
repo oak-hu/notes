@@ -71,7 +71,7 @@ MathJax = {
 <header class="site"><div class="inner">
 <h1>Complex Analysis — Revision Overview</h1>
 <p>A skimmable map of the lecture notes (Oxford A2.2-style, Belyaev): every key definition, every theorem with its hypotheses spelled out, proof sketches, and the dependency graph of the main results.</p>
-<p style="font-size:.88rem">Numbering follows the notes. Click any node in the graph to jump to the result. Companion page: <a href="ms_index.html" style="color:#a5b4fc">Metric Spaces overview →</a></p>
+<p style="font-size:.88rem">Numbering follows the notes. Click any node in the graph to jump to the result. Companion page: <a href="ms.html" style="color:#a5b4fc">Metric Spaces overview →</a></p>
 </div></header>
 
 <div class="wrap">
@@ -361,7 +361,7 @@ $$\partial_x u=\partial_y v,\qquad \partial_x v=-\partial_y u;$$</li>
 <li>$B(0,R)\subseteq S\subseteq \bar B(0,R)$; convergence is <b>absolute</b> on $B(0,R)$ and <b>uniform on $\bar B(0,r)$ for every $r \lt R$</b> (boundary: anything can happen);</li>
 <li>$\dfrac 1R=\limsup_n |a_n|^{1/n}$.</li>
 </ul></div>
-<details class="sk"><summary>Sketch</summary>
+<details open class="sk"><summary>Sketch</summary>
 <ul>
 <li>Pick $|w|&gt;r$ with $\sum a_nw^n$ convergent ⇒ terms bounded by $M$ ⇒ $|a_nz^n|\le M|r/w|^n$ on $\bar B(0,r)$ ⇒ <b>Weierstrass M-test</b> (the same comparison-with-geometric-series move that later powers Prop 2.5.6 and Laurent).</li>
 <li>Root formula: $n$-th roots of $|a_nw^n|\le M$ give $\limsup\le 1/R$; conversely $|a_n|^{1/n}\le L'$ eventually ⇒ converges for $|z| \lt 1/L'$.</li>
@@ -389,7 +389,7 @@ $$\partial_x u=\partial_y v,\qquad \partial_x v=-\partial_y u;$$</li>
 <span class="tag">Prop</span><span class="name">Simplified inverse function theorem</span> <span class="num">(1.4.12)</span>
 <div class="hyp"><b>Hyp:</b> $f:U\to\mathbb C$ holo; $f$ one-to-one on some $V\ni z_0$; <b>the inverse $g$ is <em>assumed</em> cts</b> (this is the cheat — $\mathbb C$ has no order, so the Prelims monotonicity argument is unavailable; the honest version is Thm 3.6.8).</div>
 <div class="stmt"><b>Then:</b> $g$ differentiable at $w_0=f(z_0)$ with $g'(w_0)=1/f'(z_0)$.</div>
-<details class="sk"><summary>Sketch</summary><ul><li>$\frac{g(w)-g(w_0)}{w-w_0}=\frac{z-z_0}{f(z)-f(z_0)}\to\frac1{f'(z_0)}$, where $z\to z_0$ <em>because</em> $g$ is cts.</li></ul></details>
+<details open class="sk"><summary>Sketch</summary><ul><li>$\frac{g(w)-g(w_0)}{w-w_0}=\frac{z-z_0}{f(z)-f(z_0)}\to\frac1{f'(z_0)}$, where $z\to z_0$ <em>because</em> $g$ is cts.</li></ul></details>
 </div>
 
 <div class="card lem" id="prop-1414">
@@ -502,7 +502,7 @@ $$\int_\gamma f(z)\,dz=\int_a^b f(\gamma(t))\,\gamma'(t)\,dt,\qquad
 <li><b>Estimation lemma:</b> $\displaystyle\Big|\int_\gamma f\,dz\Big|\le \sup_{\gamma^*}|f|\cdot\ell(\gamma)$;</li>
 <li><b>(2.2.10)</b> $f_n\to f$ uniformly on $\gamma^*$ ⇒ $\int_\gamma f_n\to\int_\gamma f$ (immediate from est. lemma).</li>
 </ul></div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>Key input is the complex triangle inequality (2.2.3): write $\int f=re^{i\theta}$, project $f$ onto the $e^{i\theta}$ direction, use the real triangle inequality.</li>
 <li>$\sup$ exists since $\gamma^*$ is compact.</li>
 </ul></details>
@@ -526,7 +526,7 @@ so $\oint_\gamma f=0$ around every <b>closed</b> path.</div>
 <div class="card thm">
 <span class="tag">Cor</span><span class="name">$f'\equiv0$ on a domain ⇒ constant; primitives unique up to constant</span> <span class="num">(2.2.15, 2.2.17)</span>
 <div class="hyp"><b>Hyp:</b> $U$ a <b>domain</b> (connectedness essential!), $f'\equiv0$ on $U$.</div>
-<details class="sk"><summary>Sketch</summary><ul><li>Domains are polygonally connected (Metric Spaces) ⇒ join $z_0\to w$ by a p.w.-$C^1$ path; $f(w)-f(z_0)=\int_\gamma f'=0$ by FTC.</li></ul></details>
+<details open class="sk"><summary>Sketch</summary><ul><li>Domains are polygonally connected (Metric Spaces) ⇒ join $z_0\to w$ by a p.w.-$C^1$ path; $f(w)-f(z_0)=\int_\gamma f'=0$ by FTC.</li></ul></details>
 </div>
 
 <div class="card thm" id="thm-2216">
@@ -602,7 +602,7 @@ so $\oint_\gamma f=0$ around every <b>closed</b> path.</div>
 <li>FTC ⇒ all loop integrals vanish on star-like $U$.</li>
 </ul>
 </details>
-<details class="sk"><summary>Sketch — step 3: general case <span class="nonex">non-exam outline</span></summary>
+<details open class="sk"><summary>Sketch — step 3: general case <span class="nonex">non-exam outline</span></summary>
 <ul>
 <li>Closed polygons: decompose into simple polygons, triangulate, edges cancel.</li>
 <li>General $\gamma$: Riemann sums $=$ integrals over inscribed polygonal curves ($=0$); justify the polygonal approximation limit.</li>
@@ -653,7 +653,7 @@ so $\oint_\gamma f=0$ around every <b>closed</b> path.</div>
 <li><b>2.5.1 (lifting):</b> any <em>cts</em> $\gamma:[0,1]\to\mathbb C\setminus\{0\}$ can be written $\gamma(t)=|\gamma(t)|e^{2\pi i a(t)}$ with $a$ cts, unique up to adding one integer globally.</li>
 <li><b>2.5.2:</b> for closed $\gamma$ avoiding $z_0$: $\;I(\gamma,z_0)=a(1)-a(0)\in\mathbb Z$ (applied to $\gamma-z_0$) — the <b>winding number / index</b>. Defined for merely cts closed paths.</li>
 </ul></div>
-<details class="sk"><summary>Sketch of 2.5.1</summary>
+<details open class="sk"><summary>Sketch of 2.5.1</summary>
 <ul>
 <li>WLOG $|\gamma|=1$; uniform continuity ⇒ chop $[0,1]$ so each sub-arc stays in a half-plane, where a cts arg exists;</li>
 <li>at the junctions the local args differ by integers — adjust and glue;</li>
@@ -677,7 +677,7 @@ so $\oint_\gamma f=0$ around every <b>closed</b> path.</div>
 <span class="tag">Lemma</span><span class="name">Winding number as an integral</span> <span class="num">(2.5.4)</span>
 <div class="hyp"><b>Hyp:</b> $\gamma$ p.w.-$C^1$ closed, $z_0\notin\gamma^*$.</div>
 <div class="stmt">$$I(\gamma,z_0)=\frac1{2\pi i}\oint_\gamma\frac{dz}{z-z_0}.$$</div>
-<details class="sk"><summary>Sketch</summary><ul><li>Write $\gamma=z_0+re^{2\pi ia}$ with $r,a$ p.w.-$C^1$; the integrand integrates to $[\log r(t)+2\pi i\,a(t)]_0^1=2\pi i(a(1)-a(0))$ since $r(0)=r(1)$.</li></ul></details>
+<details open class="sk"><summary>Sketch</summary><ul><li>Write $\gamma=z_0+re^{2\pi ia}$ with $r,a$ p.w.-$C^1$; the integrand integrates to $[\log r(t)+2\pi i\,a(t)]_0^1=2\pi i(a(1)-a(0))$ since $r(0)=r(1)$.</li></ul></details>
 <ul><li>Cut-plane payoff: if a simple curve $\Gamma$ joins $0$ to $\infty$, every loop in $\mathbb C\setminus\Gamma^*$ has $I=0$ ⇒ $\oint dz/z=0$ ⇒ (2.2.16) $1/z$ has a primitive there = <b>a branch of log on any cut plane</b>. Rmk 2.5.3: existence of a holo log-branch conversely forces $I=0$.</li></ul>
 </div>
 
@@ -757,7 +757,7 @@ $$\frac1{2\pi i}\oint_{\gamma_r}\frac{f(z)}{z-w}dz=\underbrace{\frac1{2\pi i}\oi
 <span class="tag">Cor</span><span class="name">CIF for multiple boundary curves</span> <span class="num">(3.1.3)</span>
 <div class="hyp"><b>Hyp:</b> $U$ a <b>bounded domain</b> with p.w.-$C^1$ boundary in finitely many components; $f$ holo on (an open set containing) $\bar U$; outer boundary counterclockwise, inner boundaries clockwise.</div>
 <div class="stmt"><b>Then:</b> $\displaystyle\int_{\partial U}f=0$ and $\displaystyle\frac1{2\pi i}\int_{\partial U}\frac{f(z)}{z-w}dz=f(w)$ for $w\in U$.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>Add finitely many <b>cuts</b> joining the boundary components so $U$ minus the cuts is s.c.; apply CIF to the single resulting contour; each cut is traversed twice in opposite directions ⇒ cancels.</li>
 <li>The two-circle case is the engine of <b>Laurent's theorem</b>.</li>
 </ul></details>
@@ -768,7 +768,7 @@ $$\frac1{2\pi i}\oint_{\gamma_r}\frac{f(z)}{z-w}dz=\underbrace{\frac1{2\pi i}\oi
 <div class="hyp"><b>Hyp:</b> $f$ holo on $U$; $\Gamma=\sum m_i\gamma_i$ a <b>cycle</b> in $U$ (formal $\mathbb Z$-combination of closed paths, Def 3.2.1) whose inside lies in $U$, i.e. $I(\Gamma,z)=0$ for all $z\notin U$.</div>
 <div class="stmt"><b>Then:</b> $\displaystyle\int_\Gamma f=0$, and for $z\in U\setminus\Gamma^*$:
 $\;\dfrac1{2\pi i}\displaystyle\int_\Gamma\dfrac{f(\zeta)}{\zeta-z}d\zeta=I(\Gamma,z)\,f(z)$.</div>
-<details class="sk"><summary>Sketch (Dixon's argument — also Thm A.0.4)</summary>
+<details open class="sk"><summary>Sketch (Dixon's argument — also Thm A.0.4)</summary>
 <ul>
 <li>Define $g_z(\zeta)=\frac{f(\zeta)-f(z)}{\zeta-z}$, extended by $g_z(z)=f'(z)$: holo in $\zeta$ (Riemann removable sing.), and $F(z)=\frac1{2\pi i}\int_\Gamma g_z$ is holo in $z$ (Prop 2.5.6 / Thm A.0.1).</li>
 <li>Off the inside of $\Gamma$, $F$ agrees with $G(z)=\frac1{2\pi i}\int_\Gamma\frac{f(\zeta)}{\zeta-z}d\zeta$ (there $I(\Gamma,z)=0$); glue $F$ on $U$ with $G$ on $V=\mathbb C\setminus(\Gamma^*\cup\mathrm{ins}\,\Gamma)$ ⇒ an <b>entire</b> $H$.</li>
@@ -839,7 +839,7 @@ $$f^{(n)}(z_0)=\frac{n!}{2\pi i}\oint_{|z-z_0|=r}\frac{f(z)}{(z-z_0)^{n+1}}\,dz 
 <span class="tag">Prop</span><span class="name">Locally-uniform limits of holo are holo</span> <span class="num">(3.3.10–3.3.12)</span>
 <div class="hyp"><b>Hyp:</b> $U$ a domain; holo $f_n\to f$ <b>uniformly on compacts</b> of $U$ (Def 3.3.10; e.g. power-series partial sums on $B(0,R)$ — uniform on every $\bar B(0,r)$, $r\lt R$, but usually <em>not</em> on $B(0,R)$, Ex 3.3.11).</div>
 <div class="stmt"><b>Then:</b> $f$ is holo.</div>
-<details class="sk"><summary>Sketch</summary>
+<details open class="sk"><summary>Sketch</summary>
 <ul>
 <li>$f$ cts; on any ball $B(w,r)\subseteq U$ (convex ⇒ star-like Cauchy) $\oint_\gamma f_n=0$;</li>
 <li>$\gamma^*$ compact ⇒ uniform convergence there ⇒ $\oint_\gamma f=\lim\oint_\gamma f_n=0$;</li>
@@ -857,7 +857,7 @@ $$f^{(n)}(z_0)=\frac{n!}{2\pi i}\oint_{|z-z_0|=r}\frac{f(z)}{(z-z_0)^{n+1}}\,dz 
 <div class="stmt"><b>Then:</b> either $g\equiv0$ near $z_0$, or $z_0$ is an <b>isolated zero</b> and
 $$g(z)=(z-z_0)^k g_1(z),\qquad g_1 \text{ holo},\; g_1(z_0)\neq0,$$
 with $k\ge1$ unique — the <b>multiplicity / order of vanishing</b>.</div>
-<details class="sk"><summary>Sketch</summary>
+<details open class="sk"><summary>Sketch</summary>
 <ul>
 <li>Taylor at $z_0$: all $c_n=0$ ⇒ $g\equiv0$ on the ball; else take $k=\min\{n:c_n\neq0\}$ and factor the series;</li>
 <li>$g_1(z_0)=c_k\neq0$ + continuity ⇒ $g\neq0$ on a punctured ball;</li>
@@ -952,7 +952,7 @@ unique, converging uniformly on closed sub-annuli. <b>Cor 3.5.14:</b> at an isol
 <li><b>pole of order $n$</b> $\iff$ principal part is finite, lowest term $c_{-n}\neq0$;</li>
 <li><b>essential</b> $\iff$ infinitely many negative terms.</li>
 </ul></div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>No principal part ⇒ the series <em>is</em> a holo extension. Removable ⇒ negative coefficients are integrals of holo functions ⇒ vanish (Cauchy).</li>
 <li>Finite principal part ⇒ $f=(z-z_0)^{-n}g$ with $g(z_0)=c_{-n}\neq0$ (factor the series); conversely Taylor-expand $g$.</li>
 <li>Essential = elimination.</li>
@@ -975,7 +975,7 @@ unique, converging uniformly on closed sub-annuli. <b>Cor 3.5.14:</b> at an isol
 <div class="card lem">
 <span class="tag">Lemma</span><span class="name">Pole $\iff$ $|f|\to\infty$</span> <span class="num">(3.5.23, 3.5.24)</span>
 <div class="stmt">$z_0$ is a pole $\iff |f(z)|\to\infty$ as $z\to z_0$; then $1/f$ (set $=0$ at $z_0$) is holo with a zero of order = order of the pole.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>(⇒) factor $f=(z-z_0)^{-n}g$.</li>
 <li>(⇐) $1/f\to0$ ⇒ bounded ⇒ Riemann 3.5.21 extends it; its zero has finite order $n$ ⇒ $f=(z-z_0)^{-n}g^{-1}$.</li>
 <li>On the Riemann sphere $\mathbb C_\infty$ removable and pole merge: $f$ extends $\mathbb C_\infty$-valued.</li>
@@ -1166,7 +1166,7 @@ so if $f\to0$ at $\infty$ in the UHP (holo off finitely many singularities), the
 <div class="hyp"><b>Hyp:</b> $f$ meromorphic with a <b>simple</b> pole at $a$; $\gamma_\varepsilon(t)=a+\varepsilon e^{it}$, $t\in[\alpha,\beta]$.</div>
 <div class="stmt">$$\lim_{\varepsilon\to0}\int_{\gamma_\varepsilon}f(z)\,dz=i\,(\beta-\alpha)\operatorname{Res}_a(f)$$
 — a half-turn picks up $\pm\pi i\cdot\operatorname{Res}$ (sign = direction).</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>$f=\frac c{z-a}+g$, $g$ holo ⇒ bounded ⇒ its bit is $O(\varepsilon)$ (est. lemma); the $\frac c{z-a}$ term computes exactly to $ic(\beta-\alpha)$.</li>
 </ul></details>
 <ul>
@@ -1213,7 +1213,7 @@ so if $f\to0$ at $\infty$ in the UHP (holo off finitely many singularities), the
 <span class="tag">Thm</span><span class="name">Parameter integrals are holo</span> <span class="num">(A.0.1)</span>
 <div class="hyp"><b>Hyp:</b> $U$ open; $F:U\times[a,b]\to\mathbb C$ with $z\mapsto F(z,s)$ holo for each $s$, and $F$ cts jointly.</div>
 <div class="stmt"><b>Then:</b> $f(z)=\int_a^b F(z,s)\,ds$ is holo on $U$.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>Riemann sums $f_n(z)=\frac1n\sum_i F(z,i/n)$ are holo (finite sums);</li>
 <li>uniform continuity of $F$ on $K\times[0,1]$ ⇒ $f_n\to f$ uniformly on compacts ⇒ Prop 3.3.12.</li>
 </ul></details>
@@ -1234,7 +1234,7 @@ so if $f\to0$ at $\infty$ in the UHP (holo off finitely many singularities), the
 <div class="card lem">
 <span class="tag">Claim</span><span class="name">Appendix B: injectivity forces $f'\neq0$</span>
 <div class="stmt">If $f$ holo, non-constant, $f'(z_0)=0$, then $f$ is at least 2-to-1 near $z_0$.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>$f-w_0=(z-z_0)^kh$, $h(z_0)\neq0$, $k\ge2$; a holo $k$-th-root branch on a slit disc gives $\phi=(z-z_0)h^{1/k}$ with $f=w_0+\phi^k$, $\phi'(z_0)\neq0$;</li>
 <li>open mapping: $\phi$ covers a ball $B(0,r)$, and $z\mapsto z^k$ is exactly $k$-to-1 there.</li>
 </ul></details>

@@ -199,7 +199,7 @@ MathJax = {
 <span class="tag">Thm</span><span class="name">Linear maps ↔ matrices</span> <span class="num">(1.8)</span>
 <div class="hyp"><b>Hyp:</b> $V,W$ finite-dim with bases $B,B'$.</div>
 <div class="stmt"><b>Then:</b> $T\mapsto {}_{B'}[T]_B$ is a vector-space isomorphism $\operatorname{Hom}(V,W)\cong M_{m\times n}(F)$ taking composition to matrix product. For $T:V\to V$, change of basis gives ${}_{B'}[T]_{B'}=P^{-1}\,{}_B[T]_B\,P$ with $P={}_B[\mathrm{Id}]_{B'}$.</div>
-<details class="sk"><summary>Sketch</summary>The $j$-th column is the coordinate vector of $T(e_j)$; linearity + spanning make it bijective and multiplicative. When $W=V$, $B[\cdot]B$ is even a <em>ring</em> iso $\operatorname{End}(V)\cong M_n(F)$.</details>
+<details open class="sk"><summary>Sketch</summary>The $j$-th column is the coordinate vector of $T(e_j)$; linearity + spanning make it bijective and multiplicative. When $W=V$, $B[\cdot]B$ is even a <em>ring</em> iso $\operatorname{End}(V)\cong M_n(F)$.</details>
 </div>
 
 <!-- ===================== Ch 2 ===================== -->
@@ -209,13 +209,13 @@ MathJax = {
 <span class="tag">Thm</span><span class="name">Division algorithm; an annihilating polynomial exists</span> <span class="num">(2.8, 2.12)</span>
 <div class="hyp"><b>Hyp:</b> $f,g\in F[x]$, $g\neq0$; $A\in M_n(F)$.</div>
 <div class="stmt"><b>Then:</b> $f=qg+r$ with $\deg r<\deg g$; and there is a nonzero $p\in F[x]$ with $p(A)=0$.</div>
-<details class="sk"><summary>Sketch</summary>Division by induction on degree (subtract the leading term). For the annihilator: $\dim M_n(F)=n^2<\infty$, so $\{I,A,\dots,A^{n^2}\}$ is dependent. The evaluation $f\mapsto f(A)$ is a ring hom $F[x]\to M_n(F)$ with commutative image $F[A]$.</details>
+<details open class="sk"><summary>Sketch</summary>Division by induction on degree (subtract the leading term). For the annihilator: $\dim M_n(F)=n^2<\infty$, so $\{I,A,\dots,A^{n^2}\}$ is dependent. The evaluation $f\mapsto f(A)$ is a ring hom $F[x]\to M_n(F)$ with commutative image $F[A]$.</details>
 </div>
 
 <div class="card lem" id="bezout">
 <span class="tag">Prop</span><span class="name">Bézout in $F[x]$</span> <span class="num">(2.11)</span>
 <div class="stmt"><b>Then:</b> for nonzero $a,b$ with $\gcd(a,b)=c$, there exist $s,t\in F[x]$ with $a s+b t=c$. (Equivalently every ideal of $F[x]$ is principal.)</div>
-<details class="sk"><summary>Sketch</summary>Reduce to $\gcd=1$; induct on $\deg a+\deg b$ using $a=qb+r$. <em>This is the engine of the Primary Decomposition Theorem.</em></details>
+<details open class="sk"><summary>Sketch</summary>Reduce to $\gcd=1$; induct on $\deg a+\deg b$ using $a=qb+r$. <em>This is the engine of the Primary Decomposition Theorem.</em></details>
 </div>
 
 <div class="card def" id="minpoly">
@@ -223,7 +223,7 @@ MathJax = {
 <div class="hyp"><b>Def:</b> $m_A$ = monic least-degree polynomial with $m_A(A)=0$; $\chi_A(x)=\det(A-xI)$.</div>
 <div class="stmt"><b>Then:</b> $p(A)=0\iff m_A\mid p$ (so $m_A$ is unique &amp; basis-independent); and
 $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
-<details class="sk"><summary>Sketch</summary>Divide $p=q\,m_A+r$; $p(A)=0\Rightarrow r(A)=0$, $\deg r<\deg m_A\Rightarrow r=0$. $\chi(\lambda)=0\iff A-\lambda I$ singular $\iff$ eigenvalue. $m(A)v=m(\lambda)v\Rightarrow m(\lambda)=0$; conversely $m=(x-\lambda)g$, minimality gives $g(A)\neq0$, and $v=g(A)w\neq0$ is a $\lambda$-eigenvector.</details>
+<details open class="sk"><summary>Sketch</summary>Divide $p=q\,m_A+r$; $p(A)=0\Rightarrow r(A)=0$, $\deg r<\deg m_A\Rightarrow r=0$. $\chi(\lambda)=0\iff A-\lambda I$ singular $\iff$ eigenvalue. $m(A)v=m(\lambda)v\Rightarrow m(\lambda)=0$; conversely $m=(x-\lambda)g$, minimality gives $g(A)\neq0$, and $v=g(A)w\neq0$ is a $\lambda$-eigenvector.</details>
 </div>
 
 <!-- ===================== Ch 3 ===================== -->
@@ -232,14 +232,14 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <div class="card lem" id="quotient">
 <span class="tag">Thm</span><span class="name">Quotient space, first isomorphism theorem, rank–nullity</span> <span class="num">(3.1–3.7)</span>
 <div class="stmt"><b>Then:</b> $V/U$ is a vector space with $\dim V=\dim U+\dim(V/U)$; the map $\overline T:V/\ker T\to\operatorname{im}T$ is an isomorphism, hence $\dim V=\dim\ker T+\dim\operatorname{im}T$.</div>
-<details class="sk"><summary>Sketch</summary>Operations on cosets are well-defined because $U$ absorbs its elements; images of a basis of $V$ extending one of $U$ form a basis of $V/U$. First-iso + this dimension count give rank–nullity.</details>
+<details open class="sk"><summary>Sketch</summary>Operations on cosets are well-defined because $U$ absorbs its elements; images of a basis of $V$ extending one of $U$ form a basis of $V/U$. First-iso + this dimension count give rank–nullity.</details>
 </div>
 
 <div class="card lem" id="induced">
 <span class="tag">Thm</span><span class="name">Induced map on a quotient; block form</span> <span class="num">(3.8–3.9, 4.3)</span>
 <div class="hyp"><b>Hyp:</b> $U$ a subspace, $T:V\to V$.</div>
 <div class="stmt"><b>Then:</b> $\overline T(v+U)=T(v)+U$ is well-defined $\iff$ $U$ is $T$-invariant. In a basis through $U$ the matrix is block upper-triangular, so $\chi_T=\chi_{T|_U}\cdot\chi_{\overline T}$.</div>
-<details class="sk"><summary>Sketch</summary>Well-defined: $v-v'\in U\Rightarrow T(v)-T(v')\in U$. The lower-left block is $0$; the determinant of a block-triangular matrix is the product of diagonal blocks.</details>
+<details open class="sk"><summary>Sketch</summary>Well-defined: $v-v'\in U\Rightarrow T(v)-T(v')\in U$. The lower-left block is $0$; the determinant of a block-triangular matrix is the product of diagonal blocks.</details>
 </div>
 
 <!-- ===================== Ch 4 ===================== -->
@@ -249,13 +249,13 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <span class="tag">Thm</span><span class="name">Triangular form</span> <span class="num">(4.5)</span>
 <div class="hyp"><b>Hyp:</b> $\chi_T$ is a product of linear factors (automatic over $\mathbb C$).</div>
 <div class="stmt"><b>Then:</b> there is a basis with ${}_B[T]_B$ upper triangular. (Equivalently $m_T$ splits into linear factors.)</div>
-<details class="sk"><summary>Sketch</summary>Induct on $\dim V$: take an eigenvector $v_1$ (root of $\chi$), pass to $V/\langle v_1\rangle$ where $\chi$ loses a factor and dimension drops by one, triangularise there, and prepend $v_1$.</details>
+<details open class="sk"><summary>Sketch</summary>Induct on $\dim V$: take an eigenvector $v_1$ (root of $\chi$), pass to $V/\langle v_1\rangle$ where $\chi$ loses a factor and dimension drops by one, triangularise there, and prepend $v_1$.</details>
 </div>
 
 <div class="card thm" id="ch">
 <span class="tag">Thm</span><span class="name">Cayley–Hamilton</span> <span class="num">(4.8)</span>
 <div class="stmt"><b>Then:</b> $\chi_T(T)=0$; hence $m_T\mid\chi_T$.</div>
-<details class="sk"><summary>Sketch</summary>Over the algebraic closure triangularise (diagonal $\lambda_1,\dots,\lambda_n$). Each $(A-\lambda_iI)$ sends $\langle e_1,\dots,e_i\rangle$ into $\langle e_1,\dots,e_{i-1}\rangle$, so the product $\prod(A-\lambda_iI)=\chi(A)=0$ (Prop 4.7). <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">"$\det(A-A\cdot I)=0$" is <b>not</b> a proof.</span></details>
+<details open class="sk"><summary>Sketch</summary>Over the algebraic closure triangularise (diagonal $\lambda_1,\dots,\lambda_n$). Each $(A-\lambda_iI)$ sends $\langle e_1,\dots,e_i\rangle$ into $\langle e_1,\dots,e_{i-1}\rangle$, so the product $\prod(A-\lambda_iI)=\chi(A)=0$ (Prop 4.7). <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">"$\det(A-A\cdot I)=0$" is <b>not</b> a proof.</span></details>
 </div>
 
 <!-- ===================== Ch 5 ===================== -->
@@ -265,13 +265,13 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <span class="tag">Thm</span><span class="name">Primary Decomposition Theorem</span> <span class="num">(Prop 5.1, Thm 5.2)</span>
 <div class="hyp"><b>Hyp:</b> $m_T=f_1^{q_1}\cdots f_r^{q_r}$, the $f_i$ distinct monic irreducibles.</div>
 <div class="stmt"><b>Then:</b> $V=\bigoplus_i \ker f_i(T)^{q_i}$, each summand $T$-invariant, with $m_{T|_{W_i}}=f_i^{q_i}$.</div>
-<details class="sk"><summary>Sketch</summary>Two-factor case $f=ab$, $\gcd=1$: Bézout gives $as+bt=1$, so $a(T)s(T)+b(T)t(T)=I$ — these are the projections onto $\ker a(T)$ and $\ker b(T)$, and their intersection is $0$. Induct on the number of prime factors.</details>
+<details open class="sk"><summary>Sketch</summary>Two-factor case $f=ab$, $\gcd=1$: Bézout gives $as+bt=1$, so $a(T)s(T)+b(T)t(T)=I$ — these are the projections onto $\ker a(T)$ and $\ker b(T)$, and their intersection is $0$. Induct on the number of prime factors.</details>
 </div>
 
 <div class="card thm" id="diag">
 <span class="tag">Thm</span><span class="name">Diagonalisability criterion</span> <span class="num">(5.4)</span>
 <div class="stmt"><b>Then:</b> $T$ is diagonalisable $\iff$ $m_T$ is a product of <em>distinct</em> linear factors. (Triangularisable $\iff$ $m_T$ splits — not necessarily distinct.)</div>
-<details class="sk"><summary>Sketch</summary>$\Leftarrow$ Primary Decomposition gives $V=\bigoplus\ker(T-\lambda_iI)$ = eigenspaces. $\Rightarrow$ a diagonal matrix is killed by $\prod(x-\lambda_i)$ over its distinct eigenvalues, and each $\lambda_i$ is a root of $m_T$.</details>
+<details open class="sk"><summary>Sketch</summary>$\Leftarrow$ Primary Decomposition gives $V=\bigoplus\ker(T-\lambda_iI)$ = eigenspaces. $\Rightarrow$ a diagonal matrix is killed by $\prod(x-\lambda_i)$ over its distinct eigenvalues, and each $\lambda_i$ is a root of $m_T$.</details>
 </div>
 
 <!-- ===================== Ch 6 ===================== -->
@@ -281,13 +281,13 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <span class="tag">Thm</span><span class="name">Nilpotent Jordan form</span> <span class="num">(6.1)</span>
 <div class="hyp"><b>Hyp:</b> $N$ nilpotent.</div>
 <div class="stmt"><b>Then:</b> $m_N=x^m$ ($m$=nilpotency index) and there is a basis giving block-diagonal nilpotent Jordan blocks (0s with 1s above the diagonal).</div>
-<details class="sk"><summary>Sketch</summary>The kernels strictly increase $\{0\}\subsetneq\ker N\subsetneq\cdots\subsetneq\ker N^m=V$. Top-down, lift a basis of each $\ker N^i/\ker N^{i-1}$ and push it down by $N$ (it stays independent), assembling Jordan strings $N^{i-1}v,\dots,Nv,v$.</details>
+<details open class="sk"><summary>Sketch</summary>The kernels strictly increase $\{0\}\subsetneq\ker N\subsetneq\cdots\subsetneq\ker N^m=V$. Top-down, lift a basis of each $\ker N^i/\ker N^{i-1}$ and push it down by $N$ (it stays independent), assembling Jordan strings $N^{i-1}v,\dots,Nv,v$.</details>
 </div>
 
 <div class="card thm" id="jordan">
 <span class="tag">Thm</span><span class="name">Jordan Normal Form</span> <span class="num">(Cor 6.3, Thm 6.4)</span>
 <div class="stmt"><b>Then:</b> over $\mathbb C$ every $T$ has a Jordan form, <b>unique up to block order</b>; the number of blocks $J_i(\lambda)$ is determined by the sequence $\dim\ker(T-\lambda I)^k$.</div>
-<details class="sk"><summary>Sketch</summary>Primary Decomposition into generalised eigenspaces $\ker(T-\lambda_iI)^{m_i}$; on each, $T-\lambda_iI$ is nilpotent, so apply 6.1 and shift back by $\lambda_iI$. The block counts $\Leftrightarrow$ the kernel-dimension sequence $\Rightarrow$ uniqueness.</details>
+<details open class="sk"><summary>Sketch</summary>Primary Decomposition into generalised eigenspaces $\ker(T-\lambda_iI)^{m_i}$; on each, $T-\lambda_iI$ is nilpotent, so apply 6.1 and shift back by $\lambda_iI$. The block counts $\Leftrightarrow$ the kernel-dimension sequence $\Rightarrow$ uniqueness.</details>
 </div>
 
 <!-- ===================== Ch 7 ===================== -->
@@ -296,19 +296,19 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <div class="card def" id="dualbasis">
 <span class="tag">Thm</span><span class="name">Dual basis; second dual</span> <span class="num">(7.3, 7.5)</span>
 <div class="stmt"><b>Then:</b> $e_i'(e_j)=\delta_{ij}$ defines a basis of $V'$ (so $\dim V'=\dim V$); and $v\mapsto E_v$, $E_v(f)=f(v)$, is a <b>natural</b> isomorphism $V\cong V''$ (the iso $V\cong V'$ is <em>not</em> natural).</div>
-<details class="sk"><summary>Sketch</summary>Independence/spanning of $\{e_i'\}$ by evaluating at $e_j$. $E_v$ is injective (if $v\neq0$, extend to a basis and use $e_1'$) and dimensions agree, so it is onto.</details>
+<details open class="sk"><summary>Sketch</summary>Independence/spanning of $\{e_i'\}$ by evaluating at $e_j$. $E_v$ is injective (if $v\neq0$, extend to a basis and use $e_1'$) and dimensions agree, so it is onto.</details>
 </div>
 
 <div class="card def" id="annih">
 <span class="tag">Thm</span><span class="name">Annihilators: dimension formula; $U^0\cong(V/U)'$</span> <span class="num">(7.8, 7.10–7.11)</span>
 <div class="stmt"><b>Then:</b> $U^0=\{f:f|_U=0\}$ satisfies $\dim U^0=\dim V-\dim U$; also $U^{00}\cong U$ and $U^0\cong(V/U)'$.</div>
-<details class="sk"><summary>Sketch</summary>Extend a basis of $U$; the dual vectors of the <em>non</em>-$U$ basis vectors span $U^0$ (and are independent). $f\mapsto\bar f$, $\bar f(v+U)=f(v)$, is the iso $U^0\cong(V/U)'$.</details>
+<details open class="sk"><summary>Sketch</summary>Extend a basis of $U$; the dual vectors of the <em>non</em>-$U$ basis vectors span $U^0$ (and are independent). $f\mapsto\bar f$, $\bar f(v+U)=f(v)$, is the iso $U^0\cong(V/U)'$.</details>
 </div>
 
 <div class="card def" id="dualmap">
 <span class="tag">Thm</span><span class="name">Dual map = transpose</span> <span class="num">(7.12–7.15)</span>
 <div class="stmt"><b>Then:</b> $T':W'\to V'$, $f\mapsto f\circ T$, has matrix $[T']=[T]^{\mathsf T}$ in the dual bases; consequently $\operatorname{im}T'=(\ker T)^0$, $\ker T'=(\operatorname{im}T)^0$, and $T,T'$ share rank, $\chi$ and $m$.</div>
-<details class="sk"><summary>Sketch</summary>$(T'x_i')(e_j)=x_i'(Te_j)=a_{ij}$, the transpose entry. Rank $=n-\dim\ker$ matches $\dim(\ker T)^0$; transpose preserves $\chi,m$.</details>
+<details open class="sk"><summary>Sketch</summary>$(T'x_i')(e_j)=x_i'(Te_j)=a_{ij}$, the transpose entry. Rank $=n-\dim\ker$ matches $\dim(\ker T)^0$; transpose preserves $\chi,m$.</details>
 </div>
 
 <!-- ===================== Ch 8 ===================== -->
@@ -317,32 +317,32 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <div class="card lem" id="ip">
 <span class="tag">Def+Thm</span><span class="name">Forms, Gram–Schmidt, and $V\cong V'$</span> <span class="num">(8.1–8.7)</span>
 <div class="stmt"><b>Then:</b> a form is <em>non-degenerate</em> $\iff$ $v\mapsto\langle v,\cdot\rangle$ is injective ($V\to V'$, an isomorphism in finite dim); every finite-dim inner-product space has an orthonormal basis (Gram–Schmidt). Positive-definite $\Rightarrow$ non-degenerate (not conversely — Minkowski form).</div>
-<details class="sk"><summary>Sketch</summary>Gram–Schmidt: $w_k=v_k-\sum_{i<k}\frac{\langle w_i,v_k\rangle}{\langle w_i,w_i\rangle}w_i$, then normalise; orthogonal nonzero vectors are independent. Non-degeneracy is exactly injectivity of $\phi:v\mapsto\langle v,\cdot\rangle$.</details>
+<details open class="sk"><summary>Sketch</summary>Gram–Schmidt: $w_k=v_k-\sum_{i<k}\frac{\langle w_i,v_k\rangle}{\langle w_i,w_i\rangle}w_i$, then normalise; orthogonal nonzero vectors are independent. Non-degeneracy is exactly injectivity of $\phi:v\mapsto\langle v,\cdot\rangle$.</details>
 </div>
 
 <div class="card def" id="riesz">
 <span class="tag">Thm</span><span class="name">Riesz; orthogonal complement</span> <span class="num">(8.7, 8.10–8.11)</span>
 <div class="stmt"><b>Then:</b> $\phi:V\to V'$, $v\mapsto\langle v,\cdot\rangle$, is a (conjugate-linear) isomorphism in finite dim; and $V=U\oplus U^\perp$, $(U^\perp)^\perp=U$, with $U^\perp$ corresponding to $U^0$ under $\phi$.</div>
-<details class="sk"><summary>Sketch</summary>$\phi$ injective by non-degeneracy + equal dimensions $\Rightarrow$ onto. An ON basis of $U$ extends to one of $V$ (Gram–Schmidt), and the extra vectors span $U^\perp$. <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">$U\oplus U^\perp=V$ can fail in infinite dimension.</span></details>
+<details open class="sk"><summary>Sketch</summary>$\phi$ injective by non-degeneracy + equal dimensions $\Rightarrow$ onto. An ON basis of $U$ extends to one of $V$ (Gram–Schmidt), and the extra vectors span $U^\perp$. <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">$U\oplus U^\perp=V$ can fail in infinite dimension.</span></details>
 </div>
 
 <div class="card thm" id="adjoint">
 <span class="tag">Thm</span><span class="name">Adjoint: exists, unique, = conjugate transpose</span> <span class="num">(8.13–8.16)</span>
 <div class="stmt"><b>Then:</b> there is a unique linear $T^*$ with $\langle v,Tw\rangle=\langle T^*v,w\rangle$; in an <b>orthonormal</b> basis $[T^*]=[T]^{\dagger}$ (conjugate transpose).</div>
-<details class="sk"><summary>Sketch</summary>Uniqueness from non-degeneracy. Existence: $w\mapsto\langle v,Tw\rangle$ is a functional, so Riesz supplies $T^*v$. Matrix entry $b_{ij}=\langle e_i,T^*e_j\rangle=\overline{\langle Te_i,e_j\rangle}=\bar a_{ji}$. <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">The ON-basis hypothesis is essential.</span></details>
+<details open class="sk"><summary>Sketch</summary>Uniqueness from non-degeneracy. Existence: $w\mapsto\langle v,Tw\rangle$ is a functional, so Riesz supplies $T^*v$. Matrix entry $b_{ij}=\langle e_i,T^*e_j\rangle=\overline{\langle Te_i,e_j\rangle}=\bar a_{ji}$. <span class="warn" style="border:0;background:0;padding:0;color:#9a3412">The ON-basis hypothesis is essential.</span></details>
 </div>
 
 <div class="card thm" id="selfadj">
 <span class="tag">Thm</span><span class="name">Spectral Theorem (self-adjoint)</span> <span class="num">(8.19–8.21)</span>
 <div class="hyp"><b>Hyp:</b> $T^*=T$, $V$ finite-dim.</div>
 <div class="stmt"><b>Then:</b> all eigenvalues are real and $V$ has an <b>orthonormal basis of eigenvectors</b>.</div>
-<details class="sk"><summary>Sketch</summary>Real eigenvalues: $\lambda\langle w,w\rangle=\langle w,Tw\rangle=\langle Tw,w\rangle=\bar\lambda\langle w,w\rangle$. If $U$ is $T$-invariant so is $U^\perp$; peel off one unit eigenvector and induct on dimension.</details>
+<details open class="sk"><summary>Sketch</summary>Real eigenvalues: $\lambda\langle w,w\rangle=\langle w,Tw\rangle=\langle Tw,w\rangle=\bar\lambda\langle w,w\rangle$. If $U$ is $T$-invariant so is $U^\perp$; peel off one unit eigenvector and induct on dimension.</details>
 </div>
 
 <div class="card thm" id="unitary">
 <span class="tag">Thm</span><span class="name">Orthogonal / unitary maps; canonical forms</span> <span class="num">(8.22–8.32)</span>
 <div class="stmt"><b>Then:</b> $T^*=T^{-1}\iff$ $T$ preserves $\langle\cdot,\cdot\rangle\iff$ $T$ preserves length; eigenvalues have $|\lambda|=1$. These form the groups $O_n\supset SO_n$, $U_n\supset SU_n$. A <em>unitary</em> map has an ON eigenbasis (8.29); a <em>real orthogonal</em> map has an ON basis with blocks $I,\ -I,\ R_\theta$ (8.32).</div>
-<details class="sk"><summary>Sketch</summary>Equivalences by expanding $\langle T^*Tv,w\rangle$ and polarisation. Real form: $S=T+T^{-1}$ is self-adjoint, so its eigenspaces split $V$; on each, $T^2-\lambda T+I=0$ forces $\pm I$ or a rotation.</details>
+<details open class="sk"><summary>Sketch</summary>Equivalences by expanding $\langle T^*Tv,w\rangle$ and polarisation. Real form: $S=T+T^{-1}$ is self-adjoint, so its eigenspaces split $V$; on each, $T^2-\lambda T+I=0$ forces $\pm I$ or a rotation.</details>
 </div>
 
 <div class="card warn" id="normal">
@@ -356,7 +356,7 @@ $$\lambda\text{ eigenvalue}\iff\chi_A(\lambda)=0\iff m_A(\lambda)=0.$$</div>
 <div class="card ex" id="svd">
 <span class="tag">Thm</span><span class="name">Singular Value Decomposition; polar form</span> <span class="num">(9.1, 9.2)</span>
 <div class="stmt"><b>Then:</b> any $A\in F^{m\times n}$ ($m\ge n$) factors as $A=U\Sigma V^*$ with $U,V$ having orthonormal columns and $\Sigma=\operatorname{diag}(\sigma_1\ge\cdots\ge\sigma_n\ge0)$, where $\sigma_i=\sqrt{\lambda_i(A^*A)}$. Then $\operatorname{rank}A=\#\{\sigma_i>0\}$, $\sigma_1=\lVert A\rVert_{\mathrm{op}}$, and (polar) $A=U_pH$ with $H\succeq0$ self-adjoint.</div>
-<details class="sk"><summary>Sketch</summary>$A^*A$ is positive-semidefinite, so the Spectral Theorem diagonalises it: $A^*A=VD^2V^*$. Put $B=AV$ (orthogonal columns, $B^*B=D^2$); on the nonzero block $U=BD^{-1}$ has ON columns; extend $U$ to ON columns to finish.</details>
+<details open class="sk"><summary>Sketch</summary>$A^*A$ is positive-semidefinite, so the Spectral Theorem diagonalises it: $A^*A=VD^2V^*$. Put $B=AV$ (orthogonal columns, $B^*B=D^2$); on the nonzero block $U=BD^{-1}$ has ON columns; extend $U$ to ON columns to finish.</details>
 </div>
 
 <div class="card rem">

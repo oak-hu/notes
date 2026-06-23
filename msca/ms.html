@@ -72,7 +72,7 @@ MathJax = {
 <header class="site"><div class="inner">
 <h1>Metric Spaces — Revision Overview</h1>
 <p>A skimmable map of the A2 Metric Spaces notes (Lauder, after Green/McGerty/Earl): every key definition, every theorem with hypotheses spelled out, proof sketches, and the dependency graph.</p>
-<p style="font-size:.88rem">Numbering follows the notes. Companion page: <a href="index.html">Complex Analysis overview →</a></p>
+<p style="font-size:.88rem">Numbering follows the notes. Companion page: <a href="ca.html">Complex Analysis overview →</a></p>
 </div></header>
 
 <div class="wrap">
@@ -217,7 +217,7 @@ MathJax = {
 <text class="nl" x="800" y="756">holo + f′≠0 ⇒ conformal</text><text class="ns" x="800" y="774">Prop 11.2.3</text></a>
 
 <!-- row 8 -->
-<a href="index.html"><rect x="330" y="854" width="340" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
+<a href="ca.html"><rect x="330" y="854" width="340" height="52" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="2.2"/>
 <text class="nl" x="500" y="876">→ Complex Analysis course</text><text class="ns" x="500" y="894">domains, contours, conformal maps (companion page)</text></a>
 </svg>
 <figcaption><b>Red arrows = the load-bearing chains.</b> Omitted for readability: Lemma 5.5.1 (subspace opens) feeds both the disconnection examples and the open-cover convention; the clopen criterion 8.1.2 also powers the sunflower lemma 8.1.4 and Thm 8.3.2's final step; Cor 6.1.5 (closure ⟺ sequences) is the workhorse inside 7.2.1, 7.2.3, 7.3.2 and 9.2.1; Thm 9.5.3 supplies the total-boundedness machinery for 10.3.1's nested-balls proof.</figcaption>
@@ -255,7 +255,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <li>The $|(h,k)|$ cancels the denominator; <b>continuity of the partials</b> kills the $\Delta$'s as $(h,k)\to0$.</li>
 </ul>
 </details>
-<ul><li>This is the theorem the CA notes import to prove "CR + cts partials ⇒ holomorphic" (<a href="index.html#thm-crconv">CA Thm 1.2.7</a>).</li></ul>
+<ul><li>This is the theorem the CA notes import to prove "CR + cts partials ⇒ holomorphic" (<a href="ca.html#thm-crconv">CA Thm 1.2.7</a>).</li></ul>
 </div>
 
 <div class="card warn">
@@ -341,7 +341,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <div class="card lem" id="lem-seqcts">
 <span class="tag">Lemma</span><span class="name">Sequential characterisation of continuity</span> <span class="num">(3.1.4)</span>
 <div class="stmt">$f$ cts at $a$ $\iff$ for every sequence $x_n\to a$ we have $f(x_n)\to f(a)$.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>(⇒) chain the definitions. (⇐) contrapositive: failure of continuity gives an $\varepsilon$ such that $\delta=1/n$ produces $x_n\to a$ with $d(f(x_n),f(a))\ge\varepsilon$.</li>
 </ul></details>
 </div>
@@ -437,7 +437,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <li><b>6.1.4:</b> $a\in\bar S$ $\iff$ every ball $B(a,\varepsilon)$ meets $S$ (so: dense ⟺ meets every open set).</li>
 <li><b>6.1.5:</b> $a\in\bar S$ $\iff$ some sequence in $S$ converges to $a$. Hence: <b>$S$ closed ⟺ closed under limits of its sequences.</b></li>
 </ul></div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>6.1.4: if a ball misses $S$, its complement is a closed set ⊇ $S$ but ∌ $a$; conversely $\bar S^c$ is open.</li>
 <li>6.1.5: pick $x_n\in B(a,\frac1n)\cap S$ (this innocuous step is where the notes flag the <b>axiom of countable choice</b>, §2.1).</li>
 </ul></details>
@@ -468,7 +468,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <span class="tag">Lemma</span><span class="name">Complete ⟺ closed (inside a complete space)</span> <span class="num">(7.2.1)</span>
 <div class="hyp"><b>Hyp:</b> $X$ <b>complete</b>, $Y\subseteq X$ a subspace.</div>
 <div class="stmt"><b>Then:</b> $Y$ complete $\iff$ $Y$ closed in $X$.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>Both directions are Cor 6.1.5 + uniqueness of limits: closed traps the limit in $Y$; complete forces sequence limits into $Y$.</li>
 </ul></details>
 </div>
@@ -477,7 +477,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <span class="tag">Lemma</span><span class="name">Cantor's intersection theorem</span> <span class="num">(7.2.2, 7.2.3)</span>
 <div class="hyp"><b>Hyp:</b> $X$ <b>complete</b>; $S_1\supseteq S_2\supseteq\cdots$ <b>non-empty closed</b>, with $\operatorname{diam}(S_n)\to0$ (diam = $\sup$ of pairwise distances, 7.2.2).</div>
 <div class="stmt"><b>Then:</b> $\bigcap_n S_n$ = exactly one point.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>Pick $x_n\in S_n$: nesting + shrinking diameters make $(x_n)$ Cauchy; the limit lies in every (closed) $S_i$ by 6.1.5; uniqueness since $d(a,b)\le\operatorname{diam}(S_i)\to0$.</li>
 </ul></details>
 <ul><li>Drop $\operatorname{diam}\to0$: uniqueness fails, and the intersection can even be <b>empty</b> — $S_i=[i,\infty)$. (Compare Lemma 10.2.2: compactness instead rescues non-emptiness.)</li></ul>
@@ -528,7 +528,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <span class="tag">Lemma</span><span class="name">Clopen criterion + subspace criterion</span> <span class="num">(8.1.2, 8.1.3)</span>
 <div class="stmt"><b>8.1.2, TFAE:</b> (i) $X$ connected; (ii) every cts $f:X\to\{0,1\}$ is constant; (iii) the only clopen sets are $\emptyset, X$.
 <b>8.1.3:</b> $Y\subseteq X$ is connected iff whenever $Y\subseteq U\cup V$ ($U,V$ open in $X$) with $U\cap V\cap Y=\emptyset$, then $Y\subseteq U$ or $Y\subseteq V$.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>(i)⇒(ii): $f^{-1}(0), f^{-1}(1)$ are disjoint opens covering $X$. (ii)⇒(iii): characteristic function of a clopen set is cts. (iii)⇒(i): a disconnection makes $U$ clopen.</li>
 <li>8.1.3 is just 8.1.2 + subspace opens (5.5.1).</li>
 </ul></details>
@@ -628,7 +628,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <div class="card thm" id="cor-943">
 <span class="tag">Prop+Cor</span><span class="name">Products; Bolzano–Weierstrass in $\mathbb R^n$</span> <span class="num">(9.4.1–9.4.3)</span>
 <div class="stmt"><b>9.4.2:</b> a product of two seq cpt spaces is seq cpt. <b>Cor 9.4.3 (B–W):</b> closed + bounded in $\mathbb R^n$ ⇒ seq cpt.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>9.4.1: convergence in $X\times Y$ = coordinatewise (projections are 1-Lipschitz).</li>
 <li>9.4.2: subsequence for the $x$'s, then a sub-subsequence for the $y$'s — "rather unpleasant triple subscripts," but the point is just: refine twice.</li>
 <li>9.4.3: bounded ⇒ inside a cube $[-M,M]^n$; B–W on $\mathbb R$ + products (iterated) make the cube seq cpt; closed subset of seq cpt is seq cpt (9.2.2).</li>
@@ -693,7 +693,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <li><b>10.3.2 (TFAE, any metric space):</b> compact $\iff$ seq compact $\iff$ complete + totally bounded.</li>
 <li><b>10.3.3 (Heine–Borel):</b> $S\subseteq\mathbb R^n$ compact $\iff$ <b>closed and bounded</b>.</li>
 </ul></div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>10.3.2 = 10.2.1 + 10.3.1 + 9.5.3, nothing more.</li>
 <li>Heine–Borel: (⇒) compact ⇒ seq cpt ⇒ closed + bounded (9.2.1); (⇐) closed + bounded ⇒ seq cpt (B–W, 9.4.3) ⇒ compact (10.3.1).</li>
 </ul></details>
@@ -740,7 +740,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <div class="card thm" id="circlines">
 <span class="tag">Prop</span><span class="name">Circlines map to circlines</span> <span class="num">(11.1.10, 11.1.11)</span> <span class="nonex">proof non-exam</span>
 <div class="stmt"><b>Circline</b> = circle in $\mathbb C$, or line $\cup\,\{\infty\}$ (lines: $|z-a|=|z-b|$). Möbius maps send circlines to circlines.</div>
-<details class="sk"><summary>Sketch</summary><ul>
+<details open class="sk"><summary>Sketch</summary><ul>
 <li>By the generator decomposition (11.1.9), check translations/dilations (obvious) and inversion; the only interesting case: <b>circles through $0$ ↔ lines not through $0$</b> under $z\mapsto1/z$.</li>
 </ul></details>
 </div>
@@ -753,7 +753,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <ul>
 <li>Chain rule for $\eta_i=f\circ\gamma_i$: split the difference quotient as $\frac{f(\gamma(h))-f(z_0)}{\gamma(h)-z_0}\cdot\frac{\gamma(h)-z_0}{h}$ (legal since $\gamma'(0)\neq0$ keeps $\gamma(h)\neq z_0$); the first factor $\to f'(z_0)$ by <em>complex</em> differentiability.</li>
 <li>So $\eta_i'(0)=f'(z_0)\,\gamma_i'(0)$: writing $f'(z_0)=\rho e^{i\theta}$, <b>both</b> tangent vectors get rotated by the <em>same</em> $\theta$ (and scaled by $\rho$) — angle differences survive.</li>
-<li>This is the geometric meaning of the CR equations: multiplication by a complex number = rotation + scaling (cf. <a href="index.html#thm-cr">CA Thm 1.2.2, proof 2</a>).</li>
+<li>This is the geometric meaning of the CR equations: multiplication by a complex number = rotation + scaling (cf. <a href="ca.html#thm-cr">CA Thm 1.2.2, proof 2</a>).</li>
 <li><b>$f'\neq0$ is necessary (Ex 11.2.4):</b> $z^2$ at the origin <em>doubles</em> angles.</li>
 </ul>
 </details>
@@ -830,7 +830,7 @@ then $L=df(a)$, with matrix the <b>Jacobian</b> $(f_x\;f_y)$ (in coords; eq. 1.5
 <tr><td>"conformal everywhere"</td><td>$z^2$ doubles angles where $f'=0$ — 11.2.4</td></tr>
 </table>
 
-<p style="margin-top:48px;color:#777;font-size:.9rem">Built from <code>MS_notes.pdf</code> (77 pp, A2 Metric Spaces, Lauder). Numbering and proof strategies follow the notes; items marked <span class="nonex">non-exam</span> are flagged as in the source. Companion: <a href="index.html">Complex Analysis overview</a>.</p>
+<p style="margin-top:48px;color:#777;font-size:.9rem">Built from <code>MS_notes.pdf</code> (77 pp, A2 Metric Spaces, Lauder). Numbering and proof strategies follow the notes; items marked <span class="nonex">non-exam</span> are flagged as in the source. Companion: <a href="ca.html">Complex Analysis overview</a>.</p>
 
 </div>
 </body>
