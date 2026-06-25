@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A3 exam analysis &amp; predictions</title>
+<style>
+ body{max-width:50rem;margin:2.5rem auto;padding:0 1.2rem;font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Georgia,serif;color:#1a1a1a;}
+ h1{font-size:1.6rem;line-height:1.25;} h2{font-size:1.2rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.2rem;}
+ h3{font-size:1.05rem;margin-top:1.4rem;} code{background:#eef;padding:0 .25em;border-radius:3px;font-size:.92em;}
+ table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:14px;} th,td{border:1px solid #ccc;padding:5px 8px;text-align:left;vertical-align:top;}
+ th{background:#f1f5f9;} tr:nth-child(even){background:#fafafa;}
+ blockquote{color:#555;border-left:3px solid #bbb;margin:1rem 0;padding:.2rem 1rem;font-size:.95em;}
+ em{color:#444;} hr{border:none;border-top:1px solid #ddd;margin:1.6rem 0;}
+ img{max-width:100%;height:auto;border:1px solid #eee;border-radius:6px;}
+</style></head><body>
+<h1 id="a3-rings-and-modules-past-paper-patterns-2026-predictions">A3
+(Rings and Modules) — past-paper patterns &amp; 2026 predictions</h1>
+<p><em>Built from all 12 papers, 2014–2025 (Oxford Part A, paper A3;
+titled “Algebra 2” in 2014–15, “Rings and Modules” from 2016). Companion
+files: <code>a3_heatmap.png</code> (topic × year grid),
+<code>a3_topic_matrix.csv</code> (the raw matrix). Cross-checked against
+the current course notes (<code>rm.html</code>).</em></p>
+<figure>
+<img src="a3_heatmap.png" alt="A3 topic × year heatmap" />
+<figcaption aria-hidden="true">A3 topic × year heatmap</figcaption>
+</figure>
+<hr />
+<h2 id="tldr-what-id-bet-on-for-2026">0. TL;DR — what I’d bet on for
+2026</h2>
+<ol type="1">
+<li><strong>The format is rock-stable — bank on it.</strong> Every year
+2014–2025: <strong>3 questions, answer the best 2, 25 marks each, 90
+minutes, no sections.</strong> Unlike A2 (which was re-balanced in 2025)
+A3 has <em>not</em> changed. The three questions reliably span the
+syllabus as <strong>{rings + factorisation} · {fields} · {modules +
+structure}</strong>, so best-2-of-3 means you can sacrifice
+<strong>one</strong> whole area — but only one.</li>
+<li><strong>A modules/structure question appears every single
+year.</strong> The D/E clusters (modules, isomorphism theorems,
+structure theorem, canonical forms) are non-negotiable — there has
+<em>always</em> been at least one. Likewise a
+<strong>Euclidean/PID/UFD</strong> question (B cluster) shows up almost
+every year.</li>
+<li><strong>Z[i] / Z[√d] arithmetic is the rising star.</strong> Norms,
+units, irreducibility, non-unique factorisation and the
+<strong>sum-of-two-squares</strong> theorem (p ≡ 1 mod 4) appear in
+<strong>all four</strong> of 2022, 2023, 2024, 2025 (and 2016–17), after
+a 2018–21 gap. The 2025 Fermat two-squares set-piece (via Z[i]
+Euclidean) is worth knowing cold.</li>
+<li><strong>Canonical forms are overdue.</strong> The structure theorem
+/ Smith normal form / rational-&amp;-Jordan-form material (E20–E22) was
+heavy through 2023 but <strong>absent in both 2024 and 2025</strong>.
+Historically it recurs — a strong asymmetric bet for 2026.</li>
+</ol>
+<p>Confidence: <strong>high</strong> on the format and on “a
+module/structure question + a factorisation question every year” (12/12
+each); <strong>medium</strong> on the specific rotation calls (canonical
+forms returning, fields recurring).</p>
+<hr />
+<h2 id="the-format-stable-this-is-the-good-news">1. The format (stable —
+this is the good news)</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Every year 2014–2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Questions</td>
+<td><strong>3</strong>, answer <strong>best 2</strong></td>
+</tr>
+<tr>
+<td>Marks</td>
+<td>25 each (50 total)</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>90 minutes</td>
+</tr>
+<tr>
+<td>Sections</td>
+<td><strong>none</strong> (free choice of any 2 of 3)</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>“Algebra 2” (2014–15) → “Rings and Modules” (2016 →)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How the three questions partition the syllabus</strong> (the
+recurring shape):</p>
+<ul>
+<li><strong>Q-type α — Rings, ideals &amp; factorisation:</strong>
+prime/maximal ideals, Euclidean domains, PIDs, UFDs, Gauss/Eisenstein,
+Z[i]/Z[√d].</li>
+<li><strong>Q-type β — Fields <em>or</em> more factorisation:</strong>
+field extensions, Tower Law, minimal polynomial, finite fields —
+<em>or</em> a second ring/Euclidean-domain question.</li>
+<li><strong>Q-type γ — Modules &amp; structure:</strong> module/iso
+theorems, free/torsion modules, Smith normal form, structure theorem,
+rational/Jordan canonical forms.</li>
+</ul>
+<p>Because you choose <strong>any</strong> 2 of 3, you can drop one
+cluster — but the three rotate which sub-topics they carry, so
+<strong>own two clusters cold and keep a third as insurance.</strong>
+The two safest to own (most reliably present): <strong>B (factorisation,
+incl. Z[i]/Z[√d])</strong> and <strong>D+E (modules +
+structure)</strong>.</p>
+<hr />
+<h2 id="bookwork-ranked-by-likelihood-the-what-to-memorise-list">2. ⭐
+Bookwork ranked by likelihood (the “what to memorise” list)</h2>
+<p>These are the <strong>state-and-prove / prove-this</strong> results.
+Ranked by frequency and recency.</p>
+<h3 id="tier-1-near-certain-memorise-the-proof-cold">Tier 1 —
+near-certain, <strong>memorise the proof cold</strong></h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Result</th>
+<th>Years asked to <em>prove</em>/<em>state</em></th>
+<th>Why it’s a lock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ED ⟹ PID</strong> (every ideal in a Euclidean domain is
+principal)</td>
+<td>17, 18 (via PID gcd+Bézout), 20, 24 (4×)</td>
+<td>The single most reliable A3 bookwork. Know the “least-norm element
+generates” argument cold; the 2018 variant proves hcf existence + Bézout
++ “irreducible ⟹ maximal” from it.</td>
+</tr>
+<tr>
+<td><strong>Z[i] (and Z[ω]) is a Euclidean domain</strong></td>
+<td>16, 17, 23, 25 (4×)</td>
+<td>Asked to <em>prove</em> repeatedly. The rounding/division argument
+with N(a+bi)=a²+b². Gateway to the sum-of-two-squares question.</td>
+</tr>
+<tr>
+<td><strong>I prime ⟺ R/I domain; I maximal ⟺ R/I field</strong> (and
+maximal ⟹ prime)</td>
+<td>14, 18, 19, 20, 22, 23 (6×)</td>
+<td>Tiny, constantly reused, opens many questions.</td>
+</tr>
+<tr>
+<td><strong>Structure theorem (statement) ⟹ classification of f.g.
+abelian groups</strong></td>
+<td>14, 15, 16, 18 (+ applied 21)</td>
+<td>State it correctly (invariant-factor form) and <em>use</em> it to
+count/classify groups of a given order — asked almost every early year
+and underpins the γ-question.</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>modules/structure question is guaranteed</strong> (12/12
+years), so at least one Tier-1/Tier-2 result from clusters D/E will be
+needed every time.</p>
+<h3 id="tier-2-high-know-the-proof-expect-it-in-some-year">Tier 2 —
+high; <strong>know the proof, expect it in some year</strong></h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Result</th>
+<th>Years</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>First isomorphism theorem for modules</strong> (+ submodule
+correspondence)</td>
+<td>19, 24</td>
+<td>ker/im are submodules, M/ker ≅ im; the 2024 paper bundled it with
+the lattice correspondence and Schur’s lemma.</td>
+</tr>
+<tr>
+<td><strong>Minimal-polynomial package</strong> (m_α irreducible; F[α] ≅
+F[x]/⟨m_α⟩ is a field; [F(α):F]=deg m_α)</td>
+<td>19, 22, 25</td>
+<td>The backbone of the fields question; 2025 used it to prove the
+algebraic numbers form a field.</td>
+</tr>
+<tr>
+<td><strong>Tower Law</strong> [L:F]=[L:K][K:F]</td>
+<td>20, 25</td>
+<td>Short, proved outright in both; pairs with the minimal-polynomial
+package.</td>
+</tr>
+<tr>
+<td><strong>Gauss’s lemma / content / Eisenstein’s
+criterion</strong></td>
+<td>14, 15, 21, 24</td>
+<td>Content multiplicativity + Eisenstein (often via x ↦ 1+x on the
+cyclotomic).</td>
+</tr>
+<tr>
+<td><strong>prime ⟹ irreducible; converse in a UFD</strong></td>
+<td>22, 25</td>
+<td>The one-line proof + the UFD converse.</td>
+</tr>
+<tr>
+<td><strong>Smith normal form</strong> (diagonalisation over a ED +
+uniqueness up to units)</td>
+<td>16, 21, 22, 23</td>
+<td>Both the existence algorithm and the uniqueness statement have been
+asked.</td>
+</tr>
+<tr>
+<td><strong>Rational/Jordan canonical form &amp; “M_A ≅ M_B ⟺ A,B
+similar”</strong></td>
+<td>17, 18, 19, 23</td>
+<td>The k[x]-module view of a linear operator; cyclic-vector ⟹ min =
+char poly.</td>
+</tr>
+<tr>
+<td><strong>Chinese Remainder Theorem</strong> (state &amp; prove)</td>
+<td>18 (+ applied 20, 21)</td>
+<td>Comaximal ideals; reused to split rings/groups.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-3-moderate-understand-it-lighter-memorisation">Tier 3 —
+moderate; understand it, lighter memorisation</h3>
+<ul>
+<li><strong>f.g. closure lemmas</strong> (submodule/quotient of f.g. is
+f.g.; “every submodule f.g. ⟹ ACC/Noetherian”) — 21, 25.</li>
+<li><strong>torsion-free f.g. module over a PID ⟹ free</strong> —
+15.</li>
+<li><strong>char(R) is 0 or prime</strong> (for a domain) — 17, 20,
+22.</li>
+<li><strong>Finite-field constructions &amp; “U(F) cyclic” for a finite
+field</strong> — applied 18, 19, 21, 22, 23, 25.</li>
+</ul>
+<h3 id="tier-4-low-priority-situational">Tier 4 — low priority /
+situational</h3>
+<ul>
+<li>Bespoke one-off framings: “associator rings” (15), invariant-bound
+failure / <strong>M_n(F) has no invariant basis number</strong> (22),
+Eisenstein-integer norm form a²−ab+b² (17). Understand the ideas; don’t
+over-rehearse the exact bespoke wording.</li>
+</ul>
+<hr />
+<h2 id="the-guaranteed-computations-drill-these">3. The guaranteed
+<em>computations</em> — drill these</h2>
+<p>Every paper has compute parts. The recurring computation
+<em>types</em> (drill the toolkit, not specific answers):</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Computation</th>
+<th>Years</th>
+<th>Typical task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classify / count f.g. abelian groups</strong> of order n
+(invariant-factor ⇄ primary)</td>
+<td>14, 16, 18</td>
+<td>Z/60 ⊕ Z/21 canonical form; #groups of order 675 / 216</td>
+</tr>
+<tr>
+<td><strong>Z[i] / Z[√d] arithmetic</strong> (units via N=1,
+irreducibility, non-unique factorisation, p = u²+v²)</td>
+<td>16, 17, 22, 23, 24, 25</td>
+<td>units of Z[√−d]; 4 = 2·2 = (1+√−3)(1−√−3); p ≡ 1 mod 4 ⟹ sum of two
+squares</td>
+</tr>
+<tr>
+<td><strong>Polynomial irreducibility / factorisation</strong> in Q[x],
+Z[x]</td>
+<td>14, 21, 24</td>
+<td>Eisenstein, reduction mod p, rational-root; 6x⁴+5x²+1;
+cyclotomic</td>
+</tr>
+<tr>
+<td><strong>Smith normal form / adapted basis</strong> of a
+submodule</td>
+<td>16 (+ 21, 22, 23)</td>
+<td>basis of N ⊆ Z³; invariant factors of a presented group</td>
+</tr>
+<tr>
+<td><strong>Rational canonical form</strong> of a given matrix /
+k[x]-module decomposition</td>
+<td>17, 19, 23</td>
+<td>RCF of a 4×4; decompose Fⁿ as F[x]/⟨…⟩ ⊕ … ; min/char poly</td>
+</tr>
+<tr>
+<td><strong>Field degree</strong> [Q(α):Q] / structure of Q(α)</td>
+<td>16, 18, 19, 25</td>
+<td>degrees, Q[√a]=Q[√b]?, Q[A] ≅ Q[√2]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prediction:</strong> at least one <strong>Z[i]/Z[√d]</strong>
+computation (momentum: all of 2022–25) and at least one
+<strong>module/structure</strong> computation. Keep the
+<strong>sum-of-two-squares via Z[i]</strong> argument and the
+<strong>Smith-normal-form algorithm</strong> ready to reproduce
+end-to-end.</p>
+<hr />
+<h2 id="trends-rotation-where-the-asymmetric-bets-are">4. Trends &amp;
+rotation (where the asymmetric bets are)</h2>
+<ul>
+<li><strong>Rising — Z[i]/Z[√d]/sum-of-two-squares (B11):</strong>
+present in <strong>all of 2022, 2023, 2024, 2025</strong> (and 2016–17),
+absent 2018–21. Clear upward momentum; the Fermat two-squares set-piece
+is freshly examined (2025) and very learnable.</li>
+<li><strong>Now a fixture — module foundations (D15/D16):</strong>
+quotient modules + isomorphism theorems appear <strong>every year from
+2018 onward</strong>. Treat module iso/correspondence theory as
+guaranteed.</li>
+<li><strong>Overdue — canonical forms &amp; structure
+(E20–E22):</strong> heavy through 2023 (Smith form, RCF, similarity),
+then <strong>absent in both 2024 and 2025</strong>. Two-year gap on a
+historically frequent area → strong candidate to return in 2026. If you
+want one high-payoff bet, prepare the <strong>structure theorem +
+Smith-normal-form computation</strong> and <strong>rational/Jordan
+canonical forms</strong>.</li>
+<li><strong>Rotating — fields (C12–C14):</strong> dominant in 2019,
+2020, 2025; <strong>absent in 2024</strong>. Don’t drop it, but it’s the
+most “skippable” of the three clusters in any single year.</li>
+<li><strong>Steady — Euclidean/PID/UFD (B6–B8):</strong> somewhere in
+almost every paper; the backbone of the α-question.</li>
+</ul>
+<hr />
+<h2 id="how-to-spend-revision-time-given-the-above">5. How to spend
+revision time (given the above)</h2>
+<ul>
+<li><strong>Own two clusters cold, keep a third as backup.</strong>
+Safest pair: <strong>B (Euclidean/PID/UFD + Z[i]/Z[√d])</strong> and
+<strong>D+E (modules + structure/canonical forms)</strong> — each is
+present essentially every year. Use <strong>C (fields)</strong> as the
+insurance third (great when it lands, e.g. 2025).</li>
+<li><strong>Memorise cold (Tier 1):</strong> ED ⟹ PID; Z[i] is
+Euclidean; prime/maximal ⟺ R/I domain/field; the structure theorem
+statement + abelian-group classification; first isomorphism theorem for
+modules.</li>
+<li><strong>Drill, don’t memorise (the compute toolkit):</strong>
+abelian-group classification, Smith normal form, polynomial
+irreducibility (Eisenstein/mod-p/rational-root), Z[√d] arithmetic,
+rational canonical form.</li>
+<li><strong>Know-the-statement, lighter on the proof:</strong> PID ⟹ UFD
+via ACC, Gauss’s lemma (know it, can quote), the more bespoke one-offs
+(associator rings, IBN failure).</li>
+<li><strong>Two concrete 2026 bets:</strong> (i) a
+<strong>Z[i]/sum-of-two-squares</strong> part (four years running) and
+(ii) a <strong>structure-theorem / canonical-forms</strong> question
+(absent two years, historically frequent). Prepare both end-to-end.</li>
+</ul>
+<p><em>Caveat: predictions are pattern-extrapolation from 12 papers plus
+the current notes. The <strong>format</strong> call is as safe as it
+gets (no change in 12 years); the <strong>topic-rotation</strong> calls
+(canonical forms returning, fields recurring) are softer
+single-to-few-year signals — sanity-check against your problem sheets
+and any lecturer guidance.</em></p>
+
+</body></html>

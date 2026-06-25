@@ -1,0 +1,23 @@
+Cluster,Code,Topic,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,Count(12y),Count(22-25)
+A,A1,Rings/subrings/homs · char · units · nilpotents,X,X,X,X,,X,X,X,X,X,X,,10,3
+A,A2,"Ideals: generated/principal, operations",X,X,X,,,X,X,X,,X,,,7,1
+A,A3,Quotients · iso theorems · CRT,X,X,X,,X,X,X,X,X,X,,,9,2
+A,A4,Prime & maximal ideals (R/I domain·field),X,X,,,X,X,X,,X,X,X,,8,3
+A,A5,Field of fractions / localisation,X,,X,,,,X,,,,,X,4,1
+B,B6,"Euclidean domains (Z[i], division alg.)",,,X,X,,,X,,X,X,X,X,7,4
+B,B7,PIDs;  ED => PID,,X,X,X,X,,X,,X,X,X,,8,3
+B,B8,Irreducible vs prime;  UFD,X,,,,X,,,X,X,X,X,X,7,4
+B,B9,PID=>UFD;  ACC / Noetherian (rings),,,,,,X,,,X,,,,2,1
+B,B10,Gauss / content / Eisenstein / irred. tests,X,X,,,,,,X,,,X,,4,1
+B,B11,"Z[i], Z[√d] norms; sum of two squares",,,X,X,,,,,X,X,X,X,6,4
+C,C12,"Field extensions, degree, Tower Law",,,X,,X,X,X,,,,,X,5,1
+C,C13,"Algebraic elts, minimal polynomial, Q(α)",,,,,X,X,X,,X,,,X,5,2
+C,C14,Finite fields;  k[t]/(f) constructions,X,,,X,X,X,,X,X,X,,X,8,3
+D,D15,Modules/submodules; finitely generated,,X,X,,,X,X,X,X,X,X,X,9,4
+D,D16,Quotient modules; iso theorems,,,,,X,X,X,X,X,X,X,X,8,4
+D,D17,"Free modules, rank;  Hom = matrix",,X,X,,,X,X,X,X,X,,,7,2
+D,D18,Torsion / torsion-free; annihilators,,X,,,,,,,,,,X,2,1
+D,D19,Noetherian modules / ACC,,,,,,,,X,,,,X,2,1
+E,E20,Smith normal form (matrices over ED),,,X,,,,,X,X,X,,,4,2
+E,E21,Structure theorem; f.g. abelian groups,X,X,X,,X,X,,X,X,,,,7,1
+E,E22,Rational & Jordan canonical forms,,,,X,X,X,,,,X,,,4,1
