@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topology — Revision Overview</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code','svg'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root{
+    --def:#2563eb; --thm:#b91c1c; --lem:#047857; --ex:#b45309; --rem:#6b7280; --warn:#d97706;
+    --defbg:#eff6ff; --thmbg:#fef2f2; --lembg:#ecfdf5; --exbg:#fffbeb; --rembg:#f9fafb;
+    --ink:#1f2430; --accent:#be185d;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#fcfcfa; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 120px;}
+  header.site{background:#500724; color:#fce7f3; padding:38px 22px 30px; margin-bottom:26px;}
+  header.site h1{margin:0 0 6px; font-size:1.9rem; font-weight:normal; letter-spacing:.5px;}
+  header.site p{margin:4px 0; color:#fbcfe8; max-width:920px;}
+  header.site .inner{max-width:920px;margin:0 auto;}
+  header.site a{color:#fbcfe8;}
+  nav.toc{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:14px 20px; margin-bottom:30px; font-size:.95rem;}
+  nav.toc b{color:var(--accent)}
+  nav.toc a{color:#333; text-decoration:none; border-bottom:1px dotted #bbb;}
+  nav.toc a:hover{color:var(--accent)}
+  nav.toc ul{margin:4px 0 10px; padding-left:22px; columns:2; column-gap:36px;}
+  nav.toc li{margin:2px 0; break-inside:avoid;}
+  h2{font-size:1.5rem; border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:56px; color:#831843;}
+  h3{font-size:1.18rem; margin-top:38px; color:#9d174d;}
+  .card{border-left:5px solid var(--rem); background:var(--rembg); border-radius:0 8px 8px 0; padding:12px 18px 10px; margin:18px 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:99px; color:#fff; margin-right:8px; vertical-align:2px;}
+  .card .name{font-weight:bold;}
+  .def{border-color:var(--def); background:var(--defbg);} .def .tag{background:var(--def);}
+  .thm{border-color:var(--thm); background:var(--thmbg);} .thm .tag{background:var(--thm);}
+  .lem{border-color:var(--lem); background:var(--lembg);} .lem .tag{background:var(--lem);}
+  .ex{border-color:var(--ex); background:var(--exbg);} .ex .tag{background:var(--ex);}
+  .rem{border-color:var(--rem); background:var(--rembg);} .rem .tag{background:var(--rem);}
+  .warn{border-color:var(--warn); background:#fff7ed;} .warn .tag{background:var(--warn);}
+  .hyp{margin:8px 0 4px;}
+  .hyp ul, .stmt ul, .card ul{margin:4px 0 8px; padding-left:24px;}
+  .card li{margin:3px 0;}
+  details.sk{margin:10px 0 6px; border-top:1px dashed #c9c9bf; padding-top:6px;}
+  details.sk summary{cursor:pointer; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#9d174d;}
+  details.sk[open] summary{margin-bottom:4px;}
+  .nonex{font-family:Arial,sans-serif; font-size:.7rem; background:#fce7f3; color:#9d174d; border-radius:4px; padding:1px 6px; vertical-align:2px;}
+  .num{color:#777; font-weight:normal;}
+  figure{margin:22px auto; text-align:center;}
+  figcaption{font-size:.88rem; color:#666; max-width:680px; margin:8px auto 0;}
+  table{border-collapse:collapse; width:100%; font-size:.93rem; margin:16px 0;}
+  th,td{border:1px solid #ddd; padding:7px 10px; text-align:left; vertical-align:top;}
+  th{background:#fce7f3;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; font-size:.85rem; margin:12px 0;}
+  .legend span{padding:2px 10px; border-radius:99px; border:1px solid #ccc; background:#fff;}
+  .graphbox{background:#fff; border:1px solid #e3e3dd; border-radius:12px; padding:10px; overflow-x:auto;}
+  svg text{font-family:'Helvetica Neue',Arial,sans-serif;}
+  svg a{cursor:pointer;} svg a:hover rect{stroke-width:2.5;}
+  code{font-size:.92em; background:#f1f1ea; padding:1px 4px; border-radius:3px;}
+  .abbr{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:10px 18px; font-size:.92rem;}
+  .abbr b{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header class="site"><div class="inner">
+<h1>Topology — Revision Overview</h1>
+<p>A skimmable map of the A5 Topology notes (Oxford Part A): every key definition, every theorem with hypotheses spelled out, proof sketches, and the dependency graph — point-set topology through the classification of surfaces.</p>
+<p style="font-size:.88rem">Numbering follows the notes (Oxford A5). Companion pages: <a href="../msca/ms.html">Metric Spaces →</a> &nbsp; <a href="../msca/ca.html">Complex Analysis →</a> &nbsp; <a href="../rm/rm.html">Rings &amp; Modules →</a></p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+<b>Contents</b>
+<ul>
+<li><a href="#graph">0. The big picture (dependency graph)</a></li>
+<li><a href="#ch1a">1. Topological spaces, continuity, separation</a></li>
+<li><a href="#ch1b">1′. Closure/interior; subspace; basis; product</a></li>
+<li><a href="#conn">1″. Connectedness &amp; path-connectedness</a></li>
+<li><a href="#cpt">2. Compactness</a></li>
+<li><a href="#seq">2′. Sequential compactness; Lebesgue, ε-nets</a></li>
+<li><a href="#quot">3. Quotient spaces</a></li>
+<li><a href="#simp">4. Simplicial complexes</a></li>
+<li><a href="#surf">5. Surfaces &amp; the classification theorem</a></li>
+<li><a href="#hyps">Hypothesis cheat-sheet</a></li>
+<li><a href="#cex">Counterexample gallery</a></li>
+</ul>
+<div class="abbr">
+<b>Abbreviations.</b> <i>cts</i> = continuous &nbsp;·&nbsp; <i>nbhd</i> = neighbourhood &nbsp;·&nbsp; <i>top. space</i> = topological space &nbsp;·&nbsp; <b>T1</b> = first separation axiom &nbsp;·&nbsp; <b>Hdff</b> = Hausdorff (T2) &nbsp;·&nbsp; <i>cpt</i> = compact &nbsp;·&nbsp; <i>conn / p.c.</i> = connected / path-connected &nbsp;·&nbsp; <i>clopen</i> = open and closed &nbsp;·&nbsp; <i>FIP</i> = finite intersection property &nbsp;·&nbsp; $|K|$ = realisation of a simplicial complex &nbsp;·&nbsp; $\chi$ = Euler characteristic. <span class="nonex">non-exam</span> = stated but not proved / out of scope in the notes.
+</div>
+<div class="legend">
+<span style="border-left:5px solid var(--def)">Definition</span>
+<span style="border-left:5px solid var(--thm)">Theorem / Corollary</span>
+<span style="border-left:5px solid var(--lem)">Lemma / Proposition</span>
+<span style="border-left:5px solid var(--ex)">Example / construction</span>
+<span style="border-left:5px solid var(--warn)">Warning / counterexample</span>
+</div>
+</nav>
+
+<h2 id="graph">0 &nbsp;The big picture</h2>
+<p>Topology drops the metric and keeps the <b>open sets</b>. Continuity becomes "preimages of opens are open," and the three great global properties — <b>connectedness</b>, <b>compactness</b>, and (for quotients/surfaces) <b>Hausdorffness</b> — are preserved by the right maps. Two spines carry the course (red): <b>compactness → "compact→Hausdorff cts bijection is a homeomorphism" → identifying quotient spaces</b>, and <b>simplicial complexes → closed combinatorial surfaces → the classification theorem</b>.</p>
+
+<figure class="graphbox">
+<svg viewBox="0 0 1130 960" width="100%" style="min-width:900px">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+<marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+</defs>
+<style>
+.nl{font-size:12.5px; fill:#1f2430; text-anchor:middle; font-weight:600;}
+.ns{font-size:10px; fill:#555; text-anchor:middle;}
+.eg{stroke:#9aa0aa; stroke-width:1.6; fill:none; marker-end:url(#arr);}
+.eb{stroke:#b91c1c; stroke-width:2.6; fill:none; marker-end:url(#arrR);}
+</style>
+<path class="eg" d="M220,74 L160,120"/>
+<path class="eg" d="M475,74 L450,250"/>
+<path class="eg" d="M475,74 L145,250"/>
+<path class="eg" d="M475,74 L980,250"/>
+<path class="eg" d="M145,304 L145,360"/>
+<path class="eg" d="M260,145 L330,498"/>
+<path class="eb" d="M450,304 L455,470"/>
+<path class="eg" d="M560,277 L600,277"/>
+<path class="eg" d="M725,304 L725,360"/>
+<path class="eb" d="M580,498 L720,498"/>
+<path class="eg" d="M980,304 L845,470"/>
+<path class="eg" d="M845,526 L860,600"/>
+<path class="eg" d="M455,526 L495,610"/>
+<path class="eg" d="M170,664 L230,758"/>
+<path class="eg" d="M495,664 L350,730"/>
+<path class="eb" d="M350,786 L320,850"/>
+<path class="eg" d="M460,877 L500,877"/>
+<a href="#ch1a"><rect x="120" y="24" width="200" height="50" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="220" y="47">Topological space</text><text class="ns" x="220" y="64">open/closed · 1.1</text></a>
+<a href="#ch1a"><rect x="360" y="24" width="230" height="50" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="475" y="47">Continuity; homeomorphism</text><text class="ns" x="475" y="64">1.20–1.24</text></a>
+<a href="#ch1a"><rect x="60" y="120" width="200" height="50" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/><text class="nl" x="160" y="143">Separation: T1 / Hausdorff</text><text class="ns" x="160" y="160">1.46–1.52</text></a>
+<a href="#conn"><rect x="40" y="250" width="210" height="54" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/><text class="nl" x="145" y="275">Connected</text><text class="ns" x="145" y="292">no cts onto {0,1} · 1.77</text></a>
+<a href="#conn"><rect x="40" y="360" width="210" height="50" rx="9" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/><text class="nl" x="145" y="383">path-conn ⇒ connected</text><text class="ns" x="145" y="400">1.89 (converse false)</text></a>
+<a href="#cpt"><rect x="340" y="250" width="220" height="54" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="450" y="275">Compact (cover; FIP)</text><text class="ns" x="450" y="292">2.3, 2.4</text></a>
+<a href="#cpt"><rect x="600" y="250" width="250" height="54" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="725" y="275">cts image · EVT · Tychonoff · H–B</text><text class="ns" x="725" y="292">2.19–2.24</text></a>
+<a href="#seq"><rect x="600" y="360" width="250" height="52" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="725" y="384">seq cpt ⟺ cpt (metric)</text><text class="ns" x="725" y="401">Lebesgue, ε-nets · 2.29–36</text></a>
+<a href="#cpt"><rect x="330" y="470" width="250" height="56" rx="9" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/><text class="nl" x="455" y="496">compact + Hausdorff:</text><text class="ns" x="455" y="513">cts bijection ⇒ homeo · 2.25</text></a>
+<a href="#quot"><rect x="880" y="250" width="200" height="54" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/><text class="nl" x="980" y="275">Quotient topology &amp; maps</text><text class="ns" x="980" y="292">§3</text></a>
+<a href="#quot"><rect x="720" y="470" width="250" height="56" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/><text class="nl" x="845" y="496">Identify a quotient space</text><text class="ns" x="845" y="513">univ. prop · 2.25 · 3.11</text></a>
+<a href="#quot"><rect x="760" y="600" width="200" height="50" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/><text class="nl" x="860" y="623">RP^n, torus, Klein</text><text class="ns" x="860" y="640">3.24–3.36</text></a>
+<a href="#surf"><rect x="60" y="610" width="220" height="54" rx="9" fill="#fdf2f8" stroke="#be185d" stroke-width="1.8"/><text class="nl" x="170" y="635">Manifolds; polygon words</text><text class="ns" x="170" y="652">5.1–5.6</text></a>
+<a href="#simp"><rect x="380" y="610" width="230" height="54" rx="9" fill="#ecfeff" stroke="#0e7490" stroke-width="1.8"/><text class="nl" x="495" y="635">Simplicial cx; |K| cpt·Hdff</text><text class="ns" x="495" y="652">4.21–4.24</text></a>
+<a href="#surf"><rect x="230" y="730" width="240" height="56" rx="9" fill="#fdf2f8" stroke="#be185d" stroke-width="1.8"/><text class="nl" x="350" y="756">Closed comb. surface</text><text class="ns" x="350" y="773">5.15, 5.16</text></a>
+<a href="#surf"><rect x="180" y="850" width="280" height="54" rx="9" fill="#fdf2f8" stroke="#be185d" stroke-width="1.8"/><text class="nl" x="320" y="875">Classification: M_g / N_h</text><text class="ns" x="320" y="892">Thm 5.18</text></a>
+<a href="#surf"><rect x="500" y="850" width="240" height="54" rx="9" fill="#fdf2f8" stroke="#be185d" stroke-width="1.8"/><text class="nl" x="620" y="875">Euler characteristic χ</text><text class="ns" x="620" y="892">2−2g, 2−h · 5.29–5.31</text></a>
+</svg>
+<figcaption><b>Red = the two load-bearing chains:</b> compactness → "compact→Hausdorff cts bijection is a homeomorphism" (2.25) → identifying quotient spaces; and simplicial complexes → closed combinatorial surfaces → the classification theorem. Omitted for readability (all in the prose): a metric induces a topology (1.6); closure/interior, subspace, basis and the product topology are the point-set plumbing under everything; Hausdorffness also feeds "compact ⇒ closed" (2.14) and "|K| is Hausdorff" (4.24); the product topology feeds Tychonoff and "product connected."</figcaption>
+</figure>
+
+<h2 id="ch1a">1 &nbsp;Topological spaces, continuity, separation</h2>
+
+<div class="card def">
+<span class="tag">Def</span><span class="name">Topological space; from a metric; examples</span> <span class="num">(1.1–1.11)</span>
+<ul>
+<li><b>Topology</b> $\mathcal T$ on $X$: $\varnothing,X\in\mathcal T$; closed under <b>finite intersections</b> and <b>arbitrary unions</b> (1.1). Members = open sets. (Infinite intersections of opens need <em>not</em> be open.)</li>
+<li><b>Metric ⇒ topology (1.6):</b> the $\varepsilon$-ball-open sets form a topology $\mathcal T_d$. $X$ is <b>metrizable</b> if $\mathcal T=\mathcal T_d$ for some metric.</li>
+<li><b>The counterexample reservoir (1.7):</b> <em>discrete</em> (all subsets open, metrizable), <em>indiscrete</em> $\{\varnothing,X\}$, <em>cofinite</em> ($U$ open iff $X\setminus U$ finite). Indiscrete is coarsest, discrete finest.</li>
+</ul>
+</div>
+
+<div class="card def" id="def-cts">
+<span class="tag">Def</span><span class="name">Continuity, homeomorphism</span> <span class="num">(1.20–1.26)</span>
+<div class="stmt">$f:X\to Y$ is <b>cts</b> if $f^{-1}(V)$ is open for every open $V$ (equivalently $f^{-1}(\text{closed})$ closed, 1.21). <b>Homeomorphism</b> = cts bijection with cts inverse. Compositions of cts maps are cts (1.22).</div>
+<ul>
+<li><b>Sequences are weaker here:</b> cts ⇒ sequentially cts (1.24), but the converse can fail in general spaces (1.25) — sequences don't see the topology.</li>
+<li><b>Lemma 1.26 (workhorse):</b> $U$ open $\iff$ every $x\in U$ has an open $U_x$ with $x\in U_x\subseteq U$.</li>
+</ul>
+</div>
+
+<div class="card thm" id="def-sep">
+<span class="tag">Def+Prop</span><span class="name">Separation axioms: T1 and Hausdorff</span> <span class="num">(1.46–1.53)</span>
+<div class="stmt">
+<ul>
+<li><b>T1</b> (1.46): distinct points each have an open set excluding the other $\iff$ every singleton is closed (1.47).</li>
+<li><b>Hausdorff / T2</b> (1.48): distinct points have <b>disjoint</b> open nbhds. Every metric space is Hausdorff (1.49).</li>
+<li><b>Prop 1.52:</b> in a Hausdorff space, limits of sequences are <b>unique</b>.</li>
+<li>Separation axioms are pulled back by injective cts maps (1.50), hence are <b>homeomorphism invariants</b> (1.51).</li>
+</ul></div>
+<ul><li><b>T1 is not enough for unique limits</b> (1.53): an infinite cofinite space is T1 but a distinct-term sequence converges to <em>every</em> point. Hausdorff is the right hypothesis.</li></ul>
+</div>
+
+<h2 id="ch1b">1′ &nbsp;Closure/interior; subspace; basis; product</h2>
+
+<div class="card def" id="def-closure">
+<span class="tag">Def+Prop</span><span class="name">Closure, interior, boundary, dense, limit points</span> <span class="num">(1.27–1.45)</span>
+<ul>
+<li>$\overline A$ = smallest closed superset (1.28); <b>pointwise (1.30):</b> $x\in\overline A\iff$ every open $U\ni x$ meets $A$. $\mathring A$ = largest open subset (1.38); $\partial A=\overline A\setminus\mathring A=\overline A\cap\overline{X\setminus A}$ (1.44).</li>
+<li>$\overline{X\setminus A}=X\setminus\mathring A$ (1.41) — closure and interior are dual via complement.</li>
+<li><b>Metric only (1.35):</b> $\overline A$ = limits of sequences in $A$; limit points $A'$ = limits of <em>distinct</em>-term sequences. (Fails for general spaces.)</li>
+<li>$f$ cts $\iff f(\overline A)\subseteq\overline{f(A)}$ for all $A$ (1.36).</li>
+</ul>
+</div>
+
+<div class="card def">
+<span class="tag">Def+Prop</span><span class="name">Subspace topology</span> <span class="num">(1.54–1.59)</span>
+<div class="stmt">$\mathcal T_A=\{A\cap U:U\in\mathcal T\}$; the inclusion is cts (1.55). Closed-in-$A$ = $A\cap(\text{closed in }X)$ (1.56). Closure in $A$ = $\overline B^X\cap A$; interior in $A$ <em>contains</em> $\mathring B^X$, possibly strictly (1.57–1.58).</div>
+<ul><li>Caution: $(0,1)\times\{0\}$ has empty interior in $\mathbb R^2$ but is open in the line $\mathbb R\times\{0\}$. Openness is relative to the ambient space.</li></ul>
+</div>
+
+<div class="card def" id="def-prod">
+<span class="tag">Def+Prop</span><span class="name">Basis; product topology</span> <span class="num">(1.60–1.74)</span>
+<ul>
+<li><b>Basis</b> $\mathcal B$ (1.60): opens are unions of basis sets. A family with (B1) covering $X$ and (B2) $B\cap B'$ a union of basis sets generates a topology (1.64). Test continuity on a basis (1.63).</li>
+<li><b>Product topology</b> (1.66): basis $\{U\times V\}$. <em>Not</em> every open set is a rectangle. On $\mathbb R^n$ it is the standard topology (1.70). Preserves T1/Hausdorff (1.71).</li>
+<li><b>Universal property (1.72–1.73):</b> projections are cts and the product is the coarsest such topology; $(f,g):Z\to X\times Y$ is cts $\iff$ both components are. (The model for the quotient universal property later.)</li>
+</ul>
+</div>
+
+<h2 id="conn">1″ &nbsp;Connectedness &amp; path-connectedness</h2>
+
+<div class="card thm" id="thm-conn">
+<span class="tag">Def+Prop</span><span class="name">Connectedness</span> <span class="num">(1.76–1.85)</span>
+<div class="stmt"><b>Connected</b> (1.76): not a disjoint union of two non-empty opens. <b>TFAE (1.77):</b> connected $\iff$ only clopen sets are $\varnothing,X$ $\iff$ <b>every cts map to $\{0,1\}$ is constant</b> — the workhorse criterion.</div>
+<details class="sk" open><summary>The connectedness toolkit (all via the $\{0,1\}$ criterion)</summary>
+<ul>
+<li><b>Cts image of connected is connected</b> (1.80): pull back a disconnection.</li>
+<li><b>Union with a common point / common connected core is connected</b> (1.81, 1.82): a cts map to $\{0,1\}$ is constant on each piece, and they agree on the overlap.</li>
+<li><b>Product:</b> $X\times Y$ connected $\iff$ both are (1.83) — glue the slice $X\times\{y_0\}$ to the fibres $\{x\}\times Y$ via 1.82.</li>
+<li><b>Closure:</b> $A$ connected, $A\subseteq B\subseteq\overline A$ ⇒ $B$ connected (1.85).</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm">
+<span class="tag">Def+Prop</span><span class="name">Path-connectedness</span> <span class="num">(1.86–1.91)</span>
+<div class="hyp"><b>Path</b> (1.86): cts $\gamma:[0,1]\to X$. <b>Path-connected</b> (1.88): any two points joined by a path.</div>
+<div class="stmt"><b>Prop 1.89: path-connected ⇒ connected.</b></div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>$[0,1]$ is connected (interval), so each path image is connected (1.80); they all share the basepoint $a$, so their union $=X$ is connected (1.82 with core $\{a\}$).</li>
+<li><b>Converse false</b> (1.90): the topologist's-sine-curve-type space is connected but not path-connected.</li>
+<li>Cts image of path-connected is path-connected (1.91).</li>
+</ul>
+</details>
+</div>
+
+<h2 id="cpt">2 &nbsp;Compactness</h2>
+
+<div class="card def" id="def-cpt">
+<span class="tag">Def</span><span class="name">Compact; FIP; first facts</span> <span class="num">(2.1–2.12)</span>
+<ul>
+<li><b>Compact</b> (2.3): every open cover has a finite subcover. A subset is compact in the subspace topology (= every cover by opens-of-$X$ has a finite subcover).</li>
+<li><b>FIP form (2.4):</b> compact $\iff$ every family of closed sets with the finite-intersection property has non-empty total intersection (De Morgan dual).</li>
+<li><b>Heine–Borel (2.9):</b> $[a,b]$ is compact. Non-examples (2.10): $(a,b)$, $[a,\infty)$.</li>
+<li><b>Closed in compact ⇒ compact</b> (2.11, via FIP). Converse needs separation: a singleton is always compact but need not be closed (2.12).</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-cpt-hdff">
+<span class="tag">Prop+Cor</span><span class="name">Compactness meets Hausdorff</span> <span class="num">(2.13–2.18)</span>
+<div class="hyp"><b>Hyp:</b> $X$ <b>Hausdorff</b>, $K\subseteq X$ compact.</div>
+<div class="stmt">A point outside $K$ is separated from $K$ by disjoint opens (2.13) — so <b>compact ⊆ Hausdorff ⇒ closed</b> (2.14). In a metric space compact ⇒ closed and bounded (2.17–2.18).</div>
+<details class="sk"><summary>Sketch of 2.13/2.14</summary>
+<ul>
+<li>For each $y\in K$ take disjoint opens $U_y\ni y$, $V_y\ni x$; cover $K$, extract finite $U_{y_1},\dots,U_{y_m}$; then $\bigcap V_{y_i}$ is an open nbhd of $x$ missing $K$. So $X\setminus K$ is open.</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-cts-cpt">
+<span class="tag">Prop+Cor</span><span class="name">Continuous images; EVT</span> <span class="num">(2.19–2.22)</span>
+<div class="stmt"><b>Cts image of compact is compact</b> (2.19): pull back a cover, take a finite subcover, push forward. Hence <b>Extreme Value Theorem</b> (2.21): a cts $f:X\to\mathbb R$ on a compact $X$ is bounded and attains its bounds (image is compact $\subseteq\mathbb R$, so closed and bounded).</div>
+</div>
+
+<div class="card thm" id="thm-tych">
+<span class="tag">Thm</span><span class="name">Products; general Heine–Borel</span> <span class="num">(2.23, 2.24)</span>
+<div class="stmt"><b>2.23:</b> $X\times Y$ compact $\iff$ both $X,Y$ compact. <b>2.24 (Heine–Borel in $\mathbb R^n$):</b> a subset of $\mathbb R^n$ is compact $\iff$ closed and bounded.</div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li><b>Tube lemma:</b> for each $y$, finitely many boxes cover the slice $X\times\{y\}$; intersect their $V$-parts to a tube $X\times V_y$. Cover $Y$ by the $V_y$ (compactness of $Y$), take finitely many — finitely many boxes in all.</li>
+<li><b>2.24:</b> a closed bounded set sits in a box $[-r,r]^n$, which is a finite product of compact $[-r,r]$ (Heine–Borel + 2.23); closed inside compact ⇒ compact (2.11).</li>
+<li><b>Warning:</b> "closed + bounded ⇒ compact" is special to $\mathbb R^n$ — false in a general metric space (e.g. an infinite-dimensional normed space).</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-cpt-homeo">
+<span class="tag">Thm</span><span class="name">Compact → Hausdorff: cts bijection is a homeomorphism</span> <span class="num">(2.25, 2.26)</span>
+<div class="hyp"><b>Hyp:</b> $X$ <b>compact</b>, $Y$ <b>Hausdorff</b>, $f:X\to Y$ cts bijection.</div>
+<div class="stmt"><b>Then $f$ is a homeomorphism.</b></div>
+<details class="sk" open><summary>Sketch — the single most useful tool in the course</summary>
+<ul>
+<li>Show $f$ is a closed map: $V$ closed in $X$ ⇒ $V$ compact (2.11) ⇒ $f(V)$ compact (2.19) ⇒ $f(V)$ closed in $Y$ (2.14, Hausdorff). So $f^{-1}$ is cts.</li>
+<li>Each hypothesis pays its way: compactness of $X$ feeds 2.11+2.19, Hausdorffness of $Y$ feeds 2.14. Drop either and it fails.</li>
+<li><b>This is the engine for identifying quotient spaces</b> (§3) and for "$|K|$ is determined up to homeomorphism" (§4).</li>
+</ul>
+</details>
+</div>
+
+<h2 id="seq">2′ &nbsp;Sequential compactness; Lebesgue numbers, ε-nets</h2>
+
+<div class="card thm" id="thm-seq">
+<span class="tag">Def+Thm</span><span class="name">Sequential compactness; Bolzano–Weierstrass; metric equivalence</span> <span class="num">(2.28–2.36)</span>
+<div class="stmt"><b>Seq. compact</b> (2.28): every sequence has a convergent subsequence. <b>2.29:</b> Bolzano–Weierstrass — in a compact space every infinite set has an accumulation point; a compact <em>metric</em> space is seq. compact. <b>2.30:</b> compact metric ⇒ complete. <b>2.31:</b> a seq. compact metric space is compact — so <b>for metric spaces, compact $\iff$ sequentially compact.</b></div>
+<details class="sk" open><summary>Sketch of seq. compact ⇒ compact (2.31), the substantial direction</summary>
+<ul>
+<li><b>Lebesgue number (2.32):</b> for any open cover of a seq. compact metric space there is $\varepsilon\gt0$ such that every $\varepsilon$-ball lies in a single cover set. (Else build $x_n$ with $B(x_n,1/n)$ in no set; a convergent subsequence lands in some cover set's interior — contradiction.)</li>
+<li><b>Finite $\varepsilon$-net (2.36):</b> total boundedness — else greedily pick an $\varepsilon$-separated sequence, which has no Cauchy (hence no convergent) subsequence.</li>
+<li>Combine: cover by the finitely many $\varepsilon$-balls of a net, each inside a cover set ⇒ finite subcover.</li>
+</ul>
+</details>
+</div>
+
+<h2 id="quot">3 &nbsp;Quotient spaces</h2>
+
+<div class="card def" id="def-quot">
+<span class="tag">Def+Prop</span><span class="name">Quotient topology; quotient maps; universal property</span> <span class="num">(3.1–3.35)</span>
+<ul>
+<li><b>Quotient topology</b> on $X/\mathcal R$: $U$ open $\iff p^{-1}(U)$ open, where $p:X\to X/\mathcal R$ collapses. It is the <b>finest</b> topology making $p$ cts (3.28).</li>
+<li><b>Universal property (3.9):</b> $g:X/\mathcal R\to Z$ is cts $\iff g\circ p$ is cts — this is how you build maps <em>out</em> of a quotient.</li>
+<li><b>Saturated sets &amp; separation (3.17–3.21):</b> open/closed sets of $X/\mathcal R$ ↔ open/closed <em>saturated</em> sets of $X$; $X/\mathcal R$ is T1 $\iff$ classes are closed; Hausdorff $\iff$ distinct classes lie in disjoint open saturated sets.</li>
+<li><b>Quotient map (3.32):</b> surjective with "$U$ open $\iff p^{-1}(U)$ open." <b>Prop 3.35:</b> a quotient map $q:X\to Y$ realises $Y\cong X/\mathcal R$ for $\mathcal R$ = its fibre partition — the practical recognition tool.</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-quot-id">
+<span class="tag">Prop</span><span class="name">Identifying a quotient (the compactness payoff)</span> <span class="num">(3.11)</span>
+<div class="hyp"><b>Hyp:</b> $f:X\to Y$ cts surjection, $X$ <b>compact</b>, $Y$ <b>Hausdorff</b>; $\mathcal R$ = fibre partition $\{f^{-1}(y)\}$.</div>
+<div class="stmt"><b>Then $X/\mathcal R\cong Y$.</b></div>
+<details class="sk" open><summary>Sketch</summary>
+<ul>
+<li>$f$ factors as $X\xrightarrow{p}X/\mathcal R\xrightarrow{\bar f}Y$ with $\bar f$ a cts bijection (universal property 3.9); $X/\mathcal R$ is compact (cts image of $X$), $Y$ Hausdorff, so $\bar f$ is a homeomorphism by <a href="#thm-cpt-homeo">2.25</a>.</li>
+<li><b>Standard identifications:</b> $[0,1]/\{0\sim1\}\cong S^1$; $[0,1]^2$ with edge gluings $\cong$ torus / Klein bottle; $\mathbb D^2/\partial\cong S^2$; $\mathbb R/\mathbb Z\cong S^1$, $\mathbb R^n/\mathbb Z^n\cong T^n$ (3.36).</li>
+</ul>
+</details>
+</div>
+
+<div class="card ex" id="ex-rpn">
+<span class="tag">Ex</span><span class="name">Real projective space $\mathbb{RP}^n$</span> <span class="num">(3.24–3.27)</span>
+<ul>
+<li>$\mathbb{RP}^n=(\mathbb R^{n+1}\setminus\{0\})/(x\sim\lambda x)$ = lines through $0$; <b>Hausdorff</b> (3.25, via disjoint open saturated cones) and <b>compact</b> (image of $S^n$).</li>
+<li><b>Models of $\mathbb{RP}^2$ (3.26):</b> $S^2/(\text{antipodal})$; the disc $\mathbb D^2$ with antipodal boundary points glued; the square with both edge-pairs flipped. (All identified via 3.11.)</li>
+<li><b>Quotients can be nasty:</b> $\mathbb R/\mathbb Q$ is indiscrete (3.16) — a Hausdorff space can have a non-Hausdorff quotient.</li>
+</ul>
+</div>
+
+<h2 id="simp">4 &nbsp;Simplicial complexes</h2>
+
+<div class="card def" id="def-simp">
+<span class="tag">Def</span><span class="name">Simplices, abstract complexes, realisation, triangulation</span> <span class="num">(4.2–4.11)</span>
+<ul>
+<li><b>Standard $n$-simplex</b> $\Delta^n=\{x\in\mathbb R^{n+1}:x_i\ge0,\sum x_i=1\}$; faces ↔ non-empty subsets of vertices.</li>
+<li><b>Abstract simplicial complex</b> $(V,\Sigma)$ (4.5): $\Sigma$ = non-empty finite vertex-subsets, containing all singletons and closed under taking non-empty subsets.</li>
+<li><b>Realisation $|K|$</b> (4.6): glue a copy of $\Delta^{|\sigma|-1}$ for each simplex $\sigma$ along face inclusions (a quotient of a disjoint union of simplices). A <b>triangulation</b> of $X$ is a homeomorphism $|K|\to X$ (4.8); e.g. the boundary tetrahedron triangulates $S^2$.</li>
+<li>Caution (4.10): in a complex a vertex set spans <em>at most one</em> simplex — the naive 2-square "torus" is not a simplicial complex (needs ≥7 vertices).</li>
+</ul>
+</div>
+
+<div class="card thm" id="thm-Kprops">
+<span class="tag">Lem+Prop</span><span class="name">Properties of realisations</span> <span class="num">(4.15–4.24)</span>
+<div class="stmt">
+<ul>
+<li><b>Subcomplex realisations are closed</b> (4.15); the <b>star</b> $\mathrm{st}(v)$ is open (4.18, its complement is the subcomplex spanned by the other vertices).</li>
+<li><b>Edge-connected $\iff$ connected</b> (4.20): $|K|$ connected $\iff$ any two vertices are joined by an edge path.</li>
+<li><b>Finite $\Rightarrow$ compact</b> (4.21, cts image of finitely many simplices), <b>injects into $\mathbb R^N$</b> (4.22), hence (with 2.25) <b>metrizable</b> (4.23) and <b>Hausdorff</b> (4.24).</li>
+</ul></div>
+<details class="sk"><summary>Why 4.23/4.24 — the compactness payoff again</summary>
+<ul>
+<li>A cts injection $|K|\hookrightarrow\mathbb R^N$ from a compact space into a Hausdorff space is a homeomorphism onto its image (<a href="#thm-cpt-homeo">2.25/2.26</a>); the image inherits a metric ⇒ $|K|$ metrizable ⇒ Hausdorff.</li>
+</ul>
+</details>
+</div>
+
+<h2 id="surf">5 &nbsp;Surfaces &amp; the classification theorem</h2>
+
+<div class="card def" id="def-surf">
+<span class="tag">Def+Prop</span><span class="name">Manifolds, surfaces, polygons with side identifications</span> <span class="num">(5.1–5.6)</span>
+<ul>
+<li><b>$n$-manifold</b> (5.1): Hausdorff, locally homeomorphic to open sets of $\mathbb R^n$. A <b>surface</b> is a 2-manifold (5.3).</li>
+<li><b>Polygon with a complete set of side identifications</b>: even-sided polygon, sides glued in pairs (encoded by a <b>boundary word</b>). <b>Prop 5.6:</b> the result is always a closed (compact) surface — check disc nbhds at inside/edge/vertex points.</li>
+</ul>
+</div>
+
+<figure>
+<svg viewBox="0 0 640 180" width="600">
+<!-- torus -->
+<rect x="30" y="30" width="110" height="110" fill="#fdf2f8" stroke="#831843" stroke-width="2"/>
+<text x="85" y="22" font-size="12">torus  aba⁻¹b⁻¹</text>
+<polygon points="85,30 92,40 78,40" fill="#be185d"/><polygon points="85,140 92,150 78,150" fill="#be185d"/>
+<polygon points="30,85 40,78 40,92" fill="#0e7490"/><polygon points="140,85 150,78 150,92" fill="#0e7490"/>
+<text x="80" y="100" font-size="13">χ=0</text>
+<!-- Klein -->
+<rect x="230" y="30" width="110" height="110" fill="#fdf2f8" stroke="#831843" stroke-width="2"/>
+<text x="270" y="22" font-size="12">Klein  aba⁻¹b</text>
+<polygon points="285,30 292,40 278,40" fill="#be185d"/><polygon points="285,150 292,140 278,140" fill="#be185d"/>
+<polygon points="230,85 240,78 240,92" fill="#0e7490"/><polygon points="340,85 350,78 350,92" fill="#0e7490"/>
+<text x="278" y="100" font-size="13">χ=0</text>
+<!-- RP2 -->
+<rect x="430" y="30" width="110" height="110" fill="#fdf2f8" stroke="#831843" stroke-width="2"/>
+<text x="455" y="22" font-size="12">RP²  abab</text>
+<polygon points="485,30 492,40 478,40" fill="#be185d"/><polygon points="485,150 492,140 478,140" fill="#be185d"/>
+<polygon points="430,85 440,78 440,92" fill="#0e7490"/><polygon points="540,85 550,92 550,78" fill="#0e7490"/>
+<text x="478" y="100" font-size="13">χ=1</text>
+</svg>
+<figcaption>The square with edge-pair gluings. Same edges, different arrow patterns: matching arrows on both pairs give the <b>torus</b>; flipping one pair gives the <b>Klein bottle</b>; flipping both gives $\mathbb{RP}^2$. (Colours/arrows show identification direction.)</figcaption>
+</figure>
+
+<div class="card thm" id="thm-classification">
+<span class="tag">Thm</span><span class="name">Classification of closed combinatorial surfaces</span> <span class="num">(5.15–5.27)</span>
+<div class="hyp"><b>Closed combinatorial surface</b> (5.15): connected finite simplicial complex in which every vertex link is a simplicial circle. Then every edge is in exactly two triangles and $|K|$ is a surface (5.16).</div>
+<div class="stmt"><b>Thm 5.18: every closed combinatorial surface is homeomorphic to exactly one of</b>
+$$M_g\ (g\ge0,\ \text{sphere}+g\ \text{handles}),\qquad N_h\ (h\ge1,\ \text{sphere}+h\ \text{crosscaps}).$$</div>
+<details class="sk" open><summary>Sketch — boundary-word reduction</summary>
+<ul>
+<li><b>Step 0 (5.19):</b> cut $K$ into a single $2n$-gon with edges paired (a boundary word).</li>
+<li><b>Free moves (5.20):</b> reverse / cyclically permute the word. <b>5.26:</b> cancel an adjacent inverse pair $xx^{-1}$ (shortens the word → induction). <b>5.27:</b> reduce to a single vertex equivalence class.</li>
+<li><b>Collect crosscaps (5.21):</b> $xAxB\mapsto xxA^{-1}B$ pulls each "same-orientation" pair together into a crosscap $xx$.</li>
+<li><b>Collect handles (5.23):</b> interlocking reversed pairs $x\dots y\dots x^{-1}\dots y^{-1}$ become commutator blocks $xyx^{-1}y^{-1}$.</li>
+<li><b>Key trade (5.25):</b> a handle adjacent to a crosscap becomes <b>three crosscaps</b> ($xxyzy^{-1}z^{-1}\mapsto xxyyzz$). So if any crosscap is present, all handles convert — landing in $N_h$; otherwise pure handles give $M_g$. (Klein bottle $aba^{-1}b\cong aabb=N_2$, Ex 5.22.)</li>
+</ul>
+</details>
+</div>
+
+<div class="card thm" id="thm-euler">
+<span class="tag">Def+Thm</span><span class="name">Euler characteristic distinguishes the surfaces</span> <span class="num">(5.28–5.31)</span>
+<div class="stmt"><b>$\chi(K)=\sum(-1)^i n_i = V-E+F$</b> (5.29) is a <b>topological invariant</b> (5.30, $\chi$ independent of triangulation — proved in Algebraic Topology). For the standard surfaces (5.31):
+$$\chi(M_g)=2-2g,\qquad \chi(N_h)=2-h.$$</div>
+<table>
+<tr><th>Surface</th><th>word</th><th>$\chi$</th><th>orientable?</th></tr>
+<tr><td>$M_0=S^2$</td><td>$aa^{-1}bb^{-1}$</td><td>2</td><td>yes</td></tr>
+<tr><td>$M_1=T^2$ torus</td><td>$aba^{-1}b^{-1}$</td><td>0</td><td>yes</td></tr>
+<tr><td>$M_g$</td><td>$\prod a_ib_ia_i^{-1}b_i^{-1}$</td><td>$2-2g$</td><td>yes</td></tr>
+<tr><td>$N_1=\mathbb{RP}^2$</td><td>$aa$</td><td>1</td><td>no</td></tr>
+<tr><td>$N_2$ Klein bottle</td><td>$aabb$</td><td>0</td><td>no</td></tr>
+<tr><td>$N_h$</td><td>$a_1a_1\cdots a_ha_h$</td><td>$2-h$</td><td>no</td></tr>
+</table>
+<ul><li>$\chi$ separates $M_g$ from $M_{g'}$ and $N_h$ from $N_{h'}$, but $M_g$ and $N_{2g}$ share $\chi$; <b>orientability</b> tells them apart (the $M$'s are orientable, the $N$'s aren't). That none of $M_g,N_h$ coincide (5.28) is stated, proved later via algebraic-topology invariants. <span class="nonex">non-exam</span></li></ul>
+</div>
+
+<h2 id="hyps">Hypothesis cheat-sheet</h2>
+<p>The recurring exam trap: <em>which results need Hausdorff, which need compact, which need a metric?</em></p>
+<table>
+<tr><th>Hypothesis</th><th>What it's needed for</th></tr>
+<tr><td><b>Hausdorff</b></td><td>unique limits (1.52); compact ⇒ closed (2.14); compact→Hausdorff cts bijection is a homeo (2.25); $|K|$ Hausdorff (4.24); surfaces are Hausdorff by definition. <em>Cofinite (infinite) is T1 but not Hausdorff — the standard counterexample.</em></td></tr>
+<tr><td><b>compact</b></td><td>cts image compact / EVT (2.19–2.21); closed-in-compact (2.11); the homeo criterion (2.25); identifying quotients (3.11); $|K|$ finite ⇒ compact (4.21).</td></tr>
+<tr><td><b>metric</b> (not just topological)</td><td>compact $\iff$ sequentially compact (2.29/2.31); closure = sequential closure (1.35); Lebesgue number &amp; ε-nets (2.32/2.36). In general spaces sequences don't determine the topology.</td></tr>
+<tr><td><b>connected vs path-connected</b></td><td>path-conn ⇒ conn always (1.89); converse only with extra hypotheses (open in a normed space) — the sine-curve is the gap.</td></tr>
+<tr><td><b>closed + bounded ⇒ compact</b></td><td>only in $\mathbb R^n$ (Heine–Borel 2.24) — fails in infinite-dimensional metric spaces.</td></tr>
+<tr><td><b>vertex links are circles</b></td><td>makes a finite complex a closed combinatorial <em>surface</em> (5.15/5.16) — feeds the classification theorem.</td></tr>
+</table>
+
+<h2 id="cex">Counterexample gallery</h2>
+<table>
+<tr><th>Claim it kills</th><th>Counterexample</th></tr>
+<tr><td>"limits are unique" / "T1 ⇒ Hausdorff"</td><td>infinite <b>cofinite</b> space: T1, but a distinct-term sequence converges to every point — not Hausdorff, not metrizable (1.16, 1.49, 1.53)</td></tr>
+<tr><td>"every sequence-closed set is closed" / "sequential continuity ⇒ continuity"</td><td>fails in general spaces; the indiscrete/cofinite spaces (1.19, 1.25) — sequences don't see the topology</td></tr>
+<tr><td>"compact ⇒ closed"</td><td>a singleton in the indiscrete space is compact but not closed — needs Hausdorff (2.12)</td></tr>
+<tr><td>"closed + bounded ⇒ compact"</td><td>$(0,1]$ in $(0,2)$ is closed &amp; bounded there but not compact; also infinite-dim normed spaces (2.24 N.B.)</td></tr>
+<tr><td>"connected ⇒ path-connected"</td><td>topologist's sine curve (1.90)</td></tr>
+<tr><td>"cts image is open" / "quotient of Hausdorff is Hausdorff"</td><td>$\mathbb R/\mathbb Q$ is indiscrete (3.16); collapsing maps need not be open (3.31)</td></tr>
+<tr><td>"the naive square is a triangulation of the torus"</td><td>two vertices would span two simplices — not a simplicial complex; need ≥7 vertices (4.10)</td></tr>
+<tr><td>"$\chi$ distinguishes all surfaces"</td><td>$M_g$ and $N_{2g}$ share $\chi=2-2g$; orientability is the finer invariant (5.31)</td></tr>
+</table>
+
+<p style="margin-top:48px;color:#777;font-size:.9rem">Built from <code>Toplogy_notes.pdf</code> (55 pp, A5 Topology, Drutu &amp; Lackenby). Numbering and proof strategies follow the notes; items marked <span class="nonex">non-exam</span> are flagged as in the source. Companion pages: <a href="../msca/ms.html">Metric Spaces</a> · <a href="../msca/ca.html">Complex Analysis</a> · <a href="../rm/rm.html">Rings &amp; Modules</a>.</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+Cluster,Code,Topic,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,Count(12y),Count(22-25)
+A,A1,Topology axioms; metric→top; discrete/indiscrete/cofinite,X,,X,X,,X,X,X,,X,X,,8,2
+A,A2,Closure / interior / boundary / limit points / dense,X,,X,,,X,X,X,,,X,X,7,2
+A,A3,Continuity (preimage); homeomorphism; open/closed maps,X,,X,X,X,X,X,X,X,,X,X,10,3
+A,A4,Convergence of sequences; sequences vs closure,,,,,,X,,,,,,,1,0
+A,A5,Separation: T1 / Hausdorff (+ unique limits),X,X,X,X,X,,,,X,X,X,X,9,4
+A,A6,Subspace topology,,,,,X,X,,X,X,X,,X,6,3
+A,A7,Basis for a topology,,X,,,,,,X,,,,,2,0
+A,A8,Product topology,X,X,,X,X,X,,X,,X,X,X,9,3
+A,A9,Disjoint unions,,,,X,,,,X,,,X,,3,1
+B,B10,Connectedness (clopen; image; union; closure),,X,X,X,X,X,X,X,,X,X,X,10,3
+B,B11,Path-connectedness; path-conn ⇒ connected,,,X,,,X,X,,,,X,,4,1
+C,C12,Compactness (open-cover def; closed-in-compact; FIP),X,X,X,X,X,X,X,X,X,X,X,X,12,4
+C,C13,Compact+Hausdorff (⇒closed; cts bijection⇒homeo),X,,X,X,,X,,X,X,X,,X,8,3
+C,C14,Cts image of compact; EVT; Heine–Borel,X,X,X,,,,X,X,X,X,X,X,9,4
+C,C15,Product of compacts (Tychonoff X×Y),X,,,,,,,,,,,,1,0
+C,C16,Sequential compactness; Lebesgue no.; ε-nets,,,,,X,,,X,,,X,,3,1
+D,D17,Quotient topology; identifications; quotient maps,X,X,X,X,X,X,X,X,X,X,X,X,12,4
+D,D18,Universal property of quotients / inducing maps,,X,,,,,X,,X,X,,X,5,3
+D,D19,"Quotient examples (RP^n, gluings); Hausdorffness",,X,X,X,X,X,X,X,X,X,X,X,11,4
+E,E20,Simplices; simplicial complexes; realisation; triangulation,X,X,,X,X,X,X,,X,X,X,X,10,4
+E,E21,Subcomplexes; stars/links; edge paths; |K| props,X,,,X,,X,,,,X,X,X,6,3
+F,F22,Manifolds; surfaces; polygons w/ side identifications,,X,,X,X,X,,X,X,X,,X,8,3
+F,F23,Standard surfaces M_g/N_h; handles & crosscaps; #,X,X,,X,X,,X,X,X,X,,X,9,3
+F,F24,Closed comb. surfaces; classification; word reduction,X,X,,X,X,X,X,X,X,X,,X,10,3
+F,F25,Euler characteristic; orientability; distinguishing,X,X,,,,,X,X,,,,X,5,1

@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A5 exam analysis &amp; predictions</title>
+<style>
+ body{max-width:50rem;margin:2.5rem auto;padding:0 1.2rem;font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Georgia,serif;color:#1a1a1a;}
+ h1{font-size:1.6rem;line-height:1.25;} h2{font-size:1.2rem;margin-top:2rem;border-bottom:1px solid #ddd;padding-bottom:.2rem;}
+ h3{font-size:1.05rem;margin-top:1.4rem;} code{background:#fce7f3;padding:0 .25em;border-radius:3px;font-size:.92em;}
+ table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:14px;} th,td{border:1px solid #ccc;padding:5px 8px;text-align:left;vertical-align:top;}
+ th{background:#fdf2f8;} tr:nth-child(even){background:#fafafa;}
+ blockquote{color:#555;border-left:3px solid #bbb;margin:1rem 0;padding:.2rem 1rem;font-size:.95em;}
+ em{color:#444;} hr{border:none;border-top:1px solid #ddd;margin:1.6rem 0;}
+ img{max-width:100%;height:auto;border:1px solid #eee;border-radius:6px;}
+</style></head><body>
+<h1 id="a5-topology-past-paper-patterns-2026-predictions">A5 (Topology)
+— past-paper patterns &amp; 2026 predictions</h1>
+<p><em>Built from all 12 papers, 2014–2025 (Oxford Part A, paper A5).
+Companion files: <code>a5_heatmap.png</code> (topic × year grid),
+<code>a5_topic_matrix.csv</code> (the raw matrix). Cross-checked against
+the current course notes (<code>tp.html</code>).</em></p>
+<figure>
+<img src="a5_heatmap.png" alt="A5 topic × year heatmap" />
+<figcaption aria-hidden="true">A5 topic × year heatmap</figcaption>
+</figure>
+<hr />
+<h2 id="tldr-what-id-bet-on-for-2026">0. TL;DR — what I’d bet on for
+2026</h2>
+<ol type="1">
+<li><strong>Format is rock-stable.</strong> Every year 2014–2025:
+<strong>3 questions, answer the best 2, 25 marks each, no
+sections.</strong> No regime change. The three questions reliably split
+as <strong>Q1 point-set / connectedness / products</strong>, <strong>Q2
+compactness + quotients</strong>, <strong>Q3 the geometric question
+(simplicial complexes and/or surfaces)</strong> — so best-2-of-3 lets
+you drop at most one strand.</li>
+<li><strong>Quotient spaces and compactness are guaranteed.</strong>
+Quotient topology / identifications appear in <strong>all 12
+years</strong>; compactness in <strong>all 12</strong>. These two are
+non-negotiable. The single most-tested <em>skill</em> is
+<strong>identifying a quotient space</strong> (“which surface is this?
+is it Hausdorff?”) — every year.</li>
+<li><strong>The surfaces question rotates with simplicial
+complexes.</strong> Surface classification appeared in
+<strong>10/12</strong> years; the only years without surfaces were
+<strong>2016</strong> (Q3 was quotients) and <strong>2024</strong> (Q3
+was simplicial-complex links). After 2024 skipped surfaces, a
+<strong>classification / boundary-word-reduction</strong> question is a
+strong 2026 bet.</li>
+<li><strong>Reliable bookwork to prove:</strong> <em>cts image of
+compact is compact / EVT</em>, <em>compact ⊆ Hausdorff ⇒ closed</em>,
+<em>the quotient topology is a topology + its universal property</em>,
+<em>path-connected ⇒ connected</em>, and the <em>statement</em> of the
+classification theorem + <em>definition</em> of an abstract simplicial
+complex and its realisation.</li>
+</ol>
+<p>Confidence: <strong>high</strong> on the format and on “a quotient
+question + a compactness result every year” (12/12 each);
+<strong>medium</strong> on the E-vs-F rotation in Q3 (surfaces vs
+simplicial complexes).</p>
+<hr />
+<h2 id="the-format-stable-bank-on-it">1. The format (stable — bank on
+it)</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Every year 2014–2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Questions</td>
+<td><strong>3</strong>, answer <strong>best 2</strong></td>
+</tr>
+<tr>
+<td>Marks</td>
+<td>25 each (50 total)</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>90 minutes (2 hours in 2020, COVID)</td>
+</tr>
+<tr>
+<td>Sections</td>
+<td><strong>none</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>The reliable shape of the three questions:</strong></p>
+<ul>
+<li><strong>Q1 — point-set / connectedness:</strong> connectedness
+(clopen / cts-to-<span class="math inline">{0, 1}</span>), continuity
+&amp; homeomorphism, products, separation axioms, sometimes a “point-set
+zoo” (cofinite, lower-limit topology). Often paired with a compactness
+part.</li>
+<li><strong>Q2 — compactness + quotients:</strong> compact /
+sequentially compact, compact⊆Hausdorff⇒closed, EVT,
+<strong>plus</strong> the quotient topology, quotient maps and an
+identification.</li>
+<li><strong>Q3 — the geometric question:</strong> abstract simplicial
+complexes &amp; realisations, <em>and/or</em> surfaces (polygons, words,
+the classification theorem, Euler characteristic).</li>
+</ul>
+<p>Because you choose <strong>any</strong> 2 of 3, own two strands cold
+and keep a third as insurance. The two safest to own:
+<strong>compactness + quotients (Q2)</strong> and <strong>the geometric
+question (Q3)</strong> — each present essentially every year.</p>
+<hr />
+<h2 id="bookwork-ranked-by-likelihood-the-what-to-memorise-list">2. ⭐
+Bookwork ranked by likelihood (the “what to memorise” list)</h2>
+<h3 id="tier-1-near-certain-memorise-the-proof-cold">Tier 1 —
+near-certain, <strong>memorise the proof cold</strong></h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Result</th>
+<th>Years proved/asked</th>
+<th>Why it’s a lock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cts image of compact is compact; Extreme Value
+Theorem</strong></td>
+<td>15, 16, 19, 20, 23, 24 (6×)</td>
+<td>The compactness workhorse; the EVT corollary recurs. Short, always
+available.</td>
+</tr>
+<tr>
+<td><strong>Compact ⊆ Hausdorff ⇒ closed</strong> (+ separate a point
+from a compact set)</td>
+<td>16, 17, 23 (+ used in the homeo criterion 17, 21, 22, 25)</td>
+<td>The other half of the compactness core; underlies “cts bijection
+compact→Hausdorff is a homeo.”</td>
+</tr>
+<tr>
+<td><strong>Quotient topology is a topology; collapsing map cts;
+universal property</strong> (<span class="math inline"><em>g</em></span>
+cts <span class="math inline"> ⇔ <em>g</em> ∘ <em>p</em></span>
+cts)</td>
+<td>15, 19, 20, 22, 23, 25</td>
+<td>Quotients appear every year — this is the bookwork that opens the Q2
+quotient half.</td>
+</tr>
+<tr>
+<td><strong>Path-connected ⇒ connected</strong> (and cts image of
+connected is connected)</td>
+<td>15, 16, 19, 20, 24</td>
+<td>Tiny proofs via the cts-to-<span class="math inline">{0, 1}</span>
+criterion; one almost always appears in Q1.</td>
+</tr>
+<tr>
+<td><strong>Statement of the classification theorem</strong> +
+<strong>definition of abstract simplicial complex &amp;
+realisation</strong></td>
+<td>Q3a, nearly every year</td>
+<td>Pure recall marks you cannot afford to drop; state them
+verbatim.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-2-high-know-the-proof-expect-it-in-some-year">Tier 2 —
+high; <strong>know the proof, expect it in some year</strong></h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Result</th>
+<th>Years</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compact + Hausdorff: cts bijection ⇒ homeomorphism</strong>
+(2.25)</td>
+<td>17, 22, 25</td>
+<td>The tool for identifying quotients and for <span
+class="math inline">|<em>K</em>|</span> Hausdorff. Closed-map
+proof.</td>
+</tr>
+<tr>
+<td><strong><span class="math inline">|<em>K</em>|</span> of a finite
+complex is compact, Hausdorff, metrizable</strong></td>
+<td>19, 25</td>
+<td>Via cts injection into <span
+class="math inline">ℝ<sup><em>N</em></sup></span> + the homeo
+criterion.</td>
+</tr>
+<tr>
+<td><strong>Product topology: Hausdorff/connected preserved; universal
+property</strong></td>
+<td>14, 15, 17, 18, 19, 25</td>
+<td>“<span class="math inline"><em>X</em> × <em>Y</em></span> Hausdorff
+iff both”; “<span class="math inline">(<em>f</em>, <em>g</em>)</span>
+cts iff components cts.”</td>
+</tr>
+<tr>
+<td><strong>Sequential compactness; compact metric ⇒ seq compact;
+Lebesgue number / ε-nets</strong></td>
+<td>18, 21, 24</td>
+<td>The metric-compactness package; the Lebesgue-number argument is a
+favourite.</td>
+</tr>
+<tr>
+<td><strong>Boundary-word reduction</strong> to standard <span
+class="math inline"><em>M</em><sub><em>g</em></sub></span>/<span
+class="math inline"><em>N</em><sub><em>h</em></sub></span> form</td>
+<td>most surfaces years</td>
+<td>Not “bookwork” but a guaranteed computation — drill the moves (see
+§3).</td>
+</tr>
+<tr>
+<td><strong>Tychonoff <span
+class="math inline"><em>X</em> × <em>Y</em></span> / general
+Heine–Borel</strong></td>
+<td>14 (+ underlies Q1/Q2)</td>
+<td>Tube-lemma proof; closed+bounded ⇒ compact in <span
+class="math inline">ℝ<sup><em>n</em></sup></span> only.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-3-moderate-understand-it-lighter-memorisation">Tier 3 —
+moderate; understand it, lighter memorisation</h3>
+<ul>
+<li><strong>Connectedness lemmas</strong> (union with common point;
+closure of connected; connected components) — recurring as parts (15,
+16, 18, 21).</li>
+<li><strong>Closure / interior / boundary / limit points</strong> —
+appear as computational sub-parts (14, 16, 19, 20, 21, 24, 25),
+especially in the cofinite / lower-limit “zoo.”</li>
+<li><strong>Basis for a topology</strong> (15, 21) — the lower-limit
+topology <span
+class="math inline">ℝ<sub>[<em>a</em>, <em>b</em>)</sub></span> is the
+standard vehicle.</li>
+<li><strong><span class="math inline">ℝℙ<sup>2</sup></span>
+constructions / models</strong> (15, 21) and
+<strong>Hausdorffness-of-quotients criterion</strong> (saturated sets) —
+2024, 2025 leaned on these.</li>
+</ul>
+<h3 id="tier-4-low-priority-situational">Tier 4 — low priority /
+situational</h3>
+<ul>
+<li><strong>One-point compactification</strong> (2018) and <strong>local
+compactness</strong> (2022) — appeared as bolt-on parts, slightly beyond
+the core notes. Glance at them; don’t over-invest.</li>
+<li>Exotic point-set zoos beyond cofinite/lower-limit.</li>
+</ul>
+<hr />
+<h2 id="the-guaranteed-constructionscomputations-drill-these">3. The
+guaranteed <em>constructions/computations</em> — drill these</h2>
+<p>Every paper has at least one. The recurring types:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Task</th>
+<th>Years</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Identify a quotient / gluing space</strong> (“which surface?
+is it Hausdorff?”)</td>
+<td>every year</td>
+<td>universal property (3.9) + compact→Hausdorff homeo (2.25); for
+Hausdorffness use the saturated-set criterion (3.21)</td>
+</tr>
+<tr>
+<td><strong>Surface from a polygon word → <span
+class="math inline"><em>M</em><sub><em>g</em></sub></span> or <span
+class="math inline"><em>N</em><sub><em>h</em></sub></span></strong></td>
+<td>14, 15, 17, 18, 20, 21, 23, 25</td>
+<td>boundary-word moves: cancel <span
+class="math inline"><em>x</em><em>x</em><sup>−1</sup></span>; collect
+crosscaps <span
+class="math inline"><em>x</em><em>A</em><em>x</em><em>B</em> ↦ <em>x</em><em>x</em><em>A</em><sup>−1</sup><em>B</em></span>;
+collect handles; handle+crosscap = 3 crosscaps</td>
+</tr>
+<tr>
+<td><strong>Compute / use Euler characteristic</strong> to identify or
+distinguish a surface</td>
+<td>14, 15, 20, 21, 25</td>
+<td><span
+class="math inline"><em>χ</em> = <em>V</em> − <em>E</em> + <em>F</em></span>;
+<span
+class="math inline"><em>χ</em>(<em>M</em><sub><em>g</em></sub>) = 2 − 2<em>g</em></span>,
+<span
+class="math inline"><em>χ</em>(<em>N</em><sub><em>h</em></sub>) = 2 − <em>h</em></span>;
+pair with orientability</td>
+</tr>
+<tr>
+<td><strong>“Is this space compact / connected / Hausdorff?”</strong>
+zoo</td>
+<td>16, 17, 19, 21, 22</td>
+<td>cofinite, lower-limit <span
+class="math inline">ℝ<sub>[<em>a</em>, <em>b</em>)</sub></span>,
+products, indiscrete — test each property from the definition</td>
+</tr>
+<tr>
+<td><strong>Build/recognise a simplicial complex</strong> with given
+realisation; links &amp; stars</td>
+<td>14, 19, 20, 22, 24</td>
+<td>star is open; link of a surface vertex is a circle; <span
+class="math inline">|<em>K</em>|</span> compact iff finite</td>
+</tr>
+<tr>
+<td><strong>Homeomorphic-or-not</strong> of explicit subspaces (e.g. of
+<span class="math inline">[0, 1]<sup>2</sup></span>, <span
+class="math inline">𝔻<sup>2</sup></span>)</td>
+<td>14, 22, 23</td>
+<td>compactness / connectedness / cut-point invariants; local
+compactness (2022)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prediction:</strong> at least one
+<strong>quotient-identification</strong> part and one
+<strong>surface/word-reduction</strong> part. Have the boundary-word
+toolkit and the “<span class="math inline"><em>χ</em></span> +
+orientability ⇒ which surface” routine ready to run end-to-end.</p>
+<hr />
+<h2 id="trends-rotation-where-the-asymmetric-bets-are">4. Trends &amp;
+rotation (where the asymmetric bets are)</h2>
+<ul>
+<li><strong>Q3 rotates E ↔︎ F.</strong> Surfaces (classification, words,
+<span class="math inline"><em>χ</em></span>) carried Q3 in
+14,15,17,18,20,21,23,25; <strong>simplicial complexes</strong> carried
+it in 2024 (links, subcomplexes — no surfaces) and 2019 leaned
+simplicial; <strong>2016 had neither</strong> (Q3 was quotients). After
+2024’s simplicial-only Q3, <strong>surfaces are due</strong> in
+2026.</li>
+<li><strong>Recent papers are more point-set / proof-heavy.</strong>
+2024–25 emphasised saturated sets, closed maps, links, and
+metric-compactness (Lebesgue/<span
+class="math inline"><em>d</em>(<em>a</em>, <em>F</em>)</span>) over pure
+recall. Expect rigour, not just definitions.</li>
+<li><strong>Quotients keep widening.</strong> Beyond standard gluings:
+<span class="math inline">ℝ/ℚ</span> indiscrete, Hawaiian earring
+(2021), <span
+class="math inline"><em>S</em><sup>2</sup></span>-quotients (2022),
+Hausdorffness-via-saturated-sets and closed-map criteria (2024, 2025).
+Know <em>why</em> a quotient is/ isn’t Hausdorff.</li>
+<li><strong>Off-core bolt-ons</strong> (one-point compactification 2018,
+local compactness 2022) appear occasionally — low frequency, modest
+payoff.</li>
+</ul>
+<hr />
+<h2 id="how-to-spend-revision-time-given-the-above">5. How to spend
+revision time (given the above)</h2>
+<ul>
+<li><strong>Own two strands cold, keep a third as backup.</strong>
+Safest pair: <strong>compactness + quotients (Q2)</strong> and
+<strong>the geometric Q3</strong> (have <em>both</em> simplicial
+complexes and surfaces ready, since Q3 rotates). Use
+<strong>connectedness/point-set (Q1)</strong> as the insurance
+third.</li>
+<li><strong>Memorise cold (Tier 1):</strong> cts image of compact / EVT;
+compact⊆Hausdorff⇒closed; the quotient topology + universal property;
+path-conn⇒conn; the classification-theorem statement +
+simplicial-complex definitions.</li>
+<li><strong>Drill, don’t memorise (the construction toolkit):</strong>
+quotient identification (via 2.25), boundary-word reduction to <span
+class="math inline"><em>M</em><sub><em>g</em></sub>/<em>N</em><sub><em>h</em></sub></span>,
+Euler-characteristic + orientability, the compact/connected/Hausdorff
+“zoo,” links &amp; stars.</li>
+<li><strong>Two concrete 2026 bets:</strong> (i) a
+<strong>quotient-identification</strong> question (every year) and (ii)
+a <strong>surfaces / classification</strong> question (overdue after
+2024). Prepare both end-to-end.</li>
+</ul>
+<p><em>Caveat: predictions are pattern-extrapolation from 12 papers plus
+the current notes. The <strong>format</strong> call is as safe as it
+gets (no change in 12 years); the <strong>Q3 rotation</strong> (surfaces
+returning in 2026) is a softer, few-year signal — sanity-check against
+your problem sheets and lecturer guidance.</em></p>
+
+</body></html>
