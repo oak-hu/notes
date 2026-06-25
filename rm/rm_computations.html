@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rings &amp; Modules — Worked Computations</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root{ --def:#2563eb; --ex:#b45309; --rem:#6b7280; --warn:#d97706; --ink:#1f2430; --accent:#7c3aed;
+    --defbg:#eff6ff; --exbg:#fffbeb; --rembg:#f9fafb; }
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#fcfcfa; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 22px 120px;}
+  header.site{background:#2e1065; color:#ede9fe; padding:34px 22px 26px; margin-bottom:24px;}
+  header.site .inner{max-width:920px;margin:0 auto;}
+  header.site h1{margin:0 0 6px; font-size:1.8rem; font-weight:normal; letter-spacing:.5px;}
+  header.site p{margin:4px 0; color:#c4b5fd;}
+  header.site a{color:#c4b5fd;}
+  nav.toc{background:#fff; border:1px solid #e3e3dd; border-radius:10px; padding:14px 20px; margin-bottom:30px; font-size:.95rem;}
+  nav.toc b{color:var(--accent)} nav.toc a{color:#333; text-decoration:none; border-bottom:1px dotted #bbb;}
+  nav.toc a:hover{color:var(--accent)} nav.toc ol{margin:6px 0 0; padding-left:24px;} nav.toc li{margin:3px 0;}
+  h2{font-size:1.4rem; border-bottom:3px solid var(--accent); padding-bottom:6px; margin-top:52px; color:#3b0764;}
+  h3{font-size:1.1rem; margin-top:28px; color:#5b21b6;}
+  .card{border-left:5px solid var(--rem); background:var(--rembg); border-radius:0 8px 8px 0; padding:12px 18px 10px; margin:16px 0; box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card .tag{display:inline-block; font-family:'Helvetica Neue',Arial,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:99px; color:#fff; margin-right:8px; vertical-align:2px;}
+  .recipe{border-color:var(--def); background:var(--defbg);} .recipe .tag{background:var(--def);}
+  .ex{border-color:var(--ex); background:var(--exbg);} .ex .tag{background:var(--ex);}
+  .past{border-color:var(--rem); background:var(--rembg); font-size:.9rem; color:#555;} .past .tag{background:var(--rem);}
+  .card ul,.card ol{margin:6px 0; padding-left:24px;} .card li{margin:4px 0;}
+  .ans{background:#ede9fe; border-radius:4px; padding:1px 7px; font-weight:bold;}
+  code{font-size:.92em; background:#f1f1ea; padding:1px 4px; border-radius:3px;}
+  .steps{counter-reset:s; list-style:none; padding-left:0;}
+  .steps>li{counter-increment:s; margin:7px 0; padding-left:30px; position:relative;}
+  .steps>li::before{content:counter(s); position:absolute; left:0; top:1px; background:var(--accent); color:#fff; width:20px; height:20px; border-radius:50%; text-align:center; font-size:.8rem; line-height:20px; font-family:Arial,sans-serif;}
+  a{color:var(--accent);}
+  .foot{color:#777; font-size:.9rem; margin-top:48px;}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Rings &amp; Modules — Worked Computations</h1>
+<p>Drill set for the six computation types guaranteed by the past papers (§3 of the <a href="a3_analysis.html">exam analysis</a>). Each has a recipe + fully worked examples; every numerical answer is verified.</p>
+<p style="font-size:.88rem">Companion: <a href="rm.html">Revision overview →</a> &nbsp; <a href="a3_analysis.html">Exam analysis →</a></p>
+</div></header>
+
+<div class="wrap">
+<nav class="toc">
+<b>The six guaranteed computations</b>
+<ol>
+<li><a href="#g1">Classifying &amp; counting finite abelian groups</a></li>
+<li><a href="#g2">Arithmetic in $\mathbb Z[i]$ and $\mathbb Z[\sqrt d]$ (units, factorisation, sum of two squares)</a></li>
+<li><a href="#g3">Polynomial irreducibility &amp; factorisation</a></li>
+<li><a href="#g4">Smith normal form &amp; the structure of $\mathbb Z^n/\mathrm{im}(A)$</a></li>
+<li><a href="#g5">Rational &amp; Jordan canonical forms</a></li>
+<li><a href="#g6">Field degrees $[\mathbb Q(\alpha):\mathbb Q]$ and the structure of $\mathbb Q(\alpha)$</a></li>
+</ol>
+</nav>
+
+<!-- ============ 1 ============ -->
+<h2 id="g1">1 &nbsp;Classifying &amp; counting finite abelian groups</h2>
+<div class="card recipe"><span class="tag">Recipe</span>
+<ol class="steps">
+<li>Factor the order $n=p_1^{e_1}\cdots p_k^{e_k}$.</li>
+<li><b>Number of groups</b> $=\prod_i p(e_i)$, where $p(e)$ is the number of <em>partitions</em> of $e$ (each partition of $e_i$ = a way of splitting the $p_i$-part into cyclic pieces).</li>
+<li><b>Primary form:</b> for each prime, a partition $e_i=a_1+a_2+\cdots$ gives factors $\mathbb Z/p_i^{a_1}\oplus\mathbb Z/p_i^{a_2}\oplus\cdots$ — <em>as many summands as possible.</em></li>
+<li><b>Invariant-factor form</b> (the canonical form): line up each prime's powers in <em>decreasing</em> order in columns; multiply across each column. The products $d_1\mid d_2\mid\cdots\mid d_r$ ($d_r$ rightmost/largest) are the invariant factors — <em>as few summands as possible.</em> Convert between the two with the CRT.</li>
+</ol>
+$p(1)=1,\ p(2)=2,\ p(3)=3,\ p(4)=5,\ p(5)=7$ (memorise the small ones).</div>
+
+<div class="card ex"><span class="tag">Worked — counting</span>
+<b>How many abelian groups of order $675$?</b> $\;675=3^3\cdot5^2$, so the count is $p(3)\cdot p(2)=3\cdot 2=\ans{6}$.
+The six (primary form), from partitions $3=3,\,2{+}1,\,1{+}1{+}1$ and $2=2,\,1{+}1$:
+$$\mathbb Z/27\oplus\{\mathbb Z/25\text{ or }\mathbb Z/5\oplus\mathbb Z/5\},\quad
+(\mathbb Z/9\oplus\mathbb Z/3)\oplus\{\dots\},\quad
+(\mathbb Z/3)^3\oplus\{\dots\}.$$
+<b>Order $216=2^3\cdot3^3$:</b> $\;p(3)\cdot p(3)=3\cdot3=\ans{9}$.</div>
+
+<div class="card ex"><span class="tag">Worked — invariant factors</span>
+<b>Put $\mathbb Z/60\oplus\mathbb Z/21$ in invariant-factor form.</b>
+<ol class="steps">
+<li>Primary pieces: $60=2^2\cdot3\cdot5\Rightarrow \mathbb Z/4,\mathbb Z/3,\mathbb Z/5$; $\;21=3\cdot7\Rightarrow\mathbb Z/3,\mathbb Z/7$. So the prime-power pile is $\{2^2;\ 3,3;\ 5;\ 7\}$.</li>
+<li>Largest power of each prime $\to$ top invariant factor: $d_2=2^2\cdot3\cdot5\cdot7=420$.</li>
+<li>Leftover ($3$) $\to d_1=3$. Check $d_1\mid d_2$: $3\mid420$ ✓.</li>
+</ol>
+$$\mathbb Z/60\oplus\mathbb Z/21\;\cong\;\ans{\mathbb Z/3\oplus\mathbb Z/420}\qquad(\text{check }3\cdot420=1260=60\cdot21).$$</div>
+<div class="card past"><span class="tag">Past papers</span> 2014 Q3b ($\mathbb Z/60\oplus\mathbb Z/21$), 2016 Q3d (order 675), 2018 Q3a (order 216), 2021 Q3a (from a presentation).</div>
+
+<!-- ============ 2 ============ -->
+<h2 id="g2">2 &nbsp;Arithmetic in $\mathbb Z[i]$ and $\mathbb Z[\sqrt d]$</h2>
+<div class="card recipe"><span class="tag">Recipe</span>
+<ul>
+<li><b>Norm.</b> On $\mathbb Z[\sqrt d]$, $N(a+b\sqrt d)=|a^2-db^2|$; on $\mathbb Z[\sqrt{-d}]$ ($d\gt0$), $N(a+b\sqrt{-d})=a^2+db^2$. It is <b>multiplicative</b>: $N(zw)=N(z)N(w)$.</li>
+<li><b>Units</b> $\iff N=1$ (for imaginary $d$). So $u$ is a unit $\iff N(u)=1$.</li>
+<li><b>Irreducibility test:</b> if $N(z)$ is a prime integer, $z$ is irreducible (a proper factor would have norm a proper divisor of a prime).</li>
+<li><b>Euclidean (for $\mathbb Z[i]$):</b> to divide $s$ by $t$, compute $s/t\in\mathbb C$ and round each coordinate to the nearest integer $\to q$; then $N(s-qt)\le\tfrac12 N(t)\lt N(t)$.</li>
+</ul></div>
+
+<div class="card ex"><span class="tag">Worked — units</span>
+<b>Units of $\mathbb Z[\sqrt{-3}]$.</b> Need $a^2+3b^2=1$ with $a,b\in\mathbb Z$: forces $b=0,a=\pm1$. So $\mathbb Z[\sqrt{-3}]^\times=\ans{\{\pm1\}}$. (For $\mathbb Z[i]$: $a^2+b^2=1\Rightarrow\{\pm1,\pm i\}$. For real $d$, e.g. $\mathbb Z[\sqrt2]$, $a^2-2b^2=\pm1$ has infinitely many solutions — Pell — so infinitely many units.)</div>
+
+<div class="card ex"><span class="tag">Worked — sum of two squares (the 2025 set-piece)</span>
+<b>Write $p=13$ as a sum of two squares, via $\mathbb Z[i]$.</b> (General $p\equiv1\bmod4$.)
+<ol class="steps">
+<li>$\mathbb Z_p^\times$ is cyclic of order $p-1\equiv0\bmod4$, so it has an element of order 4, i.e. $\exists\,m$ with $m^2\equiv-1\bmod p$. Here $m=5$: $\;5^2=25\equiv-1\bmod13$.</li>
+<li>Then $p\mid m^2+1=(m+i)(m-i)$ in $\mathbb Z[i]$, but $p\nmid m\pm i$ (the imaginary part $1/p\notin\mathbb Z$). So $p$ is <b>not prime</b> in $\mathbb Z[i]$.</li>
+<li>$\mathbb Z[i]$ is a Euclidean domain, hence a UFD, so $p=\pi\bar\pi$ with $N(\pi)=p$. Find $\pi=\gcd(p,\,m+i)$ by the Euclidean algorithm: $\gcd(13,\,5+i)=3-2i$.</li>
+<li>$N(3-2i)=3^2+2^2=13$, so $\;13=(3-2i)(3+2i)=\ans{3^2+2^2}.$</li>
+</ol>
+(Smaller check: $p=5$, $m=2$ ($2^2=4\equiv-1$), $5=1^2+2^2$.)</div>
+
+<div class="card ex"><span class="tag">Worked — non-unique factorisation</span>
+<b>Show factorisation is not unique in $\mathbb Z[\sqrt{-5}]$.</b>
+$$6=2\cdot3=(1+\sqrt{-5})(1-\sqrt{-5}).$$
+Norms: $N(2)=4,\ N(3)=9,\ N(1\pm\sqrt{-5})=6$. Each factor is <b>irreducible</b>: a proper factor of $2$ would have norm $2$, of $3$ norm $3$, of $1\pm\sqrt{-5}$ norm $2$ or $3$ — but $a^2+5b^2\in\{2,3\}$ is <em>impossible</em>. And $2$ is not an associate of $1\pm\sqrt{-5}$ (units are only $\pm1$). So these are <ans>two genuinely different</ans> factorisations into irreducibles. (Equivalently: $2,3$ are irreducible but <em>not prime</em>.) The same trick: $4=2\cdot2=(1+\sqrt{-3})(1-\sqrt{-3})$ in $\mathbb Z[\sqrt{-3}]$.</div>
+<div class="card past"><span class="tag">Past papers</span> $\mathbb Z[i]$ Euclidean: 2016, 2017, 2023, 2025. Sum of two squares: 2025 Q2c. Units / non-unique factorisation in $\mathbb Z[\sqrt{-d}]$: 2022 Q1, 2024 Q1.</div>
+
+<!-- ============ 3 ============ -->
+<h2 id="g3">3 &nbsp;Polynomial irreducibility &amp; factorisation over $\mathbb Q$</h2>
+<div class="card recipe"><span class="tag">Recipe</span>
+By Gauss, factoring in $\mathbb Q[x]$ = factoring in $\mathbb Z[x]$ (clear denominators to content 1). Tools, in order of cheapness:
+<ul>
+<li><b>Rational root test:</b> any root $p/q$ (lowest terms) has $p\mid a_0$, $q\mid a_n$. <em>For degree 2 or 3, no rational root $\Rightarrow$ irreducible.</em></li>
+<li><b>Reduction mod a prime</b> $\ell$ (with $\ell\nmid a_n$): if $\bar f$ is irreducible in $\mathbb F_\ell[x]$ then $f$ is irreducible over $\mathbb Q$. (One-way.)</li>
+<li><b>Eisenstein at $\ell$:</b> $\ell\mid a_0,\dots,a_{n-1}$, $\ell\nmid a_n$, $\ell^2\nmid a_0$ $\Rightarrow$ irreducible. Often after a substitution $x\mapsto x+1$.</li>
+<li><b>Substitution:</b> $y=x^2$ for biquadratics; $x\mapsto x+1$ for cyclotomics.</li>
+</ul></div>
+
+<div class="card ex"><span class="tag">Worked — substitution</span>
+<b>Factorise $6x^4+5x^2+1$ over $\mathbb Q$.</b> Put $y=x^2$: $\,6y^2+5y+1=(2y+1)(3y+1)$, so
+$$6x^4+5x^2+1=\ans{(2x^2+1)(3x^2+1)}.$$
+Each factor has no rational (indeed no real) root, so is irreducible over $\mathbb Q$.</div>
+
+<div class="card ex"><span class="tag">Worked — rational root &amp; mod $p$</span>
+<ul>
+<li><b>$x^3+5x^2+3x+2$:</b> candidate roots $\pm1,\pm2$ give $11,3,36,8$ — none zero. Degree 3, no root $\Rightarrow$ <ans>irreducible</ans>.</li>
+<li><b>$x^3-x-1$:</b> reduce mod $2$: $x^3+x+1\in\mathbb F_2[x]$ has $\bar f(0)=\bar f(1)=1\ne0$, so no root, so irreducible in $\mathbb F_2[x]$ $\Rightarrow$ <ans>irreducible over $\mathbb Q$</ans>.</li>
+</ul></div>
+
+<div class="card ex"><span class="tag">Worked — Eisenstein</span>
+<ul>
+<li><b>$x^3-2$:</b> Eisenstein at $\ell=2$ ($2\mid2$, $2\nmid1$, $4\nmid2$) $\Rightarrow$ irreducible, so $2^{1/3}\notin\mathbb Q$.</li>
+<li><b>Cyclotomic $\Phi_p=1+x+\cdots+x^{p-1}=\dfrac{x^p-1}{x-1}$:</b> substitute $x=y+1$. Then
+$\Phi_p(y+1)=\dfrac{(y+1)^p-1}{y}=y^{p-1}+\binom p1 y^{p-2}+\cdots+\binom{p}{p-1}$, every middle coefficient $\binom pk\,(0\lt k\lt p)$ is divisible by $p$, constant term $\binom p1=p$, and $p^2\nmid p$. <b>Eisenstein at $p$</b> $\Rightarrow\Phi_p$ irreducible.</li>
+</ul></div>
+<div class="card past"><span class="tag">Past papers</span> 2024 Q2b ($6x^4+5x^2+1$, two cubics, cyclotomic), 2021 Q1a (Eisenstein, state &amp; apply), 2014 Q2 (content/Gauss + rational root + irreducibility tests).</div>
+
+<!-- ============ 4 ============ -->
+<h2 id="g4">4 &nbsp;Smith normal form &amp; the structure of $\mathbb Z^n/\mathrm{im}(A)$</h2>
+<div class="card recipe"><span class="tag">Recipe</span>
+<ol class="steps">
+<li>Use <b>elementary row and column operations</b> over $\mathbb Z$ (swap; add an integer multiple of one row/col to another) to reduce $A$ to a diagonal $\mathrm{diag}(d_1,\dots,d_r)$ with $d_1\mid d_2\mid\cdots\mid d_r$ — the <b>Smith normal form</b>. (Pivot on a smallest-$|{\cdot}|$ entry; if it doesn't divide a neighbour, do a division-with-remainder step to shrink it; repeat, then clear its row &amp; column and recurse on the smaller block.)</li>
+<li><b>Read off the structure:</b> if the columns of $A$ are the <em>relations</em> among generators of $\mathbb Z^n$, then $\mathbb Z^n/\mathrm{im}(A)\cong\bigoplus_i\mathbb Z/d_i$ (drop $d_i=1$; each $d_i=0$ contributes a free $\mathbb Z$).</li>
+<li><b>Sanity check:</b> for a square $A$, $\;|\det A|=\prod_i d_i$ (when no $d_i=0$).</li>
+</ol></div>
+
+<div class="card ex"><span class="tag">Worked</span>
+<b>Find the Smith normal form of $A=\begin{pmatrix}1&2&3\\4&5&6\\7&8&10\end{pmatrix}$ and hence the group $\mathbb Z^3/\mathrm{im}(A)$.</b>
+<ol class="steps">
+<li>Pivot $a_{11}=1$. Clear column 1: $R_2-4R_1,\ R_3-7R_1$ $\to\begin{pmatrix}1&2&3\\0&-3&-6\\0&-6&-11\end{pmatrix}$.</li>
+<li>Clear row 1: $C_2-2C_1,\ C_3-3C_1$ $\to\begin{pmatrix}1&0&0\\0&-3&-6\\0&-6&-11\end{pmatrix}$.</li>
+<li>Work on the $2\times2$ block $\begin{pmatrix}-3&-6\\-6&-11\end{pmatrix}$. Do $C_3-2C_2$: $\to\begin{pmatrix}-3&0\\-6&1\end{pmatrix}$.</li>
+<li>The entry $1$ is a new pivot: swap it to the corner and clear, leaving $\begin{pmatrix}1&0\\0&-3\end{pmatrix}\sim\begin{pmatrix}1&0\\0&3\end{pmatrix}$.</li>
+</ol>
+So $\mathrm{SNF}(A)=\ans{\mathrm{diag}(1,1,3)}$, and $\;\mathbb Z^3/\mathrm{im}(A)\cong\ans{\mathbb Z/3}$. Check: $\det A=-3=\pm(1\cdot1\cdot3)$ ✓.
+<br><br>
+<b>A chain example:</b> $\begin{pmatrix}2&-2&4\\2&4&2\\6&6&12\end{pmatrix}\xrightarrow{\text{SNF}}\mathrm{diag}(2,2,12)$, so the cokernel is $\mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z/12$ (invariant factors $2\mid2\mid12$); check $\det=48=2\cdot2\cdot12$ ✓.</div>
+<div class="card past"><span class="tag">Past papers</span> 2016 Q3c (basis of $\mathbb Z^3$ adapted to a submodule), 2022 Q3a (diagonalise over a ED + uniqueness), 2023 Q3b (SNF, also over $\mathbb Z[i]$), 2021 Q3a (group from a presentation).</div>
+
+<!-- ============ 5 ============ -->
+<h2 id="g5">5 &nbsp;Rational &amp; Jordan canonical forms</h2>
+<div class="card recipe"><span class="tag">Recipe</span>
+View $V=k^n$ with operator $A$ as a $k[t]$-module ($t$ acts as $A$). Then:
+<ol class="steps">
+<li>Compute the <b>Smith normal form of $tI-A$ over $k[t]$</b>; its non-unit diagonal entries are the <b>invariant factors</b> $f_1\mid f_2\mid\cdots\mid f_m$ (monic).</li>
+<li>$V\cong\bigoplus_i k[t]/(f_i)$; the <b>characteristic polynomial</b> is $\prod_i f_i$ and the <b>minimal polynomial</b> is $f_m$ (the largest).</li>
+<li><b>RCF</b> $=$ block-diagonal of the <b>companion matrices</b> $C(f_i)$. [$C(t^n+c_{n-1}t^{n-1}+\cdots+c_0)$ has sub-diagonal $1$'s and last column $-(c_0,\dots,c_{n-1})^{\mathsf T}$.]</li>
+<li>Over an algebraically closed field, split each $f_i$ into $(t-\lambda)^a$ factors and use <b>Jordan blocks</b> $J_a(\lambda)$ instead — that's the Jordan form.</li>
+</ol></div>
+
+<div class="card ex"><span class="tag">Worked — RCF from char/min poly</span>
+<b>$A=\mathrm{diag}(2,2,3)$.</b> Characteristic polynomial $(t-2)^2(t-3)$; minimal polynomial $(t-2)(t-3)$ (distinct eigenvalues, $A$ diagonalisable). Invariant factors $f_1\mid f_2$ with $f_1f_2=$ char and $f_2=$ min:
+$$f_1=t-2,\qquad f_2=(t-2)(t-3)=t^2-5t+6.$$
+$$\text{RCF}=\;C(f_1)\oplus C(f_2)=\;\bigl(2\bigr)\ \oplus\ \begin{pmatrix}0&-6\\1&5\end{pmatrix}
+=\ans{\begin{pmatrix}2&0&0\\0&0&-6\\0&1&5\end{pmatrix}}.$$
+(Jordan form here is just $\mathrm{diag}(2,2,3)$, since $A$ is already diagonal.)</div>
+
+<div class="card ex"><span class="tag">Worked — the 2023 "$A^2=-I$" question</span>
+<b>$A\in M_2(\mathbb R)$ with $A^2+I=0$.</b> Then $A$ satisfies $t^2+1$, which is irreducible over $\mathbb R$, so the minimal polynomial is $t^2+1$ $=$ characteristic polynomial. One invariant factor $t^2+1$, so
+$$\text{RCF}=C(t^2+1)=\ans{\begin{pmatrix}0&-1\\1&0\end{pmatrix}}.$$
+<b>The change of basis:</b> pick any $v\ne0$ and set $E=[\,v\mid Av\,]$. Then $A\cdot v=Av$ and $A\cdot(Av)=A^2v=-v$, so in the basis $\{v,Av\}$ the matrix of $A$ is exactly $\begin{pmatrix}0&-1\\1&0\end{pmatrix}=E^{-1}AE$. (Over $\mathbb C$ instead, $t^2+1=(t-i)(t+i)$, so the Jordan form is $\mathrm{diag}(i,-i)$.)</div>
+
+<div class="card ex"><span class="tag">Worked — straight from $tI-A$</span>
+For $A=\begin{pmatrix}0&1&0\\0&0&1\\-1&-2&-3\end{pmatrix}$, reducing $tI-A$ over $\mathbb Q[t]$ gives $\mathrm{diag}\bigl(1,1,\;t^3+3t^2+2t+1\bigr)$: a single invariant factor, so $A$ is <em>already</em> the companion matrix of $t^3+3t^2+2t+1$ and equals its own RCF.</div>
+<div class="card past"><span class="tag">Past papers</span> 2017 Q3 (cyclic vector, min=char, compute RCF of $aT+bI$, $T^{-1}$), 2018 Q3b ($M_A\cong M_B\iff$ similar), 2019 Q3b ($\mathbb Q^3$ as a $\mathbb Q[x]$-module), 2023 Q3a.</div>
+
+<!-- ============ 6 ============ -->
+<h2 id="g6">6 &nbsp;Field degrees $[\mathbb Q(\alpha):\mathbb Q]$ and the structure of $\mathbb Q(\alpha)$</h2>
+<div class="card recipe"><span class="tag">Recipe</span>
+<ul>
+<li>For $\alpha$ algebraic over $F$, find the <b>minimal polynomial</b> $m_\alpha$ (monic, least degree, <em>irreducible</em> — check with §3 tools). Then $F(\alpha)\cong F[x]/(m_\alpha)$, $\;[F(\alpha):F]=\deg m_\alpha$, with $F$-basis $\{1,\alpha,\dots,\alpha^{\deg m_\alpha-1}\}$.</li>
+<li><b>Tower Law:</b> $[L:F]=[L:K]\,[K:F]$ for $F\subseteq K\subseteq L$. Build big extensions one generator at a time.</li>
+</ul></div>
+
+<div class="card ex"><span class="tag">Worked — simple extensions</span>
+<ul>
+<li>$[\mathbb Q(\sqrt2):\mathbb Q]=2$ ($m=x^2-2$); $\;[\mathbb Q(2^{1/3}):\mathbb Q]=3$ ($m=x^3-2$, Eisenstein at 2).</li>
+<li><b>Field of fractions of $\mathbb Z[\sqrt n]$:</b> it is $\mathbb Q(\sqrt n)$, of degree $\ans{2}$ over $\mathbb Q$ — unless $n$ is a perfect square, when $\sqrt n\in\mathbb Q$ and the degree is $1$.</li>
+</ul></div>
+
+<div class="card ex"><span class="tag">Worked — tower law</span>
+<b>$[\mathbb Q(\sqrt2,\sqrt3):\mathbb Q]=?$</b> Tower $\mathbb Q\subseteq\mathbb Q(\sqrt2)\subseteq\mathbb Q(\sqrt2,\sqrt3)$:
+<ol class="steps">
+<li>$[\mathbb Q(\sqrt2):\mathbb Q]=2$.</li>
+<li>$[\mathbb Q(\sqrt2,\sqrt3):\mathbb Q(\sqrt2)]=2$: $x^2-3$ stays irreducible over $\mathbb Q(\sqrt2)$ because $\sqrt3\notin\mathbb Q(\sqrt2)$ (if $\sqrt3=a+b\sqrt2$ then squaring gives $3=a^2+2b^2+2ab\sqrt2$, forcing $ab=0$ and then $\sqrt3\in\mathbb Q$ or $\sqrt{3/2}\in\mathbb Q$ — both false).</li>
+<li>Tower law: $[\mathbb Q(\sqrt2,\sqrt3):\mathbb Q]=2\cdot2=\ans{4}$.</li>
+</ol>
+In fact $\mathbb Q(\sqrt2,\sqrt3)=\mathbb Q(\sqrt2+\sqrt3)$, and $\sqrt2+\sqrt3$ has minimal polynomial $x^4-10x^2+1$ (degree 4, consistent).</div>
+<div class="card past"><span class="tag">Past papers</span> 2016 Q2b (degree of $\mathrm{Frac}\,\mathbb Z[\sqrt n]$), 2018 Q1bc ($\mathbb Q[\sqrt a]$), 2019 Q2 (min-poly package + $\mathbb Q[A]$), 2025 Q1 (Tower Law + algebraic numbers form a field). For finite fields: $\mathbb F_4=\mathbb F_2[x]/(x^2+x+1)$, degree 2, $|\mathbb F_{p^d}|=p^d$.</div>
+
+<p class="foot">All numerical answers verified with a computer algebra check. Companion pages: <a href="rm.html">Revision overview</a> · <a href="a3_analysis.html">Exam analysis &amp; predictions</a>.</p>
+</div>
+</body>
+</html>
